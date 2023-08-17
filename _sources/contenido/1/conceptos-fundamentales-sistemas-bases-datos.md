@@ -36,8 +36,8 @@ El software más importante de un sistema de base de datos es el **sistema admin
 ### Datos
 Como se mencionó, a la colección de datos de un sistema de base de datos es a lo que se denomina como una base de datos. Los datos de una base de datos se caracterizan por ser:
 
-- Integrados: Una base de datos puede verse como una integración de varios archivos (i.e. conjuntos de datos) que, de otra manera, serían independientes.
-- Compartidos: Los datos pueden ser accedidos por diferentes usuarios al mismo tiempo, cada uno con diferentes derechos de acceso.
+- **Integrados**: Una base de datos puede verse como una integración de varios conjuntos de datos que, de otra manera, serían independientes.
+- **Compartidos**: Los datos pueden ser accedidos por diferentes usuarios al mismo tiempo, cada uno con diferentes derechos de acceso.
 
 ## Ejercicios
 Cree una base de datos para mantener la información sobre cursos matriculados por los estudiantes de una universidad. La base de datos debe tener tres conjuntos de datos:
