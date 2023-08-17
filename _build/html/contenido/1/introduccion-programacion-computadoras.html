@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introducción a la programación de computadoras &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/1/introduccion-programacion-computadoras';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introducción a la ciencia de datos geoespaciales" href="introduccion-ciencia-datos-geoespaciales.html" />
+    <link rel="prev" title="GF-0659 Exploración y explotación de geodatos" href="../../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción a la programación de computadoras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion-ciencia-datos-geoespaciales.html">Introducción a la ciencia de datos geoespaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown - lenguaje de marcado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git.html">Git - sistema de control de versiones</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/1/introduccion-programacion-computadoras.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/1/introduccion-programacion-computadoras.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a la programación de computadoras</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-entrada-procesamiento-salida">Modelo Entrada - Procesamiento - Salida</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-de-la-computadora">Historia de la computadora</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeras-maquinas-de-calculo">Primeras máquinas de cálculo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-analitica-de-babbage">Máquina analítica de Babbage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computadoras-de-la-ii-guerra-mundial">Computadoras de la II guerra mundial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-de-von-neumann">Arquitectura de von Neumann</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-de-la-arquitectura-de-von-neumann">Componentes de la arquitectura de von Neumann</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-principal">Memoria principal</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-central-de-procesamiento">Unidad Central de Procesamiento</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-de-entrada-y-salida">Sistemas de entrada y salida</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-binario">Código binario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguajes-de-programacion">Lenguajes de programación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguaje-maquina">Lenguaje máquina</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguajes-de-alto-nivel">Lenguajes de alto nivel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pensamiento-computacional">Pensamiento computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-fundamentales-del-pensamiento-computacional">Conceptos fundamentales del pensamiento computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion">Descomposición</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-de-patrones">Reconocimiento de patrones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraccion">Abstracción</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos">Algoritmos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-de-programacion">Práctica de programación</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-la-programacion-de-computadoras">
+<h1>Introducción a la programación de computadoras<a class="headerlink" href="#introduccion-a-la-programacion-de-computadoras" title="Permalink to this heading">#</a></h1>
+<p>Una computadora es una máquina que ejecuta automáticamente secuencias de instrucciones llamadas programas. La programabilidad de las computadoras permite que su funcionamiento pueda modificarse sin alterar sus componentes físicos, lo que posibilita que ayuden a resolver una gran variedad de problemas y las hace mucho más versátiles que otros tipos de máquinas.</p>
+<p>Las computadoras trabajan con un modelo de Entrada - Procesamiento - Salida: reciben datos de entrada (ej. números), los procesan (ej. realizan cálculos aritméticos) y generan salidas (resultados de los cálculos).</p>
+<p>La gran mayoría de las computadoras modernas son electrónicas y digitales. Utilizan circuitos integrados para procesar y almacenar información en forma de señales eléctricas. Esta representación de la información se basa en el sistema binario, utilizando solo dos estados: 0 (voltaje bajo) y 1 (voltaje alto).</p>
+<p>En el nivel más básico, las computadoras pueden programarse introduciendo directamente combinaciones de unos y ceros, conocidas como lenguaje máquina. Ya que esta forma de programación es poco amigable para los seres humanos, es más usual utilizar lenguajes de programación de alto nivel, los cuales usan instrucciones compuestas por expresiones y palabras similares al idioma inglés.</p>
+<p>Para utilizar una computadora en la resolución de un problema, este debe ser expresado mediante un lenguaje de programación. El pensamiento computacional es un enfoque para la resolución de problemas basado en conceptos y métodos de las ciencias de la computación que consta de cuatro principios fundamentales: descomposición, reconocimiento de patrones, abstracción y algoritmos.</p>
+<section id="modelo-entrada-procesamiento-salida">
+<h2>Modelo Entrada - Procesamiento - Salida<a class="headerlink" href="#modelo-entrada-procesamiento-salida" title="Permalink to this heading">#</a></h2>
+<p>El modelo de “Entrada - Procesamiento - Salida” es un concepto fundamental en análisis de sistemas de información y desarrollo de programas. Su esquema se presenta en la <a class="reference internal" href="#figure-entrada-procesamiento-salida"><span class="std std-numref">Fig. 1</span></a>.</p>
+<figure class="align-default" id="figure-entrada-procesamiento-salida">
+<img alt="../../_images/entrada-procesamiento-salida.png" src="../../_images/entrada-procesamiento-salida.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Modelo Entrada - Procesamiento - Salida.</span><a class="headerlink" href="#figure-entrada-procesamiento-salida" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La <strong>entrada</strong> se refiere a los datos que se introducen en un sistema o programa para ser procesados. Pueden ingresarse a través de diversas fuentes, tales como teclados, ratones, cámaras, sensores, archivos y servicios web, entre otros. El <strong>procesamiento</strong> es el conjunto de instrucciones que generan salidas a partir de las entradas. Estas intrucciones pueden incluir cálculos matemáticos, operaciones lógicas y operaciones de control, entre muchas posibilidades. Por último, la <strong>salida</strong> es el resultado del procesamiento (ej. el resultado de cálculos aritméticos).</p>
+<section id="ejemplo">
+<h3>Ejemplo<a class="headerlink" href="#ejemplo" title="Permalink to this heading">#</a></h3>
+<p>El <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal">índice de masa corporal (IMC)</a> clasifica el <em>peso</em> de una persona en categorías como bajo, normal y sobrepeso. Se calcula dividiendo la masa entre el cuadrado de la estatura.</p>
+<p>De acuerdo con el modelo de Entrada - Procesamiento - Salida, el cálculo del IMC puede representarse de la siguiente manera.</p>
+<ul class="simple">
+<li><p>Entradas</p>
+<ul>
+<li><p>masa (kg)</p></li>
+<li><p>estatura (m)</p></li>
+</ul>
+</li>
+<li><p>Procesamiento</p>
+<ul>
+<li><p>masa/estatura^2</p></li>
+</ul>
+</li>
+<li><p>Salida</p>
+<ul>
+<li><p>IMC calculado</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Ejercicio</strong><br />
+Calcule manualmente su IMC y verifique el resultado con esta <a class="reference external" href="https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmi-m_sp.htm">calculadora</a>. Identifique en la calculadora los elementos correspondientes a entrada, procesamiento y salida.</p>
+</section>
+</section>
+<section id="historia-de-la-computadora">
+<h2>Historia de la computadora<a class="headerlink" href="#historia-de-la-computadora" title="Permalink to this heading">#</a></h2>
+<section id="primeras-maquinas-de-calculo">
+<h3>Primeras máquinas de cálculo<a class="headerlink" href="#primeras-maquinas-de-calculo" title="Permalink to this heading">#</a></h3>
+<p>Varias máquinas diseñadas para realizar cálculos aritméticos podrían considerarse precursoras de las computadoras modernas. Por ejemplo, en el siglo XVII, se construyeron varias <a class="reference external" href="https://es.wikipedia.org/wiki/Calculadora_mec%C3%A1nica">calculadoras mecánicas</a> capaces de sumar, restar, multiplicar y dividir.</p>
+<p>Alrededor de 1642, el matemático francés <a class="reference external" href="https://es.wikipedia.org/wiki/Blaise_Pascal">Blaise Pascal (1623-1662)</a> diseñó y construyó la primera calculadora de la que existe constancia, llamada la <a class="reference external" href="https://es.wikipedia.org/wiki/Pascalina">Pascalina</a>. La creó para ayudar a su padre, que era un recaudador de impuestos, en las tareas de cálculo. La Pascalina podía realizar sumas y restas. Su tamaño y formas eran similares a los de una caja de zapatos y su funcionamiento se basaba en un conjunto de ruedas dentadas conectadas entre sí. Una característica notable de la Pascalina era su capacidad para manejar el acarreo, es decir, si al sumar un dígito el resultado era 10 o más, la máquina automáticamente añadía 1 a la siguiente rueda, que representaba la siguiente posición decimal.</p>
+<p>La Pascalina tenía varias limitaciones y no era completamente fiable. Sin embargo, marcó un importante precedente en el desarrollo de dispositivos de cálculo automáticos.</p>
+<p>Cerca de 1672, el matemático alemán <a class="reference external" href="https://es.wikipedia.org/wiki/Gottfried_Leibniz">Gottfried Leibniz (1646-1716)</a> extendió las ideas de Pascal y creó un dispositivo llamado <a class="reference external" href="https://en.wikipedia.org/wiki/Stepped_reckoner"><em>Stepped Reckoner</em> o “Máquina de Leibniz”</a> el cual, además de sumar y restar, podía multiplicar y dividir. Leibniz afirmaba que el trabajo manual de los cálculos podía relegarse en las máquinas, liberando así las capacidades de las personas para tareas de orden superior. Una réplica de la máquina de Leibniz se muestra en la <a class="reference internal" href="#figure-maquina-leibniz"><span class="std std-numref">Fig. 2</span></a>.</p>
+<figure class="align-default" id="figure-maquina-leibniz">
+<img alt="../../_images/maquina-leibniz.jpg" src="../../_images/maquina-leibniz.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Réplica de la <em>Stepped Reckoner</em>, en el Museo Technische Sammlungen, en Dresden, Alemania. Imagen compartida a través de <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Leibnitzrechenmaschine.jpg">Wikimedia Commons</a>.</span><a class="headerlink" href="#figure-maquina-leibniz" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La innovación clave de la máquina de Leibniz fue un cilindro rotativo, llamado “Rueda de Leibniz”, con una serie de dientes de diferentes longitudes. Al girar el cilindro, estos dientes engranaban con un engranaje de conteo, moviéndolo un número variable de posiciones dependiendo de la longitud del diente que entrara en contacto con el engranaje. La suma y la resta se lograban mediante giros directos del mecanismo escalonado. La multiplicación y la división se realizaban a través de repetidas sumas y restas, respectivamente. El usuario introducía números usando un conjunto de dígitos deslizables y luego giraba una manivela para realizar cálculos. Los resultados se mostraban en una serie de ventanas en la parte superior de la máquina.</p>
+<p>Aunque la máquina de Leibniz representó un avance significativo en la tecnología de cálculo mecánico, tenía limitaciones en cuanto a su fiabilidad y precisión en ciertas operaciones. Sin embargo, la rueda de Leibniz se utilizó en calculadoras mecánicas hasta el siglo XX, lo que demuestra la importancia y la durabilidad de su invención.</p>
+</section>
+<section id="maquina-analitica-de-babbage">
+<h3>Máquina analítica de Babbage<a class="headerlink" href="#maquina-analitica-de-babbage" title="Permalink to this heading">#</a></h3>
+<p>En 1837, el matemático británico <a class="reference external" href="https://es.wikipedia.org/wiki/Charles_Babbage">Charles Babbage (1791-1871)</a> inició el diseño de la <a class="reference external" href="https://es.wikipedia.org/wiki/M%C3%A1quina_anal%C3%ADtica">máquina analítica</a>, la cual se muestra en la <a class="reference internal" href="#figure-maquina-analitica"><span class="std std-numref">Fig. 3</span></a>.</p>
+<figure class="align-default" id="figure-maquina-analitica">
+<img alt="../../_images/maquina-analitica.jpg" src="../../_images/maquina-analitica.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Máquina analítica de Babbage, expuesta en el Museo de Ciencias de Londres. Imagen compartida a través de <a class="reference external" href="https://commons.wikimedia.org/wiki/File:AnalyticalMachine_Babbage_London.jpg">Wikimedia Commons</a>.</span><a class="headerlink" href="#figure-maquina-analitica" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Esta máquina estaba diseñada para realizar cálculos matemáticos de manera automática a través de una serie de instrucciones introducidas por medio de un sistema de <a class="reference external" href="https://es.wikipedia.org/wiki/Tarjeta_perforada">tarjetas perforadas</a>, el cual estaba basado en el <a class="reference external" href="https://es.wikipedia.org/wiki/Telar_de_Jacquard">telar de Jacquard</a>, un​ mecanismo ya utilizado en esa época para controlar equipos mecánicos. Además, su diseño incluía algunos componentes de una computadora moderna, incluyendo una “unidad de memoria” y una “unidad de procesamiento”. La máquina analítica nunca se terminó de construir, debido a limitaciones tecnológicas y financieras.</p>
+<p>El trabajo de Babbage se enriqueció con la contribución de la también matemática inglesa <a class="reference external" href="https://es.wikipedia.org/wiki/Ada_Lovelace">Ada Lovelace (1815-1852)</a>. Lovelace conoció a Babbage cuando ella tenía 17 años y de inmediato se interesó en la máquina analítica e identificó el potencial que tenía más allá del procesamiento numérico. Percibió que podría usarse para crear cualquier tipo de contenido, incluyendo música y otras formas de arte, anticipando así las capacidades multifuncionales de las computadoras modernas. Lovelace ha sido considerada por algunos como la <a class="reference external" href="https://es.wikipedia.org/wiki/Ada_Lovelace#Contribuci%C3%B3n_a_la_Inform%C3%A1tica">primera programadora de computadoras de la historia</a>, ya que describió un algoritmo detallado para que la máquina analítica procesara <a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_de_Bernoulli">números de Bernoulli</a>. Sin embargo, existe también una <a class="reference external" href="https://es.wikipedia.org/wiki/Ada_Lovelace#Pol%C3%A9mica_sobre_sus_contribuciones">controversia sobre el grado de participación de Babbage en la confección de este algoritmo-programa</a>.</p>
+</section>
+<section id="maquina-de-turing">
+<h3>Máquina de Turing<a class="headerlink" href="#maquina-de-turing" title="Permalink to this heading">#</a></h3>
+<p>En 1936, el matemático inglés <a class="reference external" href="https://es.wikipedia.org/wiki/Alan_Turing">Alan Turing (1912-1954)</a> propuso un dispositivo teórico, conocido en la actualidad como <a class="reference external" href="https://es.wikipedia.org/wiki/M%C3%A1quina_de_Turing">máquina de Turing</a>, que manipula símbolos de una cinta de acuerdo con una tabla de reglas. La máquina de Turing se ilustra en la <a class="reference internal" href="#figure-maquina-turing"><span class="std std-numref">Fig. 4</span></a>.</p>
+<figure class="align-default" id="figure-maquina-turing">
+<img alt="../../_images/maquina-turing.png" src="../../_images/maquina-turing.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Representación artística de una máquina de Turing. Imagen de Schadel <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Turing_Machine.png">compartida a través de Wikimedia Commons</a>.</span><a class="headerlink" href="#figure-maquina-turing" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>El cabezal de lectura/escritura lee y escribe símbolos en las celdas de la cinta, de acuerdo con las instrucciones contenidas en la tabla de reglas. La máquina tiene un número finito de estados, incluyendo un estado inicial y uno o más estados finales (o de parada). Las reglas le indican a la máquina qué hacer, según el símbolo que el cabezal lee y el estado actual de la máquina. Por ejemplo, si la máquina está en el estado q1​ y lee el símbolo “a”, la máquina podría cambiar al estado q2​, escribir un “b” y mover el cabezal a la derecha.</p>
+<p>La máquina de Turing simula el funcionamiento de un <a class="reference external" href="https://es.wikipedia.org/wiki/Algoritmo">algoritmo</a> y los conceptos de <a class="reference external" href="https://en.wikipedia.org/wiki/IPO_model">entrada, procesamiento y salida</a>. Funciona como una base teórica para entender qué puede y qué no puede ser computado, y ha influido en el diseño y teoría de las computadoras y lenguajes de programación modernos.</p>
+</section>
+<section id="computadoras-de-la-ii-guerra-mundial">
+<h3>Computadoras de la II guerra mundial<a class="headerlink" href="#computadoras-de-la-ii-guerra-mundial" title="Permalink to this heading">#</a></h3>
+<p>Con base en las ideas de Turing, las computadoras <a class="reference external" href="https://es.wikipedia.org/wiki/Bombe">Bombe</a> y  <a class="reference external" href="https://es.wikipedia.org/wiki/Colossus">Colossus</a> fueron construídas durante la II Guerra Mundial (1939-1945) en el Reino Unido, para descifrar mensajes codificados. A pesar de que se consideran de las primeras computadoras digitales electrónicas programables, su programación se realizaba a través de componentes de <em>hardware</em>, como interruptores y enchufes, y no con un <a class="reference external" href="https://es.wikipedia.org/wiki/Computador_de_programa_almacenado">programa almacenado</a>.</p>
+<p>También durante la II Guerra Mundial, el ejército de Estados Unidos de América construyó <a class="reference external" href="https://es.wikipedia.org/wiki/ENIAC">ENIAC (Electronic Numerical Integrator and Computer)</a> para calcular tablas de tiro de artillería. Es considerada por algunos como la primera computadora programable digital de propósito general. Era capaz de seguir el modelo de la máquina de Turing, por lo que era <a class="reference external" href="https://es.wikipedia.org/wiki/Turing_completo">Turing-completa</a>. ENIAC se muestra en la <a class="reference internal" href="#figure-eniac"><span class="std std-numref">Fig. 5</span></a>.</p>
+<figure class="align-default" id="figure-eniac">
+<img alt="../../_images/eniac.jpg" src="../../_images/eniac.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">ENIAC, siendo programada por Glen Beck y Betty Snyder. Imagen del Ejército de Estados Unidos compartida a través de <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Eniac.jpg">Wikimedia Commons</a>.</span><a class="headerlink" href="#figure-eniac" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="arquitectura-de-von-neumann">
+<h3>Arquitectura de von Neumann<a class="headerlink" href="#arquitectura-de-von-neumann" title="Permalink to this heading">#</a></h3>
+<p>En 1945, el matemático húngaro-estadounidense <a class="reference external" href="https://es.wikipedia.org/wiki/John_von_Neumann">John von Neumann (1903-1957)</a> propuso un concepto conocido como programa almacenado, en el cual los datos y los programas se almacenan en una estructura llamada memoria, separada de los componentes físicos que ejecutan las instrucciones. Este modelo permite que las computadoras sean más fáciles de reprogramar y es conocido actualmente como <a class="reference external" href="https://es.wikipedia.org/wiki/Arquitectura_de_Von_Neumann">arquitectura de von Neumann</a>. La arquitectura de von Neumann se ilustra en la <a class="reference internal" href="#figure-arquitectura-vonneumann"><span class="std std-numref">Fig. 6</span></a>.</p>
+<figure class="align-default" id="figure-arquitectura-vonneumann">
+<img alt="../../_images/arquitectura-vonneumann.jpg" src="../../_images/arquitectura-vonneumann.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Diagrama de la arquitectura de von Neumann. Imagen de David Strigoi compartida a través de <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Arquitecturaneumann.jpg">Wikimedia Commons</a>.</span><a class="headerlink" href="#figure-arquitectura-vonneumann" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="componentes-de-la-arquitectura-de-von-neumann">
+<h4>Componentes de la arquitectura de von Neumann<a class="headerlink" href="#componentes-de-la-arquitectura-de-von-neumann" title="Permalink to this heading">#</a></h4>
+<section id="memoria-principal">
+<h5>Memoria principal<a class="headerlink" href="#memoria-principal" title="Permalink to this heading">#</a></h5>
+<p>Almacena las instrucciones de los programas y los datos que utilizan estos programas. Es común denominarla como RAM (<em>Random Access Memory</em>, Memoria de Acceso Aleatorio), lo que significa que toma el mismo tiempo acceder a cualquier posición de la memoria. Cada posición de memoria tiene una dirección a la que se hace referencia cuando se desea leer o escribir.</p>
+</section>
+<section id="unidad-central-de-procesamiento">
+<h5>Unidad Central de Procesamiento<a class="headerlink" href="#unidad-central-de-procesamiento" title="Permalink to this heading">#</a></h5>
+<p>Tambiénb se le conoce como  o CPU (<em>Central Processing Unit</em>). Ejecuta las instrucciones de los programas. Está compuesta por dos partes:</p>
+<ul class="simple">
+<li><p><strong>Unidad de Control</strong>: determina cuál es la siguiente instrucción a ejecutar. Contiene memorias temporales de alta velocidad y poca capacidad llamadas registros, para almacenar los operandos y el resultado de las instrucciones.</p></li>
+<li><p><strong>Unidad de Aritmética y Lógica o ALU (<em>Arithmetic and Logic Unit</em>)</strong>: ejecuta las operaciones aritméticas y lógicas.</p></li>
+</ul>
+</section>
+<section id="sistemas-de-entrada-y-salida">
+<h5>Sistemas de entrada y salida<a class="headerlink" href="#sistemas-de-entrada-y-salida" title="Permalink to this heading">#</a></h5>
+<p>Permiten que la computadora interactúe con el usuario y, en general, con el mundo exterior. Algunos ejemplos son el teclado y el ratón, como sistemas de entrada, y la pantalla y la impresora, como sistemas de salida.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="codigo-binario">
+<h2>Código binario<a class="headerlink" href="#codigo-binario" title="Permalink to this heading">#</a></h2>
+<p>Las computadoras modernas utilizan circuitos integrados (CI) para procesar y almacenar información en forma de señales eléctricas. Los voltajes bajos y altos representan dos posibles valores de información: 0 y 1. Este es un sistema binario y cada dígito binario (0 o 1) se denomina <em>bit</em> (<em>binary digit</em>).</p>
+<p>Los bits se agrupan, por ejemplo, en <a class="reference external" href="https://es.wikipedia.org/wiki/Byte">bytes = 8 bits</a>, para representar elementos de información más complejos, como números más grandes o carácteres de texto. Por ejemplo:</p>
+<ul class="simple">
+<li><p>El número decimal <code class="docutils literal notranslate"><span class="pre">14</span></code> se representa en binario como <code class="docutils literal notranslate"><span class="pre">1110</span></code>:<br />
+<code class="docutils literal notranslate"><span class="pre">1110</span></code> = <code class="docutils literal notranslate"><span class="pre">2^3*1</span> <span class="pre">+</span> <span class="pre">2^2*1</span> <span class="pre">+</span> <span class="pre">2^1*1</span> <span class="pre">+</span> <span class="pre">2^0*0</span></code> = <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">+</span> <span class="pre">4</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">+</span> <span class="pre">0</span></code> = <code class="docutils literal notranslate"><span class="pre">14</span></code></p></li>
+<li><p>La palabra <code class="docutils literal notranslate"><span class="pre">bit</span></code> se representa en <a class="reference external" href="https://es.wikipedia.org/wiki/ASCII">código ASCII</a> como:<br />
+<code class="docutils literal notranslate"><span class="pre">01100010</span> <span class="pre">01101001</span> <span class="pre">01110100</span></code> = <code class="docutils literal notranslate"><span class="pre">bit</span></code></p></li>
+</ul>
+</section>
+<section id="lenguajes-de-programacion">
+<h2>Lenguajes de programación<a class="headerlink" href="#lenguajes-de-programacion" title="Permalink to this heading">#</a></h2>
+<section id="lenguaje-maquina">
+<h3>Lenguaje máquina<a class="headerlink" href="#lenguaje-maquina" title="Permalink to this heading">#</a></h3>
+<p>El <a class="reference external" href="https://es.wikipedia.org/wiki/Lenguaje_de_m%C3%A1quina">lenguaje máquina</a> es un conjunto de instrucciones binarias (i.e. unos y ceros) interpretables por un CPU. Las instrucciones representan acciones a ser ejecutadas por la computadora. Cada CPU tiene su propio lenguaje máquina.</p>
+<p>Un programa consiste de una secuencia de instrucciones en lenguaje máquina.</p>
+<p>Por ejemplo, la instrucción de la <a class="reference internal" href="#figure-lenguaje-maquina"><span class="std std-numref">Fig. 7</span></a> suma los contenidos de los registros 1 y 2 y almacena el resultado en el registro 6 de un CPU.</p>
+<figure class="align-default" id="figure-lenguaje-maquina">
+<img alt="../../_images/suma-binaria.png" src="../../_images/suma-binaria.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Instrucción de suma en lenguaje máquina. Ejemplo compartido a través de <a class="reference external" href="https://en.wikipedia.org/wiki/Machine_code">Wikipedia</a>.</span><a class="headerlink" href="#figure-lenguaje-maquina" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="lenguajes-de-alto-nivel">
+<h3>Lenguajes de alto nivel<a class="headerlink" href="#lenguajes-de-alto-nivel" title="Permalink to this heading">#</a></h3>
+<p>Debido a que programar una computadora en lenguaje máquina es excesivamente lento y complicado, en la década de 1950 comenzaron a crearse lenguajes de programación que, en lugar de unos y ceros, consisten de instrucciones formadas por palabras, usualmente en idioma inglés. A estos lenguajes se les llama lenguajes de programación de alto nivel o simplemente lenguajes de programación.</p>
+<p>Existe una gran <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_programming_languages">variedad de lenguajes de programación</a> que han sido creados con diversos fines: científicos, comerciales, educacionales, etc.</p>
+</section>
+</section>
+<section id="pensamiento-computacional">
+<h2>Pensamiento computacional<a class="headerlink" href="#pensamiento-computacional" title="Permalink to this heading">#</a></h2>
+<p>Las computadoras son ampliamente utilizadas en la actualidad, debido a su capacidad para ayudar a resolver problemas. Sin embargo, el problema expresarse de forma tal que pueda ser implementado en una computadora, mediante un lenguaje de programación, como se ilustra en la <a class="reference internal" href="#figure-resolucion-problemas-computadoras"><span class="std std-numref">Fig. 8</span></a>.</p>
+<figure class="align-default" id="figure-resolucion-problemas-computadoras">
+<img alt="../../_images/resolucion-problemas-computadoras.png" src="../../_images/resolucion-problemas-computadoras.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Resolución de problemas mediante computadoras.</span><a class="headerlink" href="#figure-resolucion-problemas-computadoras" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>El <a class="reference external" href="https://es.wikipedia.org/wiki/Pensamiento_computacional">pensamiento computacional</a> es un enfoque para la resolución de problemas basado en conceptos y métodos de las ciencias de la computación. Puede ser aplicado en muchas áreas, no solo en computación. Se considera una de las destrezas fundamentales del siglo XXI.</p>
+<section id="conceptos-fundamentales-del-pensamiento-computacional">
+<h3>Conceptos fundamentales del pensamiento computacional<a class="headerlink" href="#conceptos-fundamentales-del-pensamiento-computacional" title="Permalink to this heading">#</a></h3>
+<section id="descomposicion">
+<h4>Descomposición<a class="headerlink" href="#descomposicion" title="Permalink to this heading">#</a></h4>
+<p>Consiste en la división de un problema en subproblemas más pequeños. La idea es que el problema total, de problema de mayor complejidad, se simplifique en problemas más fáciles de resolver.</p>
+<p>Ejemplos:</p>
+<ul class="simple">
+<li><p>División de un documento en secciones.</p></li>
+<li><p><a class="reference external" href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_estructurada">Estructuración de un programa en bloques o subrutinas</a>.</p></li>
+</ul>
+</section>
+<section id="reconocimiento-de-patrones">
+<h4>Reconocimiento de patrones<a class="headerlink" href="#reconocimiento-de-patrones" title="Permalink to this heading">#</a></h4>
+<p>Es la búsqueda de similitudes de un problema a resolver, con problemas ya resueltos.</p>
+<p>“<em>Cada patrón describe un problema que ocurre infinidad de veces en nuestro entorno, así como la solución al mismo, de tal modo que podemos utilizar esta solución un millón de veces más adelante sin tener que volver a pensarla otra vez.</em>” (Christopher Alexander, 1977).</p>
+<p>Ejemplos:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://laptrinhx.com/a-pattern-language-3372046788/">Patrones de diseño arquitectónico</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Design_Patterns">Patrones de diseño de software</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Programming_idiom"><em>Idioms</em> de programación</a></p></li>
+</ul>
+</section>
+<section id="abstraccion">
+<h4>Abstracción<a class="headerlink" href="#abstraccion" title="Permalink to this heading">#</a></h4>
+<p>Se refiere a la identificación de la información que se necesita y filtrado de la que no se necesita para resolver un problema.</p>
+<p>Ejemplos:</p>
+<ul class="simple">
+<li><p>Selección de atributos a incluir en una base de datos.</p></li>
+</ul>
+</section>
+<section id="algoritmos">
+<h4>Algoritmos<a class="headerlink" href="#algoritmos" title="Permalink to this heading">#</a></h4>
+<p>Es la descripción, paso por paso, de la solución a un problema.</p>
+<p>Ejemplos:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://es.wikipedia.org/wiki/Algoritmo_de_ordenamiento">Algoritmos de ordenamiento</a></p></li>
+<li><p><a class="reference external" href="https://es.wikipedia.org/wiki/Algoritmo_de_b%C3%BAsqueda">Algoritmos de búsqueda</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="practica-de-programacion">
+<h2>Práctica de programación<a class="headerlink" href="#practica-de-programacion" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://scratch.mit.edu/">Scratch</a> es un lenguaje de programación orientado a educación. Su nombre proviene de la palabra <a class="reference external" href="https://en.wikipedia.org/wiki/Scratching"><em>scratching</em></a>. Fue desarrollado en 2003 por el <a class="reference external" href="https://www.media.mit.edu/">MIT Media Lab</a> y es administrado por la Fundación Scratch, una organización sin fines de lucro que lo facilita de manera gratuita. Es software libre distribuido mediante licencia <a class="reference external" href="https://es.wikipedia.org/wiki/GNU_General_Public_License">GPLv2</a>.</p>
+<ul class="simple">
+<li><p>Considere el paisaje de la <a class="reference internal" href="#figure-paisaje-urbano"><span class="std std-numref">Fig. 9</span></a>.</p></li>
+</ul>
+<figure class="align-default" id="figure-paisaje-urbano">
+<img alt="../../_images/paisaje-urbano.png" src="../../_images/paisaje-urbano.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Paisaje urbano.</span><a class="headerlink" href="#figure-paisaje-urbano" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>Ingrese al sitio web de <a class="reference external" href="https://scratch.mit.edu/">Scratch</a> y estudie la intefaz del ambiente de desarrollo. Puede buscar información adicional en otros sitios (ej. <a class="reference external" href="https://www.youtube.com/watch?v=x14G4DCk4nY">Scratch Tutorial for Beginners - Make a Flappy Bird Game</a>, <a class="reference external" href="https://www.youtube.com/watch?v=1tnj3UCkuxU">CS50 2021 in HDR - Lecture 0 - Scratch</a>). Revise ejemplos y proyectos de otras personas para saber qué puede hacer con Scratch.</p></li>
+<li><p>Utilizando los cuatro principios fundamentales del pensamiento computacional, desarrolle un algoritmo para dibujar el paisaje de la diapositiva anterior. Considere las siguientes preguntas orientadoras:</p>
+<ul>
+<li><p>¿Cómo puede dividirse el problema?</p></li>
+<li><p>¿Qué patrones observa (formas, tamaños, etc.)?</p></li>
+<li><p>¿Qué información se necesita para hacer los dibujos (ej. medidas)?</p></li>
+<li><p>¿Qué nivel de detalle requiere el algoritmo?</p></li>
+</ul>
+</li>
+<li><p>Implemente en un programa en Scratch el algoritmo que desarrolló.</p></li>
+</ul>
+<p>Algunas sugerencias:</p>
+<ul class="simple">
+<li><p>Procure que el código fuente de sus programas sea ordenado y legible.</p></li>
+<li><p>Reutilice el código fuente mediante bloques, funciones y otros mecanismos.</p></li>
+<li><p>Use identificadores (ej. nombres de variables, nombres de bloques o funciones) significativos.</p></li>
+<li><p>Incluya comentarios en el código fuente de sus programas y también escriba documentación externa.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">GF-0659 Exploración y explotación de geodatos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="introduccion-ciencia-datos-geoespaciales.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introducción a la ciencia de datos geoespaciales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-entrada-procesamiento-salida">Modelo Entrada - Procesamiento - Salida</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#historia-de-la-computadora">Historia de la computadora</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#primeras-maquinas-de-calculo">Primeras máquinas de cálculo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-analitica-de-babbage">Máquina analítica de Babbage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maquina-de-turing">Máquina de Turing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computadoras-de-la-ii-guerra-mundial">Computadoras de la II guerra mundial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arquitectura-de-von-neumann">Arquitectura de von Neumann</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes-de-la-arquitectura-de-von-neumann">Componentes de la arquitectura de von Neumann</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#memoria-principal">Memoria principal</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#unidad-central-de-procesamiento">Unidad Central de Procesamiento</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sistemas-de-entrada-y-salida">Sistemas de entrada y salida</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-binario">Código binario</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguajes-de-programacion">Lenguajes de programación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguaje-maquina">Lenguaje máquina</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lenguajes-de-alto-nivel">Lenguajes de alto nivel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pensamiento-computacional">Pensamiento computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-fundamentales-del-pensamiento-computacional">Conceptos fundamentales del pensamiento computacional</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descomposicion">Descomposición</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reconocimiento-de-patrones">Reconocimiento de patrones</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#abstraccion">Abstracción</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmos">Algoritmos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-de-programacion">Práctica de programación</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

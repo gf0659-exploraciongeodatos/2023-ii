@@ -2,8 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+root: index
+parts:
+  - caption: 1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS
+    chapters:
+    - file: contenido/1/conceptos-fundamentales-sistemas-bases-datos

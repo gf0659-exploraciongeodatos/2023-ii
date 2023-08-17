@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
+title: GF-0659 Exploración y explotación de geodatos 2023-II
+author: Manuel Vargas
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -17,11 +17,15 @@ latex:
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
-  - references.bib
+  - referencias.bib
+  
+sphinx:
+  config:
+    bibtex_reference_style: label
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
+  url: https://github.com/gf0659-exploraciongeodatos/2023-ii/ # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
@@ -30,3 +34,8 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+  
+# i18n
+language:
+  name: es
+  locale: es_CR
