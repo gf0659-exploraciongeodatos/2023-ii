@@ -193,7 +193,6 @@ Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de 
 </style>
 
 ### SABD relacionales
-
 <table>
     <thead>
         <tr>
@@ -266,7 +265,6 @@ Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de 
 </table>
 
 ### SABD no relacionales (NoSQL)
-
 <table>
     <thead>
         <tr>
@@ -310,6 +308,25 @@ Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de 
 <p>
 
 Puede encontrar más información sobre SABD y su popularidad en el sitio [DB-Engines Ranking](https://db-engines.com/en/ranking).
+
+## Instalación y uso de PostgreSQL
+
+1. Descargue e instale el SABD [PostgreSQL](https://www.postgresql.org/). Recuerde o anote la clave que se le solicita.
+2. Con PgAdmin, cree la base de datos `universidad`, del bloque anterior de ejercicios. 
+    - Ejecute los comandos SQL del bloque anterior. 
+    - Con el Navegador de QGIS, cree una conexión a la base de datos.
+3. En QGIS, cargue el archivo CSV con datos de ciudades disponible en [World Cities Database](https://simplemaps.com/data/world-cities).
+    - En PgAdmin, cree una base de datos llamada `ciudades`.
+    - En QGIS, cree una conexión a la base de datos.
+    - Con el Administrador de Bases de Datos de QGIS, cargue en la base de datos los datos de ciudades.
+    - Ejecute algunas consultas SQL para obtener:
+        - Lista de ciudades de Costa Rica.
+        - Lista de ciudades con más de 10 millones de habitantes.
+        - Lista de países en la base de datos (Sugerencia: use la cláusula `DISTINCT`).
+        - Población total de las ciudades de Costa Rica (sugerencia: use la función `Sum()`).
+        - Población promedio de las ciudades de Costa Rica (sugerencia: use la función `Avg()`).
+        - La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula `ORDER BY`).
+        
 
 ## Bibliografía
 ```{bibliography}

@@ -363,6 +363,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-y-uso-de-postgresql">Instalación y uso de PostgreSQL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
@@ -691,6 +692,35 @@ document.write(`
 <p>Puede encontrar más información sobre SABD y su popularidad en el sitio <a class="reference external" href="https://db-engines.com/en/ranking">DB-Engines Ranking</a>.</p>
 </section>
 </section>
+<section id="instalacion-y-uso-de-postgresql">
+<h2>Instalación y uso de PostgreSQL<a class="headerlink" href="#instalacion-y-uso-de-postgresql" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Descargue e instale el SABD <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a>. Recuerde o anote la clave que se le solicita.</p></li>
+<li><p>Con PgAdmin, cree la base de datos <code class="docutils literal notranslate"><span class="pre">universidad</span></code>, del bloque anterior de ejercicios.</p>
+<ul class="simple">
+<li><p>Ejecute los comandos SQL del bloque anterior.</p></li>
+<li><p>Con el Navegador de QGIS, cree una conexión a la base de datos.</p></li>
+</ul>
+</li>
+<li><p>En QGIS, cargue el archivo CSV con datos de ciudades disponible en <a class="reference external" href="https://simplemaps.com/data/world-cities">World Cities Database</a>.</p>
+<ul class="simple">
+<li><p>En PgAdmin, cree una base de datos llamada <code class="docutils literal notranslate"><span class="pre">ciudades</span></code>.</p></li>
+<li><p>En QGIS, cree una conexión a la base de datos.</p></li>
+<li><p>Con el Administrador de Bases de Datos de QGIS, cargue en la base de datos los datos de ciudades.</p></li>
+<li><p>Ejecute algunas consultas SQL para obtener:</p>
+<ul>
+<li><p>Lista de ciudades de Costa Rica.</p></li>
+<li><p>Lista de ciudades con más de 10 millones de habitantes.</p></li>
+<li><p>Lista de países en la base de datos (Sugerencia: use la cláusula <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>).</p></li>
+<li><p>Población total de las ciudades de Costa Rica (sugerencia: use la función <code class="docutils literal notranslate"><span class="pre">Sum()</span></code>).</p></li>
+<li><p>Población promedio de las ciudades de Costa Rica (sugerencia: use la función <code class="docutils literal notranslate"><span class="pre">Avg()</span></code>).</p></li>
+<li><p>La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id6">
@@ -779,6 +809,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-y-uso-de-postgresql">Instalación y uso de PostgreSQL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>
