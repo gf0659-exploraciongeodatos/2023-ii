@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Creación y configuración del Jupyter Book de PF-0907 Programación en SIG 2023-II &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+    <title>Creación y configuración del Jupyter Book de GF-0659 Exploración y explotación de geodatos 2023-II &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
   
   
   
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="contenido/1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de bases de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contenido/1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
 </ul>
 
     </div>
@@ -340,7 +340,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Creación y configuración del Jupyter Book de PF-0907 Programación en SIG 2023-II</h1>
+    <h1>Creación y configuración del Jupyter Book de GF-0659 Exploración y explotación de geodatos 2023-II</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -365,12 +365,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="creacion-y-configuracion-del-jupyter-book-de-pf-0907-programacion-en-sig-2023-ii">
-<h1>Creación y configuración del Jupyter Book de PF-0907 Programación en SIG 2023-II<a class="headerlink" href="#creacion-y-configuracion-del-jupyter-book-de-pf-0907-programacion-en-sig-2023-ii" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="creacion-y-configuracion-del-jupyter-book-de-gf-0659-exploracion-y-explotacion-de-geodatos-2023-ii">
+<h1>Creación y configuración del Jupyter Book de GF-0659 Exploración y explotación de geodatos 2023-II<a class="headerlink" href="#creacion-y-configuracion-del-jupyter-book-de-gf-0659-exploracion-y-explotacion-de-geodatos-2023-ii" title="Permalink to this heading">#</a></h1>
 <ol class="arabic simple">
 <li><p>Creación de un ambiente Conda.</p></li>
-<li><p>Creación del Jupyter Book principal: <a class="reference external" href="http://pf0907-programacionsig.github.io">pf0907-programacionsig.github.io</a></p></li>
-<li><p>Creación de un Jupyter Book para cada curso, por ejemplo: 2023-ii, accesible en <a class="reference external" href="https://pf0907-programacionsig.github.io/2023-ii/">https://pf0907-programacionsig.github.io/2023-ii/</a></p></li>
+<li><p>Creación del Jupyter Book principal: <a class="reference external" href="http://gf0659-exploraciongeodatos.github.io">gf0659-exploraciongeodatos.github.io</a></p></li>
+<li><p>Creación de un Jupyter Book para cada curso, por ejemplo: 2023-ii, accesible en <a class="reference external" href="https://gf0659-exploraciongeodatos.github.io/2023-ii/">https://gf0659-exploraciongeodatos.github.io/2023-ii/</a></p></li>
 <li><p>Publicación de modificaciones.</p></li>
 </ol>
 <section id="creacion-de-un-ambiente-conda">
@@ -379,13 +379,13 @@ document.write(`
 conda<span class="w"> </span>update<span class="w"> </span>conda
 
 <span class="c1"># Borrado del ambiente (si es que existe)</span>
-<span class="c1"># conda remove -n pf0907-2023-ii --all</span>
+<span class="c1"># conda remove -n gf0659-2023-ii --all</span>
 
 <span class="c1"># Creación del ambiente</span>
-conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>pf0907-2023-ii
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gf0659-2023-ii
 
 <span class="c1"># Activación del ambiente</span>
-conda<span class="w"> </span>activate<span class="w"> </span>pf0907-2023-ii
+conda<span class="w"> </span>activate<span class="w"> </span>gf0659-2023-ii
 
 <span class="c1"># Configuración del ambiente</span>
 conda<span class="w"> </span>config<span class="w"> </span>--env<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
@@ -404,30 +404,30 @@ conda<span class="w"> </span>deactivate
 </section>
 <section id="creacion-del-jupyter-book-principal-y-publicacion-inicial-del-sitio-web-en-github-pages">
 <h2>2. Creación del Jupyter Book principal y publicación inicial del sitio web en GitHub Pages<a class="headerlink" href="#creacion-del-jupyter-book-principal-y-publicacion-inicial-del-sitio-web-en-github-pages" title="Permalink to this heading">#</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pf0907-2023-ii
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>gf0659-2023-ii
 
 <span class="c1"># Creación del Jupyter Book con una plantilla inicial</span>
-jupyter-book<span class="w"> </span>create<span class="w"> </span>pf0907-programacionsig.github.io
+jupyter-book<span class="w"> </span>create<span class="w"> </span>gf0659-exploraciongeodatos.github.io
 
 <span class="c1"># Generación de archivos HTML (en el subdirectorio _build/html)</span>
-jupyter-book<span class="w"> </span>build<span class="w"> </span>pf0907-programacionsig.github.io
+jupyter-book<span class="w"> </span>build<span class="w"> </span>gf0659-exploraciongeodatos.github.io
 
-<span class="c1"># En este punto, debe crearse en GitHub el repositorio pf0907-programacionsig.github.io</span>
+<span class="c1"># En este punto, debe crearse en GitHub el repositorio gf0659-exploraciongeodatos.github.io</span>
 
 <span class="c1"># Configuración del repositorio local y su branch main (para manejar los archivos fuente)</span>
-<span class="nb">cd</span><span class="w"> </span>pf0907-programacionsig.github.io
+<span class="nb">cd</span><span class="w"> </span>gf0659-exploraciongeodatos.github.io
 git<span class="w"> </span>init
 git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Commit inicial&quot;</span>
 git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
-git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:pf0907-programacionsig/pf0907-programacionsig.github.io.git
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:gf0659-exploraciongeodatos/gf0659-exploraciongeodatos.github.io.git
 git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
 
 <span class="c1"># Creación del branch gh-pages (para manejar los archivos HTML publicados)</span>
 ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>_build/html
 
 <span class="c1"># En este punto, se configura el repositorio para buscar los archivos de GH Pages en la rama gh-pages</span>
-<span class="c1"># El sitio debe estar disponible en https://pf0907-programacionsig.github.io/</span>
+<span class="c1"># El sitio debe estar disponible en https://gf0659-exploraciongeodatos.github.io/</span>
 
 conda<span class="w"> </span>deactivate
 </pre></div>
@@ -435,7 +435,7 @@ conda<span class="w"> </span>deactivate
 </section>
 <section id="creacion-de-un-jupyter-book-para-cada-curso-y-publicacion-inicial-del-sitio-web-en-github-pages">
 <h2>3. Creación de un Jupyter Book para cada curso y publicación inicial del sitio web en GitHub Pages<a class="headerlink" href="#creacion-de-un-jupyter-book-para-cada-curso-y-publicacion-inicial-del-sitio-web-en-github-pages" title="Permalink to this heading">#</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pf0907-2023-ii
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>gf0659-2023-ii
 
 <span class="c1"># Creación del Jupyter Book con una plantilla inicial</span>
 jupyter-book<span class="w"> </span>create<span class="w"> </span><span class="m">2023</span>-ii
@@ -451,14 +451,14 @@ git<span class="w"> </span>init
 git<span class="w"> </span>add<span class="w"> </span>.
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Commit inicial&quot;</span>
 git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
-git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:pf0907-programacionsig/2023-ii.git
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:gf0659-exploraciongeodatos/2023-ii.git
 git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
 
 <span class="c1"># Creación del branch gh-pages (para manejar los archivos HTML publicados)</span>
 ghp-import<span class="w"> </span>-n<span class="w"> </span>-p<span class="w"> </span>-f<span class="w"> </span>_build/html
 
 <span class="c1"># En este punto, se configura el repositorio para buscar los archivos de GH Pages en la rama gh-pages</span>
-<span class="c1"># El sitio debe estar disponible en https://pf0907-programacionsig.github.io/2023-ii/</span>
+<span class="c1"># El sitio debe estar disponible en https://gf0659-exploraciongeodatos.github.io/2023-ii/</span>
 </pre></div>
 </div>
 </section>

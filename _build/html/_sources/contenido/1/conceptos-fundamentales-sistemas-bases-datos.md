@@ -169,6 +169,148 @@ WHERE Matricula.sigla = 'LIT102';
     6.3. Trate de ingresar un curso con una sigla asignada a otro curso.  
     6.4. Trate de matricular un estudiante en un curso que no existe.  
 
+## SABD más populares
+Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de los más populares.
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    table, th, td {
+        border: 1px solid black;
+    }
+    
+    th, td {
+        padding: 8px 12px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+### SABD relacionales
+
+<table>
+    <thead>
+        <tr>
+            <th>SABD</th>
+            <th>Desarrollador</th>
+            <th>Licencia</th>
+            <th>Sitio web</th>
+            <th>Descripción</th>
+            <th>Soporte para datos espaciales</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Oracle Database</td>
+            <td>Oracle Corporation</td>
+            <td>Comercial</td>
+            <td><a href="https://www.oracle.com/database/">https://www.oracle.com/database/</a></td>
+            <td>Es el SABD más popular.</td>
+            <td>Sí</td>
+        </tr>
+        <tr>
+            <td>MySQL</td>
+            <td>Oracle Corporation</td>
+            <td>Libre/comercial</td>
+            <td><a href="http://www.mysql.com/">http://www.mysql.com/</a></td>
+            <td>Es el SABD de código abierto más popular.</td>
+            <td>Sí</td>
+        </tr>
+        <tr>
+            <td>Microsoft SQL Server</td>
+            <td>Microsoft</td>
+            <td>Comercial</td>
+            <td><a href="http://www.microsoft.com/sql/">http://www.microsoft.com/sql/</a></td>
+            <td>Es el principal motor de bases de datos de Microsoft.</td>
+            <td>Sí</td>
+        </tr>      
+        <tr>
+            <td>PostgreSQL</td>
+            <td>PostgreSQL Global Development Group</td>
+            <td>Libre</td>
+            <td><a href="https://www.postgresql.org/">https://www.postgresql.org/</a></td>
+            <td>Muchos consideran que es el SABD libre con mejor soporte para datos espaciales.</td>
+            <td>Sí</td>
+        </tr>   
+        <tr>
+            <td>IBM Db2</td>
+            <td>IBM</td>
+            <td>Comercial</td>
+            <td><a href="https://www.ibm.com/products/db2-database">https://www.ibm.com/products/db2-database</a></td>
+            <td>Es una familia de productos de bases de datos de IBM.</td>
+            <td>Sí</td>
+        </tr>                  
+        <tr>
+            <td>SQLite</td>
+            <td>Dwayne Richard Hipp</td>
+            <td>Libre</td>
+            <td><a href="https://sqlite.org/">https://sqlite.org/</a></td>
+            <td>Es una biblioteca en C que implementa un DBMS relacional ligero. Es ampliamente utilizado en aplicaciones móviles y de escritorio debido a su pequeño tamaño y características de autocontención.</td>
+            <td>Sí</td>
+        </tr>    
+        <tr>
+            <td>MariaDB</td>
+            <td>MariaDB Foundation</td>
+            <td>Libre</td>
+            <td><a href="https://mariadb.org/">https://mariadb.org/</a></td>
+            <td>Surgió a raíz de la compra de Sun Microsystems (compañía que había comprado previamente MySQL)  por parte de Oracle. Es una bifurcación directa de MySQL que asegura la existencia de una versión de este producto con licencia GPL.</td>
+            <td>Sí</td>
+        </tr>                                    
+    </tbody>
+</table>
+
+### SABD no relacionales (NoSQL)
+
+<table>
+    <thead>
+        <tr>
+            <th>SABD</th>
+            <th>Desarrollador</th>
+            <th>Licencia</th>
+            <th>Sitio web</th>
+            <th>Descripción</th>
+            <th>Soporte para datos espaciales</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>MongoDB</td>
+            <td>MongoDB Inc.</td>
+            <td>Libre</td>
+            <td><a href="http://www.mongodb.org/">http://www.mongodb.org/</a></td>
+            <td>Está orientado a documentos: en lugar de guardar los datos en tablas, lo hace en estructuras de datos BSON (una especificación similar a JSON) con un esquema dinámico, haciendo que la integración de los datos en ciertas aplicaciones sea más fácil y rápida.</td>
+            <td>Sí</td>
+        </tr>
+        <tr>
+            <td>Redis</td>
+            <td>Salvatore Sanfilippo</td>
+            <td>Libre</td>
+            <td><a href="http://redis.io/">http://redis.io/</a></td>
+            <td>Funciona en memoria, por lo que es muy rápido.</td>
+            <td>Sí</td>
+        </tr>
+        <tr>
+            <td>Apache Cassandra</td>
+            <td>Apache Software Foundation</td>
+            <td>Libre</td>
+            <td><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></td>
+            <td>Utiliza un modelo orientado a columnas. Puede manejar grandes volúmenes de datos de forma distribuida.</td>
+            <td>No</td>
+        </tr>          
+    </tbody>
+</table>
+
+  
+<p>
+
+Puede encontrar más información sobre SABD y su popularidad en el sitio [DB-Engines Ranking](https://db-engines.com/en/ranking).
+
 ## Bibliografía
 ```{bibliography}
 :filter: docname in docnames

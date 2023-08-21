@@ -1,8 +1,8 @@
-# Creación y configuración del Jupyter Book de PF-0907 Programación en SIG 2023-II
+# Creación y configuración del Jupyter Book de GF-0659 Exploración y explotación de geodatos 2023-II
 
 1. Creación de un ambiente Conda.
-2. Creación del Jupyter Book principal: pf0907-programacionsig.github.io
-3. Creación de un Jupyter Book para cada curso, por ejemplo: 2023-ii, accesible en https://pf0907-programacionsig.github.io/2023-ii/
+2. Creación del Jupyter Book principal: gf0659-exploraciongeodatos.github.io
+3. Creación de un Jupyter Book para cada curso, por ejemplo: 2023-ii, accesible en https://gf0659-exploraciongeodatos.github.io/2023-ii/
 4. Publicación de modificaciones.
 
 ## 1. Creación de un ambiente Conda
@@ -12,13 +12,13 @@
 conda update conda
 
 # Borrado del ambiente (si es que existe)
-# conda remove -n pf0907-2023-ii --all
+# conda remove -n gf0659-2023-ii --all
 
 # Creación del ambiente
-conda create -n pf0907-2023-ii
+conda create -n gf0659-2023-ii
 
 # Activación del ambiente
-conda activate pf0907-2023-ii
+conda activate gf0659-2023-ii
 
 # Configuración del ambiente
 conda config --env --add channels conda-forge
@@ -37,30 +37,30 @@ conda deactivate
 ## 2. Creación del Jupyter Book principal y publicación inicial del sitio web en GitHub Pages
 
 ```shell
-conda activate pf0907-2023-ii
+conda activate gf0659-2023-ii
 
 # Creación del Jupyter Book con una plantilla inicial
-jupyter-book create pf0907-programacionsig.github.io
+jupyter-book create gf0659-exploraciongeodatos.github.io
 
 # Generación de archivos HTML (en el subdirectorio _build/html)
-jupyter-book build pf0907-programacionsig.github.io
+jupyter-book build gf0659-exploraciongeodatos.github.io
 
-# En este punto, debe crearse en GitHub el repositorio pf0907-programacionsig.github.io
+# En este punto, debe crearse en GitHub el repositorio gf0659-exploraciongeodatos.github.io
 
 # Configuración del repositorio local y su branch main (para manejar los archivos fuente)
-cd pf0907-programacionsig.github.io
+cd gf0659-exploraciongeodatos.github.io
 git init
 git add .
 git commit -m "Commit inicial"
 git branch -M main
-git remote add origin git@github.com:pf0907-programacionsig/pf0907-programacionsig.github.io.git
+git remote add origin git@github.com:gf0659-exploraciongeodatos/gf0659-exploraciongeodatos.github.io.git
 git push -u origin main
 
 # Creación del branch gh-pages (para manejar los archivos HTML publicados)
 ghp-import -n -p -f _build/html
 
 # En este punto, se configura el repositorio para buscar los archivos de GH Pages en la rama gh-pages
-# El sitio debe estar disponible en https://pf0907-programacionsig.github.io/
+# El sitio debe estar disponible en https://gf0659-exploraciongeodatos.github.io/
 
 conda deactivate
 ```
@@ -68,7 +68,7 @@ conda deactivate
 ## 3. Creación de un Jupyter Book para cada curso y publicación inicial del sitio web en GitHub Pages
 
 ```shell
-conda activate pf0907-2023-ii
+conda activate gf0659-2023-ii
 
 # Creación del Jupyter Book con una plantilla inicial
 jupyter-book create 2023-ii
@@ -84,14 +84,14 @@ git init
 git add .
 git commit -m "Commit inicial"
 git branch -M main
-git remote add origin git@github.com:pf0907-programacionsig/2023-ii.git
+git remote add origin git@github.com:gf0659-exploraciongeodatos/2023-ii.git
 git push -u origin main
 
 # Creación del branch gh-pages (para manejar los archivos HTML publicados)
 ghp-import -n -p -f _build/html
 
 # En este punto, se configura el repositorio para buscar los archivos de GH Pages en la rama gh-pages
-# El sitio debe estar disponible en https://pf0907-programacionsig.github.io/2023-ii/
+# El sitio debe estar disponible en https://gf0659-exploraciongeodatos.github.io/2023-ii/
 ```
 
 ## 4. Publicación de modificaciones
