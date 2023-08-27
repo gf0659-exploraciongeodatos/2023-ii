@@ -363,7 +363,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-y-uso-de-postgresql">Instalación y uso de PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-postgresql">Instalación de PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-1">Carga de datos y consultas SQL (1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-2">Carga de datos y consultas SQL (2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-3">Carga de datos y consultas SQL (3)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
@@ -378,10 +384,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="conceptos-fundamentales-sobre-sistemas-de-base-de-datos">
 <h1>Conceptos fundamentales sobre sistemas de base de datos<a class="headerlink" href="#conceptos-fundamentales-sobre-sistemas-de-base-de-datos" title="Permalink to this heading">#</a></h1>
-<p>Un sistema de base de datos es básicamente un sistema computarizado para mantener registros. Su propósito general es almacenar datos y permitir a los usuarios recuperar y modificar esos datos de acuerdo con sus solicitudes <span id="id1">[<a class="reference internal" href="#id7" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>. A la colección de datos del sistema se le denomina base de datos.</p>
+<p>Un sistema de base de datos es básicamente un sistema computarizado para mantener registros. Su propósito general es almacenar datos y permitir a los usuarios recuperar y modificar esos datos de acuerdo con sus solicitudes <span id="id1">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>. A la colección de datos del sistema se le denomina base de datos.</p>
 <section id="ventajas">
 <h2>Ventajas<a class="headerlink" href="#ventajas" title="Permalink to this heading">#</a></h2>
-<p>Anteriormente, se acostumbraba manejar los datos por medio de archivos (ej. CSV, DBF, SHP), lo que provocaba varios inconvenientes <span id="id2">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>Anteriormente, se acostumbraba manejar los datos por medio de archivos (ej. CSV, DBF, SHP), lo que provocaba varios inconvenientes <span id="id2">[<a class="reference internal" href="#id10" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>Redundancia e inconsistencia de datos</strong>: los mismos datos podrían almacenarse en diferentes archivos, lo que puede dar lugar a inconsistencias (ej. el nombre de una misma persona escrito de varias formas).</p></li>
 <li><p><strong>Dificultades para acceder a los datos</strong>: necesidad de desarrollar un nuevo programa para cada nueva tarea.</p></li>
@@ -392,7 +398,7 @@ document.write(`
 <li><p><strong>Problemas de seguridad</strong>: cada usuario debería tener acceso a los datos relacionados con sus tareas, pero no necesariamente a la todos.</p></li>
 </ul>
 <p>Estas dificultades, entre otras, propiciaron el inicio del desarrollo de los sistemas de bases de datos, en las décadas de 1960 y 1970, los cuales ofrecieron soluciones a todos los problemas mencionados.</p>
-<p>Los sistemas de bases de datos ofrecen diversos beneficios. Uno de los más importantes es el de la independencia (física) de los datos. Podemos definir la independencia de los datos como la “inmunidad” que tienen los programas de aplicación ante los cambios en la forma almacenar o acceder físicamente a los datos. Entre otras cosas, la independencia de los datos requiere que se haga una clara distinción entre el modelo de datos y su implementación <span id="id3">[<a class="reference internal" href="#id7" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</p>
+<p>Los sistemas de bases de datos ofrecen diversos beneficios. Uno de los más importantes es el de la independencia (física) de los datos. Podemos definir la independencia de los datos como la “inmunidad” que tienen los programas de aplicación ante los cambios en la forma almacenar o acceder físicamente a los datos. Entre otras cosas, la independencia de los datos requiere que se haga una clara distinción entre el modelo de datos y su implementación <span id="id3">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</p>
 </section>
 <section id="componentes">
 <h2>Componentes<a class="headerlink" href="#componentes" title="Permalink to this heading">#</a></h2>
@@ -400,12 +406,12 @@ document.write(`
 <figure class="align-default" id="figure-sistema-base-datos">
 <img alt="../../_images/sistema-base-datos.png" src="../../_images/sistema-base-datos.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Imagen simplificada de un sistema de base de datos <span id="id4">[<a class="reference internal" href="#id7" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</span><a class="headerlink" href="#figure-sistema-base-datos" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Imagen simplificada de un sistema de base de datos <span id="id4">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</span><a class="headerlink" href="#figure-sistema-base-datos" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="software">
 <h3>Software<a class="headerlink" href="#software" title="Permalink to this heading">#</a></h3>
-<p>El software más importante de un sistema de base de datos es el <strong>sistema administrador de bases de datos (SABD o DBMS por sus siglas en inglés)</strong>, el cual maneja todos los accesos a la base de datos. Es una aplicación de propósito general que facilita los procesos de definición, construcción, manipulación y compartición de bases de datos entre varios usuarios y aplicaciones <span id="id5">[<a class="reference internal" href="#id8" title="Ramez Elmasri and Shamkant Navathe. Fundamentals of Database Systems. Pearson, Hoboken, NJ, 7th edition edition, June 2015. ISBN 978-0-13-397077-7.">EN15</a>]</span>.</p>
+<p>El software más importante de un sistema de base de datos es el <strong>sistema administrador de bases de datos (SABD o DBMS por sus siglas en inglés)</strong>, el cual maneja todos los accesos a la base de datos. Es una aplicación de propósito general que facilita los procesos de definición, construcción, manipulación y compartición de bases de datos entre varios usuarios y aplicaciones <span id="id5">[<a class="reference internal" href="#id9" title="Ramez Elmasri and Shamkant Navathe. Fundamentals of Database Systems. Pearson, Hoboken, NJ, 7th edition edition, June 2015. ISBN 978-0-13-397077-7.">EN15</a>]</span>.</p>
 <ul class="simple">
 <li><p><strong>Definir</strong> una base de datos implica especificar los tipos de datos, estructuras y restricciones de los datos que se almacenarán en la base de datos. La definición de la base de datos o la información descriptiva también es almacenada por el DBMS en forma de un catálogo de base de datos o diccionario; esto se llama metadatos.</p></li>
 <li><p><strong>Construir</strong> la base de datos es el proceso de almacenar los datos en algún medio de almacenamiento que está controlado por el SABD.</p></li>
@@ -415,28 +421,28 @@ document.write(`
 </section>
 <section id="datos">
 <h3>Datos<a class="headerlink" href="#datos" title="Permalink to this heading">#</a></h3>
-<p>Como se mencionó, a la colección de datos de un sistema de base de datos es a lo que se denomina como una base de datos. Los datos de una base de datos se caracterizan por ser:</p>
+<p>Como se mencionó, a la colección de datos de un sistema de base de datos es a lo que se denomina como una base de datos (BD). Los datos de una BD se caracterizan por ser:</p>
 <ul class="simple">
-<li><p><strong>Integrados</strong>: Una base de datos puede verse como una integración de varios conjuntos de datos que, de otra manera, serían independientes.</p></li>
+<li><p><strong>Integrados</strong>: Una BD puede verse como una integración de varios conjuntos de datos que, de otra manera, serían independientes.</p></li>
 <li><p><strong>Compartidos</strong>: Los datos pueden ser accedidos por diferentes usuarios al mismo tiempo, cada uno con diferentes derechos de acceso.</p></li>
 </ul>
 </section>
 </section>
 <section id="ejercicios">
 <h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
-<p>Cree una base de datos para mantener la información sobre cursos matriculados por los estudiantes de una universidad. La base de datos debe tener tres conjuntos de datos:</p>
+<p>Debe crear una BD para mantener la información sobre cursos matriculados por los estudiantes de una universidad, en tres conjuntos de datos:</p>
 <ul class="simple">
 <li><p>Estudiante: carné, nombre, sexo, edad.</p></li>
 <li><p>Curso: sigla, nombre, unidad académica, cupo.</p></li>
 <li><p>Matricula: carné, sigla.</p></li>
 </ul>
-<p>Esta base de datos debe permitir responder a preguntas como:</p>
+<p>Esta BD debe permitir responder a preguntas como:</p>
 <ul class="simple">
 <li><p>¿Cuántos estudiantes son hombres o mujeres?</p></li>
 <li><p>¿Cuáles son los cursos impartidos por una unidad académica?</p></li>
 <li><p>¿Quienes son los estudiantes matriculados en un curso determinado?</p></li>
 </ul>
-<p>La base de datos debe manejar la consistencia e integridad de los datos. Por ejemplo:</p>
+<p>La BD debe manejar la consistencia e integridad de los datos. Por ejemplo:</p>
 <ul class="simple">
 <li><p>No debe permitir que haya más de un estudiante con el mismo carné o más de un curso con la misma sigla.</p></li>
 <li><p>No debe permitir la matrícula de cursos o estudiantes que no hayan sido registrados.</p></li>
@@ -444,10 +450,10 @@ document.write(`
 </ul>
 <p>Ejecute los siguientes pasos:</p>
 <ol class="arabic simple">
-<li><p>Cree una base de datos <a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite/">SpatiaLite</a> en el sistema de información geográfica <a class="reference external" href="https://qgis.org/">QGIS</a> y llámela “universidad” (puede hacerlo con el Navegador de QGIS).</p></li>
-<li><p>En una interfaz para el <a class="reference external" href="https://es.wikipedia.org/wiki/SQL">lenguage de consulta estructurada SQL</a> (en el Navegador o en el Administrador de Bases de Datos de QGIS), cree las tablas con las siguientes sentencias:</p></li>
+<li><p>Cree una BD <a class="reference external" href="https://www.gaia-gis.it/fossil/libspatialite/">SpatiaLite</a> en el sistema de información geográfica <a class="reference external" href="https://qgis.org/">QGIS</a> y llámela <code class="docutils literal notranslate"><span class="pre">universidad</span></code> (puede hacerlo con el Navegador de QGIS).</p></li>
+<li><p>En una interfaz para el <a class="reference external" href="https://es.wikipedia.org/wiki/SQL">lenguage de consulta estructurada SQL</a> (en el Navegador o en el Administrador de bases de datos de QGIS), cree las tablas con las siguientes sentencias <a class="reference external" href="https://www.w3schools.com/sql/sql_create_table.asp">CREATE TABLE</a>:</p></li>
 </ol>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Crear la tabla Estudiante</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de la tabla Estudiante</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">carne</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -455,7 +461,7 @@ document.write(`
 <span class="w">    </span><span class="n">edad</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 <span class="p">);</span>
 
-<span class="c1">-- Crear la tabla Curso</span>
+<span class="c1">-- Creación de la tabla Curso</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">sigla</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 <span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
@@ -463,7 +469,7 @@ document.write(`
 <span class="w">    </span><span class="n">cupo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">cupo</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
 <span class="p">);</span>
 
-<span class="c1">-- Crear la tabla Matricula</span>
+<span class="c1">-- Creación de la tabla Matricula</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">carne</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
 <span class="w">    </span><span class="n">sigla</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
@@ -474,9 +480,9 @@ document.write(`
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Inserte datos en las tres tablas:</p></li>
+<li><p>Inserte datos en las tres tablas con las siguientes sentencias <a class="reference external" href="https://www.w3schools.com/sql/sql_insert.asp">INSERT INTO</a>:</p></li>
 </ol>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Insertar datos en la tabla Estudiante</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Inserción de datos en la tabla Estudiante</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">sexo</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1001&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Juan Pérez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">sexo</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1002&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;María González&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">sexo</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1003&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Carlos Ramírez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">);</span>
@@ -488,12 +494,12 @@ document.write(`
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">sexo</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1009&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;José Antonio López&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Estudiante</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">sexo</span><span class="p">,</span><span class="w"> </span><span class="n">edad</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1010&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ana María Martínez&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">);</span>
 
-<span class="c1">-- Insertar datos en la tabla Curso</span>
+<span class="c1">-- Inserción de datos en la tabla Curso</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="p">(</span><span class="n">sigla</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">unidad_academica</span><span class="p">,</span><span class="w"> </span><span class="n">cupo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;MAT101&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Matemáticas Básicas&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ciencias Exactas&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="p">(</span><span class="n">sigla</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">unidad_academica</span><span class="p">,</span><span class="w"> </span><span class="n">cupo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;LIT102&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Literatura Española&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Humanidades&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Curso</span><span class="w"> </span><span class="p">(</span><span class="n">sigla</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">unidad_academica</span><span class="p">,</span><span class="w"> </span><span class="n">cupo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;BIO103&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Biología General&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ciencias Naturales&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
 
-<span class="c1">-- Insertar datos en la tabla Matricula</span>
+<span class="c1">-- Inserción de datos en la tabla Matricula</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">sigla</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1001&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MAT101&#39;</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">sigla</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1002&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MAT101&#39;</span><span class="p">);</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Matricula</span><span class="w"> </span><span class="p">(</span><span class="n">carne</span><span class="p">,</span><span class="w"> </span><span class="n">sigla</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;E1003&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;LIT102&#39;</span><span class="p">);</span>
@@ -506,7 +512,7 @@ document.write(`
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Ejecute las siguientes consultas a la base de datos:</p></li>
+<li><p>Consulte la BD con las siguientes sentencias <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> y sus cláusulas <a class="reference external" href="https://www.w3schools.com/sql/sql_where.asp">WHERE</a> y <a class="reference external" href="https://www.w3schools.com/sql/sql_join.asp">JOIN</a>:</p></li>
 </ol>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cursos</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
@@ -642,7 +648,7 @@ document.write(`
             <td>MariaDB Foundation</td>
             <td>Libre</td>
             <td><a href="https://mariadb.org/">https://mariadb.org/</a></td>
-            <td>Surgió a raíz de la compra de Sun Microsystems (compañía que había comprado previamente MySQL)  por parte de Oracle. Es una bifurcación directa de MySQL que asegura la existencia de una versión de este producto con licencia GPL.</td>
+            <td>Surgió a raíz de la compra de Sun Microsystems (compañía que había comprado previamente MySQL)  por parte de Oracle. Es una bifurcación directa de MySQL que asegura la existencia de una versión de este producto con [licencia GPL](https://es.wikipedia.org/wiki/GNU_General_Public_License).</td>
             <td>Sí</td>
         </tr>                                    
     </tbody>
@@ -692,46 +698,93 @@ document.write(`
 <p>Puede encontrar más información sobre SABD y su popularidad en el sitio <a class="reference external" href="https://db-engines.com/en/ranking">DB-Engines Ranking</a>.</p>
 </section>
 </section>
-<section id="instalacion-y-uso-de-postgresql">
-<h2>Instalación y uso de PostgreSQL<a class="headerlink" href="#instalacion-y-uso-de-postgresql" title="Permalink to this heading">#</a></h2>
+<section id="id6">
+<h2>Ejercicios<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p>En los siguientes ejercicios, debe instalar el SABD <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a>, crear una BD, cargar datos de archivos CSV y ejecutar consultas en SQL.</p>
+<section id="instalacion-de-postgresql">
+<h3>Instalación de PostgreSQL<a class="headerlink" href="#instalacion-de-postgresql" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Descargue e instale el SABD <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a>. Recuerde o anote la clave que se le solicita.</p></li>
-<li><p>Con PgAdmin, cree la base de datos <code class="docutils literal notranslate"><span class="pre">universidad</span></code>, del bloque anterior de ejercicios.</p>
+<li><p>Descargue e instale el SABD <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a>. Recuerde o anote la clave y el puerto (ej. 5432) que se solicitan.</p></li>
+</ol>
+</section>
+<section id="carga-de-datos-y-consultas-sql-1">
+<h3>Carga de datos y consultas SQL (1)<a class="headerlink" href="#carga-de-datos-y-consultas-sql-1" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Con PgAdmin, cree la BD <code class="docutils literal notranslate"><span class="pre">universidad</span></code>.</p></li>
+<li><p>En PgAdmin, ejecute los comandos SQL del bloque anterior.</p></li>
+<li><p>Con el Navegador de QGIS, cree una conexión a la BD.</p></li>
+<li><p>En QGIS, ejecute algunos comandos SQL para insertar cursos, estudiantes, matricularlos y consultarlos.</p></li>
+</ol>
+</section>
+<section id="carga-de-datos-y-consultas-sql-2">
+<h3>Carga de datos y consultas SQL (2)<a class="headerlink" href="#carga-de-datos-y-consultas-sql-2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Descargue el archivo CSV con datos de ciudades disponible en <a class="reference external" href="https://simplemaps.com/data/world-cities">World Cities Database</a>.</p></li>
+<li><p>En QGIS, con el Administrador de fuentes de datos - Texto delimitado, cargue el archivo CSV.</p></li>
+<li><p>Con PgAdmin, cree una BD PostgreSQL llamada <code class="docutils literal notranslate"><span class="pre">ciudades</span></code>.</p></li>
+<li><p>En QGIS, cree una conexión a <code class="docutils literal notranslate"><span class="pre">ciudades</span></code>.</p></li>
+<li><p>En QGIS, con el Administrador de bases de datos, cargue en <code class="docutils literal notranslate"><span class="pre">ciudades</span></code> los datos de ciudades provenientes de los archivos CSV.</p></li>
+<li><p>En PgAdmin, ejecute consultas SQL para obtener:</p>
 <ul class="simple">
-<li><p>Ejecute los comandos SQL del bloque anterior.</p></li>
-<li><p>Con el Navegador de QGIS, cree una conexión a la base de datos.</p></li>
-</ul>
-</li>
-<li><p>En QGIS, cargue el archivo CSV con datos de ciudades disponible en <a class="reference external" href="https://simplemaps.com/data/world-cities">World Cities Database</a>.</p>
-<ul class="simple">
-<li><p>En PgAdmin, cree una base de datos llamada <code class="docutils literal notranslate"><span class="pre">ciudades</span></code>.</p></li>
-<li><p>En QGIS, cree una conexión a la base de datos.</p></li>
-<li><p>Con el Administrador de Bases de Datos de QGIS, cargue en la base de datos los datos de ciudades.</p></li>
-<li><p>Ejecute algunas consultas SQL para obtener:</p>
-<ul>
 <li><p>Lista de ciudades de Costa Rica.</p></li>
 <li><p>Lista de ciudades con más de 10 millones de habitantes.</p></li>
-<li><p>Lista de países en la base de datos (Sugerencia: use la cláusula <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>).</p></li>
-<li><p>Población total de las ciudades de Costa Rica (sugerencia: use la función <code class="docutils literal notranslate"><span class="pre">Sum()</span></code>).</p></li>
-<li><p>Población promedio de las ciudades de Costa Rica (sugerencia: use la función <code class="docutils literal notranslate"><span class="pre">Avg()</span></code>).</p></li>
-<li><p>La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>).</p></li>
-</ul>
-</li>
+<li><p>Lista de países en la base de datos (sugerencia: use la palabra clave <a class="reference external" href="https://www.w3schools.com/sql/sql_distinct.asp"><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code></a>).</p></li>
+<li><p>Cantidad de ciudades de Costa Rica (sugerencia: use la función <a class="reference external" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp"><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code></a>).</p></li>
+<li><p>Población total de las ciudades de Costa Rica (sugerencia: use la función <a class="reference external" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp"><code class="docutils literal notranslate"><span class="pre">SUM()</span></code></a>).</p></li>
+<li><p>Población promedio de las ciudades de Costa Rica (sugerencia: use la función <a class="reference external" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp"><code class="docutils literal notranslate"><span class="pre">AVG()</span></code></a>).</p></li>
+<li><p>La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp"><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a>).</p></li>
 </ul>
 </li>
 </ol>
 </section>
+<section id="carga-de-datos-y-consultas-sql-3">
+<h3>Carga de datos y consultas SQL (3)<a class="headerlink" href="#carga-de-datos-y-consultas-sql-3" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Descargue los los archivos XLSX con datos de estadísticas policiales del Organismo de Investigación Judicial (OIJ) de los años 2018-2023 disponibles en <a class="reference external" href="https://sitiooij.poder-judicial.go.cr/index.php/ayuda/servicios-policiales/servicios-a-organizaciones/indice-de-transparencia-del-sector-publico-costarricense/datos-abiertos">Datos abiertos del OIJ</a> y conviértalos al formato CSV (para esto, puede usar una aplicación de hoja de cálculo como Calc o Excel). También puede encontrar los archivos ya exportados al formato CSV en <a class="github reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/oij/estadisticas-policiales/csv">gf0659-exploraciongeodatos/2023-ii</a>.</p></li>
+<li><p>En QGIS, con el Administrador de fuentes de datos - Texto delimitado, cargue cada uno de los archivos CSV como una capa (no espacial). Especifique <code class="docutils literal notranslate"><span class="pre">Texto</span> <span class="pre">(cadena)</span></code> como el tipo de datos de todos los campos.</p></li>
+<li><p>En cada capa, con la Calculadora de campos de QGIS, cree las siguientes columnas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fecha_Date</span></code> (tipo <code class="docutils literal notranslate"><span class="pre">Date</span></code>) = <code class="docutils literal notranslate"><span class="pre">to_date(&quot;Fecha&quot;,</span> <span class="pre">format('MM/dd/yyyy'))</span></code> o <code class="docutils literal notranslate"><span class="pre">to_date(&quot;Fecha&quot;,</span> <span class="pre">format('yyyy-MM-dd'))</span></code>. Esta columna es una transformación de <code class="docutils literal notranslate"><span class="pre">Fecha</span></code> (tipo <code class="docutils literal notranslate"><span class="pre">Texto</span> <span class="pre">(cadena)</span></code>) al tipo <code class="docutils literal notranslate"><span class="pre">Date</span></code>. El argumento de <code class="docutils literal notranslate"><span class="pre">format()</span></code> depende del orden que presenten el día, el mes y el año en el campo <code class="docutils literal notranslate"><span class="pre">Fecha</span></code>, así como del separador (ej. <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Anio</span></code> = <code class="docutils literal notranslate"><span class="pre">year(&quot;Fecha_Date&quot;)</span></code> (tipo <code class="docutils literal notranslate"><span class="pre">Entero</span> <span class="pre">(32</span> <span class="pre">bits)</span></code>). Esta columna es para separar el año contenido en <code class="docutils literal notranslate"><span class="pre">Fecha_Date</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mes</span></code> = <code class="docutils literal notranslate"><span class="pre">month(&quot;Fecha_Date&quot;)</span></code> (tipo <code class="docutils literal notranslate"><span class="pre">Entero</span> <span class="pre">(32</span> <span class="pre">bits)</span></code>). Esta columna es para separar el mes contenido en <code class="docutils literal notranslate"><span class="pre">Fecha_Date</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Con PgAdmin, cree una BD PostgreSQL llamada <code class="docutils literal notranslate"><span class="pre">oij</span></code>.</p></li>
+<li><p>En QGIS, cree una conexión a <code class="docutils literal notranslate"><span class="pre">oij</span></code>.</p></li>
+<li><p>En QGIS, con el Administrador de bases de datos, importe en <code class="docutils literal notranslate"><span class="pre">oij</span></code> las capas con las estadísticas anuales. Cree una tabla para cada año.</p></li>
+<li><p>En PgAdmin, con la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_create_table.asp"><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code></a> y el operador <a class="reference external" href="https://www.w3schools.com/sql/sql_union.asp"><code class="docutils literal notranslate"><span class="pre">UNION</span></code></a>, cree una tabla que una los datos de todas las tablas de estadísticas anuales:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de tabla con unión de datos de tablas de estadísticas anuales</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">oij</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oij23</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oij22</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>Con la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp"><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a>, agrupe y cuente los homicidios cometidos por mes y año:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Agrupación de cantidad de homicidios por mes y año</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">oij</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;SubDelito&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HOMICIDIO&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id6">
+<div class="docutils container" id="id7">
 <dl class="citation">
-<dt class="label" id="id7"><span class="brackets">Dat03</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
+<dt class="label" id="id8"><span class="brackets">Dat03</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>)</span></dt>
 <dd><p>C. J. Date. <em>Introduction to Database Systems, An</em>. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.</p>
 </dd>
-<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id5">EN15</a></span></dt>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id5">EN15</a></span></dt>
 <dd><p>Ramez Elmasri and Shamkant Navathe. <em>Fundamentals of Database Systems</em>. Pearson, Hoboken, NJ, 7th edition edition, June 2015. ISBN 978-0-13-397077-7.</p>
 </dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id2">SKS19</a></span></dt>
+<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id2">SKS19</a></span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
 </dl>
@@ -809,7 +862,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-y-uso-de-postgresql">Instalación y uso de PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-postgresql">Instalación de PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-1">Carga de datos y consultas SQL (1)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-2">Carga de datos y consultas SQL (2)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-3">Carga de datos y consultas SQL (3)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>

@@ -34,25 +34,25 @@ El software más importante de un sistema de base de datos es el **sistema admin
 - **Compartir** una base de datos permite que múltiples usuarios y programas accedan a la base de datos simultáneamente.
 
 ### Datos
-Como se mencionó, a la colección de datos de un sistema de base de datos es a lo que se denomina como una base de datos. Los datos de una base de datos se caracterizan por ser:
+Como se mencionó, a la colección de datos de un sistema de base de datos es a lo que se denomina como una base de datos (BD). Los datos de una BD se caracterizan por ser:
 
-- **Integrados**: Una base de datos puede verse como una integración de varios conjuntos de datos que, de otra manera, serían independientes.
+- **Integrados**: Una BD puede verse como una integración de varios conjuntos de datos que, de otra manera, serían independientes.
 - **Compartidos**: Los datos pueden ser accedidos por diferentes usuarios al mismo tiempo, cada uno con diferentes derechos de acceso.
 
 ## Ejercicios
-Cree una base de datos para mantener la información sobre cursos matriculados por los estudiantes de una universidad. La base de datos debe tener tres conjuntos de datos:
+Debe crear una BD para mantener la información sobre cursos matriculados por los estudiantes de una universidad, en tres conjuntos de datos:
 
 - Estudiante: carné, nombre, sexo, edad.
 - Curso: sigla, nombre, unidad académica, cupo.
 - Matricula: carné, sigla.
 
-Esta base de datos debe permitir responder a preguntas como:
+Esta BD debe permitir responder a preguntas como:
 
 - ¿Cuántos estudiantes son hombres o mujeres?
 - ¿Cuáles son los cursos impartidos por una unidad académica?
 - ¿Quienes son los estudiantes matriculados en un curso determinado?
 
-La base de datos debe manejar la consistencia e integridad de los datos. Por ejemplo:
+La BD debe manejar la consistencia e integridad de los datos. Por ejemplo:
 
 - No debe permitir que haya más de un estudiante con el mismo carné o más de un curso con la misma sigla.
 - No debe permitir la matrícula de cursos o estudiantes que no hayan sido registrados.
@@ -60,11 +60,11 @@ La base de datos debe manejar la consistencia e integridad de los datos. Por eje
 
 Ejecute los siguientes pasos:
 
-1. Cree una base de datos [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/) en el sistema de información geográfica [QGIS](https://qgis.org/) y llámela "universidad" (puede hacerlo con el Navegador de QGIS).
-2. En una interfaz para el [lenguage de consulta estructurada SQL](https://es.wikipedia.org/wiki/SQL) (en el Navegador o en el Administrador de Bases de Datos de QGIS), cree las tablas con las siguientes sentencias:
+1. Cree una BD [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/) en el sistema de información geográfica [QGIS](https://qgis.org/) y llámela `universidad` (puede hacerlo con el Navegador de QGIS).
+2. En una interfaz para el [lenguage de consulta estructurada SQL](https://es.wikipedia.org/wiki/SQL) (en el Navegador o en el Administrador de bases de datos de QGIS), cree las tablas con las siguientes sentencias [CREATE TABLE](https://www.w3schools.com/sql/sql_create_table.asp):
 
 ```sql
--- Crear la tabla Estudiante
+-- Creación de la tabla Estudiante
 CREATE TABLE Estudiante (
     carne TEXT PRIMARY KEY,
     nombre TEXT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Estudiante (
     edad INTEGER CHECK (edad >= 0)
 );
 
--- Crear la tabla Curso
+-- Creación de la tabla Curso
 CREATE TABLE Curso (
     sigla TEXT PRIMARY KEY,
     nombre TEXT NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE Curso (
     cupo INTEGER CHECK (cupo >= 0)
 );
 
--- Crear la tabla Matricula
+-- Creación de la tabla Matricula
 CREATE TABLE Matricula (
     carne TEXT,
     sigla TEXT,
@@ -90,10 +90,10 @@ CREATE TABLE Matricula (
 );
 ```
 
-3. Inserte datos en las tres tablas:
+3. Inserte datos en las tres tablas con las siguientes sentencias [INSERT INTO](https://www.w3schools.com/sql/sql_insert.asp):
 
 ```sql
--- Insertar datos en la tabla Estudiante
+-- Inserción de datos en la tabla Estudiante
 INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1001', 'Juan Pérez', 'H', 20);
 INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1002', 'María González', 'M', 21);
 INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1003', 'Carlos Ramírez', 'H', 22);
@@ -105,12 +105,12 @@ INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1008', 'Sofía Ram�
 INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1009', 'José Antonio López', 'H', 25);
 INSERT INTO Estudiante (carne, nombre, sexo, edad) VALUES ('E1010', 'Ana María Martínez', 'M', 22);
 
--- Insertar datos en la tabla Curso
+-- Inserción de datos en la tabla Curso
 INSERT INTO Curso (sigla, nombre, unidad_academica, cupo) VALUES ('MAT101', 'Matemáticas Básicas', 'Ciencias Exactas', 30);
 INSERT INTO Curso (sigla, nombre, unidad_academica, cupo) VALUES ('LIT102', 'Literatura Española', 'Humanidades', 25);
 INSERT INTO Curso (sigla, nombre, unidad_academica, cupo) VALUES ('BIO103', 'Biología General', 'Ciencias Naturales', 20);
 
--- Insertar datos en la tabla Matricula
+-- Inserción de datos en la tabla Matricula
 INSERT INTO Matricula (carne, sigla) VALUES ('E1001', 'MAT101');
 INSERT INTO Matricula (carne, sigla) VALUES ('E1002', 'MAT101');
 INSERT INTO Matricula (carne, sigla) VALUES ('E1003', 'LIT102');
@@ -122,7 +122,7 @@ INSERT INTO Matricula (carne, sigla) VALUES ('E1007', 'BIO103');
 INSERT INTO Matricula (carne, sigla) VALUES ('E1008', 'LIT102');
 ```
 
-4. Ejecute las siguientes consultas a la base de datos:
+4. Consulte la BD con las siguientes sentencias [SELECT](https://www.w3schools.com/sql/sql_select.asp) y sus cláusulas [WHERE](https://www.w3schools.com/sql/sql_where.asp) y [JOIN](https://www.w3schools.com/sql/sql_join.asp):
 
 ```sql
 -- Cursos
@@ -258,7 +258,7 @@ Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de 
             <td>MariaDB Foundation</td>
             <td>Libre</td>
             <td><a href="https://mariadb.org/">https://mariadb.org/</a></td>
-            <td>Surgió a raíz de la compra de Sun Microsystems (compañía que había comprado previamente MySQL)  por parte de Oracle. Es una bifurcación directa de MySQL que asegura la existencia de una versión de este producto con licencia GPL.</td>
+            <td>Surgió a raíz de la compra de Sun Microsystems (compañía que había comprado previamente MySQL)  por parte de Oracle. Es una bifurcación directa de MySQL que asegura la existencia de una versión de este producto con [licencia GPL](https://es.wikipedia.org/wiki/GNU_General_Public_License).</td>
             <td>Sí</td>
         </tr>                                    
     </tbody>
@@ -303,30 +303,67 @@ Hay una gran variedad de SABD. En las siguientes tablas, se detallan algunos de 
         </tr>          
     </tbody>
 </table>
-
   
 <p>
 
 Puede encontrar más información sobre SABD y su popularidad en el sitio [DB-Engines Ranking](https://db-engines.com/en/ranking).
 
-## Instalación y uso de PostgreSQL
+## Ejercicios
+En los siguientes ejercicios, debe instalar el SABD [PostgreSQL](https://www.postgresql.org/), crear una BD, cargar datos de archivos CSV y ejecutar consultas en SQL.
 
-1. Descargue e instale el SABD [PostgreSQL](https://www.postgresql.org/). Recuerde o anote la clave que se le solicita.
-2. Con PgAdmin, cree la base de datos `universidad`, del bloque anterior de ejercicios. 
-    - Ejecute los comandos SQL del bloque anterior. 
-    - Con el Navegador de QGIS, cree una conexión a la base de datos.
-3. En QGIS, cargue el archivo CSV con datos de ciudades disponible en [World Cities Database](https://simplemaps.com/data/world-cities).
-    - En PgAdmin, cree una base de datos llamada `ciudades`.
-    - En QGIS, cree una conexión a la base de datos.
-    - Con el Administrador de Bases de Datos de QGIS, cargue en la base de datos los datos de ciudades.
-    - Ejecute algunas consultas SQL para obtener:
-        - Lista de ciudades de Costa Rica.
-        - Lista de ciudades con más de 10 millones de habitantes.
-        - Lista de países en la base de datos (Sugerencia: use la cláusula `DISTINCT`).
-        - Población total de las ciudades de Costa Rica (sugerencia: use la función `Sum()`).
-        - Población promedio de las ciudades de Costa Rica (sugerencia: use la función `Avg()`).
-        - La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula `ORDER BY`).
-        
+### Instalación de PostgreSQL
+1. Descargue e instale el SABD [PostgreSQL](https://www.postgresql.org/). Recuerde o anote la clave y el puerto (ej. 5432) que se solicitan.
+
+### Carga de datos y consultas SQL (1)
+1. Con PgAdmin, cree la BD `universidad`. 
+2. En PgAdmin, ejecute los comandos SQL del bloque anterior.
+3. Con el Navegador de QGIS, cree una conexión a la BD.
+4. En QGIS, ejecute algunos comandos SQL para insertar cursos, estudiantes, matricularlos y consultarlos.
+
+### Carga de datos y consultas SQL (2)
+1. Descargue el archivo CSV con datos de ciudades disponible en [World Cities Database](https://simplemaps.com/data/world-cities).
+2. En QGIS, con el Administrador de fuentes de datos - Texto delimitado, cargue el archivo CSV.
+3. Con PgAdmin, cree una BD PostgreSQL llamada `ciudades`.
+4. En QGIS, cree una conexión a `ciudades`.
+5. En QGIS, con el Administrador de bases de datos, cargue en `ciudades` los datos de ciudades provenientes de los archivos CSV.
+6. En PgAdmin, ejecute consultas SQL para obtener:
+    - Lista de ciudades de Costa Rica.
+    - Lista de ciudades con más de 10 millones de habitantes.
+    - Lista de países en la base de datos (sugerencia: use la palabra clave [`DISTINCT`](https://www.w3schools.com/sql/sql_distinct.asp)).
+    - Cantidad de ciudades de Costa Rica (sugerencia: use la función [`COUNT()`](https://www.w3schools.com/sql/sql_count_avg_sum.asp)).    
+    - Población total de las ciudades de Costa Rica (sugerencia: use la función [`SUM()`](https://www.w3schools.com/sql/sql_count_avg_sum.asp)).
+    - Población promedio de las ciudades de Costa Rica (sugerencia: use la función [`AVG()`](https://www.w3schools.com/sql/sql_count_avg_sum.asp)).
+    - La ciudad con mayor población y la ciudad con menor población en la base de datos (sugerencia: use la cláusula [`ORDER BY`](https://www.w3schools.com/sql/sql_orderby.asp)).
+
+### Carga de datos y consultas SQL (3)
+1. Descargue los los archivos XLSX con datos de estadísticas policiales del Organismo de Investigación Judicial (OIJ) de los años 2018-2023 disponibles en [Datos abiertos del OIJ](https://sitiooij.poder-judicial.go.cr/index.php/ayuda/servicios-policiales/servicios-a-organizaciones/indice-de-transparencia-del-sector-publico-costarricense/datos-abiertos) y conviértalos al formato CSV (para esto, puede usar una aplicación de hoja de cálculo como Calc o Excel). También puede encontrar los archivos ya exportados al formato CSV en [https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/oij/estadisticas-policiales/csv](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/oij/estadisticas-policiales/csv).
+2. En QGIS, con el Administrador de fuentes de datos - Texto delimitado, cargue cada uno de los archivos CSV como una capa (no espacial). Especifique `Texto (cadena)` como el tipo de datos de todos los campos.
+3. En cada capa, con la Calculadora de campos de QGIS, cree las siguientes columnas:
+    - `Fecha_Date` (tipo `Date`) = `to_date("Fecha", format('MM/dd/yyyy'))` o `to_date("Fecha", format('yyyy-MM-dd'))`. Esta columna es una transformación de `Fecha` (tipo `Texto (cadena)`) al tipo `Date`. El argumento de `format()` depende del orden que presenten el día, el mes y el año en el campo `Fecha`, así como del separador (ej. `/`, `-`).
+    - `Anio` = `year("Fecha_Date")` (tipo `Entero (32 bits)`). Esta columna es para separar el año contenido en `Fecha_Date`.
+    - `Mes` = `month("Fecha_Date")` (tipo `Entero (32 bits)`). Esta columna es para separar el mes contenido en `Fecha_Date`.
+4. Con PgAdmin, cree una BD PostgreSQL llamada `oij`.    
+5. En QGIS, cree una conexión a `oij`.    
+6. En QGIS, con el Administrador de bases de datos, importe en `oij` las capas con las estadísticas anuales. Cree una tabla para cada año.
+7. En PgAdmin, con la sentencia [`CREATE TABLE`](https://www.w3schools.com/sql/sql_create_table.asp) y el operador [`UNION`](https://www.w3schools.com/sql/sql_union.asp), cree una tabla que una los datos de todas las tablas de estadísticas anuales:
+
+```sql
+-- Creación de tabla con unión de datos de tablas de estadísticas anuales
+CREATE TABLE oij AS
+SELECT * FROM oij23
+UNION
+SELECT * FROM oij22;
+```
+8. Con la cláusula [`GROUP BY`](https://www.w3schools.com/sql/sql_groupby.asp), agrupe y cuente los homicidios cometidos por mes y año:
+
+```sql
+-- Agrupación de cantidad de homicidios por mes y año
+SELECT "Mes", "Anio", COUNT(*)
+FROM oij
+WHERE "SubDelito" = 'HOMICIDIO'
+GROUP BY "Mes", "Anio"
+ORDER BY "Mes", "Anio";
+```
 
 ## Bibliografía
 ```{bibliography}
