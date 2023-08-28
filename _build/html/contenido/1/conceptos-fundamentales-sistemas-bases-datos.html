@@ -357,7 +357,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-sql">Consultas SQL</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-mas-populares">SABD más populares</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-relacionales">SABD relacionales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
@@ -368,6 +371,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-1">Carga de datos y consultas SQL (1)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-2">Carga de datos y consultas SQL (2)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-3">Carga de datos y consultas SQL (3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-consultas-sql-en-graficos-estadisticos">Visualización de consultas SQL en gráficos estadísticos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
@@ -430,6 +434,8 @@ document.write(`
 </section>
 <section id="ejercicios">
 <h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<section id="consultas-sql">
+<h3>Consultas SQL<a class="headerlink" href="#consultas-sql" title="Permalink to this heading">#</a></h3>
 <p>Debe crear una BD para mantener la información sobre cursos matriculados por los estudiantes de una universidad, en tres conjuntos de datos:</p>
 <ul class="simple">
 <li><p>Estudiante: carné, nombre, sexo, edad.</p></li>
@@ -558,6 +564,7 @@ document.write(`
 6.4. Trate de matricular un estudiante en un curso que no existe.</p>
 </li>
 </ol>
+</section>
 </section>
 <section id="sabd-mas-populares">
 <h2>SABD más populares<a class="headerlink" href="#sabd-mas-populares" title="Permalink to this heading">#</a></h2>
@@ -762,16 +769,68 @@ document.write(`
 </pre></div>
 </div>
 <ol class="arabic simple" start="8">
-<li><p>Con la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp"><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a>, agrupe y cuente los homicidios cometidos por mes y año:</p></li>
+<li><p>Con la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp"><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a>, agrupe y cuente los homicidios cometidos por mes (hasta julio inclusive) y año:</p></li>
 </ol>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Agrupación de cantidad de homicidios por mes y año</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Agrupación de cantidad de homicidios por mes (hasta julio inclusive) y año</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Homicidios</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">oij</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;SubDelito&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HOMICIDIO&#39;</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="ss">&quot;SubDelito&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HOMICIDIO&#39;</span>
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;Mes&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
+</section>
+<section id="visualizacion-de-consultas-sql-en-graficos-estadisticos">
+<h3>Visualización de consultas SQL en gráficos estadísticos<a class="headerlink" href="#visualizacion-de-consultas-sql-en-graficos-estadisticos" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>En el Administrador de bases de datos de QGIS, escriba y ejecuta una consulta SQL para obtener la cantidad de homicidios por provincia en 2023.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Agrupación de cantidad de homicidios por provincia</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="ss">&quot;Provincia&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Homicidios</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">oij</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;Anio&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="ss">&quot;SubDelito&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HOMICIDIO&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="ss">&quot;Provincia&quot;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Homicidios</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Agregue el resultado de la consulta a la interfaz de QGIS, como una nueva capa.</p></li>
+<li><p>Instale el complemento <a class="reference external" href="https://github.com/ghtmtt/DataPlotly">Data Plotly</a> (<a class="reference external" href="https://dataplotly-docs.readthedocs.io">documentación</a>) en QGIS y elabore un gráfico de barras muestre la cantidad de homicidios por provincia en 2023 (vea la <a class="reference internal" href="#figure-homicidios-x-provincia-2023-barras"><span class="std std-numref">Fig. 2</span></a>).</p></li>
+</ol>
+<figure class="align-default" id="figure-homicidios-x-provincia-2023-barras">
+<img alt="../../_images/homicidios_x_provincia_2023_barras.png" src="../../_images/homicidios_x_provincia_2023_barras.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Homicidios por provincia en 2023 (gráfico de barras).</span><a class="headerlink" href="#figure-homicidios-x-provincia-2023-barras" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Elabore un gráfico de pastel que muestre la misma información que el gráfico del punto anterior (vea la <a class="reference internal" href="#figure-homicidios-x-provincia-2023-pastel"><span class="std std-numref">Fig. 3</span></a>).</p></li>
+</ol>
+<figure class="align-default" id="figure-homicidios-x-provincia-2023-pastel">
+<img alt="../../_images/homicidios_x_provincia_2023_pastel.png" src="../../_images/homicidios_x_provincia_2023_pastel.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Homicidios por provincia en 2023 (gráfico de pastel).</span><a class="headerlink" href="#figure-homicidios-x-provincia-2023-pastel" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="5">
+<li><p>Elabore una consulta SQL para obtener la cantidad de homicidios cometidos por mes, desde enero 2022 hasta julio 2023. Muestre el resultado en un gráfico de barras.</p></li>
+</ol>
+<p>Sugerencia para la consulta:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="k">CAST</span><span class="p">(</span><span class="ss">&quot;Anio&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">LPAD</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="ss">&quot;Mes&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Anio_Mes</span><span class="p">,</span>
+<span class="w">	</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Homicidios</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">oij</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="ss">&quot;SubDelito&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HOMICIDIO&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Anio_Mes</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Anio_Mes</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Elabore un gráfico de dispersión (<em>scatterplot</em>) que muestre la misma información que el punto anterior.</p></li>
+<li><p>Elabore una consulta SQL para obtener la cantidad de homicidios por edad (menor, mayor, adulto mayor) y muestre el resultado en un gráfico de barras y en un gráfico de pastel. Puede hacerlo para un año en particular o para la unión de varios años.</p></li>
+<li><p>Elabore una consulta SQL para obtener la cantidad de “DELITOS CONTRA LA PROPIEDAD” por subdelito y muestre el resultado en un gráfico de barras y en un gráfico de pastel. Puede hacerlo para un año en particular o para la unión de varios años.</p></li>
+<li><p>Repita el ejercicio del punto anterior para los “DELITOS CONTRA LA VIDA”.</p></li>
+</ol>
 </section>
 </section>
 <section id="bibliografia">
@@ -856,7 +915,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-sql">Consultas SQL</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-mas-populares">SABD más populares</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-relacionales">SABD relacionales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sabd-no-relacionales-nosql">SABD no relacionales (NoSQL)</a></li>
@@ -867,6 +929,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-1">Carga de datos y consultas SQL (1)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-2">Carga de datos y consultas SQL (2)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos-y-consultas-sql-3">Carga de datos y consultas SQL (3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-consultas-sql-en-graficos-estadisticos">Visualización de consultas SQL en gráficos estadísticos</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>

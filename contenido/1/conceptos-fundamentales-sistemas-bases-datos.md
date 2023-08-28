@@ -40,6 +40,8 @@ Como se mencionó, a la colección de datos de un sistema de base de datos es a 
 - **Compartidos**: Los datos pueden ser accedidos por diferentes usuarios al mismo tiempo, cada uno con diferentes derechos de acceso.
 
 ## Ejercicios
+
+### Consultas SQL
 Debe crear una BD para mantener la información sobre cursos matriculados por los estudiantes de una universidad, en tres conjuntos de datos:
 
 - Estudiante: carné, nombre, sexo, edad.
@@ -354,16 +356,68 @@ SELECT * FROM oij23
 UNION
 SELECT * FROM oij22;
 ```
-8. Con la cláusula [`GROUP BY`](https://www.w3schools.com/sql/sql_groupby.asp), agrupe y cuente los homicidios cometidos por mes y año:
+8. Con la cláusula [`GROUP BY`](https://www.w3schools.com/sql/sql_groupby.asp), agrupe y cuente los homicidios cometidos por mes (hasta julio inclusive) y año:
 
 ```sql
--- Agrupación de cantidad de homicidios por mes y año
-SELECT "Mes", "Anio", COUNT(*)
+-- Agrupación de cantidad de homicidios por mes (hasta julio inclusive) y año
+SELECT "Mes", "Anio", COUNT(*) AS Homicidios
 FROM oij
-WHERE "SubDelito" = 'HOMICIDIO'
+WHERE "Mes" <= 7 AND "SubDelito" = 'HOMICIDIO'
 GROUP BY "Mes", "Anio"
 ORDER BY "Mes", "Anio";
 ```
+
+### Visualización de consultas SQL en gráficos estadísticos
+1. En el Administrador de bases de datos de QGIS, escriba y ejecuta una consulta SQL para obtener la cantidad de homicidios por provincia en 2023.
+
+```sql
+-- Agrupación de cantidad de homicidios por provincia
+SELECT "Provincia", COUNT(*) AS Homicidios
+FROM oij
+WHERE "Anio" = 2023 AND "SubDelito" = 'HOMICIDIO'
+GROUP BY "Provincia"
+ORDER BY Homicidios DESC;
+```
+
+2. Agregue el resultado de la consulta a la interfaz de QGIS, como una nueva capa.
+
+3. Instale el complemento [Data Plotly](https://github.com/ghtmtt/DataPlotly) ([documentación](https://dataplotly-docs.readthedocs.io)) en QGIS y elabore un gráfico de barras muestre la cantidad de homicidios por provincia en 2023 (vea la {numref}`figure-homicidios_x_provincia_2023_barras`).
+
+```{figure} img/homicidios_x_provincia_2023_barras.png
+:name: figure-homicidios_x_provincia_2023_barras
+
+Homicidios por provincia en 2023 (gráfico de barras).
+```
+
+4. Elabore un gráfico de pastel que muestre la misma información que el gráfico del punto anterior (vea la {numref}`figure-homicidios_x_provincia_2023_pastel`).
+
+```{figure} img/homicidios_x_provincia_2023_pastel.png
+:name: figure-homicidios_x_provincia_2023_pastel
+
+Homicidios por provincia en 2023 (gráfico de pastel).
+```
+
+5. Elabore una consulta SQL para obtener la cantidad de homicidios cometidos por mes, desde enero 2022 hasta julio 2023. Muestre el resultado en un gráfico de barras.
+
+Sugerencia para la consulta:
+
+```sql
+SELECT 
+    CAST("Anio" AS TEXT) || '-' || LPAD(CAST("Mes" AS TEXT), 2, '0') AS Anio_Mes,
+	COUNT(*) AS Homicidios
+FROM oij
+WHERE "SubDelito" = 'HOMICIDIO'
+GROUP BY Anio_Mes
+ORDER BY Anio_Mes;
+```
+
+6. Elabore un gráfico de dispersión (*scatterplot*) que muestre la misma información que el punto anterior.
+
+7. Elabore una consulta SQL para obtener la cantidad de homicidios por edad (menor, mayor, adulto mayor) y muestre el resultado en un gráfico de barras y en un gráfico de pastel. Puede hacerlo para un año en particular o para la unión de varios años.
+
+8. Elabore una consulta SQL para obtener la cantidad de "DELITOS CONTRA LA PROPIEDAD" por subdelito y muestre el resultado en un gráfico de barras y en un gráfico de pastel. Puede hacerlo para un año en particular o para la unión de varios años.
+
+9. Repita el ejercicio del punto anterior para los "DELITOS CONTRA LA VIDA".
 
 ## Bibliografía
 ```{bibliography}
