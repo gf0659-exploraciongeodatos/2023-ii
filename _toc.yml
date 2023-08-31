@@ -7,3 +7,4 @@ parts:
   - caption: 1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS
     chapters:
     - file: contenido/1/conceptos-fundamentales-sistemas-bases-datos
+    - file: contenido/1/modelo-relacional
