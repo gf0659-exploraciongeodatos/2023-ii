@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/1/conceptos-fundamentales-sistemas-bases-datos';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="El modelo relacional" href="modelo-relacional.html" />
     <link rel="prev" title="GF-0659 Exploración y explotación de geodatos" href="../../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -158,6 +159,11 @@ const thebe_selector_output = ".output, .cell_output"
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
 </ul>
 
     </div>
@@ -388,10 +394,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="conceptos-fundamentales-sobre-sistemas-de-base-de-datos">
 <h1>Conceptos fundamentales sobre sistemas de base de datos<a class="headerlink" href="#conceptos-fundamentales-sobre-sistemas-de-base-de-datos" title="Permalink to this heading">#</a></h1>
-<p>Un sistema de base de datos es básicamente un sistema computarizado para mantener registros. Su propósito general es almacenar datos y permitir a los usuarios recuperar y modificar esos datos de acuerdo con sus solicitudes <span id="id1">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>. A la colección de datos del sistema se le denomina base de datos.</p>
+<p>Un sistema de base de datos es básicamente un sistema computarizado para mantener registros. Su propósito general es almacenar datos y permitir a los usuarios recuperar y modificar esos datos de acuerdo con sus solicitudes <span id="id1">[<a class="reference internal" href="../../markdown.html#id3" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>. A la colección de datos del sistema se le denomina base de datos.</p>
 <section id="ventajas">
 <h2>Ventajas<a class="headerlink" href="#ventajas" title="Permalink to this heading">#</a></h2>
-<p>Anteriormente, se acostumbraba manejar los datos por medio de archivos (ej. CSV, DBF, SHP), lo que provocaba varios inconvenientes <span id="id2">[<a class="reference internal" href="#id10" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>Anteriormente, se acostumbraba manejar los datos por medio de archivos (ej. CSV, DBF, SHP), lo que provocaba varios inconvenientes <span id="id2">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>Redundancia e inconsistencia de datos</strong>: los mismos datos podrían almacenarse en diferentes archivos, lo que puede dar lugar a inconsistencias (ej. el nombre de una misma persona escrito de varias formas).</p></li>
 <li><p><strong>Dificultades para acceder a los datos</strong>: necesidad de desarrollar un nuevo programa para cada nueva tarea.</p></li>
@@ -402,7 +408,7 @@ document.write(`
 <li><p><strong>Problemas de seguridad</strong>: cada usuario debería tener acceso a los datos relacionados con sus tareas, pero no necesariamente a la todos.</p></li>
 </ul>
 <p>Estas dificultades, entre otras, propiciaron el inicio del desarrollo de los sistemas de bases de datos, en las décadas de 1960 y 1970, los cuales ofrecieron soluciones a todos los problemas mencionados.</p>
-<p>Los sistemas de bases de datos ofrecen diversos beneficios. Uno de los más importantes es el de la independencia (física) de los datos. Podemos definir la independencia de los datos como la “inmunidad” que tienen los programas de aplicación ante los cambios en la forma almacenar o acceder físicamente a los datos. Entre otras cosas, la independencia de los datos requiere que se haga una clara distinción entre el modelo de datos y su implementación <span id="id3">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</p>
+<p>Los sistemas de bases de datos ofrecen diversos beneficios. Uno de los más importantes es el de la independencia (física) de los datos. Podemos definir la independencia de los datos como la “inmunidad” que tienen los programas de aplicación ante los cambios en la forma almacenar o acceder físicamente a los datos. Entre otras cosas, la independencia de los datos requiere que se haga una clara distinción entre el modelo de datos y su implementación <span id="id3">[<a class="reference internal" href="../../markdown.html#id3" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</p>
 </section>
 <section id="componentes">
 <h2>Componentes<a class="headerlink" href="#componentes" title="Permalink to this heading">#</a></h2>
@@ -410,12 +416,12 @@ document.write(`
 <figure class="align-default" id="figure-sistema-base-datos">
 <img alt="../../_images/sistema-base-datos.png" src="../../_images/sistema-base-datos.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Imagen simplificada de un sistema de base de datos <span id="id4">[<a class="reference internal" href="#id8" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</span><a class="headerlink" href="#figure-sistema-base-datos" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Imagen simplificada de un sistema de base de datos <span id="id4">[<a class="reference internal" href="../../markdown.html#id3" title="C. J. Date. Introduction to Database Systems, An. Pearson, Boston, 8th edition edition, July 2003. ISBN 978-0-321-19784-9.">Dat03</a>]</span>.</span><a class="headerlink" href="#figure-sistema-base-datos" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="software">
 <h3>Software<a class="headerlink" href="#software" title="Permalink to this heading">#</a></h3>
-<p>El software más importante de un sistema de base de datos es el <strong>sistema administrador de bases de datos (SABD o DBMS por sus siglas en inglés)</strong>, el cual maneja todos los accesos a la base de datos. Es una aplicación de propósito general que facilita los procesos de definición, construcción, manipulación y compartición de bases de datos entre varios usuarios y aplicaciones <span id="id5">[<a class="reference internal" href="#id9" title="Ramez Elmasri and Shamkant Navathe. Fundamentals of Database Systems. Pearson, Hoboken, NJ, 7th edition edition, June 2015. ISBN 978-0-13-397077-7.">EN15</a>]</span>.</p>
+<p>El software más importante de un sistema de base de datos es el <strong>sistema administrador de bases de datos (SABD o DBMS por sus siglas en inglés)</strong>, el cual maneja todos los accesos a la base de datos. Es una aplicación de propósito general que facilita los procesos de definición, construcción, manipulación y compartición de bases de datos entre varios usuarios y aplicaciones <span id="id5">[<a class="reference internal" href="../../markdown.html#id4" title="Ramez Elmasri and Shamkant Navathe. Fundamentals of Database Systems. Pearson, Hoboken, NJ, 7th edition edition, June 2015. ISBN 978-0-13-397077-7.">EN15</a>]</span>.</p>
 <ul class="simple">
 <li><p><strong>Definir</strong> una base de datos implica especificar los tipos de datos, estructuras y restricciones de los datos que se almacenarán en la base de datos. La definición de la base de datos o la información descriptiva también es almacenada por el DBMS en forma de un catálogo de base de datos o diccionario; esto se llama metadatos.</p></li>
 <li><p><strong>Construir</strong> la base de datos es el proceso de almacenar los datos en algún medio de almacenamiento que está controlado por el SABD.</p></li>
@@ -890,6 +896,15 @@ document.write(`
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">GF-0659 Exploración y explotación de geodatos</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="modelo-relacional.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">El modelo relacional</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   

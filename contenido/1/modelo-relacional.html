@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/1/modelo-relacional';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
     <link rel="prev" title="Conceptos fundamentales sobre sistemas de base de datos" href="conceptos-fundamentales-sistemas-bases-datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,6 +160,10 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
 </ul>
 
     </div>
@@ -357,6 +362,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-de-relacion">Integridad de relación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-referencial">Integridad referencial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-de-dominio">Integridad de dominio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-de-esquema">Diagramas de esquema</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-de-datos">Manipulación de datos</a><ul class="nav section-nav flex-column">
@@ -382,17 +388,17 @@ document.write(`
 <figure class="align-default" id="figure-relacion-profesor">
 <img alt="../../_images/relacion-profesor.png" src="../../_images/relacion-profesor.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">La relación <code class="docutils literal notranslate"><span class="pre">Instructor</span></code> representada en una tabla <span id="id1">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-relacion-profesor" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Relación <code class="docutils literal notranslate"><span class="pre">instructor</span></code> (profesor) representada en una tabla <span id="id1">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-relacion-profesor" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>El modelo relacional fue introducido por <a class="reference external" href="https://es.wikipedia.org/wiki/Edgar_Frank_Codd">Edgar Frank Codd</a> en 1970 en su artículo “A Relational Model of Data for Large Shared Data Banks”, publicado en la revista Communications of the ACM. Codd propuso este modelo como una forma más intuitiva y flexible de organizar y consultar datos en comparación con los modelos de bases de datos previamente existentes, como los modelos jerárquico y de red.</p>
+<p>El modelo relacional fue introducido por <a class="reference external" href="https://es.wikipedia.org/wiki/Edgar_Frank_Codd">Edgar Frank Codd</a> en 1970 en su artículo “A Relational Model of Data for Large Shared Data Banks” <span id="id2">[<a class="reference internal" href="#id57" title="E. F. Codd. A relational model of data for large shared data banks. Communications of the ACM, 13(6):377–387, June 1970. URL: https://dl.acm.org/doi/10.1145/362384.362685 (visited on 2023-09-02), doi:10.1145/362384.362685.">Cod70</a>]</span>. Codd propuso este modelo como una forma más intuitiva y flexible de organizar y consultar datos en comparación con los modelos de bases de datos previamente existentes, como los modelos jerárquico y de red.</p>
 <p>Las bases de datos relacionales, y los SABD que las implementan, utilizan el modelo relacional como base teórica y han dominado la industria de bases de datos durante décadas debido a su eficiencia, flexibilidad y capacidad de soportar transacciones complejas.</p>
 <section id="estructura-de-datos">
 <h2>Estructura de datos<a class="headerlink" href="#estructura-de-datos" title="Permalink to this heading">#</a></h2>
-<p>La <strong>relación (tabla)</strong> es la estructura principal del modelo relacional. Como se mencionó, cada tabla contiene un conjunto de <strong>tuplas (filas o registros)</strong> y cada tupla es una lista ordenada de <strong>atributos (columnas o campos)</strong>. Al igual que en los conjuntos, las tuplas de una relación no están ordenadas y no se repiten.</p>
+<p>La <strong>relación (tabla)</strong> es la estructura principal del modelo relacional. Como se mencionó, cada tabla contiene un conjunto de <strong>tuplas (filas, registros)</strong> y cada tupla es una lista ordenada de <strong>atributos (columnas, campos)</strong>. Al igual que en los conjuntos, las tuplas de una relación no están ordenadas y no se repiten.</p>
 <p>El conjunto de valores que puede tener un atributo es su <strong>dominio</strong>. Algunos ejemplos de dominios son el conjunto de los números reales, el conjunto de los números enteros o un conjunto finito de hileras de texto (<code class="docutils literal notranslate"><span class="pre">Hombre</span></code>, <code class="docutils literal notranslate"><span class="pre">Mujer</span></code>; <code class="docutils literal notranslate"><span class="pre">H</span></code>, <code class="docutils literal notranslate"><span class="pre">M</span></code>; <code class="docutils literal notranslate"><span class="pre">Casado</span></code>, <code class="docutils literal notranslate"><span class="pre">Soltero</span></code>; <code class="docutils literal notranslate"><span class="pre">Sí</span></code>, <code class="docutils literal notranslate"><span class="pre">No</span></code>). Usualmente, los valores que componen un dominio son <em>atómicos</em> (indivisibles). El valor <code class="docutils literal notranslate"><span class="pre">nulo</span></code> (o <code class="docutils literal notranslate"><span class="pre">null</span></code>, en inglés) es un miembro de cualquier dominio. El manejo de valores nulos puede causar problemas en operaciones de manejo de datos.</p>
-<p>El <strong>esquema</strong> de una base de datos es su estructura lógica (i.e. la lista de sus atributos). Por ejemplo, el esquema de la relación Instructor es:</p>
-<p><code class="docutils literal notranslate"><span class="pre">Instructor(ID,</span> <span class="pre">name,</span> <span class="pre">dept_name,</span> <span class="pre">salary)</span></code></p>
+<p>El <strong>esquema</strong> de una relación es su estructura lógica (i.e. la lista de sus atributos). Por ejemplo, el esquema de la relación <code class="docutils literal notranslate"><span class="pre">instructor</span></code> es:</p>
+<p><em>instructor(ID, name, dept_name, salary)</em></p>
 </section>
 <section id="integridad-de-datos">
 <h2>Integridad de datos<a class="headerlink" href="#integridad-de-datos" title="Permalink to this heading">#</a></h2>
@@ -400,22 +406,42 @@ document.write(`
 <p>La integridad en el modelo relacional se centra principalmente la <strong>integridad de relación</strong>, la <strong>integridad referencial</strong> y la <strong>integridad de dominio</strong>.</p>
 <section id="integridad-de-relacion">
 <h3>Integridad de relación<a class="headerlink" href="#integridad-de-relacion" title="Permalink to this heading">#</a></h3>
-<p>Asegura que cada tupla en una relación pueda ser identificada de manera única por su <strong>llave primaria (en inglés, <em>Primary Key</em> o PK)</strong>. La PK está compuesta por uno o varios atributos que no se repiten en las tuplas de la relación.</p>
+<p>Asegura que cada tupla en una relación pueda ser identificada de manera única por su <strong>llave primaria (en inglés, <em>Primary Key</em> o PK)</strong>. La PK está compuesta por uno o varios atributos que no se repiten en las tuplas de la relación. En el esquema de una relación, la llave primaria se denota mediante el subrayado de los atributos que componen la llave. Por ejemplo:</p>
+<p><em>instructor(<u>ID</u>, name, dept_name, salary)</em></p>
 </section>
 <section id="integridad-referencial">
 <h3>Integridad referencial<a class="headerlink" href="#integridad-referencial" title="Permalink to this heading">#</a></h3>
-<p>Se implementa a través de llaves foráneas. Una <strong>llave foránea (en inglés, <em>Foreign Key</em> o FK)</strong> establece una relación entre dos tablas. Una llave foránea en una tabla debe coincidir con la llave primaria de otra tabla, garantizando que no se creen registros “huérfanos” o que se borren registros que aún están siendo referenciados. Por ejemplo, en la tabla <code class="docutils literal notranslate"><span class="pre">Instructor</span></code>, el atributo <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> es una llave foránea a otra tabla llamada <code class="docutils literal notranslate"><span class="pre">Department</span></code>, en la cual es su llave primaria.</p>
+<p>Se implementa a través de llaves foráneas. Una <strong>llave foránea (en inglés, <em>Foreign Key</em> o FK)</strong> establece una relación entre dos tablas. Una llave foránea en una tabla debe coincidir con la llave primaria de otra tabla, garantizando que no se creen registros “huérfanos” o que se borren registros que aún están siendo referenciados. Por ejemplo, en la tabla <code class="docutils literal notranslate"><span class="pre">instructor</span></code>, el atributo <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> es una llave foránea a otra tabla llamada <code class="docutils literal notranslate"><span class="pre">department</span></code>, en la cual es su llave primaria.</p>
 </section>
 <section id="integridad-de-dominio">
 <h3>Integridad de dominio<a class="headerlink" href="#integridad-de-dominio" title="Permalink to this heading">#</a></h3>
 <p>Garantiza que todos los valores de una columna se encuentren dentro de un dominio específico o conjunto de valores aceptables. Por ejemplo, una columna que almacena <code class="docutils literal notranslate"><span class="pre">dia_semana</span></code> podría restringirse para que solo acepte los valores <code class="docutils literal notranslate"><span class="pre">lunes</span></code>, <code class="docutils literal notranslate"><span class="pre">martes</span></code>, …, <code class="docutils literal notranslate"><span class="pre">domingo</span></code>.</p>
-<p>El esquema de una base de datos, junto con sus llaves primarias y foráneas puede representarse mediante un <strong>diagrama de esquema</strong>, como el que se muestra en la <a class="reference internal" href="#figure-schema-university"><span class="std std-numref">Fig. 5</span></a>.</p>
+</section>
+<section id="diagramas-de-esquema">
+<h3>Diagramas de esquema<a class="headerlink" href="#diagramas-de-esquema" title="Permalink to this heading">#</a></h3>
+<p>El esquema de una base de datos, junto con sus llaves primarias y foráneas puede representarse mediante un <strong>diagrama de esquema</strong>, como el que se muestra en la <a class="reference internal" href="#figure-schema-university"><span class="std std-numref">Fig. 5</span></a>, para la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>. Cada relación aparece como una caja, con el nombre en azul en la parte superior y los atributos listados dentro de la caja.</p>
 <figure class="align-default" id="figure-schema-university">
 <img alt="../../_images/schema-university.png" src="../../_images/schema-university.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama del esquema de la base de datos Universidad <span id="id2">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-schema-university" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama del esquema de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code> <span id="id3">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-schema-university" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
+<p>La siguiente es la lista de esquemas que se muestran en el diagrama:</p>
+<ul class="simple">
+<li><p><em>department(<u>dept_name</u>, building, budget)</em></p></li>
+<li><p><em>instructor(<u>ID</u>, name, dept_name, salary)</em></p></li>
+<li><p><em>student(<u>ID</u>, name, dept_name, tot_cred)</em></p></li>
+<li><p><em>advisor(<u>s_id</u>, <u>i_id</u>)</em></p></li>
+<li><p><em>course(<u>course_id</u>, title, dept_name, credits)</em></p></li>
+<li><p><em>prereq(<u>course_id</u>, <u>prereq_id</u>)</em></p></li>
+<li><p><em>section(<u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>, building, room_number, time_slot_id)</em></p></li>
+<li><p><em>classroom(<u>building</u>, <u>room_number</u>, capacity)</em></p></li>
+<li><p><em>timeslot(<u>time_slot_id</u>, <u>day</u>, <u>start_time</u>, end_time)</em></p></li>
+<li><p><em>teaches(<u>ID</u>, <u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>)</em></p></li>
+<li><p><em>takes(<u>ID</u>, <u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>, grade)</em></p></li>
+</ul>
+<p>Los atributos de las llaves primarias se muestran subrayados. Las restricciones de clave foránea aparecen como flechas desde los atributos de llave foránea de la relación referenciadora hasta la llave primaria de la relación referenciada. De acuerdo con la notación utilizada en <span id="id4">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>, se utiliza una flecha de dos puntas, en lugar de una flecha de una sola punta, para indicar una restricción de integridad referencial que no es una restricción de llave foránea. Muchas herramientas de administración de bases de datos proporcionan herramientas de diseño con interfaces gráficas para crear diagramas de esquema (ej. <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>).</p>
+<p>Más adelante, se explicará un tipo diferente de diagrama, llamado <a class="reference external" href="https://es.wikipedia.org/wiki/Modelo_entidad-relaci%C3%B3n">entidad-relación</a>. A pesar de que pueden parecer similares, los diagramas de esquema y los diagramas entidad-relación son diferentes y no deben confundirse entre sí <span id="id5">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 </section>
 </section>
 <section id="manipulacion-de-datos">
@@ -447,9 +473,12 @@ document.write(`
 </section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id3">
+<div class="docutils container" id="id6">
 <dl class="citation">
-<dt class="label" id="id6"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id2">Cod70</a></span></dt>
+<dd><p>E. F. Codd. A relational model of data for large shared data banks. <em>Communications of the ACM</em>, 13(6):377–387, June 1970. URL: <a class="reference external" href="https://dl.acm.org/doi/10.1145/362384.362685">https://dl.acm.org/doi/10.1145/362384.362685</a> (visited on 2023-09-02), <a class="reference external" href="https://doi.org/10.1145/362384.362685">doi:10.1145/362384.362685</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>,<a href="#id5">4</a>)</span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
 </dl>
@@ -497,6 +526,15 @@ document.write(`
         <p class="prev-next-title">Conceptos fundamentales sobre sistemas de base de datos</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../evaluaciones/examencorto-01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examen corto 01</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -520,6 +558,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-de-relacion">Integridad de relación</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-referencial">Integridad referencial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integridad-de-dominio">Integridad de dominio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagramas-de-esquema">Diagramas de esquema</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-de-datos">Manipulación de datos</a><ul class="nav section-nav flex-column">
