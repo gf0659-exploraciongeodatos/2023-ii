@@ -32,7 +32,7 @@ SQL DDL permite especificar, para una tabla, aspectos como su esquema, tipos de 
 El estándar SQL admiite varios tipos de datos, incluyendo {cite:p}`silberschatz_database_2019`:
 
 - **char**(*n*), **character**(*n*): cadena de caracteres de longitud fija *n* especificada por el usuario.
-- **varchar**(*n*), **character varying**(*n*): cadena de caracteres de longitud fija *n* especificada por el usuario.
+- **varchar**(*n*), **character varying**(*n*): cadena de caracteres de longitud variable de tamaño máximo *n* especificado por el usuario.
 - **int**, **integer**: número entero de tamaño máximo dependiente de la arquitectura de la computadora.
 - **smallint**: número entero pequeño de tamaño máximo dependiente de la arquitectura de la computadora.
 - **numeric**(*p*,*d*): número de punto fijo[^1] con precisión especificada por el usuario. El número consta de *p* dígitos (más un signo) y *d* de los *p* dígitos están a la derecha del punto decimal. Por lo tanto, **numeric**(*3*, *1*) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.
@@ -163,19 +163,19 @@ Con los siguientes comandos, se crea una tabla de ejemplo y luego se agrega, mod
 ```sql
 -- Adición de una columna
 ALTER TABLE tabla
-    ADD columna tipo_datos;
+ADD columna tipo_datos;
 
 -- Modificación del tipo de datos de una columna (sintaxis de PostgreSQL)
 ALTER TABLE tabla
-    ALTER COLUMN columna TYPE tipo_datos;
+ALTER COLUMN columna TYPE tipo_datos;
 
 -- Definición de llave primaria
 ALTER TABLE tabla
-    ADD PRIMARY KEY(columna1, columna2, ...);
+ADD PRIMARY KEY(columna1, columna2, ...);
 
 -- Borrado de una columna
 ALTER TABLE tabla
-    DROP COLUMN columna;
+DROP COLUMN columna;
 ```
 
 ##### Ejemplos
@@ -187,19 +187,19 @@ CREATE TABLE ejemplo (
 
 -- Adición de una columna
 ALTER TABLE ejemplo
-    ADD col2 NUMERIC(3,0);
+ADD col2 NUMERIC(3,0);
 
 -- Modificación del tipo de datos de una columna (sintaxis de PostgreSQL)
 ALTER TABLE ejemplo
-    ALTER COLUMN col2 TYPE INTEGER;
+ALTER COLUMN col2 TYPE INTEGER;
 
 -- Definición de llave primaria
 ALTER TABLE ejemplo
-    ADD PRIMARY KEY(col1, col2);
+ADD PRIMARY KEY(col1, col2);
 
 -- Borrado de una columna
 ALTER TABLE ejemplo
-    DROP COLUMN col2;
+DROP COLUMN col2;
 ```
 
 #### DROP TABLE
@@ -229,14 +229,14 @@ Se presentan dos variantes.
 ```sql
 -- Especificación de las columnas y sus respectivos valores
 INSERT INTO tabla
-    (columna1, columna2, columna3, ...) 
-    VALUES (valor1, valor2, valor3, ...);
+(columna1, columna2, columna3, ...) 
+VALUES (valor1, valor2, valor3, ...);
 
 -- Especificación de los valores únicamente.
 -- Es útil si se usan todas las columnas.
 -- Debe respetarse el orden en el que las columnas fueron definidas.
 INSERT INTO tabla
-    VALUES (valor1, valor2, valor3, ...);
+VALUES (valor1, valor2, valor3, ...);
 ```
 
 ##### Ejemplos
@@ -244,13 +244,13 @@ INSERT INTO tabla
 -- Inserción de un registro en la tabla department,
 -- especificando las columnas y sus respectivos valores.
 INSERT INTO department 
-    (dept_name, building, budget) 
-    VALUES ('Informática', 'Edificio A', 50000.00);
+(dept_name, building, budget) 
+VALUES ('Informática', 'Edificio A', 50000.00);
 
 -- Inserción de un registro en la tabla department,
 -- especificando solo los valores.
 INSERT INTO department
-    VALUES ('Matemáticas', 'Edificio B', 45000.00);    
+VALUES ('Matemáticas', 'Edificio B', 45000.00);    
 ```
 
 Con el fin de proporcionar datos para los siguientes ejercicios, seguidamente se proporcionan comandos `INSERT` para las restantes tablas de la base de datos `university`.
@@ -262,24 +262,24 @@ Con el fin de proporcionar datos para los siguientes ejercicios, seguidamente se
 -- Inserción de registros en la tabla instructor
 
 INSERT INTO instructor 
-    (ID, name, dept_name, salary) 
-    VALUES ('I001', 'Juan Pérez', 'Informática', 35000.00);
+(ID, name, dept_name, salary) 
+VALUES ('I001', 'Juan Pérez', 'Informática', 35000.00);
 
 INSERT INTO instructor 
-    (ID, name, dept_name, salary) 
-    VALUES ('I002', 'María García', 'Informática', 36000.00);
+(ID, name, dept_name, salary) 
+VALUES ('I002', 'María García', 'Informática', 36000.00);
 
 INSERT INTO instructor 
-    (ID, name, dept_name, salary) 
-    VALUES ('I003', 'Carlos Rodríguez', 'Matemáticas', 34000.00);
+(ID, name, dept_name, salary) 
+VALUES ('I003', 'Carlos Rodríguez', 'Matemáticas', 34000.00);
 
 INSERT INTO instructor 
-    (ID, name, dept_name, salary) 
-    VALUES ('I004', 'Ana Torres', 'Matemáticas', 33000.00);
+(ID, name, dept_name, salary) 
+VALUES ('I004', 'Ana Torres', 'Matemáticas', 33000.00);
 
 INSERT INTO instructor 
-    (ID, name, dept_name, salary) 
-    VALUES ('I005', 'Luisa Fernández', 'Informática', 35500.00);
+(ID, name, dept_name, salary) 
+VALUES ('I005', 'Luisa Fernández', 'Informática', 35500.00);
 ```    
 </details>
 
@@ -489,28 +489,28 @@ El comando [UPDATE](https://www.w3schools.com/sql/sql_update.asp) modifica regis
 ##### Sintaxis básica
 ```sql
 UPDATE tabla
-    SET columna1 = valor1, columna2 = valor2, ...
-    WHERE condición; 
+SET columna1 = valor1, columna2 = valor2, ...
+WHERE condición; 
 ```
 
 ##### Ejemplos
 ```sql
 -- Aumento de un 5% a los salarios de todos los profesores
 UPDATE instructor
-    SET salary = salary * 1.05;
+SET salary = salary * 1.05;
 
 -- Aumento de un 5% de los salarios de los profesores
 -- con salarios menores a 35000
 UPDATE instructor
-    SET salary = salary * 1.05
-    WHERE salary < 35000;
+SET salary = salary * 1.05
+WHERE salary < 35000;
 
 -- Aumento de un 5% de los salarios de los profesores
 -- con salarios menores al promedio de todos los salarios.
 -- Se utiliza una subconsulta.
 UPDATE instructor
-    SET salary = salary * 1.05
-    WHERE salary < (SELECT AVG(salary) FROM instructor);
+SET salary = salary * 1.05
+WHERE salary < (SELECT AVG(salary) FROM instructor);
 ```
 
 #### DELETE
@@ -527,8 +527,8 @@ DELETE FROM tabla WHERE condición;
 DELETE FROM student WHERE ID = 'S060';
 ```
 
-## Ejercicios
-1. Agregue registros de prueba en las tablas de la base de datos `university` de acuerdo con los siguientes pasos.  
+#### Ejercicios
+1. Agregue registros de prueba en las tablas de la base de datos `university` de acuerdo con los siguientes pasos:  
     1. Agregue el departamento 'Geografía' en la tabla `department`.  
     2. Agregue el estudiante 'Alexander von Humboldt' en la tabla `student`. Asígnelo al departamento de Geografía.  
     3. Agregue el profesor 'Eratóstenes' en la tabla `instructor`. Asígnelo al departamento de Geografía.  
@@ -538,6 +538,56 @@ DELETE FROM student WHERE ID = 'S060';
     7. En la tabla `takes`, matricule al estudiante Alexander von Humboldt en el grupo 'G001' de 'Fundamentos de la Geodesia', segundo semestre 2023.  
 
 2. Agregue más registros de departamentos, estudiantes, profesores, cursos, grupos y demás. Intente cambiar el orden de las inserciones y observe los resultados.
+
+### Consulta de datos
+En esta sección, se estudia la sentencia `SELECT` y sus diferentes cláusulas para consulta de datos.
+
+#### SELECT, FROM, WHERE
+Las consultas de datos en SQL se realizan a través de la sentencia [SELECT](https://www.w3schools.com/sql/sql_select.asp) y su clásula `FROM`. Es muy frecuente usar también la cláusula [WHERE](https://www.w3schools.com/sql/sql_where.asp), pero no es obligatoria. Con `SELECT` se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en `FROM`. `WHERE` contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como `AND`, `OR` y `NOT`.
+
+##### Sintaxis básica
+```sql
+SELECT columna1, columna2, ...
+FROM tabla
+WHERE condición
+```
+
+##### Ejemplos
+```sql
+-- Consulta de todos los registros y todas las columnas de la tabla student.
+-- El asterisco ("estrella") indica que deben retornarse todas las columnas.
+SELECT *
+FROM student;
+
+-- Consulta de todos los registros y las columnas ID, name y dept_name de la tabla student
+SELECT ID, name, dept_name
+FROM student;
+
+-- Valores distintos de la columna dept_name en la tabla student
+SELECT DISTINCT dept_name
+FROM student;
+
+-- Columna calculada y con un alias temporal asignado con la cláusula AS.
+-- Los alias definidos mediante AS solo existen durante la ejecución de la consulta.
+SELECT 
+    ID, 
+    name, 
+    dept_name, 
+    salary, salary * 1.05 AS projected_salary
+FROM instructor;
+
+-- Cláusula WHERE con una expresión lógica
+SELECT * 
+FROM student
+WHERE dept_name = 'Informática' AND tot_cred >= 55;
+```
+
+#### Operaciones con hileras de caracteres
+En SQL, los textos, también llamados hileras de caracteres, se especifican colcándolos entre comillas simples, por ejemplo: 'universidad'. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar como 'It''s right'.
+
+El estándar SQL especifica que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión `'Universidad' = 'universidad'` se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse.
+
+SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador `||`), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función `UPPER(s)` donde `s` es una hilera) y a minúsculas (mediante la función `LOWER(s)`), eliminar espacios al final de la cadena (mediante `TRIM(s)`) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD {cite:p}`silberschatz_database_2019`. 
 
 ## Bibliografía
 ```{bibliography}
