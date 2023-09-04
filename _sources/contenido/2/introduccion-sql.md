@@ -528,10 +528,16 @@ DELETE FROM student WHERE ID = 'S060';
 ```
 
 ## Ejercicios
-1. Agregue un nuevo departamento en la tabla `department`.
-2. Agregue su nombre en la tabla `student`.
-3. Agregue un nuevo profesor en la tabla `instructor`.
-4. Agregue un nuevo curso en la tabla `course`.
+1. Agregue registros de prueba en las tablas de la base de datos `university` de acuerdo con los siguientes pasos.  
+    1. Agregue el departamento 'Geografía' en la tabla `department`.  
+    2. Agregue el estudiante 'Alexander von Humboldt' en la tabla `student`. Asígnelo al departamento de Geografía.  
+    3. Agregue el profesor 'Eratóstenes' en la tabla `instructor`. Asígnelo al departamento de Geografía.  
+    4. Agregue el curso 'Fundamentos de la Geodesia' en la tabla `course`. Asígnelo al departamento de Geografía.  
+    5. Agregue el grupo 'G001' del curso 'Fundamentos de la Geodesia', que se imparte en el segundo semestre de 2023, en la tabla `section`.  
+    6. En la tabla `teaches`, asigne el grupo 'G001' de 'Fundamentos de la Geodesia', segundo semestre 2023, al profesor Eratóstenes.  
+    7. En la tabla `takes`, matricule al estudiante Alexander von Humboldt en el grupo 'G001' de 'Fundamentos de la Geodesia', segundo semestre 2023.  
+
+2. Agregue más registros de departamentos, estudiantes, profesores, cursos, grupos y demás. Intente cambiar el orden de las inserciones y observe los resultados.
 
 ## Bibliografía
 ```{bibliography}
