@@ -45,12 +45,12 @@ El esquema de una base de datos, junto con sus llaves primarias y foráneas pued
 Diagrama del esquema de la base de datos `university` {cite:p}`silberschatz_database_2019`.
 ```
 
-La siguiente es la lista de esquemas que se muestran en el diagrama:
+La siguiente es la lista de esquemas de relaciones que se muestran en el diagrama:
 
 - <em>department(<u>dept_name</u>, building, budget)</em>
 - <em>instructor(<u>ID</u>, name, dept_name, salary)</em>
 - <em>student(<u>ID</u>, name, dept_name, tot_cred)</em>
-- <em>advisor(<u>s_id</u>, <u>i_id</u>)</em>
+- <em>advisor(<u>s_id</u>, i_id)</em>
 - <em>course(<u>course_id</u>, title, dept_name, credits)</em>
 - <em>prereq(<u>course_id</u>, <u>prereq_id</u>)</em>
 - <em>section(<u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>, building, room_number, time_slot_id)</em>

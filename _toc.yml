@@ -8,6 +8,9 @@ parts:
     chapters:
     - file: contenido/1/conceptos-fundamentales-sistemas-bases-datos
     - file: contenido/1/modelo-relacional
+  - caption: 2 - INTRODUCCIÓN AL LENGUAJE SQL
+    chapters:
+    - file: contenido/2/introduccion-sql    
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01

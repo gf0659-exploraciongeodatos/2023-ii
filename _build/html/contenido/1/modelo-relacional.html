@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/1/modelo-relacional';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="next" title="Introducción a SQL" href="../2/introduccion-sql.html" />
     <link rel="prev" title="Conceptos fundamentales sobre sistemas de base de datos" href="conceptos-fundamentales-sistemas-bases-datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -160,6 +160,10 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
@@ -426,12 +430,12 @@ document.write(`
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama del esquema de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code> <span id="id3">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-schema-university" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>La siguiente es la lista de esquemas que se muestran en el diagrama:</p>
+<p>La siguiente es la lista de esquemas de relaciones que se muestran en el diagrama:</p>
 <ul class="simple">
 <li><p><em>department(<u>dept_name</u>, building, budget)</em></p></li>
 <li><p><em>instructor(<u>ID</u>, name, dept_name, salary)</em></p></li>
 <li><p><em>student(<u>ID</u>, name, dept_name, tot_cred)</em></p></li>
-<li><p><em>advisor(<u>s_id</u>, <u>i_id</u>)</em></p></li>
+<li><p><em>advisor(<u>s_id</u>, i_id)</em></p></li>
 <li><p><em>course(<u>course_id</u>, title, dept_name, credits)</em></p></li>
 <li><p><em>prereq(<u>course_id</u>, <u>prereq_id</u>)</em></p></li>
 <li><p><em>section(<u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>, building, room_number, time_slot_id)</em></p></li>
@@ -527,11 +531,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../evaluaciones/examencorto-01.html"
+       href="../2/introduccion-sql.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examen corto 01</p>
+        <p class="prev-next-title">Introducción a SQL</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
