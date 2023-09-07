@@ -751,7 +751,8 @@ ORDER BY year, semester;
     3. Año, grupo, curso y semestre con mayor cantidad de estudiantes matriculados.
     4. Profesor que imparte la mayor cantidad de cursos.
     5. Promedio de notas por curso (para todos los grupos, semestres y años).
-    6. Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres y cursos.
+    6. Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres, grupos y cursos.
+    7. Promedio de estudiantes (para todos los años, semestres, grupos y cursos) cuyo nombre empieza con una vocal.
 
 ## Bibliografía
 ```{bibliography}
