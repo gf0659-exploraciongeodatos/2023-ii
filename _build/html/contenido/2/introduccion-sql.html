@@ -405,12 +405,24 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-de-datos">Consulta de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where">SELECT, FROM, WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Sintaxis básica</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Sintaxis básica</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Ejercicios</a></li>
 </ul>
 </li>
 </ul>
@@ -434,7 +446,7 @@ document.write(`
 <p>SQL es el lenguaje de consulta de bases de datos más utilizado.</p>
 <p>IBM desarrolló la versión original de SQL, originalmente llamada SEQUEL (<em>Structured English QUEry Language</em>), como parte del proyecto System R a principios de la década de 1970. Algunos años después, SEQUEL cambió su nombre a SQL (<em>Structured Query Language</em> o Lenguaje de Consulta Estructurada) y se consolidó como el lenguaje estándar de bases de datos relacionales.</p>
 <p>SQL pasó a ser un estándar del Instituto Nacional Estadounidense de Estándares (ANSI) en 1986 y de la Organización Internacional de Normalización (ISO) en 1987. Esta primera versión es conocida como SQL-86 o SQL-1. En 1992 se publicó una revisión ampliada y revisada del estándar, llamada <a class="reference external" href="https://es.wikipedia.org/wiki/SQL-92">SQL-92 o SQL-2</a>. El soporte a SQL-92 por parte de las implementaciones comerciales es muy amplio. El estándar ha sido revisado varias veces más para incluir características adicionales. La revisión más reciente es <a class="reference external" href="https://en.wikipedia.org/wiki/SQL:2023">SQL:2023</a> y fue adoptada en junio 2023. A pesar de su estandarización, la mayoría de las implementaciones de SQL no son completamente portables entre sistemas administradores de bases de datos.</p>
-<p>La funcionalidad del lenguaje SQL incluye <span id="id1">[<a class="reference internal" href="#id21" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>La funcionalidad del lenguaje SQL incluye <span id="id1">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>Lenguaje de definición de datos (DDL, por sus siglas en inglés)</strong>. Proporciona comandos para crear, modificar y borrar tablas.</p></li>
 <li><p><strong>Lenguaje de manipulación de datos (DML, por sus siglas en inglés)</strong>. Permite consultar la información de una base de datos, así como insertar, modificar y borrar registros.</p></li>
@@ -451,14 +463,14 @@ document.write(`
 <p>SQL DDL permite especificar, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.</p>
 <section id="tipos-de-datos-basicos">
 <h3>Tipos de datos básicos<a class="headerlink" href="#tipos-de-datos-basicos" title="Permalink to this heading">#</a></h3>
-<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id2">[<a class="reference internal" href="#id21" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id2">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>char</strong>(<em>n</em>), <strong>character</strong>(<em>n</em>): cadena de caracteres de longitud fija <em>n</em> especificada por el usuario.</p></li>
 <li><p><strong>varchar</strong>(<em>n</em>), <strong>character varying</strong>(<em>n</em>): cadena de caracteres de longitud variable de tamaño máximo <em>n</em> especificado por el usuario.</p></li>
 <li><p><strong>int</strong>, <strong>integer</strong>: número entero de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
 <li><p><strong>smallint</strong>: número entero pequeño de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
-<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id70" id="id3">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
-<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id71" id="id4">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
+<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id77" id="id3">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
+<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id78" id="id4">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
 <li><p><strong>float</strong>(<em>n</em>): número de punto flotante con precisión de al menos <em>n</em> dígitos.</p></li>
 </ul>
 <p>Cada tipo puede incluir un valor especial llamado el valor <code class="docutils literal notranslate"><span class="pre">null</span></code> (<code class="docutils literal notranslate"><span class="pre">nulo</span></code>). Un valor nulo indica un valor ausente que puede existir pero ser desconocido o que puede no existir en absoluto. En ciertos casos, se podría querer prohibir que se ingresen valores nulos.</p>
@@ -968,8 +980,8 @@ document.write(`
 <section id="consulta-de-datos">
 <h3>Consulta de datos<a class="headerlink" href="#consulta-de-datos" title="Permalink to this heading">#</a></h3>
 <p>En esta sección, se estudia la sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> y sus diferentes cláusulas para consulta de datos.</p>
-<section id="select-from-where">
-<h4>SELECT, FROM, WHERE<a class="headerlink" href="#select-from-where" title="Permalink to this heading">#</a></h4>
+<section id="la-sentencia-select-y-las-clausulas-from-y-where">
+<h4>La sentencia SELECT y las cláusulas FROM y WHERE<a class="headerlink" href="#la-sentencia-select-y-las-clausulas-from-y-where" title="Permalink to this heading">#</a></h4>
 <p>Las consultas de datos en SQL se realizan a través de la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> y su clásula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. Es muy frecuente usar también la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_where.asp">WHERE</a>, pero no es obligatoria. Con <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como <code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
 <section id="id15">
 <h5>Sintaxis básica<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h5>
@@ -1013,27 +1025,194 @@ document.write(`
 </section>
 <section id="operaciones-con-hileras-de-caracteres">
 <h4>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h4>
-<p>En SQL, los textos, también llamados hileras de caracteres, se especifican colcándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar como ‘It’’s right’.</p>
-<p>El estándar SQL especifica que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse.</p>
-<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id17">[<a class="reference internal" href="#id21" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id17">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id18">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;María García&#39;</span><span class="p">;</span>
+
+<span class="c1">-- La siguiente consulta a la BD university no retorna ningún registro (en PostgreSQL)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARÍA GARCÍA&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id19">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Concatenación de hileras</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Identificación: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;, Nombre: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+
+<span class="c1">-- Conversión a mayúsculas y minúsculas</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">UPPER</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">dept_name</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La coincidencia de patrones (<em>pattern matching</em>) se realiza en SQL mediante el operador <a class="reference external" href="https://www.w3schools.com/sql/sql_like.asp">LIKE</a>. Los patrones se describen con dos caracteres especiales:</p>
+<ul class="simple">
+<li><p>Porcentaje (<code class="docutils literal notranslate"><span class="pre">%</span></code>): coincide con cualquier subcadena.</p></li>
+<li><p>Guion bajo (<code class="docutils literal notranslate"><span class="pre">_</span></code>): coincide con cualquier carácter.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Estudiantes con nombres que empiezan con &#39;A&#39;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;A%&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Estudiantes con nombres que empiezan con &#39;Gab&#39;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;Gab%&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Estudiantes con nombres con &#39;w&#39; en cualquier parte</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%w%&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Estudiantes con nombres con la letra &#39;H&#39; o &#39;h&#39; en cualquier parte</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%H%&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%h%&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Estudiantes con nombres en los que la primera letra es &#39;D&#39; y la tercera letra es &#39;n&#39;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;D_n%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="la-clausula-order-by">
+<h4>La cláusula ORDER BY<a class="headerlink" href="#la-clausula-order-by" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">ORDER BY</a> se utiliza para ordenar los resultados de una consulta en orden ascendente o descendente. El orden ascendente es el que se usa por defecto. Si se requiere de un orden descendente, debe usarse la palabra reservada <code class="docutils literal notranslate"><span class="pre">DESC</span></code>.</p>
+<section id="id20">
+<h5>Sintaxis básica<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h5>Ejemplos<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Grupos de cursos ordenados por año y semestre</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+
+<span class="c1">-- Profesores ordenados por salario en orden descendente</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="funciones-de-agregacion">
+<h4>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Permalink to this heading">#</a></h4>
+<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id22">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<ul class="simple">
+<li><p>Promedio: <a class="reference external" href="https://www.w3schools.com/sql/sql_avg.asp">AVG()</a></p></li>
+<li><p>Mínimo: <a class="reference external" href="https://www.w3schools.com/sql/sql_min_max.asp">MIN()</a></p></li>
+<li><p>Máximo: <a class="reference external" href="https://www.w3schools.com/sql/sql_min_max.asp">MAX()</a></p></li>
+<li><p>Total: <a class="reference external" href="https://www.w3schools.com/sql/sql_sum.asp">SUM()</a></p></li>
+<li><p>Conteo: <a class="reference external" href="https://www.w3schools.com/sql/sql_count.asp">COUNT()</a></p></li>
+</ul>
+<p>La entrada de <code class="docutils literal notranslate"><span class="pre">AVG()</span></code> y <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.</p>
+<section id="agregacion-sin-agrupacion">
+<h5>Agregación sin agrupación<a class="headerlink" href="#agregacion-sin-agrupacion" title="Permalink to this heading">#</a></h5>
+<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id23">[<a class="reference internal" href="#id28" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de todos los profesores</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+
+<span class="c1">-- Salario promedio de los profesores del departamento de matemáticas.</span>
+<span class="c1">-- Se usa la cláusula AS para renombrar la columna resultante del cálculo</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">salario_promedio</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Matemáticas&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Salario promedio de los profesores del departamento de informática</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">salario_promedio</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Informática&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En algunos casos, es necesario eliminar valores duplicados antes de ejecutar la función de agregación. Para eso, puede utilizarse la palabra reservada <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de cursos (diferentes) que se impartieron en el año 2022</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">course_id</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">;</span>
+
+<span class="c1">-- Lista de cursos (diferentes) que se impartieron en el año 2022</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Para apreciar las diferencias, ejecute los ejemplos anteriores sin usar <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>.</p>
+</section>
+<section id="agregacion-con-agrupacion">
+<h5>Agregación con agrupación<a class="headerlink" href="#agregacion-con-agrupacion" title="Permalink to this heading">#</a></h5>
+<p>La cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp">GROUP BY</a> permite aplicar la función de agregación no solo a un conjunto único de tuplas, sino también a un grupo de conjuntos de tuplas. El atributo o atributos proporcionados en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> se utilizan para formar grupos. Las tuplas con el mismo valor en todos los atributos en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> se colocan en un grupo.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de los profesores, agrupados por departamento</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">salario_promedio</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dept_name</span><span class="p">;</span>
+
+<span class="c1">-- Cantidad de estudiantes matriculados en cada año y semestre</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">estudiantes_matriculados</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En el ejemplo anterior, note que las columnas listadas en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> también están presentes en la cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p>
+</section>
+<section id="la-clausula-having">
+<h5>La cláusula HAVING<a class="headerlink" href="#la-clausula-having" title="Permalink to this heading">#</a></h5>
+<p>La cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_having.asp">HAVING</a> especifica una condición que se aplica a los grupos formados por <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> y no a los registros.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de estudiantes matriculados en cada año y semestre</span>
+<span class="c1">-- con cantidades mayores o iguales a cuatro</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">estudiantes_matriculados</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">4</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id24">
+<h4>Ejercicios<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Con consultas SQL en la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, obtenga:</p>
+<ol class="arabic simple">
+<li><p>Lista de estudiantes del departamento de matemáticas.</p></li>
+<li><p>Cantidad de estudiantes del departamento de informática.</p></li>
+<li><p>Año, grupo, curso y semestre con mayor cantidad de estudiantes matriculados.</p></li>
+<li><p>Profesor que imparte la mayor cantidad de cursos.</p></li>
+<li><p>Promedio de notas por curso (para todos los grupos, semestres y años).</p></li>
+<li><p>Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres y cursos.</p></li>
+</ol>
+</li>
+</ol>
 </section>
 </section>
 </section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id18">
+<div class="docutils container" id="id25">
 <dl class="citation">
-<dt class="label" id="id21"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id17">3</a>)</span></dt>
+<dt class="label" id="id28"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id17">3</a>,<a href="#id18">4</a>,<a href="#id19">5</a>,<a href="#id22">6</a>,<a href="#id23">7</a>)</span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
 </dl>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id70"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dt class="label" id="id77"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
 <dd><p>En la representación de punto fijo, la posición del punto decimal es fija y no cambia. Por ejemplo, si se tiene un sistema de punto fijo de 4 dígitos con 2 posiciones después del punto decimal, el número 123.45 se representaría como 12345 y se entendería que el punto decimal está entre el segundo y tercer dígito desde la derecha. Generalmente, las operaciones de punto fijo son más rápidas y consumen menos recursos del hardware en comparación con las operaciones de punto flotante, especialmente en hardware que no tiene soporte dedicado para operaciones de punto flotante.</p>
 </dd>
-<dt class="label" id="id71"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dt class="label" id="id78"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
 <dd><p>En la representación de punto flotante, la posición del punto decimal puede variar, y el número se representa en términos de una mantisa y un exponente. Por ejemplo, el número 123.45 podría representarse como 1.2345 × 10<sup>2</sup> (1.2345 es la mantisa y 2 el exponente). Requiere hardware más complejo para realizar operaciones, pero esto se ha vuelto menos problemático con el tiempo, debido a la inclusión de unidades de punto flotante (FPU) en la mayoría de los procesadores modernos.</p>
 </dd>
 </dl>
@@ -1151,12 +1330,24 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-de-datos">Consulta de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#select-from-where">SELECT, FROM, WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Sintaxis básica</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Sintaxis básica</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Ejercicios</a></li>
 </ul>
 </li>
 </ul>

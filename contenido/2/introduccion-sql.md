@@ -542,7 +542,7 @@ DELETE FROM student WHERE ID = 'S060';
 ### Consulta de datos
 En esta sección, se estudia la sentencia `SELECT` y sus diferentes cláusulas para consulta de datos.
 
-#### SELECT, FROM, WHERE
+#### La sentencia SELECT y las cláusulas FROM y WHERE
 Las consultas de datos en SQL se realizan a través de la sentencia [SELECT](https://www.w3schools.com/sql/sql_select.asp) y su clásula `FROM`. Es muy frecuente usar también la cláusula [WHERE](https://www.w3schools.com/sql/sql_where.asp), pero no es obligatoria. Con `SELECT` se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en `FROM`. `WHERE` contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como `AND`, `OR` y `NOT`.
 
 ##### Sintaxis básica
@@ -583,11 +583,175 @@ WHERE dept_name = 'Informática' AND tot_cred >= 55;
 ```
 
 #### Operaciones con hileras de caracteres
-En SQL, los textos, también llamados hileras de caracteres, se especifican colcándolos entre comillas simples, por ejemplo: 'universidad'. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar como 'It''s right'.
+En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: 'universidad'. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como 'It''s right' {cite:p}`silberschatz_database_2019`.
 
-El estándar SQL especifica que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión `'Universidad' = 'universidad'` se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse.
+El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión `'Universidad' = 'universidad'` se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse {cite:p}`silberschatz_database_2019`.
+
+```sql
+-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)
+SELECT *
+FROM instructor 
+WHERE name = 'María García';
+
+-- La siguiente consulta a la BD university no retorna ningún registro (en PostgreSQL)
+SELECT *
+FROM instructor 
+WHERE name = 'MARÍA GARCÍA';
+```
 
 SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador `||`), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función `UPPER(s)` donde `s` es una hilera) y a minúsculas (mediante la función `LOWER(s)`), eliminar espacios al final de la cadena (mediante `TRIM(s)`) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD {cite:p}`silberschatz_database_2019`. 
+
+```sql
+-- Concatenación de hileras
+SELECT 'Identificación: ' || ID || ', Nombre: ' || name
+FROM instructor;
+
+-- Conversión a mayúsculas y minúsculas
+SELECT UPPER(name), LOWER(dept_name)
+FROM instructor;
+```
+
+La coincidencia de patrones (*pattern matching*) se realiza en SQL mediante el operador [LIKE](https://www.w3schools.com/sql/sql_like.asp). Los patrones se describen con dos caracteres especiales:
+
+- Porcentaje (`%`): coincide con cualquier subcadena.
+- Guion bajo (`_`): coincide con cualquier carácter.
+
+```sql
+-- Estudiantes con nombres que empiezan con 'A'
+SELECT *
+FROM student
+WHERE name LIKE 'A%';
+
+-- Estudiantes con nombres que empiezan con 'Gab'
+SELECT *
+FROM student
+WHERE name LIKE 'Gab%';
+
+-- Estudiantes con nombres con 'w' en cualquier parte
+SELECT *
+FROM student
+WHERE name LIKE '%w%';
+
+-- Estudiantes con nombres con la letra 'H' o 'h' en cualquier parte
+SELECT *
+FROM student
+WHERE name LIKE '%H%' OR name LIKE '%h%';
+
+-- Estudiantes con nombres en los que la primera letra es 'D' y la tercera letra es 'n'
+SELECT *
+FROM student
+WHERE name LIKE 'D_n%';
+```
+
+#### La cláusula ORDER BY
+[ORDER BY](https://www.w3schools.com/sql/sql_orderby.asp) se utiliza para ordenar los resultados de una consulta en orden ascendente o descendente. El orden ascendente es el que se usa por defecto. Si se requiere de un orden descendente, debe usarse la palabra reservada `DESC`.
+
+##### Sintaxis básica
+```sql
+SELECT columna1, columna2, ...
+FROM tabla
+ORDER BY columna1, columna2, ... ASC|DESC;
+```
+
+##### Ejemplos
+```sql
+-- Grupos de cursos ordenados por año y semestre
+SELECT course_id, year, semester
+FROM section
+ORDER BY year, semester;
+
+-- Profesores ordenados por salario en orden descendente
+SELECT salary, name
+FROM instructor
+ORDER BY salary DESC;
+```
+
+#### Funciones de agregación
+Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras {cite:p}`silberschatz_database_2019`.
+
+- Promedio: [AVG()](https://www.w3schools.com/sql/sql_avg.asp)
+- Mínimo: [MIN()](https://www.w3schools.com/sql/sql_min_max.asp)
+- Máximo: [MAX()](https://www.w3schools.com/sql/sql_min_max.asp)
+- Total: [SUM()](https://www.w3schools.com/sql/sql_sum.asp)
+- Conteo: [COUNT()](https://www.w3schools.com/sql/sql_count.asp)
+
+La entrada de `AVG()` y `SUM()` debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.
+
+##### Agregación sin agrupación
+El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula `AS` {cite:p}`silberschatz_database_2019`.
+
+```sql
+-- Salario promedio de todos los profesores
+SELECT AVG(salary)
+FROM instructor;
+
+-- Salario promedio de los profesores del departamento de matemáticas.
+-- Se usa la cláusula AS para renombrar la columna resultante del cálculo
+SELECT AVG(salary) AS salario_promedio
+FROM instructor
+WHERE dept_name = 'Matemáticas';
+
+-- Salario promedio de los profesores del departamento de informática
+SELECT AVG(salary) AS salario_promedio
+FROM instructor
+WHERE dept_name = 'Informática';
+```
+
+En algunos casos, es necesario eliminar valores duplicados antes de ejecutar la función de agregación. Para eso, puede utilizarse la palabra reservada `DISTINCT`.
+
+```sql
+-- Cantidad de cursos (diferentes) que se impartieron en el año 2022
+SELECT COUNT(DISTINCT course_id)
+FROM section
+WHERE year = 2022;
+
+-- Lista de cursos (diferentes) que se impartieron en el año 2022
+SELECT DISTINCT course_id
+FROM section
+WHERE year = 2022;
+```
+
+Para apreciar las diferencias, ejecute los ejemplos anteriores sin usar `DISTINCT`.
+
+##### Agregación con agrupación
+La cláusula [GROUP BY](https://www.w3schools.com/sql/sql_groupby.asp) permite aplicar la función de agregación no solo a un conjunto único de tuplas, sino también a un grupo de conjuntos de tuplas. El atributo o atributos proporcionados en la cláusula `GROUP BY` se utilizan para formar grupos. Las tuplas con el mismo valor en todos los atributos en la cláusula `GROUP BY` se colocan en un grupo.
+
+```sql
+-- Salario promedio de los profesores, agrupados por departamento
+SELECT dept_name, AVG(salary) AS salario_promedio
+FROM instructor
+GROUP BY dept_name;
+
+-- Cantidad de estudiantes matriculados en cada año y semestre
+SELECT year, semester, COUNT(*) AS estudiantes_matriculados
+FROM section
+GROUP BY year, semester
+ORDER BY year, semester;
+```
+
+En el ejemplo anterior, note que las columnas listadas en la cláusula `GROUP BY` también están presentes en la cláusula `SELECT`.
+
+##### La cláusula HAVING
+La cláusula [HAVING](https://www.w3schools.com/sql/sql_having.asp) especifica una condición que se aplica a los grupos formados por `GROUP BY` y no a los registros.
+
+```sql
+-- Cantidad de estudiantes matriculados en cada año y semestre
+-- con cantidades mayores o iguales a cuatro
+SELECT year, semester, COUNT(*) AS estudiantes_matriculados
+FROM section
+GROUP BY year, semester
+HAVING COUNT(*) >= 4
+ORDER BY year, semester;
+```
+
+#### Ejercicios
+1. Con consultas SQL en la base de datos `university`, obtenga:
+    1. Lista de estudiantes del departamento de matemáticas.
+    2. Cantidad de estudiantes del departamento de informática.
+    3. Año, grupo, curso y semestre con mayor cantidad de estudiantes matriculados.
+    4. Profesor que imparte la mayor cantidad de cursos.
+    5. Promedio de notas por curso (para todos los grupos, semestres y años).
+    6. Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres y cursos.
 
 ## Bibliografía
 ```{bibliography}
