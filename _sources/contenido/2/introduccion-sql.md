@@ -744,6 +744,77 @@ HAVING COUNT(*) >= 4
 ORDER BY year, semester;
 ```
 
+#### Manejo de valores nulos
+Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos {cite:p}`silberschatz_database_2019`.
+
+El resultado de una expresión aritmética (que involucra, por ejemplo, `+`, `-`, `*` o `/`) es nulo si cualquiera de los valores de entrada es nulo.
+
+Las comparaciones que involucran valores nulos son más problemáticas. Por ejemplo, considere la expresión `1 < NULL`. Sería incorrecto decir que es verdadera o que es falsa, ya que no sabemos lo que el valor nulo representa. Por lo tanto, SQL trata como `UNKNOWN` (desconocido) el resultado de cualquier comparación que involucre un valor nulo (a excepción de los predicados `IS NULL` e `IS NOT NULL`, que se describen más adelante en esta sección). Esto crea un tercer valor lógico además de `TRUE` (verdadero) y `FALSE` (falso).
+
+Ya que el predicado en una cláusula `WHERE` puede involucrar operadores lógicos como `ABD`, `OR` y `NOT` en los resultados de las comparaciones, las definiciones de estas operaciones se amplían para tratar con el valor `UNKNOWN`.
+
+**AND**  
+- `TRUE AND UNKNOWN` es `UNKNOWN`
+- `FALSE AND UNKNOWN` es `FALSE`
+- `UNKNOWN AND UNKNOWN` es `UNKNOWN`
+
+**OR**  
+- `TRUE OR UNKNOWN` es `TRUE`
+- `FALSE OR UNKNOWN` es `UNKNOWN`
+- `UNKNOWN OR UNKNOWN` es `UNKNOWN`
+
+**NOT**  
+- `NOT UNKNOWN` es `UNKNOWN`
+
+Si el predicado de una cláusula `WHERE` se evalúa como `FALSE` o `UNKNOWN` para una tupla, es tupla no se añade al resultado {cite:p}`silberschatz_database_2019`.
+
+##### El predicado IS NULL
+SQL utiliza la palabra reservada [NULL](https://www.w3schools.com/sql/sql_null_values.asp) en un predicado para comprobar si un valor es nulo. Por ejemplo:
+
+```sql
+-- Nombres de profesores con salario nulo
+SELECT name
+FROM instructor
+WHERE salary IS NULL;
+
+-- Nombres de profesores con salario no nulo
+SELECT name
+FROM instructor
+WHERE salary IS NOT NULL;
+```
+
+El predicado `IS NULL` puede usarse para contar la cantidad de valores nulos en una columna, en combinación con la expresión condicional [CASE](https://www.w3schools.com/sql/sql_case.asp). Por ejemplo:
+
+```sql
+-- Conteo total de empleados, empleados con salario y empleados sin salario
+SELECT 
+    departamento, 
+    COUNT(*) AS conteo_total_empleados, 
+    SUM(CASE WHEN salario IS NOT NULL THEN 1 ELSE 0 END) AS conteo_empleados_con_salario,
+    SUM(CASE WHEN salario IS NULL THEN 1 ELSE 0 END) AS conteo_empleados_sin_salario
+FROM empleados
+GROUP BY departamento;
+```
+
+##### Funciones para comprobar valores nulos
+Los SABD incluyen diferentes [funciones para verificar si un valor es nulo](https://www.w3schools.com/sql/sql_isnull.asp). 
+
+Por ejemplo, la función [COALESCE()](https://www.w3schools.com/sql/func_sqlserver_coalesce.asp) retorna el primer valor no nulo en una lista de expresiones. Es especialmente útil cuando se quiere proporcionar un valor por defecto en lugar de un valor nulo.
+
+La sintaxis básica es la siguiente:
+
+```sql
+COALESCE(expresion1, expresion2, ..., expresionN)
+```
+
+Si `expresion1` es nula, se verifica `expresion2`, y así sucesivamente, hasta encontrar un valor no nulo o llegar al final de la lista. Si todos los valores son nulos, `COALESCE()` retorna `NULL`.
+
+Por ejemplo, suponga que se tiene una tabla llamada `empleados` con una columna `salario` y se desea seleccionar el salario de un empleado, pero si el salario es nulo, se desea que se retorne `0` en lugar de `NULL`.
+
+```sql
+SELECT COALESCE(salario, 0) FROM empleados;
+```
+
 #### Ejercicios
 1. Con consultas SQL en la base de datos `university`, obtenga:
     1. Lista de estudiantes del departamento de matemáticas.
@@ -753,6 +824,26 @@ ORDER BY year, semester;
     5. Promedio de notas por curso (para todos los grupos, semestres y años).
     6. Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres, grupos y cursos.
     7. Promedio de estudiantes (para todos los años, semestres, grupos y cursos) cuyo nombre empieza con una vocal.
+
+2. Con los datos de [StatsBomb](https://statsbomb.com/), del partido final de la Copa Mundial de la FIFA Catar 2022 entre Argentina y Francia, en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), obtenga:
+    1. Cantidad total de pases por equipo. Muestre el resultado en un gráfico de pastel.
+    2. Cantidad total de pases por jugador:
+        1. De Argentina. Muestre el resultado en un gráfico de barras.
+        2. De Francia. Muestre el resultado en un gráfico de barras.
+    3. Cantidad de pases completos por jugador:
+        1. De Argentina. Muestre el resultado en un gráfico de barras.
+        2. De Francia. Muestre el resultado en un gráfico de barras.     
+    4. Cantidad de pases incompletos por jugador:
+        1. De Argentina. Muestre el resultado en un gráfico de barras.
+        2. De Francia. Muestre el resultado en un gráfico de barras.           
+    5. Porcentaje de pases completos por jugador:
+        1. De Argentina. Muestre el resultado en un gráfico de barras.
+        2. De Francia. Muestre el resultado en un gráfico de barras.    
+    6. Reúna, en una única tabla, la cantidad total de pases, la cantidad de pases completos y la cantidad de pases incompletos por jugador.
+        1. De Argentina.
+        2. De Francia.
+
+Para verificar los resultados, puede consultar este [cuaderno de notas en Python](https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing).        
 
 ## Bibliografía
 ```{bibliography}
