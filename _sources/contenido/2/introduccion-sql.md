@@ -825,25 +825,49 @@ SELECT COALESCE(salario, 0) FROM empleados;
     6. Lista de ID de estudiantes con sus respectivos promedios de notas, para todos los años, semestres, grupos y cursos.
     7. Promedio de estudiantes (para todos los años, semestres, grupos y cursos) cuyo nombre empieza con una vocal.
 
-2. Con los datos de [StatsBomb](https://statsbomb.com/), del partido final de la Copa Mundial de la FIFA Catar 2022 entre Argentina y Francia, en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), obtenga:
+2. Con los datos de [StatsBomb](https://statsbomb.com/) del partido final de la Copa Mundial de la FIFA Catar 2022 entre Argentina y Francia en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), obtenga:
     1. Cantidad total de pases por equipo. Muestre el resultado en un gráfico de pastel.
     2. Cantidad total de pases por jugador:
         1. De Argentina. Muestre el resultado en un gráfico de barras.
         2. De Francia. Muestre el resultado en un gráfico de barras.
-    3. Cantidad de pases completos por jugador:
+    3. Cantidad de pases completos (columna `pass_outcome` con valor nulo) por jugador:
         1. De Argentina. Muestre el resultado en un gráfico de barras.
         2. De Francia. Muestre el resultado en un gráfico de barras.     
-    4. Cantidad de pases incompletos por jugador:
+    4. Cantidad de pases incompletos (todos los que no son completos) por jugador:
         1. De Argentina. Muestre el resultado en un gráfico de barras.
         2. De Francia. Muestre el resultado en un gráfico de barras.           
-    5. Porcentaje de pases completos por jugador:
+    5. Porcentaje de pases completos, con respecto al total de pases, por jugador:
         1. De Argentina. Muestre el resultado en un gráfico de barras.
         2. De Francia. Muestre el resultado en un gráfico de barras.    
     6. Reúna, en una única tabla, la cantidad total de pases, la cantidad de pases completos y la cantidad de pases incompletos por jugador.
         1. De Argentina.
         2. De Francia.
 
-Para verificar los resultados, puede consultar este [cuaderno de notas en Python](https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing).        
+3. Con los datos de [StatsBomb](https://statsbomb.com/) de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), escriba una consulta para obtener:
+    1. Cantidad total de pases por equipo.
+    2. Cantidad de pases completos (columna `pass_outcome` con valor nulo) por equipo.
+    3. Cantidad de pases incompletos (todos los que no son completos) por equipo.
+    4. Porcentaje de pases completos, con respecto al total de pases, por equipo.
+
+Grafique los resultados.
+
+4. Con los datos de [StatsBomb](https://statsbomb.com/), de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), escriba una consulta para obtener:
+    1. Cantidad total de tiros a marco por equipo.
+    2. Cantidad de tiros directos (columna `shot_outcome` con valores 'Saved', 'Post' o 'Goal') por equipo.
+    3. Cantidad de tiros indirectos (todos los que no son directos) por equipo.
+    4. Porcentaje de tiros directos, con respecto al total de tiros a marco, por equipo.
+
+Grafique los resultados.
+
+5. Con los datos de [StatsBomb](https://statsbomb.com/), de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en [formato CSV](https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb), escriba una consulta para obtener:
+    1. Suma de la longitud de los pases completos, por equipo.
+
+Grafique los resultados.    
+
+Para verificar los resultados de los ejercicios sobre el Mundial Catar 2022, puede consultar los siguientes cuadernos de notas de Python:
+
+- [Análisis de datos de la primera fase de la Copa Mundial de la FIFA Catar 2022](https://colab.research.google.com/drive/1Gw1SB7ia-hjJEHKUCRn7VZXlN75rVgX5?usp=sharing).
+- [Análisis de datos de la final de la Copa Mundial de la FIFA Catar 2022](https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing).
 
 ## Bibliografía
 ```{bibliography}
