@@ -1264,7 +1264,7 @@ document.write(`
 <li><p>Promedio de estudiantes (para todos los años, semestres, grupos y cursos) cuyo nombre empieza con una vocal.</p></li>
 </ol>
 </li>
-<li><p>Con los datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a>, del partido final de la Copa Mundial de la FIFA Catar 2022 entre Argentina y Francia, en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb">formato CSV</a>, obtenga:</p>
+<li><p>Con los datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a> del partido final de la Copa Mundial de la FIFA Catar 2022 entre Argentina y Francia en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb">formato CSV</a>, obtenga:</p>
 <ol class="arabic simple">
 <li><p>Cantidad total de pases por equipo. Muestre el resultado en un gráfico de pastel.</p></li>
 <li><p>Cantidad total de pases por jugador:</p>
@@ -1273,19 +1273,19 @@ document.write(`
 <li><p>De Francia. Muestre el resultado en un gráfico de barras.</p></li>
 </ol>
 </li>
-<li><p>Cantidad de pases completos por jugador:</p>
+<li><p>Cantidad de pases completos (columna <code class="docutils literal notranslate"><span class="pre">pass_outcome</span></code> con valor nulo) por jugador:</p>
 <ol class="arabic simple">
 <li><p>De Argentina. Muestre el resultado en un gráfico de barras.</p></li>
 <li><p>De Francia. Muestre el resultado en un gráfico de barras.</p></li>
 </ol>
 </li>
-<li><p>Cantidad de pases incompletos por jugador:</p>
+<li><p>Cantidad de pases incompletos (todos los que no son completos) por jugador:</p>
 <ol class="arabic simple">
 <li><p>De Argentina. Muestre el resultado en un gráfico de barras.</p></li>
 <li><p>De Francia. Muestre el resultado en un gráfico de barras.</p></li>
 </ol>
 </li>
-<li><p>Porcentaje de pases completos por jugador:</p>
+<li><p>Porcentaje de pases completos, con respecto al total de pases, por jugador:</p>
 <ol class="arabic simple">
 <li><p>De Argentina. Muestre el resultado en un gráfico de barras.</p></li>
 <li><p>De Francia. Muestre el resultado en un gráfico de barras.</p></li>
@@ -1299,8 +1299,40 @@ document.write(`
 </li>
 </ol>
 </li>
+<li><p>Con los datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a> de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb">formato CSV</a>, escriba una consulta para obtener:</p>
+<ol class="arabic simple">
+<li><p>Cantidad total de pases por equipo.</p></li>
+<li><p>Cantidad de pases completos (columna <code class="docutils literal notranslate"><span class="pre">pass_outcome</span></code> con valor nulo) por equipo.</p></li>
+<li><p>Cantidad de pases incompletos (todos los que no son completos) por equipo.</p></li>
+<li><p>Porcentaje de pases completos, con respecto al total de pases, por equipo.</p></li>
 </ol>
-<p>Para verificar los resultados, puede consultar este <a class="reference external" href="https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing">cuaderno de notas en Python</a>.</p>
+</li>
+</ol>
+<p>Grafique los resultados.</p>
+<ol class="arabic simple" start="4">
+<li><p>Con los datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a>, de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb">formato CSV</a>, escriba una consulta para obtener:</p>
+<ol class="arabic simple">
+<li><p>Cantidad total de tiros a marco por equipo.</p></li>
+<li><p>Cantidad de tiros directos (columna <code class="docutils literal notranslate"><span class="pre">shot_outcome</span></code> con valores ‘Saved’, ‘Post’ o ‘Goal’) por equipo.</p></li>
+<li><p>Cantidad de tiros indirectos (todos los que no son directos) por equipo.</p></li>
+<li><p>Porcentaje de tiros directos, con respecto al total de tiros a marco, por equipo.</p></li>
+</ol>
+</li>
+</ol>
+<p>Grafique los resultados.</p>
+<ol class="arabic simple" start="5">
+<li><p>Con los datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a>, de la fase de grupos de la Copa Mundial de la FIFA Catar 2022 en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/tree/main/datos/statsbomb">formato CSV</a>, escriba una consulta para obtener:</p>
+<ol class="arabic simple">
+<li><p>Suma de la longitud de los pases completos, por equipo.</p></li>
+</ol>
+</li>
+</ol>
+<p>Grafique los resultados.</p>
+<p>Para verificar los resultados de los ejercicios sobre el Mundial Catar 2022, puede consultar los siguientes cuadernos de notas de Python:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://colab.research.google.com/drive/1Gw1SB7ia-hjJEHKUCRn7VZXlN75rVgX5?usp=sharing">Análisis de datos de la primera fase de la Copa Mundial de la FIFA Catar 2022</a>.</p></li>
+<li><p><a class="reference external" href="https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing">Análisis de datos de la final de la Copa Mundial de la FIFA Catar 2022</a>.</p></li>
+</ul>
 </section>
 </section>
 </section>
