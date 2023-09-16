@@ -49,7 +49,11 @@ En esta sección se trabaja con las tablas de la base de datos `university`, com
 En SQL, una tabla se define con la sentencia [CREATE TABLE](https://www.w3schools.com/sql/sql_create_table.asp), en la que se especifican los nombres de las columnas juntos con sus tipos de datos. También pueden especificarse restricciones de llave primaria, llaves foráneas y prohibición de valores nulos, entre otras.
 
 ##### Sintaxis básica
+Se presentan dos variantes.
+
 ```sql
+-- Creación de una tabla mediante la especificación de sus columnas, 
+-- tipos de datos y restricciones.
 CREATE TABLE tabla (
     columna1 tipo_datos,
     columna2 tipo_datos NOT NULL,
@@ -59,6 +63,12 @@ CREATE TABLE tabla (
     FOREIGN KEY(columna_llave_foranea) REFERENCES tabla_referenciada,
     ....
 ); 
+
+-- Creación de una tabla a partir de la estructura de una tabla existente
+CREATE TABLE tabla AS
+    SELECT columna1, columna2,...
+    FROM tabla_existente
+    WHERE ....; 
 ```
 
 ##### Ejemplos
@@ -153,6 +163,19 @@ CREATE TABLE takes (
     FOREIGN KEY(course_id, sec_id, semester, year) REFERENCES section
 );
 ```
+
+El comando `CREATE TABLE` puede usarse en combinación con la cláusula `AS` y la sentencia [SELECT](https://www.w3schools.com/sql/sql_select.asp) para crear una tabla a partir de la estructura de una tabla existente, de la cual pueden seleccionarse todas o algunas columnas. Los datos de la tabla existente pueden cargarse en la nueva tabla.
+
+```sql
+-- Creación de una tabla que contiene los estudiantes aprobados
+-- de la tabla takes y usa su misma estructura
+CREATE TABLE takes_passed_students AS
+    SELECT *
+    FROM takes
+    WHERE grade >= 70;
+```
+
+La sentencia `SELECT` se explicará con mayor detalle en el este capítulo.
 
 #### ALTER TABLE
 La sentencia [ALTER TABLE](https://www.w3schools.com/sql/sql_alter.asp) se utiliza para agregar, modificar o borrar columnas en una tabla. También puede agregar y borrar restricciones.
