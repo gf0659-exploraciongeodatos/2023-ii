@@ -488,7 +488,10 @@ document.write(`
 <p>En SQL, una tabla se define con la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_create_table.asp">CREATE TABLE</a>, en la que se especifican los nombres de las columnas juntos con sus tipos de datos. También pueden especificarse restricciones de llave primaria, llaves foráneas y prohibición de valores nulos, entre otras.</p>
 <section id="sintaxis-basica">
 <h5>Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permalink to this heading">#</a></h5>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="p">(</span>
+<p>Se presentan dos variantes.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de una tabla mediante la especificación de sus columnas, </span>
+<span class="c1">-- tipos de datos y restricciones.</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">columna1</span><span class="w"> </span><span class="n">tipo_datos</span><span class="p">,</span>
 <span class="w">    </span><span class="n">columna2</span><span class="w"> </span><span class="n">tipo_datos</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
 <span class="w">    </span><span class="n">columna3</span><span class="w"> </span><span class="n">tipo_datos</span><span class="p">,</span>
@@ -497,6 +500,12 @@ document.write(`
 <span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">columna_llave_foranea</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">tabla_referenciada</span><span class="p">,</span>
 <span class="w">    </span><span class="p">....</span>
 <span class="p">);</span><span class="w"> </span>
+
+<span class="c1">-- Creación de una tabla a partir de la estructura de una tabla existente</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="k">AS</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,...</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">tabla_existente</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="p">....;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
@@ -586,6 +595,16 @@ document.write(`
 <span class="p">);</span>
 </pre></div>
 </div>
+<p>El comando <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> puede usarse en combinación con la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> y la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> para crear una tabla a partir de la estructura de una tabla existente, de la cual pueden seleccionarse todas o algunas columnas. Los datos de la tabla existente pueden cargarse en la nueva tabla.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de una tabla que contiene los estudiantes aprobados</span>
+<span class="c1">-- de la tabla takes y usa su misma estructura</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">takes_passed_students</span><span class="w"> </span><span class="k">AS</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">takes</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">70</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se explicará con mayor detalle en el este capítulo.</p>
 </section>
 </section>
 <section id="alter-table">
