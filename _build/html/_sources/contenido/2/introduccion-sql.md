@@ -254,6 +254,20 @@ ALTER TABLE ejemplo
 DROP COLUMN col2;
 ```
 
+### TRUNCATE TABLE
+La sentencia [TRUNCATE TABLE](https://www.w3schools.com/sql/sql_ref_drop_table.asp) borra los datos de una tabla, pero no la tabla en sí misma.
+
+#### Sintaxis básica
+```sql
+TRUNCATE TABLE tabla;
+```
+
+#### Ejemplos
+```sql
+-- Borrado de los datos de una tabla
+TRUNCATE TABLE ejemplo;
+```
+
 ### DROP TABLE
 La sentencia [DROP TABLE](https://www.w3schools.com/sql/sql_drop_table.asp) se utiliza para borrar una tabla.
 
@@ -792,6 +806,34 @@ FROM section
 GROUP BY year, semester
 HAVING COUNT(*) >= 4
 ORDER BY year, semester;
+```
+
+### La cláusula CASE
+La cláusula [CASE](https://www.w3schools.com/sql/sql_case.asp) permite implementar lógica condicional en una consulta. `CASE` recorre una secuencia de condiciones, retorna un valor al encontrar la primera condición verdadera y no evalúa las condiciones restantes. Si ninguna condición es verdadera, devuelve el valor en la cláusula `ELSE`. Si no hay una cláusula `ELSE` y ninguna condición es verdadera, devuelve `NULL`.
+
+#### Sintaxis básica
+```sql
+-- Sintaxis básica de CASE
+CASE
+    WHEN condición1 THEN valor_retorno_1
+    WHEN condición2 THEN valor_retorno_2
+    ...
+    WHEN condiciónN THEN valor_retorno_n
+    ELSE valor_retorno_else
+END; 
+```
+
+#### Ejemplos
+```sql
+-- Creación de un campo en la tabla takes con el resultado del curso:
+-- Reprobado, Ampliación o Aprobado
+SELECT ID, course_id, sec_id, semester, year, grade,
+       CASE 
+           WHEN grade < 57.5 THEN 'Reprobado'
+           WHEN grade >= 57.5 AND grade < 70 THEN 'Ampliación'
+           ELSE 'Aprobado'
+       END AS Resultado
+FROM takes;
 ```
 
 ### Manejo de valores nulos

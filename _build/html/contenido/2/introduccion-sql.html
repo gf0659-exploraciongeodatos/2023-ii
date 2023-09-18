@@ -382,27 +382,32 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truncate-table">TRUNCATE TABLE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml-manipulacion-de-datos">SQL DML - Manipulación de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
@@ -410,14 +415,14 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dql-consulta-de-datos">DQL - Consulta de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Ejemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
@@ -426,20 +431,25 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-case">La cláusula CASE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejemplos</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Ejercicios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-en-multiples-tablas">Consultas en múltiples tablas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-join">Operaciones JOIN</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">INNER JOIN</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Ejercicios</a></li>
 </ul>
 </li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join">LEFT JOIN</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Ejercicios</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Ejercicios</a></li>
 </ul>
 </li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join">RIGHT JOIN</a></li>
@@ -523,14 +533,14 @@ document.write(`
 <p>SQL DDL permite definir, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.</p>
 <section id="tipos-de-datos-basicos">
 <h3>Tipos de datos básicos<a class="headerlink" href="#tipos-de-datos-basicos" title="Permalink to this heading">#</a></h3>
-<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id1">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id1">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>char</strong>(<em>n</em>), <strong>character</strong>(<em>n</em>): cadena de caracteres de longitud fija <em>n</em> especificada por el usuario.</p></li>
 <li><p><strong>varchar</strong>(<em>n</em>), <strong>character varying</strong>(<em>n</em>): cadena de caracteres de longitud variable de tamaño máximo <em>n</em> especificado por el usuario.</p></li>
 <li><p><strong>int</strong>, <strong>integer</strong>: número entero de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
 <li><p><strong>smallint</strong>: número entero pequeño de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
-<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id80" id="id2">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
-<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id81" id="id3">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
+<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id84" id="id2">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
+<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id85" id="id3">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
 <li><p><strong>float</strong>(<em>n</em>): número de punto flotante con precisión de al menos <em>n</em> dígitos.</p></li>
 </ul>
 <p>Cada tipo puede incluir un valor especial llamado el valor <code class="docutils literal notranslate"><span class="pre">null</span></code> (<code class="docutils literal notranslate"><span class="pre">nulo</span></code>). Un valor nulo indica un valor ausente que puede existir pero ser desconocido o que puede no existir en absoluto. En ciertos casos, se podría querer prohibir que se ingresen valores nulos.</p>
@@ -710,17 +720,34 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="drop-table">
-<h3>DROP TABLE<a class="headerlink" href="#drop-table" title="Permalink to this heading">#</a></h3>
-<p>La sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_drop_table.asp">DROP TABLE</a> se utiliza para borrar una tabla.</p>
+<section id="truncate-table">
+<h3>TRUNCATE TABLE<a class="headerlink" href="#truncate-table" title="Permalink to this heading">#</a></h3>
+<p>La sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_ref_drop_table.asp">TRUNCATE TABLE</a> borra los datos de una tabla, pero no la tabla en sí misma.</p>
 <section id="id6">
 <h4>Sintaxis básica<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="id7">
 <h4>Ejemplos<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de los datos de una tabla</span>
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ejemplo</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="drop-table">
+<h3>DROP TABLE<a class="headerlink" href="#drop-table" title="Permalink to this heading">#</a></h3>
+<p>La sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_drop_table.asp">DROP TABLE</a> se utiliza para borrar una tabla.</p>
+<section id="id8">
+<h4>Sintaxis básica<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>Ejemplos<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de una tabla</span>
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ejemplo</span><span class="p">;</span>
 </pre></div>
@@ -734,8 +761,8 @@ document.write(`
 <section id="insert">
 <h3>INSERT<a class="headerlink" href="#insert" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_insert.asp">INSERT</a> inserta nuevos registros en una tabla.</p>
-<section id="id8">
-<h4>Sintaxis básica<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+<section id="id10">
+<h4>Sintaxis básica<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
 <p>Se presentan dos variantes.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Especificación de las columnas y sus respectivos valores</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">tabla</span>
@@ -750,8 +777,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="id9">
-<h4>Ejemplos<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<section id="id11">
+<h4>Ejemplos<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Inserción de un registro en la tabla department,</span>
 <span class="c1">-- especificando las columnas y sus respectivos valores.</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">department</span><span class="w"> </span>
@@ -986,16 +1013,16 @@ document.write(`
 <section id="update">
 <h3>UPDATE<a class="headerlink" href="#update" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_update.asp">UPDATE</a> modifica registros de una tabla.</p>
-<section id="id10">
-<h4>Sintaxis básica<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<section id="id12">
+<h4>Sintaxis básica<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">columna1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
-<section id="id11">
-<h4>Ejemplos<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
+<section id="id13">
+<h4>Ejemplos<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Aumento de un 5% a los salarios de todos los profesores</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">instructor</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="p">;</span>
@@ -1019,14 +1046,14 @@ document.write(`
 <section id="delete">
 <h3>DELETE<a class="headerlink" href="#delete" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_delete.asp">DELETE</a> borra registros de una tabla.</p>
-<section id="id12">
-<h4>Sintaxis básica<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
+<section id="id14">
+<h4>Sintaxis básica<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
-<section id="id13">
-<h4>Ejemplos<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<section id="id15">
+<h4>Ejemplos<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de un estudiante por ID</span>
 <span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S060&#39;</span><span class="p">;</span>
 </pre></div>
@@ -1057,16 +1084,16 @@ document.write(`
 <section id="la-sentencia-select-y-las-clausulas-from-y-where">
 <h3>La sentencia SELECT y las cláusulas FROM y WHERE<a class="headerlink" href="#la-sentencia-select-y-las-clausulas-from-y-where" title="Permalink to this heading">#</a></h3>
 <p>Las consultas de datos en SQL se realizan a través de la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> y su clásula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. Es muy frecuente usar también la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_where.asp">WHERE</a>, pero no es obligatoria. Con <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como <code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
-<section id="id14">
-<h4>Sintaxis básica<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
+<section id="id16">
+<h4>Sintaxis básica<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span>
 </pre></div>
 </div>
 </section>
-<section id="id15">
-<h4>Ejemplos<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
+<section id="id17">
+<h4>Ejemplos<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de todos los registros y todas las columnas de la tabla student.</span>
 <span class="c1">-- El asterisco (&quot;estrella&quot;) indica que deben retornarse todas las columnas.</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
@@ -1099,8 +1126,8 @@ document.write(`
 </section>
 <section id="operaciones-con-hileras-de-caracteres">
 <h3>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h3>
-<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id16">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
-<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id17">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id18">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id19">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
@@ -1112,7 +1139,7 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARÍA GARCÍA&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id18">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id20">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Concatenación de hileras</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Identificación: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;, Nombre: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1157,16 +1184,16 @@ document.write(`
 <section id="la-clausula-order-by">
 <h3>La cláusula ORDER BY<a class="headerlink" href="#la-clausula-order-by" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">ORDER BY</a> se utiliza para ordenar los resultados de una consulta en orden ascendente o descendente. El orden ascendente es el que se usa por defecto. Si se requiere de un orden descendente, debe usarse la palabra reservada <code class="docutils literal notranslate"><span class="pre">DESC</span></code>.</p>
-<section id="id19">
-<h4>Sintaxis básica<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h4>
+<section id="id21">
+<h4>Sintaxis básica<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
-<section id="id20">
-<h4>Ejemplos<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h4>
+<section id="id22">
+<h4>Ejemplos<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Grupos de cursos ordenados por año y semestre</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
@@ -1182,7 +1209,7 @@ document.write(`
 </section>
 <section id="funciones-de-agregacion">
 <h3>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Permalink to this heading">#</a></h3>
-<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id21">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id23">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <ul class="simple">
 <li><p>Promedio: <a class="reference external" href="https://www.w3schools.com/sql/sql_avg.asp">AVG()</a></p></li>
 <li><p>Mínimo: <a class="reference external" href="https://www.w3schools.com/sql/sql_min_max.asp">MIN()</a></p></li>
@@ -1193,7 +1220,7 @@ document.write(`
 <p>La entrada de <code class="docutils literal notranslate"><span class="pre">AVG()</span></code> y <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.</p>
 <section id="agregacion-sin-agrupacion">
 <h4>Agregación sin agrupación<a class="headerlink" href="#agregacion-sin-agrupacion" title="Permalink to this heading">#</a></h4>
-<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id22">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id24">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de todos los profesores</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1255,9 +1282,40 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="la-clausula-case">
+<h3>La cláusula CASE<a class="headerlink" href="#la-clausula-case" title="Permalink to this heading">#</a></h3>
+<p>La cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_case.asp">CASE</a> permite implementar lógica condicional en una consulta. <code class="docutils literal notranslate"><span class="pre">CASE</span></code> recorre una secuencia de condiciones, retorna un valor al encontrar la primera condición verdadera y no evalúa las condiciones restantes. Si ninguna condición es verdadera, devuelve el valor en la cláusula <code class="docutils literal notranslate"><span class="pre">ELSE</span></code>. Si no hay una cláusula <code class="docutils literal notranslate"><span class="pre">ELSE</span></code> y ninguna condición es verdadera, devuelve <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<section id="id25">
+<h4>Sintaxis básica<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Sintaxis básica de CASE</span>
+<span class="k">CASE</span>
+<span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">condición1</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">valor_retorno_1</span>
+<span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">condición2</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">valor_retorno_2</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">condiciónN</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="n">valor_retorno_n</span>
+<span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="n">valor_retorno_else</span>
+<span class="k">END</span><span class="p">;</span><span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4>Ejemplos<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de un campo en la tabla takes con el resultado del curso:</span>
+<span class="c1">-- Reprobado, Ampliación o Aprobado</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">grade</span><span class="p">,</span>
+<span class="w">       </span><span class="k">CASE</span><span class="w"> </span>
+<span class="w">           </span><span class="k">WHEN</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">57</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Reprobado&#39;</span>
+<span class="w">           </span><span class="k">WHEN</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">57</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">70</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Ampliación&#39;</span>
+<span class="w">           </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;Aprobado&#39;</span>
+<span class="w">       </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Resultado</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">takes</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="manejo-de-valores-nulos">
 <h3>Manejo de valores nulos<a class="headerlink" href="#manejo-de-valores-nulos" title="Permalink to this heading">#</a></h3>
-<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id23">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id27">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <p>El resultado de una expresión aritmética (que involucra, por ejemplo, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code> o <code class="docutils literal notranslate"><span class="pre">/</span></code>) es nulo si cualquiera de los valores de entrada es nulo.</p>
 <p>Las comparaciones que involucran valores nulos son más problemáticas. Por ejemplo, considere la expresión <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">NULL</span></code>. Sería incorrecto decir que es verdadera o que es falsa, ya que no sabemos lo que el valor nulo representa. Por lo tanto, SQL trata como <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> (desconocido) el resultado de cualquier comparación que involucre un valor nulo (a excepción de los predicados <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code> e <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code>, que se describen más adelante en esta sección). Esto crea un tercer valor lógico además de <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> (verdadero) y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> (falso).</p>
 <p>Ya que el predicado en una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> puede involucrar operadores lógicos como <code class="docutils literal notranslate"><span class="pre">ABD</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code> en los resultados de las comparaciones, las definiciones de estas operaciones se amplían para tratar con el valor <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code>.</p>
@@ -1277,7 +1335,7 @@ document.write(`
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">UNKNOWN</span></code> es <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code></p></li>
 </ul>
-<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id24">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id28">[<a class="reference internal" href="#id35" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <section id="el-predicado-is-null">
 <h4>El predicado IS NULL<a class="headerlink" href="#el-predicado-is-null" title="Permalink to this heading">#</a></h4>
 <p>SQL utiliza la palabra reservada <a class="reference external" href="https://www.w3schools.com/sql/sql_null_values.asp">NULL</a> en un predicado para comprobar si un valor es nulo. Por ejemplo:</p>
@@ -1319,8 +1377,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id25">
-<h3>Ejercicios<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<section id="id29">
+<h3>Ejercicios<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Con consultas SQL en la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, obtenga:</p>
 <ol class="arabic simple">
@@ -1495,8 +1553,8 @@ document.write(`
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">course</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
 </pre></div>
 </div>
-<section id="id26">
-<h6>Ejercicios<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h6>
+<section id="id30">
+<h6>Ejercicios<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h6>
 <p>Escriba consultas en SQL para obtener, de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>:</p>
 <ol class="arabic simple">
 <li><p>ID y nombre de estudiantes que han matriculado cursos en el año 2023.</p></li>
@@ -1531,8 +1589,8 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
 </pre></div>
 </div>
-<section id="id27">
-<h6>Ejercicios<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h6>
+<section id="id31">
+<h6>Ejercicios<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h6>
 <p>Escriba consultas en SQL para obtener, de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>:</p>
 <ol class="arabic simple">
 <li><p>Para cada estudiante, un registro por curso matriculado, sección, año, semestre y nota. Cada registro deben tener tanto el ID como el nombre del estudiante. Esta lista debe incluir los estudiantes en la tabla <code class="docutils literal notranslate"><span class="pre">student</span></code>.</p></li>
@@ -1593,19 +1651,19 @@ document.write(`
 </section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id28">
+<div class="docutils container" id="id32">
 <dl class="citation">
-<dt class="label" id="id31"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id16">2</a>,<a href="#id17">3</a>,<a href="#id18">4</a>,<a href="#id21">5</a>,<a href="#id22">6</a>,<a href="#id23">7</a>,<a href="#id24">8</a>)</span></dt>
+<dt class="label" id="id35"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id18">2</a>,<a href="#id19">3</a>,<a href="#id20">4</a>,<a href="#id23">5</a>,<a href="#id24">6</a>,<a href="#id27">7</a>,<a href="#id28">8</a>)</span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
 </dl>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id80"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id84"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>En la representación de punto fijo, la posición del punto decimal es fija y no cambia. Por ejemplo, si se tiene un sistema de punto fijo de 4 dígitos con 2 posiciones después del punto decimal, el número 123.45 se representaría como 12345 y se entendería que el punto decimal está entre el segundo y tercer dígito desde la derecha. Generalmente, las operaciones de punto fijo son más rápidas y consumen menos recursos del hardware en comparación con las operaciones de punto flotante, especialmente en hardware que no tiene soporte dedicado para operaciones de punto flotante.</p>
 </dd>
-<dt class="label" id="id81"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dt class="label" id="id85"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
 <dd><p>En la representación de punto flotante, la posición del punto decimal puede variar, y el número se representa en términos de una mantisa y un exponente. Por ejemplo, el número 123.45 podría representarse como 1.2345 × 10<sup>2</sup> (1.2345 es la mantisa y 2 el exponente). Requiere hardware más complejo para realizar operaciones, pero esto se ha vuelto menos problemático con el tiempo, debido a la inclusión de unidades de punto flotante (FPU) en la mayoría de los procesadores modernos.</p>
 </dd>
 </dl>
@@ -1700,27 +1758,32 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#truncate-table">TRUNCATE TABLE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml-manipulacion-de-datos">SQL DML - Manipulación de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
@@ -1728,14 +1791,14 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dql-consulta-de-datos">DQL - Consulta de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Sintaxis básica</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Ejemplos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Ejemplos</a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
@@ -1744,20 +1807,25 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-case">La cláusula CASE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejemplos</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">Ejercicios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-en-multiples-tablas">Consultas en múltiples tablas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-join">Operaciones JOIN</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">INNER JOIN</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">Ejercicios</a></li>
 </ul>
 </li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join">LEFT JOIN</a><ul class="nav section-nav flex-column">
-<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Ejercicios</a></li>
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">Ejercicios</a></li>
 </ul>
 </li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join">RIGHT JOIN</a></li>
