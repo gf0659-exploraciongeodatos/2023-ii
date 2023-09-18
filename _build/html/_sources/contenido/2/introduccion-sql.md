@@ -1,32 +1,63 @@
 # Introducción a SQL
 
 ## Introducción
-SQL es el lenguaje de consulta de bases de datos más utilizado.
+SQL es el lenguaje más popular para administrar y recuperar información de sistemas de bases de datos relacionales. Originalmente basado en el [álgebra relacional](https://es.wikipedia.org/wiki/%C3%81lgebra_relacional) y en el [cálculo relacional de tuplas](https://es.wikipedia.org/wiki/C%C3%A1lculo_relacional), SQL consta de muchos tipos de sentencias, que pueden ser clasificadas informalmente como sublenguajes, incluyendo un lenguaje de definición de datos, un lenguaje de manipulación de datos, un lenguaje de consulta de datos y un lenguaje de control de datos.
 
+### Historia
 IBM desarrolló la versión original de SQL, originalmente llamada SEQUEL (*Structured English QUEry Language*), como parte del proyecto System R a principios de la década de 1970. Algunos años después, SEQUEL cambió su nombre a SQL (*Structured Query Language* o Lenguaje de Consulta Estructurada) y se consolidó como el lenguaje estándar de bases de datos relacionales.
+
+SQL ofreció dos ventajas principales sobre los antiguos mecanismos de lectura y escritura de datos. En primer lugar, introdujo la posibilidad de acceder a múltiples registros con un único comando. En segundo lugar, eliminó la necesidad de especificar cómo acceder a un registro, ya sea que cuente o no con un [índice](https://es.wikipedia.org/wiki/%C3%8Dndice_(base_de_datos)).
+
+Al ser un [lenguaje de programación declarativo](https://es.wikipedia.org/wiki/Programaci%C3%B3n_declarativa), SQL le permite al programador especificar qué desea lograr sin tener que especificar cómo hacerlo, dejando que el lenguaje determine cómo obtener el resultado deseado. Sin embargo, SQL también incluye algunos elementos de [programación procedimental](https://es.wikipedia.org/wiki/Programaci%C3%B3n_por_procedimientos).
 
 SQL pasó a ser un estándar del Instituto Nacional Estadounidense de Estándares (ANSI) en 1986 y de la Organización Internacional de Normalización (ISO) en 1987. Esta primera versión es conocida como SQL-86 o SQL-1. En 1992 se publicó una revisión ampliada y revisada del estándar, llamada [SQL-92 o SQL-2](https://es.wikipedia.org/wiki/SQL-92). El soporte a SQL-92 por parte de las implementaciones comerciales es muy amplio. El estándar ha sido revisado varias veces más para incluir características adicionales. La revisión más reciente es [SQL:2023](https://en.wikipedia.org/wiki/SQL:2023) y fue adoptada en junio 2023. A pesar de su estandarización, la mayoría de las implementaciones de SQL no son completamente portables entre sistemas administradores de bases de datos.  
 
-La funcionalidad del lenguaje SQL incluye {cite:p}`silberschatz_database_2019`:
+### Sublenguajes
+Como se mencionó, SQL puede dividirse en varios lenguajes:
 
-- **Lenguaje de definición de datos (DDL, por sus siglas en inglés)**. Proporciona comandos para crear, modificar y borrar tablas.
+- **Lenguaje de definición de datos (DDL, por sus siglas en inglés)**. Proporciona comandos para crear, modificar y borrar objetos de una base de datos tales como tablas, índices y usuarios, entre otros. También para especificar restricciones de integridad (ej. llaves primarias, llaves foráneas, manejo de valores nulos).
 
-- **Lenguaje de manipulación de datos (DML, por sus siglas en inglés)**. Permite consultar la información de una base de datos, así como insertar, modificar y borrar registros.
+- **Lenguaje de manipulación de datos (DML, por sus siglas en inglés)**. Permite insertar, modificar y borrar datos.
 
-- **Integridad**. El SQL DDL incluye comandos para especificar restricciones de integridad (ej. llaves primarias, llaves foráneas, manejo de valores nulos).
+- **Lenguaje de consulta de datos (DQL, por sus siglas en inglés)**. Permite consultar la información de una base de datos.
 
-- **Definición de vistas**. Una vista (*view*) es una consulta almacenada que puede tratarse como una tabla.
+- **Lenguaje de control de datos (DCL, por sus siglas en inglés)**. Contiene comandos para controlar el acceso a los datos. Por ejemplo, para otorgar o revocar permisos a los usuarios para insertar, modificar o borrar registros en tablas determinadas.
 
-- **Control de transacciones**. Comandos para definicar el inicio y el final de transacciones.
+- **Lenguaje de control de transacciones (TCL, por sus siglas en inglés)**. Una [transacción](https://es.wikipedia.org/wiki/Transacci%C3%B3n_(inform%C3%A1tica)) es una secuencia de una o más instrucciones SQL que se ejecutan como una única unidad de trabajo. Esto significa que o bien todas las instrucciones se ejecutan con éxito, o si alguna de ellas falla, ninguna de las instrucciones afecta a la base de datos. Esta propiedad es esencial para mantener la integridad y consistencia de la base de datos.
 
-- **SQL incrustado y SQL dinámico**. Define como las sentencias SQL pueden incrustarse en lenguajes de programación (ej. C, Java, R, Python).
+### Sentencias y cláusulas
+SQL se compone de una variedad de sentencias y cláusulas que permiten realizar tareas como consultar datos, insertar registros, actualizar registros y definir estructuras de datos, entre otras.
 
-- **Autorización**. Derechos de acceso a tablas y vistas.
+Las sentencias son los comandos que se ejecutan para realizar una tarea específica en la base de datos. Las cláusulas son componentes de las sentencias que proporcionan detalles adicionales sobre cómo deben ejecutarse.
 
-En este capítulo, se presentan los principales comandos de SQL DDL y SQL DML, con algunos ejemplos relacionados con la base de datos `university`, introducida en el capítulo anterior. Para más detalles sobre SQL y su sintaxis, se recomienda consultar [Database System Concepts (Chapter 3)](https://www.db-book.com/slides-dir/PDF-dir/ch3.pdf) o [W3Schools - SQL Tutorial](https://www.w3schools.com/sql/). Se recomienda también ejcutar las sentencias SQL en una base de datos real.
+El siguiente es un ejemplo de la sentencia [SELECT](https://www.w3schools.com/sql/sql_select.asp) y sus cláusulas `FROM`, [WHERE](https://www.w3schools.com/sql/sql_where.asp) y [ORDER BY](https://www.w3schools.com/sql/sql_orderby.asp).
 
-## SQL DDL
-SQL DDL permite especificar, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.
+```sql
+-- Ejemplo de setencia SELECT y sus cláusulas FROM, WHERE y ORDER BY
+SELECT name, tot_cred --columnas
+FROM student --tabla
+WHERE dept_name = 'Informática' AND tot_cred >= 50 --condición lógica
+ORDER BY tot_cred DESC -- ordenamiento;
+```
+
+La sentencia `SELECT` del ejemplo anterior implementa una consulta que retorna los datos contenidos en las columnas `name` y `tot_cred` de una tabla. La función de cada una de las cláusulas se explica seguidamente:
+
+- La cláusula `FROM` indica que la tabla que se va a consultar es `student`.
+- La cláusula `WHERE` especifica una condición lógica: el departamento (`dept_name`) al que pertencen los estudiantes es "Informática" y su total de créditos (`tot_cred`) debe ser mayor o igual a 50.
+- La cláusula `ORDER BY` especifica que los registros de salida de la consulta deben estar ordenados de mayor a menor (`DESC`) según la columna `tot_desc`.
+
+#### Recomendaciones de estilo
+Las siguientes son algunas recomendaciones de estilo para la escritura de sentencias SQL.
+
+- Las palabras reservadas de SQL pueden escribirse en mayúsculas o minúsculas. Se recomienda escribirlas en mayúscula (ej. `SELECT`, `FROM`, `WHERE`) para mejorar su legibilidad y seguir algunas convenciones.
+- Si la sentencia es muy larga y no cabe en una sola línea, se recomienda dividirla en varias líneas (ej. una línea por cláusula).
+- Las sentencias SQL pueden finalizarse con punto y coma (`;`). Es opcional, pero sí se utilizará en este curso para señalar claramente el final de cada sentencia y mejorar la legibilidad de *scripts* con varias sentencias.
+- Se recomienda también el uso abundante de comentarios en las sentencias. Estos inician con dos guiones seguidos (`--`) y pueden ocupar toda una línea o el final de una línea.
+
+En este capítulo, se presentan las principales sentencias de SQL DDL, SQL DML y SQL DQL, con algunos ejemplos relacionados con la base de datos `university`, introducida en el capítulo anterior. Para más detalles sobre SQL y su sintaxis, se recomienda consultar [Database System Concepts (Chapter 3)](https://www.db-book.com/slides-dir/PDF-dir/ch3.pdf), [Database System Concepts (Chapter 4)](https://www.db-book.com/slides-dir/PDF-dir/ch4.pdf) y [W3Schools - SQL Tutorial](https://www.w3schools.com/sql/). Se recomienda también ejcutar las sentencias SQL en una base de datos real.
+
+## SQL DDL - Definición de datos
+SQL DDL permite definir, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.
 
 ### Tipos de datos básicos
 El estándar SQL admiite varios tipos de datos, incluyendo {cite:p}`silberschatz_database_2019`:
@@ -41,14 +72,12 @@ El estándar SQL admiite varios tipos de datos, incluyendo {cite:p}`silberschatz
 
 Cada tipo puede incluir un valor especial llamado el valor `null` (`nulo`). Un valor nulo indica un valor ausente que puede existir pero ser desconocido o que puede no existir en absoluto. En ciertos casos, se podría querer prohibir que se ingresen valores nulos.
 
-### Definición de tablas
 En esta sección se trabaja con las tablas de la base de datos `university`, como ejemplo. Se recomienda crear la base de datos en un SABD y reproducir los comandos.
 
-
-#### CREATE TABLE
+### CREATE TABLE
 En SQL, una tabla se define con la sentencia [CREATE TABLE](https://www.w3schools.com/sql/sql_create_table.asp), en la que se especifican los nombres de las columnas juntos con sus tipos de datos. También pueden especificarse restricciones de llave primaria, llaves foráneas y prohibición de valores nulos, entre otras.
 
-##### Sintaxis básica
+#### Sintaxis básica
 Se presentan dos variantes.
 
 ```sql
@@ -71,7 +100,7 @@ CREATE TABLE tabla AS
     WHERE ....; 
 ```
 
-##### Ejemplos
+#### Ejemplos
 El siguiente comando crea la tabla `department`:
 
 ```sql
@@ -139,7 +168,7 @@ CREATE TABLE section (
 );
 
 -- Creación de la relación teaches
-CREATE TABLE  teaches(
+CREATE TABLE teaches(
     ID VARCHAR(5),
     course_id VARCHAR(8),
     sec_id VARCHAR(8),
@@ -175,14 +204,14 @@ CREATE TABLE takes_passed_students AS
     WHERE grade >= 70;
 ```
 
-La sentencia `SELECT` se explicará con mayor detalle en el este capítulo.
+La sentencia `SELECT` se explicará con mayor detalle en este capítulo.
 
-#### ALTER TABLE
+### ALTER TABLE
 La sentencia [ALTER TABLE](https://www.w3schools.com/sql/sql_alter.asp) se utiliza para agregar, modificar o borrar columnas en una tabla. También puede agregar y borrar restricciones.
 
 Con los siguientes comandos, se crea una tabla de ejemplo y luego se agrega, modifica y borra una columna, mediante `ALTER TABLE`. También se define la llave primaria de la tabla.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 -- Adición de una columna
 ALTER TABLE tabla
@@ -201,7 +230,7 @@ ALTER TABLE tabla
 DROP COLUMN columna;
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Creación de una tabla de ejemplo
 CREATE TABLE ejemplo (
@@ -225,29 +254,27 @@ ALTER TABLE ejemplo
 DROP COLUMN col2;
 ```
 
-#### DROP TABLE
+### DROP TABLE
 La sentencia [DROP TABLE](https://www.w3schools.com/sql/sql_drop_table.asp) se utiliza para borrar una tabla.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 DROP TABLE tabla;
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Borrado de una tabla
 DROP TABLE ejemplo;
 ```
 
-## SQL DML
-Los comandos de SQL DML se utilizan para manipular los datos almacenados en una base de datos. Estos comandos incluyen `INSERT`, `UPDATE`, `DELETE`, para modificar los datos, y `SELECT` para consultarlos.
+## SQL DML - Manipulación de datos
+Los comandos de SQL DML se utilizan para manipular los datos almacenados en una base de datos. Estos comandos incluyen `INSERT`, `UPDATE` y `DELETE`.
 
-### Modificación de datos
-
-#### INSERT
+### INSERT
 El comando [INSERT](https://www.w3schools.com/sql/sql_insert.asp) inserta nuevos registros en una tabla.
 
-##### Sintaxis básica
+#### Sintaxis básica
 Se presentan dos variantes.
 ```sql
 -- Especificación de las columnas y sus respectivos valores
@@ -262,7 +289,7 @@ INSERT INTO tabla
 VALUES (valor1, valor2, valor3, ...);
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Inserción de un registro en la tabla department,
 -- especificando las columnas y sus respectivos valores.
@@ -506,17 +533,17 @@ INSERT INTO takes VALUES ('S040', 'C006', 'SEC02', 'S1', 2023, 76);
 ```
 </details>
 
-#### UPDATE
+### UPDATE
 El comando [UPDATE](https://www.w3schools.com/sql/sql_update.asp) modifica registros de una tabla.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 UPDATE tabla
 SET columna1 = valor1, columna2 = valor2, ...
 WHERE condición; 
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Aumento de un 5% a los salarios de todos los profesores
 UPDATE instructor
@@ -536,21 +563,21 @@ SET salary = salary * 1.05
 WHERE salary < (SELECT AVG(salary) FROM instructor);
 ```
 
-#### DELETE
+### DELETE
 El comando [DELETE](https://www.w3schools.com/sql/sql_delete.asp) borra registros de una tabla.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 DELETE FROM tabla WHERE condición; 
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Borrado de un estudiante por ID
 DELETE FROM student WHERE ID = 'S060';
 ```
 
-#### Ejercicios
+### Ejercicios
 1. Agregue registros de prueba en las tablas de la base de datos `university` de acuerdo con los siguientes pasos:  
     1. Agregue el departamento 'Geografía' en la tabla `department`.  
     2. Agregue el estudiante 'Alexander von Humboldt' en la tabla `student`. Asígnelo al departamento de Geografía.  
@@ -562,20 +589,20 @@ DELETE FROM student WHERE ID = 'S060';
 
 2. Agregue más registros de departamentos, estudiantes, profesores, cursos, grupos y demás. Intente cambiar el orden de las inserciones y observe los resultados.
 
-### Consulta de datos
+## DQL - Consulta de datos
 En esta sección, se estudia la sentencia `SELECT` y sus diferentes cláusulas para consulta de datos.
 
-#### La sentencia SELECT y las cláusulas FROM y WHERE
+### La sentencia SELECT y las cláusulas FROM y WHERE
 Las consultas de datos en SQL se realizan a través de la sentencia [SELECT](https://www.w3schools.com/sql/sql_select.asp) y su clásula `FROM`. Es muy frecuente usar también la cláusula [WHERE](https://www.w3schools.com/sql/sql_where.asp), pero no es obligatoria. Con `SELECT` se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en `FROM`. `WHERE` contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como `AND`, `OR` y `NOT`.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 SELECT columna1, columna2, ...
 FROM tabla
 WHERE condición
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Consulta de todos los registros y todas las columnas de la tabla student.
 -- El asterisco ("estrella") indica que deben retornarse todas las columnas.
@@ -605,7 +632,7 @@ FROM student
 WHERE dept_name = 'Informática' AND tot_cred >= 55;
 ```
 
-#### Operaciones con hileras de caracteres
+### Operaciones con hileras de caracteres
 En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: 'universidad'. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como 'It''s right' {cite:p}`silberschatz_database_2019`.
 
 El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión `'Universidad' = 'universidad'` se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse {cite:p}`silberschatz_database_2019`.
@@ -666,17 +693,17 @@ FROM student
 WHERE name LIKE 'D_n%';
 ```
 
-#### La cláusula ORDER BY
+### La cláusula ORDER BY
 [ORDER BY](https://www.w3schools.com/sql/sql_orderby.asp) se utiliza para ordenar los resultados de una consulta en orden ascendente o descendente. El orden ascendente es el que se usa por defecto. Si se requiere de un orden descendente, debe usarse la palabra reservada `DESC`.
 
-##### Sintaxis básica
+#### Sintaxis básica
 ```sql
 SELECT columna1, columna2, ...
 FROM tabla
 ORDER BY columna1, columna2, ... ASC|DESC;
 ```
 
-##### Ejemplos
+#### Ejemplos
 ```sql
 -- Grupos de cursos ordenados por año y semestre
 SELECT course_id, year, semester
@@ -689,7 +716,7 @@ FROM instructor
 ORDER BY salary DESC;
 ```
 
-#### Funciones de agregación
+### Funciones de agregación
 Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras {cite:p}`silberschatz_database_2019`.
 
 - Promedio: [AVG()](https://www.w3schools.com/sql/sql_avg.asp)
@@ -700,7 +727,7 @@ Las funciones de agregación reciben como entrada un conjunto de valores y retor
 
 La entrada de `AVG()` y `SUM()` debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.
 
-##### Agregación sin agrupación
+#### Agregación sin agrupación
 El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula `AS` {cite:p}`silberschatz_database_2019`.
 
 ```sql
@@ -736,7 +763,7 @@ WHERE year = 2022;
 
 Para apreciar las diferencias, ejecute los ejemplos anteriores sin usar `DISTINCT`.
 
-##### Agregación con agrupación
+#### Agregación con agrupación
 La cláusula [GROUP BY](https://www.w3schools.com/sql/sql_groupby.asp) permite aplicar la función de agregación no solo a un conjunto único de tuplas, sino también a un grupo de conjuntos de tuplas. El atributo o atributos proporcionados en la cláusula `GROUP BY` se utilizan para formar grupos. Las tuplas con el mismo valor en todos los atributos en la cláusula `GROUP BY` se colocan en un grupo.
 
 ```sql
@@ -754,7 +781,7 @@ ORDER BY year, semester;
 
 En el ejemplo anterior, note que las columnas listadas en la cláusula `GROUP BY` también están presentes en la cláusula `SELECT`.
 
-##### La cláusula HAVING
+#### La cláusula HAVING
 La cláusula [HAVING](https://www.w3schools.com/sql/sql_having.asp) especifica una condición que se aplica a los grupos formados por `GROUP BY` y no a los registros.
 
 ```sql
@@ -767,7 +794,7 @@ HAVING COUNT(*) >= 4
 ORDER BY year, semester;
 ```
 
-#### Manejo de valores nulos
+### Manejo de valores nulos
 Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos {cite:p}`silberschatz_database_2019`.
 
 El resultado de una expresión aritmética (que involucra, por ejemplo, `+`, `-`, `*` o `/`) es nulo si cualquiera de los valores de entrada es nulo.
@@ -791,7 +818,7 @@ Ya que el predicado en una cláusula `WHERE` puede involucrar operadores lógico
 
 Si el predicado de una cláusula `WHERE` se evalúa como `FALSE` o `UNKNOWN` para una tupla, es tupla no se añade al resultado {cite:p}`silberschatz_database_2019`.
 
-##### El predicado IS NULL
+#### El predicado IS NULL
 SQL utiliza la palabra reservada [NULL](https://www.w3schools.com/sql/sql_null_values.asp) en un predicado para comprobar si un valor es nulo. Por ejemplo:
 
 ```sql
@@ -819,7 +846,7 @@ FROM empleados
 GROUP BY departamento;
 ```
 
-##### Funciones para comprobar valores nulos
+#### Funciones para comprobar valores nulos
 Los SABD incluyen diferentes [funciones para verificar si un valor es nulo](https://www.w3schools.com/sql/sql_isnull.asp). 
 
 Por ejemplo, la función [COALESCE()](https://www.w3schools.com/sql/func_sqlserver_coalesce.asp) retorna el primer valor no nulo en una lista de expresiones. Es especialmente útil cuando se quiere proporcionar un valor por defecto en lugar de un valor nulo.
@@ -838,7 +865,7 @@ Por ejemplo, suponga que se tiene una tabla llamada `empleados` con una columna 
 SELECT COALESCE(salario, 0) FROM empleados;
 ```
 
-#### Ejercicios
+### Ejercicios
 1. Con consultas SQL en la base de datos `university`, obtenga:
     1. Lista de estudiantes del departamento de matemáticas.
     2. Cantidad de estudiantes del departamento de informática.
@@ -891,6 +918,218 @@ Para verificar los resultados de los ejercicios sobre el Mundial Catar 2022, pue
 
 - [Análisis de datos de la primera fase de la Copa Mundial de la FIFA Catar 2022](https://colab.research.google.com/drive/1Gw1SB7ia-hjJEHKUCRn7VZXlN75rVgX5?usp=sharing).
 - [Análisis de datos de la final de la Copa Mundial de la FIFA Catar 2022](https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing).
+
+### Consultas en múltiples tablas
+En esta sección, se estudia como escribir consultas de datos que están distribuidos en varias tablas.
+
+Por ejemplo, considere la consulta: *obtener los nombres de todos los profesores, junto con los nombres de sus respectivos departamentos y los nombres de los edificios de los departamentos*. Los nombres de los profesores y de sus departamentos están en la tabla `instructor`, pero los nombres de los edificios están en la tabla `deparment`. Para responder a la consulta, cada registro en `instructor` debe coincidir con el registro en `departament` cuyo valor de `dept_name` coincida con el valor de `dept_name` en `instructor`.
+
+En SQL, una forma de responder a consultas como la anterior, consiste en listar todas las tablas que van a consultarse en la cláusula `FROM` y especificar la condición de coincidencia en la cláusula `WHERE`.
+
+```sql
+-- Nombres de profesores, departamentos y edificios
+SELECT name, instructor.dept_name, building
+FROM instructor, department
+WHERE instructor.dept_name = department.dept_name;
+```
+
+Debido a que la columna `dept_name` está presente en ambas tablas, el nombre de la tabla se utiliza como prefijo (en `instructor.dept_name` y `department.dept_name`) para especificar a cual columna se está haciendo referencia en cada caso.
+
+La siguiente consulta retorna los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes.
+
+```sql
+-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año
+SELECT name, course_id, sec_id, year, semester
+FROM instructor, teaches
+WHERE instructor.ID = teaches.ID
+ORDER BY name, course_id, sec_id, year, semester;
+```
+
+Nótese que la consulta anterior retorna solamente los nombres de profesores que han impartido al menos un curso. Si un profesor está presente en la tabla `ìnstructor`, pero no tiene ningún curso asignado en la tabla `teaches`, su nombre no se mostrará en el resultado.
+
+Si se requiere incluir el nombre del curso en el resultado de la consulta, debe incluirse la tabla `course` en la cláusula `FROM` y la condición de coincidencia adicional en la cláusula `WHERE`.
+
+```sql
+-- course_id y nombres de cursos impartidos por cada profesor, junto con la sección, semestre y año
+SELECT name, course.course_id, title, sec_id, year, semester
+FROM instructor, teaches, course
+WHERE instructor.ID = teaches.ID AND teaches.course_id = course.course_id
+ORDER BY name, course_id, sec_id, year, semester;
+```
+
+En general, cuando se incluyen varias relaciones en la cláusula `FROM`, el funcionamiento de una consulta SQL puede describirse en tres pasos:
+
+1. Genera un [producto cartesiano](https://es.wikipedia.org/wiki/Producto_cartesiano) de las tablas listadas en la cláusula `FROM`.
+2. Aplica las condiciones especificadas en la cláusula `WHERE` al resultado del paso 1.
+3. Para cada fila presente en el resultado del paso 2, muestra las consultas especificadas en la cláusula `SELECT`.
+
+Es importante mencionar que aunque esta secuencia de pasos ayuda a entender cuál debería ser el resultado de una consulta SQL, no es la forma cómo debería ejecutarse. Una implementación real de SQL no ejecutaría la consulta de esta manera; en su lugar, optimizaría la evaluación generando (en la medida de lo posible) solo aquellos elementos del producto cartesiano que satisfacen los predicados de la cláusula `WHERE`, para así procesar menos datos.
+
+Al escribir consultas como las anteriores, se debe tener cuidado de incluir las condiciones adecuadas en la cláusula `WHERE`. Si se omiten, se producirá un producto cartesiano, el cual podría contener muchos registros.
+
+#### Operaciones JOIN
+Los ejemplos de consultas en múltiples tablas que se han estudiado hasta el momento están basados en el producto cartesiano. Seguidamente, se introducen varias operaciones de [JOIN](https://www.w3schools.com/sql/sql_join.asp) (unión o cruce de datos) que permiten al programador escribir algunas consultas de una manera más natural y también formular consultas que son difíciles de implementar solamente con el producto cartesiano.
+
+El estándar ANSI del SQL especifica cinco operaciones `JOIN`, las cuales actúan sobre dos tablas (izquierda y derecha) y producen otra tabla como resultado:
+
+- `(INNER) JOIN`: retorna los registros con valores coincidentes en ambas tablas.
+- `LEFT (OUTER) JOIN`: retorna todos los registros de la tabla de la izquierda y los registros coincidentes de la tabla de la derecha.
+- `RIGHT (OUTER) JOIN`: retorna todos los registros de la tabla de la derecha y los registros coincidentes de la tabla de la izquierda.
+- `FULL (OUTER) JOIN`: retorna todos los registros de ambas tablas, tanto los que tienen valores coincidentes como los que no.
+- `CROSS JOIN`: retorna el producto cartesiano de las dos tablas.
+
+Los diferentes tipos de `JOIN` se representan como [diagramas de Venn](https://es.wikipedia.org/wiki/Diagrama_de_Venn) en la {numref}`figure-joins-sql`.
+
+```{figure} img/joins-sql.png
+:name: figure-joins-sql
+
+Tipos de `JOIN` de SQL y sus representaciones como diagramas de Venn. Imagen compartida a través de [Wikipedia](https://es.wikipedia.org/wiki/Sentencia_JOIN_en_SQL#/media/Archivo:Joins_del_SQL.svg).
+```
+
+A pesar de que los `JOIN` se definen para dos tablas, las operaciones pueden generarlizarse para involucrar más tablas.
+
+La sintaxis general de una cláusula `JOIN` en una sentencia `SELECT` es la siguiente:
+
+```sql
+-- Sintaxis general de una cláusula JOIN
+SELECT columna1, columna2, ...
+FROM tabla_izquierda
+INNER|LEFT|RIGHT|FULL|CROSS JOIN tabla_derecha ON condición
+```
+
+La cláusula `ON` define la condición de coincidencia sobre la cual se basa la operación `JOIN` (ya sea `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, `FULL JOIN` o `CROSS JOIN`) que se está realizando. Especifica cuáles columnas de las tablas que se están uniendo deben compararse y cómo deben compararse. Solo las filas que satisfacen esta condición de coincidencia se incluyen en el resultado.
+
+Seguidamente, se describen en detalle los diferentes tipos de `JOIN`.
+
+##### INNER JOIN
+Un [INNER JOIN](https://www.w3schools.com/sql/sql_join_inner.asp), también conocido simplemente como `JOIN`, retorna solo las filas que tienen valores coincidentes en ambas tablas.
+
+Por ejemplo, la siguiente consulta utiliza un `INNER JOIN` para unir datos de las tablas `student` y `takes` con base en la coincidencia de los valores de la columna `ID` en `student` y la columna `ID` en `takes`.
+
+```sql
+-- ID y nombres de estudiantes, junto con los id de los cursos matriculados
+-- (con INNER JOIN explícito)
+SELECT student.ID, name, course_id
+FROM student 
+INNER JOIN takes ON student.ID = takes.ID;
+```
+
+El mismo resultado puede obtenerse listando ambas tablas en la cláusula `FROM` y reaizando un producto cartesiano, como se mencionó anteriormente. A esta operación se le conoce como `INNER JOIN` "implícito".
+
+```sql
+-- ID y nombres de estudiantes, junto con los id de los cursos matriculados
+-- (INNER JOIN implícito)
+SELECT student.ID, name, course_id
+FROM student, takes
+WHERE student.ID = takes.ID;
+```
+
+Si se desea, por ejemplo, agregar el nombre de cada curso a la consulta anterior, puede hacerse con un `INNER JOIN` adicional a la tabla `course`.
+
+```sql
+-- ID y nombres de estudiantes, junto con los id y nombres de los cursos matriculados
+SELECT student.ID, name, course.course_id, title
+FROM student
+INNER JOIN takes ON student.ID = takes.ID
+INNER JOIN course ON takes.course_id = course.course_id;
+```
+
+###### Ejercicios
+Escriba consultas en SQL para obtener, de la base de datos `university`:
+
+1. ID y nombre de estudiantes que han matriculado cursos en el año 2023.
+2. ID y nombre de estudiantes que han matriculado cursos en el año 2023, junto con el promedio de esos cursos para cada estudiante.
+
+##### LEFT JOIN
+Un [LEFT JOIN](https://www.w3schools.com/sql/sql_join_left.asp), también conocido como `LEFT OUTER JOIN`, retorna todas las filas de la tabla de la izquierda y las filas coincidentes de la tabla de la derecha. Si no hay una coincidencia para una fila particular de la tabla de la izquierda, los valores para las columnas de la tabla de la derecha serán `NULL`. La operación `LEFT JOIN` garantiza que todas las filas de la tabla de la izquierda estén presentes en el resultado, independientemente de si hay o no una coincidencia en la tabla de la derecha.
+
+Por ejemplo, retomemos la consulta sobre los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes. Sabemos que puede implementarse con `INNER JOIN`.
+
+```sql
+-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año
+SELECT name, course_id, sec_id, year, semester
+FROM instructor
+INNER JOIN teaches ON instructor.ID = teaches.ID
+ORDER BY name, course_id, sec_id, year, semester;
+```
+
+Sin embargo, el resultado de esta consulta no incluye profesores registrados en `instructor` que no tengan cursos en `teaches`. Esto podría lograrse con `LEFT JOIN`.
+
+```sql
+-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año, incluyendo profesores que no hayan impartido cursos
+SELECT name, course_id, sec_id, year, semester
+FROM instructor
+LEFT JOIN teaches ON instructor.ID = teaches.ID
+ORDER BY name, course_id, sec_id, year, semester;
+```
+
+Nótese que las columnas `course_id`, `sec_id`, `year` y `semester` tienen `NULL` en los registros de profesores que no han impartido ningún curso. Esto puede aprovecharse para encontrar específicamente los profesores que no han impartido ningún curso: mediante una condición en la cláusula `WHERE` se seleccionan los registros donde alguna columna de la tabla de la derecha es `NULL`.
+
+```sql
+-- Profesores que no han impartido ningún curso
+SELECT instructor.ID, instructor.name
+FROM instructor
+LEFT JOIN teaches ON instructor.ID = teaches.ID
+WHERE teaches.ID IS NULL;
+```
+
+###### Ejercicios
+Escriba consultas en SQL para obtener, de la base de datos `university`:
+
+1. Para cada estudiante, un registro por curso matriculado, sección, año, semestre y nota. Cada registro deben tener tanto el ID como el nombre del estudiante. Esta lista debe incluir los estudiantes en la tabla `student`.
+2. ID y nombre de todos los estudiantes con su promedio general (de todos los cursos que hayan matriculado). La lista debe incluir a todos los estudiantes en `student`.
+3. ID y nombre de todos los estudiantes que no han matriculado ningún curso.
+
+##### RIGHT JOIN
+Un [RIGHT JOIN](https://www.w3schools.com/sql/sql_join_right.asp), también conocido como `RIGHT OUTER JOIN`, retorna todas las filas de la tabla de la derecha y las filas coincidentes de la tabla de la izquierda. Si no hay una coincidencia para una fila particular de la tabla de la derecha, los valores para las columnas de la tabla de la izquierda serán `NULL`. La operación `RIGHT JOIN` garantiza que todas las filas de la tabla de la derecha estén presentes en el resultado, independientemente de si hay o no una coincidencia en la tabla de la izquierda.
+
+Por ejemplo, la consulta sobre los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes, incluyendo profesores registrados en `instructor` que no tengan cursos en `teaches`, y que anteriormente se resolvió con `LEFT JOIN`, también puede resolverse con `RIGHT JOIN`.
+
+```sql
+-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año, incluyendo profesores que no hayan impartido cursos
+SELECT name, course_id, sec_id, year, semester
+FROM teaches
+RIGHT JOIN instructor ON teaches.ID = instructor.ID
+ORDER BY name, course_id, sec_id, year, semester;
+```
+
+En la práctica, muchas veces las consultas que utilizan `RIGHT JOIN` pueden ser reescritas para usar `LEFT JOIN`, y viceversa, simplemente cambiando el orden de las tablas. Sin embargo, en ciertos contextos y para ciertas lógicas de consulta, una de las opciones puede ser mejor que la otra.
+
+##### FULL JOIN
+Un [FULL JOIN](https://www.w3schools.com/sql/sql_join_full.asp), también conocido como `FULL OUTER JOIN`, retorna todas las filas de ambas tablas, tanto las que tienen valores coincidentes como las que no. Si hay una coincidencia entre las filas de las tablas basada en la condición especificada, esas filas se combinarán en el resultado. Si no hay una coincidencia para una fila particular en una de las tablas, los valores para las columnas de la otra tabla serán `NULL`.
+
+En otras palabras, un `FULL JOIN` combina las características del `LEFT JOIN` y del `RIGHT JOIN`. Devuelve todas las filas de la tabla de la izquierda que tienen coincidencias en la tabla de la derecha, todas las filas de la tabla de la derecha que tienen coincidencias en la tabla de la izquierda, y todas las filas de ambas tablas que no tienen coincidencias entre sí.
+
+Supongamos que se desea obtener una lista de todos los estudiantes y todos los cursos que han tomado, incluyendo a los estudiantes que no han tomado ningún curso y los cursos que no han sido tomados por ningún estudiante.
+
+```sql
+-- Lista de todos los estudiantes y todos los cursos que han tomado, 
+-- incluyendo a los estudiantes que no han tomado ningún curso 
+-- y los cursos que no han sido tomados por ningún estudiante
+SELECT student.ID, student.name, takes.course_id, takes.grade
+FROM student
+FULL JOIN takes ON student.ID = takes.ID;
+```
+
+El `FULL JOIN` es útil cuando se desea conservar todas las filas de ambas tablas en el conjunto de resultados, independientemente de si hay coincidencias. Sin embargo, es menos común que los otros tipos de `JOIN` y no es soportado por todos los SABD.
+
+##### CROSS JOIN
+La operación [CROSS JOIN](https://es.wikipedia.org/wiki/Sentencia_JOIN_en_SQL#Cruzada_(Cross_join)) retorna el producto cartesiano de dos tablas. Es decir, combina cada fila de la primera tabla con cada fila de la segunda tabla. No necesita una condición de coincidencia, como es el caso con otros tipos de `JOIN`.
+
+El resultado de un `CROSS JOIN` es una tabla con número de filas igual al producto del número de filas de las dos tablas involucradas. Por ejemplo, si una tabla tiene 5 filas y la otra tiene 3, el resultado del `CROSS JOIN` tendrá 15 filas.
+
+Por ejemplo, la siguiente consulta retorna todas las combinaciones posibles de profesores y estudiantes. En el resultado, cada profesor se asocia con cada estudiante.
+
+```sql
+-- Producto cartesiano de instructor y student
+SELECT instructor.ID AS instructor_ID, instructor.name AS instructor_name, 
+       student.ID AS student_ID, student.name AS student_name
+FROM instructor
+CROSS JOIN student
+ORDER BY instructor_ID, instructor_name, student_ID, student_name;
+```
+
+El uso de `CROSS JOIN` podría ser menos común que otros tipos de `JOIN`, ya que generalmente se busca combinar datos basados en alguna condición lógica. Sin embargo, hay situaciones, especialmente en análisis de datos o generación de conjuntos de datos específicos, en los que `CROSS JOIN` puede ser útil.
 
 ## Bibliografía
 ```{bibliography}
