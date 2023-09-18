@@ -361,73 +361,92 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-ddl">SQL DDL</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#historia">Historia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sublenguajes">Sublenguajes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentencias-y-clausulas">Sentencias y cláusulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-estilo">Recomendaciones de estilo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-ddl-definicion-de-datos">SQL DDL - Definición de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-basicos">Tipos de datos básicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-tablas">Definición de tablas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table">CREATE TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table">CREATE TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-table">ALTER TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-table">ALTER TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Ejemplos</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Ejemplos</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml">SQL DML</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificacion-de-datos">Modificación de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Ejemplos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml-manipulacion-de-datos">SQL DML - Manipulación de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-de-datos">Consulta de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Ejemplos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dql-consulta-de-datos">DQL - Consulta de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-en-multiples-tablas">Consultas en múltiples tablas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-join">Operaciones JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">INNER JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join">LEFT JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join">RIGHT JOIN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#full-join">FULL JOIN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">CROSS JOIN</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -448,46 +467,79 @@ document.write(`
 <h1>Introducción a SQL<a class="headerlink" href="#introduccion-a-sql" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
-<p>SQL es el lenguaje de consulta de bases de datos más utilizado.</p>
+<p>SQL es el lenguaje más popular para administrar y recuperar información de sistemas de bases de datos relacionales. Originalmente basado en el <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%81lgebra_relacional">álgebra relacional</a> y en el <a class="reference external" href="https://es.wikipedia.org/wiki/C%C3%A1lculo_relacional">cálculo relacional de tuplas</a>, SQL consta de muchos tipos de sentencias, que pueden ser clasificadas informalmente como sublenguajes, incluyendo un lenguaje de definición de datos, un lenguaje de manipulación de datos, un lenguaje de consulta de datos y un lenguaje de control de datos.</p>
+<section id="historia">
+<h3>Historia<a class="headerlink" href="#historia" title="Permalink to this heading">#</a></h3>
 <p>IBM desarrolló la versión original de SQL, originalmente llamada SEQUEL (<em>Structured English QUEry Language</em>), como parte del proyecto System R a principios de la década de 1970. Algunos años después, SEQUEL cambió su nombre a SQL (<em>Structured Query Language</em> o Lenguaje de Consulta Estructurada) y se consolidó como el lenguaje estándar de bases de datos relacionales.</p>
+<p>SQL ofreció dos ventajas principales sobre los antiguos mecanismos de lectura y escritura de datos. En primer lugar, introdujo la posibilidad de acceder a múltiples registros con un único comando. En segundo lugar, eliminó la necesidad de especificar cómo acceder a un registro, ya sea que cuente o no con un <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%8Dndice_(base_de_datos)">índice</a>.</p>
+<p>Al ser un <a class="reference external" href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_declarativa">lenguaje de programación declarativo</a>, SQL le permite al programador especificar qué desea lograr sin tener que especificar cómo hacerlo, dejando que el lenguaje determine cómo obtener el resultado deseado. Sin embargo, SQL también incluye algunos elementos de <a class="reference external" href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_por_procedimientos">programación procedimental</a>.</p>
 <p>SQL pasó a ser un estándar del Instituto Nacional Estadounidense de Estándares (ANSI) en 1986 y de la Organización Internacional de Normalización (ISO) en 1987. Esta primera versión es conocida como SQL-86 o SQL-1. En 1992 se publicó una revisión ampliada y revisada del estándar, llamada <a class="reference external" href="https://es.wikipedia.org/wiki/SQL-92">SQL-92 o SQL-2</a>. El soporte a SQL-92 por parte de las implementaciones comerciales es muy amplio. El estándar ha sido revisado varias veces más para incluir características adicionales. La revisión más reciente es <a class="reference external" href="https://en.wikipedia.org/wiki/SQL:2023">SQL:2023</a> y fue adoptada en junio 2023. A pesar de su estandarización, la mayoría de las implementaciones de SQL no son completamente portables entre sistemas administradores de bases de datos.</p>
-<p>La funcionalidad del lenguaje SQL incluye <span id="id1">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
-<ul class="simple">
-<li><p><strong>Lenguaje de definición de datos (DDL, por sus siglas en inglés)</strong>. Proporciona comandos para crear, modificar y borrar tablas.</p></li>
-<li><p><strong>Lenguaje de manipulación de datos (DML, por sus siglas en inglés)</strong>. Permite consultar la información de una base de datos, así como insertar, modificar y borrar registros.</p></li>
-<li><p><strong>Integridad</strong>. El SQL DDL incluye comandos para especificar restricciones de integridad (ej. llaves primarias, llaves foráneas, manejo de valores nulos).</p></li>
-<li><p><strong>Definición de vistas</strong>. Una vista (<em>view</em>) es una consulta almacenada que puede tratarse como una tabla.</p></li>
-<li><p><strong>Control de transacciones</strong>. Comandos para definicar el inicio y el final de transacciones.</p></li>
-<li><p><strong>SQL incrustado y SQL dinámico</strong>. Define como las sentencias SQL pueden incrustarse en lenguajes de programación (ej. C, Java, R, Python).</p></li>
-<li><p><strong>Autorización</strong>. Derechos de acceso a tablas y vistas.</p></li>
-</ul>
-<p>En este capítulo, se presentan los principales comandos de SQL DDL y SQL DML, con algunos ejemplos relacionados con la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, introducida en el capítulo anterior. Para más detalles sobre SQL y su sintaxis, se recomienda consultar <a class="reference external" href="https://www.db-book.com/slides-dir/PDF-dir/ch3.pdf">Database System Concepts (Chapter 3)</a> o <a class="reference external" href="https://www.w3schools.com/sql/">W3Schools - SQL Tutorial</a>. Se recomienda también ejcutar las sentencias SQL en una base de datos real.</p>
 </section>
-<section id="sql-ddl">
-<h2>SQL DDL<a class="headerlink" href="#sql-ddl" title="Permalink to this heading">#</a></h2>
-<p>SQL DDL permite especificar, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.</p>
+<section id="sublenguajes">
+<h3>Sublenguajes<a class="headerlink" href="#sublenguajes" title="Permalink to this heading">#</a></h3>
+<p>Como se mencionó, SQL puede dividirse en varios lenguajes:</p>
+<ul class="simple">
+<li><p><strong>Lenguaje de definición de datos (DDL, por sus siglas en inglés)</strong>. Proporciona comandos para crear, modificar y borrar objetos de una base de datos tales como tablas, índices y usuarios, entre otros. También para especificar restricciones de integridad (ej. llaves primarias, llaves foráneas, manejo de valores nulos).</p></li>
+<li><p><strong>Lenguaje de manipulación de datos (DML, por sus siglas en inglés)</strong>. Permite insertar, modificar y borrar datos.</p></li>
+<li><p><strong>Lenguaje de consulta de datos (DQL, por sus siglas en inglés)</strong>. Permite consultar la información de una base de datos.</p></li>
+<li><p><strong>Lenguaje de control de datos (DCL, por sus siglas en inglés)</strong>. Contiene comandos para controlar el acceso a los datos. Por ejemplo, para otorgar o revocar permisos a los usuarios para insertar, modificar o borrar registros en tablas determinadas.</p></li>
+<li><p><strong>Lenguaje de control de transacciones (TCL, por sus siglas en inglés)</strong>. Una <a class="reference external" href="https://es.wikipedia.org/wiki/Transacci%C3%B3n_(inform%C3%A1tica)">transacción</a> es una secuencia de una o más instrucciones SQL que se ejecutan como una única unidad de trabajo. Esto significa que o bien todas las instrucciones se ejecutan con éxito, o si alguna de ellas falla, ninguna de las instrucciones afecta a la base de datos. Esta propiedad es esencial para mantener la integridad y consistencia de la base de datos.</p></li>
+</ul>
+</section>
+<section id="sentencias-y-clausulas">
+<h3>Sentencias y cláusulas<a class="headerlink" href="#sentencias-y-clausulas" title="Permalink to this heading">#</a></h3>
+<p>SQL se compone de una variedad de sentencias y cláusulas que permiten realizar tareas como consultar datos, insertar registros, actualizar registros y definir estructuras de datos, entre otras.</p>
+<p>Las sentencias son los comandos que se ejecutan para realizar una tarea específica en la base de datos. Las cláusulas son componentes de las sentencias que proporcionan detalles adicionales sobre cómo deben ejecutarse.</p>
+<p>El siguiente es un ejemplo de la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> y sus cláusulas <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, <a class="reference external" href="https://www.w3schools.com/sql/sql_where.asp">WHERE</a> y <a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">ORDER BY</a>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Ejemplo de setencia SELECT y sus cláusulas FROM, WHERE y ORDER BY</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">tot_cred</span><span class="w"> </span><span class="c1">--columnas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="c1">--tabla</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Informática&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">tot_cred</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="c1">--condición lógica</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">tot_cred</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="c1">-- ordenamiento;</span>
+</pre></div>
+</div>
+<p>La sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> del ejemplo anterior implementa una consulta que retorna los datos contenidos en las columnas <code class="docutils literal notranslate"><span class="pre">name</span></code> y <code class="docutils literal notranslate"><span class="pre">tot_cred</span></code> de una tabla. La función de cada una de las cláusulas se explica seguidamente:</p>
+<ul class="simple">
+<li><p>La cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> indica que la tabla que se va a consultar es <code class="docutils literal notranslate"><span class="pre">student</span></code>.</p></li>
+<li><p>La cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> especifica una condición lógica: el departamento (<code class="docutils literal notranslate"><span class="pre">dept_name</span></code>) al que pertencen los estudiantes es “Informática” y su total de créditos (<code class="docutils literal notranslate"><span class="pre">tot_cred</span></code>) debe ser mayor o igual a 50.</p></li>
+<li><p>La cláusula <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> especifica que los registros de salida de la consulta deben estar ordenados de mayor a menor (<code class="docutils literal notranslate"><span class="pre">DESC</span></code>) según la columna <code class="docutils literal notranslate"><span class="pre">tot_desc</span></code>.</p></li>
+</ul>
+<section id="recomendaciones-de-estilo">
+<h4>Recomendaciones de estilo<a class="headerlink" href="#recomendaciones-de-estilo" title="Permalink to this heading">#</a></h4>
+<p>Las siguientes son algunas recomendaciones de estilo para la escritura de sentencias SQL.</p>
+<ul class="simple">
+<li><p>Las palabras reservadas de SQL pueden escribirse en mayúsculas o minúsculas. Se recomienda escribirlas en mayúscula (ej. <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>) para mejorar su legibilidad y seguir algunas convenciones.</p></li>
+<li><p>Si la sentencia es muy larga y no cabe en una sola línea, se recomienda dividirla en varias líneas (ej. una línea por cláusula).</p></li>
+<li><p>Las sentencias SQL pueden finalizarse con punto y coma (<code class="docutils literal notranslate"><span class="pre">;</span></code>). Es opcional, pero sí se utilizará en este curso para señalar claramente el final de cada sentencia y mejorar la legibilidad de <em>scripts</em> con varias sentencias.</p></li>
+<li><p>Se recomienda también el uso abundante de comentarios en las sentencias. Estos inician con dos guiones seguidos (<code class="docutils literal notranslate"><span class="pre">--</span></code>) y pueden ocupar toda una línea o el final de una línea.</p></li>
+</ul>
+<p>En este capítulo, se presentan las principales sentencias de SQL DDL, SQL DML y SQL DQL, con algunos ejemplos relacionados con la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, introducida en el capítulo anterior. Para más detalles sobre SQL y su sintaxis, se recomienda consultar <a class="reference external" href="https://www.db-book.com/slides-dir/PDF-dir/ch3.pdf">Database System Concepts (Chapter 3)</a>, <a class="reference external" href="https://www.db-book.com/slides-dir/PDF-dir/ch4.pdf">Database System Concepts (Chapter 4)</a> y <a class="reference external" href="https://www.w3schools.com/sql/">W3Schools - SQL Tutorial</a>. Se recomienda también ejcutar las sentencias SQL en una base de datos real.</p>
+</section>
+</section>
+</section>
+<section id="sql-ddl-definicion-de-datos">
+<h2>SQL DDL - Definición de datos<a class="headerlink" href="#sql-ddl-definicion-de-datos" title="Permalink to this heading">#</a></h2>
+<p>SQL DDL permite definir, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.</p>
 <section id="tipos-de-datos-basicos">
 <h3>Tipos de datos básicos<a class="headerlink" href="#tipos-de-datos-basicos" title="Permalink to this heading">#</a></h3>
-<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id2">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id1">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>char</strong>(<em>n</em>), <strong>character</strong>(<em>n</em>): cadena de caracteres de longitud fija <em>n</em> especificada por el usuario.</p></li>
 <li><p><strong>varchar</strong>(<em>n</em>), <strong>character varying</strong>(<em>n</em>): cadena de caracteres de longitud variable de tamaño máximo <em>n</em> especificado por el usuario.</p></li>
 <li><p><strong>int</strong>, <strong>integer</strong>: número entero de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
 <li><p><strong>smallint</strong>: número entero pequeño de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
-<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id79" id="id3">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
-<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id80" id="id4">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
+<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id80" id="id2">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
+<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id81" id="id3">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
 <li><p><strong>float</strong>(<em>n</em>): número de punto flotante con precisión de al menos <em>n</em> dígitos.</p></li>
 </ul>
 <p>Cada tipo puede incluir un valor especial llamado el valor <code class="docutils literal notranslate"><span class="pre">null</span></code> (<code class="docutils literal notranslate"><span class="pre">nulo</span></code>). Un valor nulo indica un valor ausente que puede existir pero ser desconocido o que puede no existir en absoluto. En ciertos casos, se podría querer prohibir que se ingresen valores nulos.</p>
-</section>
-<section id="definicion-de-tablas">
-<h3>Definición de tablas<a class="headerlink" href="#definicion-de-tablas" title="Permalink to this heading">#</a></h3>
 <p>En esta sección se trabaja con las tablas de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, como ejemplo. Se recomienda crear la base de datos en un SABD y reproducir los comandos.</p>
+</section>
 <section id="create-table">
-<h4>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this heading">#</a></h4>
+<h3>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this heading">#</a></h3>
 <p>En SQL, una tabla se define con la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_create_table.asp">CREATE TABLE</a>, en la que se especifican los nombres de las columnas juntos con sus tipos de datos. También pueden especificarse restricciones de llave primaria, llaves foráneas y prohibición de valores nulos, entre otras.</p>
 <section id="sintaxis-basica">
-<h5>Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permalink to this heading">#</a></h5>
+<h4>Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permalink to this heading">#</a></h4>
 <p>Se presentan dos variantes.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de una tabla mediante la especificación de sus columnas, </span>
 <span class="c1">-- tipos de datos y restricciones.</span>
@@ -510,7 +562,7 @@ document.write(`
 </div>
 </section>
 <section id="ejemplos">
-<h5>Ejemplos<a class="headerlink" href="#ejemplos" title="Permalink to this heading">#</a></h5>
+<h4>Ejemplos<a class="headerlink" href="#ejemplos" title="Permalink to this heading">#</a></h4>
 <p>El siguiente comando crea la tabla <code class="docutils literal notranslate"><span class="pre">department</span></code>:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de la tabla department</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="p">(</span>
@@ -570,7 +622,7 @@ document.write(`
 <span class="p">);</span>
 
 <span class="c1">-- Creación de la relación teaches</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="n">teaches</span><span class="p">(</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">teaches</span><span class="p">(</span>
 <span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
 <span class="w">    </span><span class="n">course_id</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
 <span class="w">    </span><span class="n">sec_id</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
@@ -604,15 +656,15 @@ document.write(`
 <span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">70</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>La sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se explicará con mayor detalle en el este capítulo.</p>
+<p>La sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se explicará con mayor detalle en este capítulo.</p>
 </section>
 </section>
 <section id="alter-table">
-<h4>ALTER TABLE<a class="headerlink" href="#alter-table" title="Permalink to this heading">#</a></h4>
+<h3>ALTER TABLE<a class="headerlink" href="#alter-table" title="Permalink to this heading">#</a></h3>
 <p>La sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_alter.asp">ALTER TABLE</a> se utiliza para agregar, modificar o borrar columnas en una tabla. También puede agregar y borrar restricciones.</p>
 <p>Con los siguientes comandos, se crea una tabla de ejemplo y luego se agrega, modifica y borra una columna, mediante <code class="docutils literal notranslate"><span class="pre">ALTER</span> <span class="pre">TABLE</span></code>. También se define la llave primaria de la tabla.</p>
-<section id="id5">
-<h5>Sintaxis básica<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h5>
+<section id="id4">
+<h4>Sintaxis básica<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Adición de una columna</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">ADD</span><span class="w"> </span><span class="n">columna</span><span class="w"> </span><span class="n">tipo_datos</span><span class="p">;</span>
@@ -631,8 +683,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h5>Ejemplos<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h5>
+<section id="id5">
+<h4>Ejemplos<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de una tabla de ejemplo</span>
 <span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ejemplo</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="n">col1</span><span class="w"> </span><span class="nb">INTEGER</span>
@@ -658,16 +710,16 @@ document.write(`
 </section>
 </section>
 <section id="drop-table">
-<h4>DROP TABLE<a class="headerlink" href="#drop-table" title="Permalink to this heading">#</a></h4>
+<h3>DROP TABLE<a class="headerlink" href="#drop-table" title="Permalink to this heading">#</a></h3>
 <p>La sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_drop_table.asp">DROP TABLE</a> se utiliza para borrar una tabla.</p>
-<section id="id7">
-<h5>Sintaxis básica<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h5>
+<section id="id6">
+<h4>Sintaxis básica<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
-<section id="id8">
-<h5>Ejemplos<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h5>
+<section id="id7">
+<h4>Ejemplos<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de una tabla</span>
 <span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ejemplo</span><span class="p">;</span>
 </pre></div>
@@ -675,17 +727,14 @@ document.write(`
 </section>
 </section>
 </section>
-</section>
-<section id="sql-dml">
-<h2>SQL DML<a class="headerlink" href="#sql-dml" title="Permalink to this heading">#</a></h2>
-<p>Los comandos de SQL DML se utilizan para manipular los datos almacenados en una base de datos. Estos comandos incluyen <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>, para modificar los datos, y <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> para consultarlos.</p>
-<section id="modificacion-de-datos">
-<h3>Modificación de datos<a class="headerlink" href="#modificacion-de-datos" title="Permalink to this heading">#</a></h3>
+<section id="sql-dml-manipulacion-de-datos">
+<h2>SQL DML - Manipulación de datos<a class="headerlink" href="#sql-dml-manipulacion-de-datos" title="Permalink to this heading">#</a></h2>
+<p>Los comandos de SQL DML se utilizan para manipular los datos almacenados en una base de datos. Estos comandos incluyen <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> y <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>.</p>
 <section id="insert">
-<h4>INSERT<a class="headerlink" href="#insert" title="Permalink to this heading">#</a></h4>
+<h3>INSERT<a class="headerlink" href="#insert" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_insert.asp">INSERT</a> inserta nuevos registros en una tabla.</p>
-<section id="id9">
-<h5>Sintaxis básica<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h5>
+<section id="id8">
+<h4>Sintaxis básica<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
 <p>Se presentan dos variantes.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Especificación de las columnas y sus respectivos valores</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">tabla</span>
@@ -700,8 +749,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="id10">
-<h5>Ejemplos<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h5>
+<section id="id9">
+<h4>Ejemplos<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Inserción de un registro en la tabla department,</span>
 <span class="c1">-- especificando las columnas y sus respectivos valores.</span>
 <span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">department</span><span class="w"> </span>
@@ -934,18 +983,18 @@ document.write(`
 </section>
 </section>
 <section id="update">
-<h4>UPDATE<a class="headerlink" href="#update" title="Permalink to this heading">#</a></h4>
+<h3>UPDATE<a class="headerlink" href="#update" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_update.asp">UPDATE</a> modifica registros de una tabla.</p>
-<section id="id11">
-<h5>Sintaxis básica<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h5>
+<section id="id10">
+<h4>Sintaxis básica<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">columna1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valor2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
-<section id="id12">
-<h5>Ejemplos<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h5>
+<section id="id11">
+<h4>Ejemplos<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Aumento de un 5% a los salarios de todos los profesores</span>
 <span class="k">UPDATE</span><span class="w"> </span><span class="n">instructor</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="p">;</span>
@@ -967,16 +1016,16 @@ document.write(`
 </section>
 </section>
 <section id="delete">
-<h4>DELETE<a class="headerlink" href="#delete" title="Permalink to this heading">#</a></h4>
+<h3>DELETE<a class="headerlink" href="#delete" title="Permalink to this heading">#</a></h3>
 <p>El comando <a class="reference external" href="https://www.w3schools.com/sql/sql_delete.asp">DELETE</a> borra registros de una tabla.</p>
-<section id="id13">
-<h5>Sintaxis básica<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h5>
+<section id="id12">
+<h4>Sintaxis básica<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span><span class="p">;</span><span class="w"> </span>
 </pre></div>
 </div>
 </section>
-<section id="id14">
-<h5>Ejemplos<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h5>
+<section id="id13">
+<h4>Ejemplos<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de un estudiante por ID</span>
 <span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S060&#39;</span><span class="p">;</span>
 </pre></div>
@@ -984,7 +1033,7 @@ document.write(`
 </section>
 </section>
 <section id="ejercicios">
-<h4>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h4>
+<h3>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Agregue registros de prueba en las tablas de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code> de acuerdo con los siguientes pasos:</p>
 <ol class="arabic simple">
@@ -1001,22 +1050,22 @@ document.write(`
 </ol>
 </section>
 </section>
-<section id="consulta-de-datos">
-<h3>Consulta de datos<a class="headerlink" href="#consulta-de-datos" title="Permalink to this heading">#</a></h3>
+<section id="dql-consulta-de-datos">
+<h2>DQL - Consulta de datos<a class="headerlink" href="#dql-consulta-de-datos" title="Permalink to this heading">#</a></h2>
 <p>En esta sección, se estudia la sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> y sus diferentes cláusulas para consulta de datos.</p>
 <section id="la-sentencia-select-y-las-clausulas-from-y-where">
-<h4>La sentencia SELECT y las cláusulas FROM y WHERE<a class="headerlink" href="#la-sentencia-select-y-las-clausulas-from-y-where" title="Permalink to this heading">#</a></h4>
+<h3>La sentencia SELECT y las cláusulas FROM y WHERE<a class="headerlink" href="#la-sentencia-select-y-las-clausulas-from-y-where" title="Permalink to this heading">#</a></h3>
 <p>Las consultas de datos en SQL se realizan a través de la sentencia <a class="reference external" href="https://www.w3schools.com/sql/sql_select.asp">SELECT</a> y su clásula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. Es muy frecuente usar también la cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_where.asp">WHERE</a>, pero no es obligatoria. Con <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> se especifican las columnas que retorna la consulta, las cuales provienen de las tablas listadas en <code class="docutils literal notranslate"><span class="pre">FROM</span></code>. <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> contiene una expresión lógica que deben satisfacer los registros y que puede contener operadores lógicos como <code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code>.</p>
-<section id="id15">
-<h5>Sintaxis básica<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h5>
+<section id="id14">
+<h4>Sintaxis básica<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">condición</span>
 </pre></div>
 </div>
 </section>
-<section id="id16">
-<h5>Ejemplos<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h5>
+<section id="id15">
+<h4>Ejemplos<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de todos los registros y todas las columnas de la tabla student.</span>
 <span class="c1">-- El asterisco (&quot;estrella&quot;) indica que deben retornarse todas las columnas.</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
@@ -1048,9 +1097,9 @@ document.write(`
 </section>
 </section>
 <section id="operaciones-con-hileras-de-caracteres">
-<h4>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h4>
-<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id17">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
-<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id18">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<h3>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h3>
+<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id16">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id17">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
@@ -1062,7 +1111,7 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARÍA GARCÍA&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id19">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id18">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Concatenación de hileras</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Identificación: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;, Nombre: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1105,18 +1154,18 @@ document.write(`
 </div>
 </section>
 <section id="la-clausula-order-by">
-<h4>La cláusula ORDER BY<a class="headerlink" href="#la-clausula-order-by" title="Permalink to this heading">#</a></h4>
+<h3>La cláusula ORDER BY<a class="headerlink" href="#la-clausula-order-by" title="Permalink to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.w3schools.com/sql/sql_orderby.asp">ORDER BY</a> se utiliza para ordenar los resultados de una consulta en orden ascendente o descendente. El orden ascendente es el que se usa por defecto. Si se requiere de un orden descendente, debe usarse la palabra reservada <code class="docutils literal notranslate"><span class="pre">DESC</span></code>.</p>
-<section id="id20">
-<h5>Sintaxis básica<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h5>
+<section id="id19">
+<h4>Sintaxis básica<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">tabla</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">ASC</span><span class="o">|</span><span class="k">DESC</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
-<section id="id21">
-<h5>Ejemplos<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h5>
+<section id="id20">
+<h4>Ejemplos<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h4>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Grupos de cursos ordenados por año y semestre</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
@@ -1131,8 +1180,8 @@ document.write(`
 </section>
 </section>
 <section id="funciones-de-agregacion">
-<h4>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Permalink to this heading">#</a></h4>
-<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id22">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<h3>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Permalink to this heading">#</a></h3>
+<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id21">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <ul class="simple">
 <li><p>Promedio: <a class="reference external" href="https://www.w3schools.com/sql/sql_avg.asp">AVG()</a></p></li>
 <li><p>Mínimo: <a class="reference external" href="https://www.w3schools.com/sql/sql_min_max.asp">MIN()</a></p></li>
@@ -1142,8 +1191,8 @@ document.write(`
 </ul>
 <p>La entrada de <code class="docutils literal notranslate"><span class="pre">AVG()</span></code> y <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.</p>
 <section id="agregacion-sin-agrupacion">
-<h5>Agregación sin agrupación<a class="headerlink" href="#agregacion-sin-agrupacion" title="Permalink to this heading">#</a></h5>
-<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id23">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<h4>Agregación sin agrupación<a class="headerlink" href="#agregacion-sin-agrupacion" title="Permalink to this heading">#</a></h4>
+<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id22">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de todos los profesores</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1175,7 +1224,7 @@ document.write(`
 <p>Para apreciar las diferencias, ejecute los ejemplos anteriores sin usar <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>.</p>
 </section>
 <section id="agregacion-con-agrupacion">
-<h5>Agregación con agrupación<a class="headerlink" href="#agregacion-con-agrupacion" title="Permalink to this heading">#</a></h5>
+<h4>Agregación con agrupación<a class="headerlink" href="#agregacion-con-agrupacion" title="Permalink to this heading">#</a></h4>
 <p>La cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_groupby.asp">GROUP BY</a> permite aplicar la función de agregación no solo a un conjunto único de tuplas, sino también a un grupo de conjuntos de tuplas. El atributo o atributos proporcionados en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> se utilizan para formar grupos. Las tuplas con el mismo valor en todos los atributos en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> se colocan en un grupo.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de los profesores, agrupados por departamento</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">salario_promedio</span>
@@ -1192,7 +1241,7 @@ document.write(`
 <p>En el ejemplo anterior, note que las columnas listadas en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> también están presentes en la cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p>
 </section>
 <section id="la-clausula-having">
-<h5>La cláusula HAVING<a class="headerlink" href="#la-clausula-having" title="Permalink to this heading">#</a></h5>
+<h4>La cláusula HAVING<a class="headerlink" href="#la-clausula-having" title="Permalink to this heading">#</a></h4>
 <p>La cláusula <a class="reference external" href="https://www.w3schools.com/sql/sql_having.asp">HAVING</a> especifica una condición que se aplica a los grupos formados por <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> y no a los registros.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de estudiantes matriculados en cada año y semestre</span>
 <span class="c1">-- con cantidades mayores o iguales a cuatro</span>
@@ -1206,8 +1255,8 @@ document.write(`
 </section>
 </section>
 <section id="manejo-de-valores-nulos">
-<h4>Manejo de valores nulos<a class="headerlink" href="#manejo-de-valores-nulos" title="Permalink to this heading">#</a></h4>
-<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id24">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<h3>Manejo de valores nulos<a class="headerlink" href="#manejo-de-valores-nulos" title="Permalink to this heading">#</a></h3>
+<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id23">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <p>El resultado de una expresión aritmética (que involucra, por ejemplo, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code> o <code class="docutils literal notranslate"><span class="pre">/</span></code>) es nulo si cualquiera de los valores de entrada es nulo.</p>
 <p>Las comparaciones que involucran valores nulos son más problemáticas. Por ejemplo, considere la expresión <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">NULL</span></code>. Sería incorrecto decir que es verdadera o que es falsa, ya que no sabemos lo que el valor nulo representa. Por lo tanto, SQL trata como <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> (desconocido) el resultado de cualquier comparación que involucre un valor nulo (a excepción de los predicados <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code> e <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code>, que se describen más adelante en esta sección). Esto crea un tercer valor lógico además de <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> (verdadero) y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> (falso).</p>
 <p>Ya que el predicado en una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> puede involucrar operadores lógicos como <code class="docutils literal notranslate"><span class="pre">ABD</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code> en los resultados de las comparaciones, las definiciones de estas operaciones se amplían para tratar con el valor <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code>.</p>
@@ -1227,9 +1276,9 @@ document.write(`
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">UNKNOWN</span></code> es <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code></p></li>
 </ul>
-<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id25">[<a class="reference internal" href="#id30" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id24">[<a class="reference internal" href="#id31" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <section id="el-predicado-is-null">
-<h5>El predicado IS NULL<a class="headerlink" href="#el-predicado-is-null" title="Permalink to this heading">#</a></h5>
+<h4>El predicado IS NULL<a class="headerlink" href="#el-predicado-is-null" title="Permalink to this heading">#</a></h4>
 <p>SQL utiliza la palabra reservada <a class="reference external" href="https://www.w3schools.com/sql/sql_null_values.asp">NULL</a> en un predicado para comprobar si un valor es nulo. Por ejemplo:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Nombres de profesores con salario nulo</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
@@ -1255,7 +1304,7 @@ document.write(`
 </div>
 </section>
 <section id="funciones-para-comprobar-valores-nulos">
-<h5>Funciones para comprobar valores nulos<a class="headerlink" href="#funciones-para-comprobar-valores-nulos" title="Permalink to this heading">#</a></h5>
+<h4>Funciones para comprobar valores nulos<a class="headerlink" href="#funciones-para-comprobar-valores-nulos" title="Permalink to this heading">#</a></h4>
 <p>Los SABD incluyen diferentes <a class="reference external" href="https://www.w3schools.com/sql/sql_isnull.asp">funciones para verificar si un valor es nulo</a>.</p>
 <p>Por ejemplo, la función <a class="reference external" href="https://www.w3schools.com/sql/func_sqlserver_coalesce.asp">COALESCE()</a> retorna el primer valor no nulo en una lista de expresiones. Es especialmente útil cuando se quiere proporcionar un valor por defecto en lugar de un valor nulo.</p>
 <p>La sintaxis básica es la siguiente:</p>
@@ -1269,8 +1318,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id26">
-<h4>Ejercicios<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
+<section id="id25">
+<h3>Ejercicios<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Con consultas SQL en la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>, obtenga:</p>
 <ol class="arabic simple">
@@ -1353,23 +1402,205 @@ document.write(`
 <li><p><a class="reference external" href="https://colab.research.google.com/drive/1DLxN0uCISjHl3aH-GJX2L5enmh1opzTI?usp=sharing">Análisis de datos de la final de la Copa Mundial de la FIFA Catar 2022</a>.</p></li>
 </ul>
 </section>
+<section id="consultas-en-multiples-tablas">
+<h3>Consultas en múltiples tablas<a class="headerlink" href="#consultas-en-multiples-tablas" title="Permalink to this heading">#</a></h3>
+<p>En esta sección, se estudia como escribir consultas de datos que están distribuidos en varias tablas.</p>
+<p>Por ejemplo, considere la consulta: <em>obtener los nombres de todos los profesores, junto con los nombres de sus respectivos departamentos y los nombres de los edificios de los departamentos</em>. Los nombres de los profesores y de sus departamentos están en la tabla <code class="docutils literal notranslate"><span class="pre">instructor</span></code>, pero los nombres de los edificios están en la tabla <code class="docutils literal notranslate"><span class="pre">deparment</span></code>. Para responder a la consulta, cada registro en <code class="docutils literal notranslate"><span class="pre">instructor</span></code> debe coincidir con el registro en <code class="docutils literal notranslate"><span class="pre">departament</span></code> cuyo valor de <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> coincida con el valor de <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> en <code class="docutils literal notranslate"><span class="pre">instructor</span></code>.</p>
+<p>En SQL, una forma de responder a consultas como la anterior, consiste en listar todas las tablas que van a consultarse en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> y especificar la condición de coincidencia en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Nombres de profesores, departamentos y edificios</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="n">building</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">department</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">department</span><span class="p">.</span><span class="n">dept_name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Debido a que la columna <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> está presente en ambas tablas, el nombre de la tabla se utiliza como prefijo (en <code class="docutils literal notranslate"><span class="pre">instructor.dept_name</span></code> y <code class="docutils literal notranslate"><span class="pre">department.dept_name</span></code>) para especificar a cual columna se está haciendo referencia en cada caso.</p>
+<p>La siguiente consulta retorna los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Nótese que la consulta anterior retorna solamente los nombres de profesores que han impartido al menos un curso. Si un profesor está presente en la tabla <code class="docutils literal notranslate"><span class="pre">ìnstructor</span></code>, pero no tiene ningún curso asignado en la tabla <code class="docutils literal notranslate"><span class="pre">teaches</span></code>, su nombre no se mostrará en el resultado.</p>
+<p>Si se requiere incluir el nombre del curso en el resultado de la consulta, debe incluirse la tabla <code class="docutils literal notranslate"><span class="pre">course</span></code> en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> y la condición de coincidencia adicional en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- course_id y nombres de cursos impartidos por cada profesor, junto con la sección, semestre y año</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span><span class="p">,</span><span class="w"> </span><span class="n">course</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En general, cuando se incluyen varias relaciones en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, el funcionamiento de una consulta SQL puede describirse en tres pasos:</p>
+<ol class="arabic simple">
+<li><p>Genera un <a class="reference external" href="https://es.wikipedia.org/wiki/Producto_cartesiano">producto cartesiano</a> de las tablas listadas en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>.</p></li>
+<li><p>Aplica las condiciones especificadas en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> al resultado del paso 1.</p></li>
+<li><p>Para cada fila presente en el resultado del paso 2, muestra las consultas especificadas en la cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p></li>
+</ol>
+<p>Es importante mencionar que aunque esta secuencia de pasos ayuda a entender cuál debería ser el resultado de una consulta SQL, no es la forma cómo debería ejecutarse. Una implementación real de SQL no ejecutaría la consulta de esta manera; en su lugar, optimizaría la evaluación generando (en la medida de lo posible) solo aquellos elementos del producto cartesiano que satisfacen los predicados de la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, para así procesar menos datos.</p>
+<p>Al escribir consultas como las anteriores, se debe tener cuidado de incluir las condiciones adecuadas en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>. Si se omiten, se producirá un producto cartesiano, el cual podría contener muchos registros.</p>
+<section id="operaciones-join">
+<h4>Operaciones JOIN<a class="headerlink" href="#operaciones-join" title="Permalink to this heading">#</a></h4>
+<p>Los ejemplos de consultas en múltiples tablas que se han estudiado hasta el momento están basados en el producto cartesiano. Seguidamente, se introducen varias operaciones de <a class="reference external" href="https://www.w3schools.com/sql/sql_join.asp">JOIN</a> (unión o cruce de datos) que permiten al programador escribir algunas consultas de una manera más natural y también formular consultas que son difíciles de implementar solamente con el producto cartesiano.</p>
+<p>El estándar ANSI del SQL especifica cinco operaciones <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, las cuales actúan sobre dos tablas (izquierda y derecha) y producen otra tabla como resultado:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(INNER)</span> <span class="pre">JOIN</span></code>: retorna los registros con valores coincidentes en ambas tablas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">(OUTER)</span> <span class="pre">JOIN</span></code>: retorna todos los registros de la tabla de la izquierda y los registros coincidentes de la tabla de la derecha.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">(OUTER)</span> <span class="pre">JOIN</span></code>: retorna todos los registros de la tabla de la derecha y los registros coincidentes de la tabla de la izquierda.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">(OUTER)</span> <span class="pre">JOIN</span></code>: retorna todos los registros de ambas tablas, tanto los que tienen valores coincidentes como los que no.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code>: retorna el producto cartesiano de las dos tablas.</p></li>
+</ul>
+<p>Los diferentes tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> se representan como <a class="reference external" href="https://es.wikipedia.org/wiki/Diagrama_de_Venn">diagramas de Venn</a> en la <a class="reference internal" href="#figure-joins-sql"><span class="std std-numref">Fig. 6</span></a>.</p>
+<figure class="align-default" id="figure-joins-sql">
+<img alt="../../_images/joins-sql.png" src="../../_images/joins-sql.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> de SQL y sus representaciones como diagramas de Venn. Imagen compartida a través de <a class="reference external" href="https://es.wikipedia.org/wiki/Sentencia_JOIN_en_SQL#/media/Archivo:Joins_del_SQL.svg">Wikipedia</a>.</span><a class="headerlink" href="#figure-joins-sql" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A pesar de que los <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> se definen para dos tablas, las operaciones pueden generarlizarse para involucrar más tablas.</p>
+<p>La sintaxis general de una cláusula <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> en una sentencia <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> es la siguiente:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Sintaxis general de una cláusula JOIN</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tabla_izquierda</span>
+<span class="k">INNER</span><span class="o">|</span><span class="k">LEFT</span><span class="o">|</span><span class="k">RIGHT</span><span class="o">|</span><span class="k">FULL</span><span class="o">|</span><span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">tabla_derecha</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">condición</span>
+</pre></div>
+</div>
+<p>La cláusula <code class="docutils literal notranslate"><span class="pre">ON</span></code> define la condición de coincidencia sobre la cual se basa la operación <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> (ya sea <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">JOIN</span></code> o <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code>) que se está realizando. Especifica cuáles columnas de las tablas que se están uniendo deben compararse y cómo deben compararse. Solo las filas que satisfacen esta condición de coincidencia se incluyen en el resultado.</p>
+<p>Seguidamente, se describen en detalle los diferentes tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>.</p>
+<section id="inner-join">
+<h5>INNER JOIN<a class="headerlink" href="#inner-join" title="Permalink to this heading">#</a></h5>
+<p>Un <a class="reference external" href="https://www.w3schools.com/sql/sql_join_inner.asp">INNER JOIN</a>, también conocido simplemente como <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, retorna solo las filas que tienen valores coincidentes en ambas tablas.</p>
+<p>Por ejemplo, la siguiente consulta utiliza un <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> para unir datos de las tablas <code class="docutils literal notranslate"><span class="pre">student</span></code> y <code class="docutils literal notranslate"><span class="pre">takes</span></code> con base en la coincidencia de los valores de la columna <code class="docutils literal notranslate"><span class="pre">ID</span></code> en <code class="docutils literal notranslate"><span class="pre">student</span></code> y la columna <code class="docutils literal notranslate"><span class="pre">ID</span></code> en <code class="docutils literal notranslate"><span class="pre">takes</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- ID y nombres de estudiantes, junto con los id de los cursos matriculados</span>
+<span class="c1">-- (con INNER JOIN explícito)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El mismo resultado puede obtenerse listando ambas tablas en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> y reaizando un producto cartesiano, como se mencionó anteriormente. A esta operación se le conoce como <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> “implícito”.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- ID y nombres de estudiantes, junto con los id de los cursos matriculados</span>
+<span class="c1">-- (INNER JOIN implícito)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">,</span><span class="w"> </span><span class="n">takes</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Si se desea, por ejemplo, agregar el nombre de cada curso a la consulta anterior, puede hacerse con un <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> adicional a la tabla <code class="docutils literal notranslate"><span class="pre">course</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- ID y nombres de estudiantes, junto con los id y nombres de los cursos matriculados</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">course</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">course_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">course</span><span class="p">.</span><span class="n">course_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="id26">
+<h6>Ejercicios<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h6>
+<p>Escriba consultas en SQL para obtener, de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>:</p>
+<ol class="arabic simple">
+<li><p>ID y nombre de estudiantes que han matriculado cursos en el año 2023.</p></li>
+<li><p>ID y nombre de estudiantes que han matriculado cursos en el año 2023, junto con el promedio de esos cursos para cada estudiante.</p></li>
+</ol>
+</section>
+</section>
+<section id="left-join">
+<h5>LEFT JOIN<a class="headerlink" href="#left-join" title="Permalink to this heading">#</a></h5>
+<p>Un <a class="reference external" href="https://www.w3schools.com/sql/sql_join_left.asp">LEFT JOIN</a>, también conocido como <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code>, retorna todas las filas de la tabla de la izquierda y las filas coincidentes de la tabla de la derecha. Si no hay una coincidencia para una fila particular de la tabla de la izquierda, los valores para las columnas de la tabla de la derecha serán <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. La operación <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> garantiza que todas las filas de la tabla de la izquierda estén presentes en el resultado, independientemente de si hay o no una coincidencia en la tabla de la derecha.</p>
+<p>Por ejemplo, retomemos la consulta sobre los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes. Sabemos que puede implementarse con <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">teaches</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Sin embargo, el resultado de esta consulta no incluye profesores registrados en <code class="docutils literal notranslate"><span class="pre">instructor</span></code> que no tengan cursos en <code class="docutils literal notranslate"><span class="pre">teaches</span></code>. Esto podría lograrse con <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año, incluyendo profesores que no hayan impartido cursos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">teaches</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Nótese que las columnas <code class="docutils literal notranslate"><span class="pre">course_id</span></code>, <code class="docutils literal notranslate"><span class="pre">sec_id</span></code>, <code class="docutils literal notranslate"><span class="pre">year</span></code> y <code class="docutils literal notranslate"><span class="pre">semester</span></code> tienen <code class="docutils literal notranslate"><span class="pre">NULL</span></code> en los registros de profesores que no han impartido ningún curso. Esto puede aprovecharse para encontrar específicamente los profesores que no han impartido ningún curso: mediante una condición en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se seleccionan los registros donde alguna columna de la tabla de la derecha es <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Profesores que no han impartido ningún curso</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">teaches</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="id27">
+<h6>Ejercicios<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h6>
+<p>Escriba consultas en SQL para obtener, de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Para cada estudiante, un registro por curso matriculado, sección, año, semestre y nota. Cada registro deben tener tanto el ID como el nombre del estudiante. Esta lista debe incluir los estudiantes en la tabla <code class="docutils literal notranslate"><span class="pre">student</span></code>.</p></li>
+<li><p>ID y nombre de todos los estudiantes con su promedio general (de todos los cursos que hayan matriculado). La lista debe incluir a todos los estudiantes en <code class="docutils literal notranslate"><span class="pre">student</span></code>.</p></li>
+<li><p>ID y nombre de todos los estudiantes que no han matriculado ningún curso.</p></li>
+</ol>
+</section>
+</section>
+<section id="right-join">
+<h5>RIGHT JOIN<a class="headerlink" href="#right-join" title="Permalink to this heading">#</a></h5>
+<p>Un <a class="reference external" href="https://www.w3schools.com/sql/sql_join_right.asp">RIGHT JOIN</a>, también conocido como <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code>, retorna todas las filas de la tabla de la derecha y las filas coincidentes de la tabla de la izquierda. Si no hay una coincidencia para una fila particular de la tabla de la derecha, los valores para las columnas de la tabla de la izquierda serán <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. La operación <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code> garantiza que todas las filas de la tabla de la derecha estén presentes en el resultado, independientemente de si hay o no una coincidencia en la tabla de la izquierda.</p>
+<p>Por ejemplo, la consulta sobre los cursos impartidos por cada profesor, junto con la sección, año y semestre correspondientes, incluyendo profesores registrados en <code class="docutils literal notranslate"><span class="pre">instructor</span></code> que no tengan cursos en <code class="docutils literal notranslate"><span class="pre">teaches</span></code>, y que anteriormente se resolvió con <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>, también puede resolverse con <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- course_id de cursos impartidos por cada profesor, junto con la sección, semestre y año, incluyendo profesores que no hayan impartido cursos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">teaches</span>
+<span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">sec_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">semester</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En la práctica, muchas veces las consultas que utilizan <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code> pueden ser reescritas para usar <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>, y viceversa, simplemente cambiando el orden de las tablas. Sin embargo, en ciertos contextos y para ciertas lógicas de consulta, una de las opciones puede ser mejor que la otra.</p>
+</section>
+<section id="full-join">
+<h5>FULL JOIN<a class="headerlink" href="#full-join" title="Permalink to this heading">#</a></h5>
+<p>Un <a class="reference external" href="https://www.w3schools.com/sql/sql_join_full.asp">FULL JOIN</a>, también conocido como <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code>, retorna todas las filas de ambas tablas, tanto las que tienen valores coincidentes como las que no. Si hay una coincidencia entre las filas de las tablas basada en la condición especificada, esas filas se combinarán en el resultado. Si no hay una coincidencia para una fila particular en una de las tablas, los valores para las columnas de la otra tabla serán <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p>En otras palabras, un <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">JOIN</span></code> combina las características del <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> y del <code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code>. Devuelve todas las filas de la tabla de la izquierda que tienen coincidencias en la tabla de la derecha, todas las filas de la tabla de la derecha que tienen coincidencias en la tabla de la izquierda, y todas las filas de ambas tablas que no tienen coincidencias entre sí.</p>
+<p>Supongamos que se desea obtener una lista de todos los estudiantes y todos los cursos que han tomado, incluyendo a los estudiantes que no han tomado ningún curso y los cursos que no han sido tomados por ningún estudiante.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Lista de todos los estudiantes y todos los cursos que han tomado, </span>
+<span class="c1">-- incluyendo a los estudiantes que no han tomado ningún curso </span>
+<span class="c1">-- y los cursos que no han sido tomados por ningún estudiante</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">grade</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">FULL</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">takes</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">takes</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El <code class="docutils literal notranslate"><span class="pre">FULL</span> <span class="pre">JOIN</span></code> es útil cuando se desea conservar todas las filas de ambas tablas en el conjunto de resultados, independientemente de si hay coincidencias. Sin embargo, es menos común que los otros tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> y no es soportado por todos los SABD.</p>
+</section>
+<section id="cross-join">
+<h5>CROSS JOIN<a class="headerlink" href="#cross-join" title="Permalink to this heading">#</a></h5>
+<p>La operación <a class="reference external" href="https://es.wikipedia.org/wiki/Sentencia_JOIN_en_SQL#Cruzada_(Cross_join)">CROSS JOIN</a> retorna el producto cartesiano de dos tablas. Es decir, combina cada fila de la primera tabla con cada fila de la segunda tabla. No necesita una condición de coincidencia, como es el caso con otros tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>.</p>
+<p>El resultado de un <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> es una tabla con número de filas igual al producto del número de filas de las dos tablas involucradas. Por ejemplo, si una tabla tiene 5 filas y la otra tiene 3, el resultado del <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> tendrá 15 filas.</p>
+<p>Por ejemplo, la siguiente consulta retorna todas las combinaciones posibles de profesores y estudiantes. En el resultado, cada profesor se asocia con cada estudiante.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Producto cartesiano de instructor y student</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_ID</span><span class="p">,</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">student</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">student_ID</span><span class="p">,</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">student_name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span>
+<span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">student</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">instructor_ID</span><span class="p">,</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">student_ID</span><span class="p">,</span><span class="w"> </span><span class="n">student_name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El uso de <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> podría ser menos común que otros tipos de <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, ya que generalmente se busca combinar datos basados en alguna condición lógica. Sin embargo, hay situaciones, especialmente en análisis de datos o generación de conjuntos de datos específicos, en los que <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code> puede ser útil.</p>
+</section>
+</section>
 </section>
 </section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id27">
+<div class="docutils container" id="id28">
 <dl class="citation">
-<dt class="label" id="id30"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id17">3</a>,<a href="#id18">4</a>,<a href="#id19">5</a>,<a href="#id22">6</a>,<a href="#id23">7</a>,<a href="#id24">8</a>,<a href="#id25">9</a>)</span></dt>
+<dt class="label" id="id31"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id16">2</a>,<a href="#id17">3</a>,<a href="#id18">4</a>,<a href="#id21">5</a>,<a href="#id22">6</a>,<a href="#id23">7</a>,<a href="#id24">8</a>)</span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
 </dl>
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id79"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dt class="label" id="id80"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>En la representación de punto fijo, la posición del punto decimal es fija y no cambia. Por ejemplo, si se tiene un sistema de punto fijo de 4 dígitos con 2 posiciones después del punto decimal, el número 123.45 se representaría como 12345 y se entendería que el punto decimal está entre el segundo y tercer dígito desde la derecha. Generalmente, las operaciones de punto fijo son más rápidas y consumen menos recursos del hardware en comparación con las operaciones de punto flotante, especialmente en hardware que no tiene soporte dedicado para operaciones de punto flotante.</p>
 </dd>
-<dt class="label" id="id80"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dt class="label" id="id81"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
 <dd><p>En la representación de punto flotante, la posición del punto decimal puede variar, y el número se representa en términos de una mantisa y un exponente. Por ejemplo, el número 123.45 podría representarse como 1.2345 × 10<sup>2</sup> (1.2345 es la mantisa y 2 el exponente). Requiere hardware más complejo para realizar operaciones, pero esto se ha vuelto menos problemático con el tiempo, debido a la inclusión de unidades de punto flotante (FPU) en la mayoría de los procesadores modernos.</p>
 </dd>
 </dl>
@@ -1443,73 +1674,92 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-ddl">SQL DDL</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#historia">Historia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sublenguajes">Sublenguajes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sentencias-y-clausulas">Sentencias y cláusulas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-estilo">Recomendaciones de estilo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-ddl-definicion-de-datos">SQL DDL - Definición de datos</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-basicos">Tipos de datos básicos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-tablas">Definición de tablas</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table">CREATE TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table">CREATE TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-table">ALTER TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alter-table">ALTER TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Ejemplos</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-table">DROP TABLE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Ejemplos</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml">SQL DML</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificacion-de-datos">Modificación de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Ejemplos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-dml-manipulacion-de-datos">SQL DML - Manipulación de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert">INSERT</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update">UPDATE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">DELETE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consulta-de-datos">Consulta de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Ejemplos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dql-consulta-de-datos">DQL - Consulta de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-sentencia-select-y-las-clausulas-from-y-where">La sentencia SELECT y las cláusulas FROM y WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Sintaxis básica</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Ejemplos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-agregacion">Funciones de agregación</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-sin-agrupacion">Agregación sin agrupación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#agregacion-con-agrupacion">Agregación con agrupación</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-having">La cláusula HAVING</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manejo-de-valores-nulos">Manejo de valores nulos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#el-predicado-is-null">El predicado IS NULL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-para-comprobar-valores-nulos">Funciones para comprobar valores nulos</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Ejercicios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas-en-multiples-tablas">Consultas en múltiples tablas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-join">Operaciones JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">INNER JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join">LEFT JOIN</a><ul class="nav section-nav flex-column">
+<li class="toc-h6 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Ejercicios</a></li>
+</ul>
+</li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join">RIGHT JOIN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#full-join">FULL JOIN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">CROSS JOIN</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
