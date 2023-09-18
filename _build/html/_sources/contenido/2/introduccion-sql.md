@@ -1131,6 +1131,9 @@ ORDER BY instructor_ID, instructor_name, student_ID, student_name;
 
 El uso de `CROSS JOIN` podría ser menos común que otros tipos de `JOIN`, ya que generalmente se busca combinar datos basados en alguna condición lógica. Sin embargo, hay situaciones, especialmente en análisis de datos o generación de conjuntos de datos específicos, en los que `CROSS JOIN` puede ser útil.
 
+## Recursos de interés
+[El penalti de Nash - Informe Robinson](https://www.facebook.com/VictorAlvaradoMKT/videos/el-penalti-de-nash-informe-robinson/870191266384756/)
+
 ## Bibliografía
 ```{bibliography}
 :filter: docname in docnames
