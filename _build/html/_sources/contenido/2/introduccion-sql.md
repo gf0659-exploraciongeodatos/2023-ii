@@ -1173,8 +1173,39 @@ ORDER BY instructor_ID, instructor_name, student_ID, student_name;
 
 El uso de `CROSS JOIN` podría ser menos común que otros tipos de `JOIN`, ya que generalmente se busca combinar datos basados en alguna condición lógica. Sin embargo, hay situaciones, especialmente en análisis de datos o generación de conjuntos de datos específicos, en los que `CROSS JOIN` puede ser útil.
 
+##### Ejercicios
+El *script* [idea-cibernetica.sql](sql/idea-cibernetica.sql) contiene varios comandos SQL para crear las tablas y cargar datos en la base de datos de personal de la compañía de desarrollo de software "Idea Cibernética S.A.".
+
+1. Estudie el *script* `idea-cibernetica.sql` y observe la estructura de las tablas, las relaciones entre estas, sus tipos de datos y restricciones. Preste atención a:
+    - El (pseudo) tipo de datos [serial](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-serial/). Es uno de los mecanismos disponibles en SQL para [autoincrementar](https://www.w3schools.com/sql/sql_autoincrement.asp) el valor de una columna y así evitar repeticiones. Estas columnas pueden utilizarse como llaves primarias.
+    - El tipo de datos [date](https://www.w3schools.com/sql/sql_dates.asp).
+2. Cree una base de datos (ej. `idea-cibernetica`) en PostgreSQL y ejecute `idea-cibernetica.sql`.
+3. Liste el nombre, los apellidos y el nombre del departamento de cada empleado.
+4. Liste el nombre, los apellidos, el nombre del departamento y el nombre del puesto de cada empleado.
+5. Calcule y liste la edad de cada uno de los empleados, al 2023-09-21, con base en la fecha de nacimiento. Sugerencia: utilice las funciones [AGE()](https://www.postgresqltutorial.com/postgresql-date-functions/postgresql-age/) y [DATE_PART()](https://www.postgresqltutorial.com/postgresql-date-functions/postgresql-date_part/). Ejemplo:
+```sql
+-- Edad de los empleados al 2023-09-21
+SELECT 
+    nombre,
+    apellidos,
+    fecha_nacimiento,
+    DATE_PART('year', AGE('2023-09-21', fecha_nacimiento)) AS edad
+FROM empleado;
+```
+6. Calcule y despliegue la edad promedio de todos los empleados.
+7. Calcule y despliegue la edad promedio de los empleados de cada departamento. Muestre el nombre del departamento.
+8. Liste los departamentos que no tienen empleados.
+9. Calcule y despliegue el salario promedio de todos los empleados.
+10. Calcule y despliegue el salario promedio de los empleados de cada departamento. Muestre el nombre del departamento.
+11. Liste los empleados que no están asignados a ningún proyecto.
+12. Liste los proyectos que no tienen empleados asignados.
+13. Liste los proyectos que no han concluído al 2023-09-21.
+14. Encuentre el proyecto con el mayor período de ejecución.
+
 ## Recursos de interés
 [El penalti de Nash - Informe Robinson](https://www.facebook.com/VictorAlvaradoMKT/videos/el-penalti-de-nash-informe-robinson/870191266384756/)
+
+[PostgreSQL Tutorial](https://www.postgresqltutorial.com/)
 
 ## Bibliografía
 ```{bibliography}
