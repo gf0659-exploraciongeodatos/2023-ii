@@ -419,9 +419,14 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-basicas">Operaciones básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algunas-operaciones-basicas">Algunas operaciones básicas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palabra-clave-as">La palabra clave AS</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predicados-en-la-clausula-where">Predicados en la cláusula WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-operador-between">El operador BETWEEN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-operador-in">El operador IN</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
@@ -1120,9 +1125,9 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="operaciones-basicas">
-<h3>Operaciones básicas<a class="headerlink" href="#operaciones-basicas" title="Permalink to this heading">#</a></h3>
-<p>En esta sección, se introducen varias operaciones comúnmente que se utiliza comúnmente en consultas SQL.</p>
+<section id="algunas-operaciones-basicas">
+<h3>Algunas operaciones básicas<a class="headerlink" href="#algunas-operaciones-basicas" title="Permalink to this heading">#</a></h3>
+<p>En esta sección, se introducen varias operaciones que se utilizan comúnmente en consultas SQL.</p>
 <section id="la-palabra-clave-as">
 <h4>La palabra clave AS<a class="headerlink" href="#la-palabra-clave-as" title="Permalink to this heading">#</a></h4>
 <p>La palabra clave <a class="reference external" href="https://www.w3schools.com/sql/sql_ref_as.asp">AS</a> se utiliza para asignar un alias temporal a una columna o tabla. Este alias solamente existe durante la duración de la consulta.</p>
@@ -1153,13 +1158,15 @@ document.write(`
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">AS</span></code> también puede utilizarse para asignarle alias a tablas. Por ejemplo, la consulta:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta con nombres completos de tablas</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Puede reescribirse como:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<p>puede reescribirse, mediante alias, como:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta con alias para las tablas</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
 </pre></div>
@@ -1222,6 +1229,57 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;D_n%&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
+</section>
+<section id="predicados-en-la-clausula-where">
+<h4>Predicados en la cláusula WHERE<a class="headerlink" href="#predicados-en-la-clausula-where" title="Permalink to this heading">#</a></h4>
+<p>Como se explicó en un sección previa, la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> contiene predicados (i.e. expresiones lógicas que pueden ser verdaderas, falsas o desconocidas) que deben satisfacer los registros que retorne la consulta.</p>
+<section id="el-operador-between">
+<h5>El operador BETWEEN<a class="headerlink" href="#el-operador-between" title="Permalink to this heading">#</a></h5>
+<p>El operador <a class="reference external" href="https://www.w3schools.com/sql/sql_between.asp">BETWEEN</a> selecciona valores en un rango. Estos valores pueden ser números, caracteres o fechas.</p>
+<p>Por ejemplo, la consulta:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de rango de números entre 80 y 90 (inclusive)</span>
+<span class="c1">-- mediante los operadores &gt;= y &lt;=</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">grade</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">takes</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>puede reescribirse como:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de rango de números entre 80 y 90 (inclusive)</span>
+<span class="c1">-- mediante el operador BETWEEN</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">grade</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">takes</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">90</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> también puede emplearse para consultar rangos de hileras de caracteres.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de hileras entre &#39;Alejandro Ruiz&#39; y &#39;Daniela Ortega&#39;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">&#39;Alejandro Ruiz&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">&#39;Daniela Ortega&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="el-operador-in">
+<h5>El operador IN<a class="headerlink" href="#el-operador-in" title="Permalink to this heading">#</a></h5>
+<p>El operador <a class="reference external" href="https://www.w3schools.com/sql/sql_in.asp">IN</a> permite especificar múltiples valores en una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>. Puede utilizarse para abreviar un predicado con múltiples <code class="docutils literal notranslate"><span class="pre">OR</span></code>.</p>
+<p>Considere la siguiente consulta de múltiples valores, mediante varios <code class="docutils literal notranslate"><span class="pre">OR</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de estudiantes con ID específicos</span>
+<span class="c1">-- mediante múltiples OR</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S001&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S002&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S003&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Mediante <code class="docutils literal notranslate"><span class="pre">IN</span></code>, puede reescribirse como:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de estudiantes con ID específicos</span>
+<span class="c1">-- mediante el operador IN</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;S001&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;S002&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;S003&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="la-clausula-order-by">
@@ -1875,9 +1933,14 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-basicas">Operaciones básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algunas-operaciones-basicas">Algunas operaciones básicas</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palabra-clave-as">La palabra clave AS</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predicados-en-la-clausula-where">Predicados en la cláusula WHERE</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-operador-between">El operador BETWEEN</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#el-operador-in">El operador IN</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
