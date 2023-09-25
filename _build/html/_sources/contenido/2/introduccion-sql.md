@@ -1307,6 +1307,104 @@ FROM empleado;
 13. Liste los proyectos que no han concluído al 2023-09-21.
 14. Encuentre el proyecto con el mayor período de ejecución.
 
+### Operaciones de conjuntos
+SQL implementa las operaciones [unión de conjuntos](https://es.wikipedia.org/wiki/Uni%C3%B3n_de_conjuntos), [intersección de conjuntos](https://es.wikipedia.org/wiki/Intersecci%C3%B3n_de_conjuntos) y [diferencia de conjuntos](https://es.wikipedia.org/wiki/Diferencia_de_conjuntos).
+
+Todas las operaciones de conjuntos actúan en los resultados de dos sentencias `SELECT`, los cuales deben cumplir con las siguientes condiciones:
+
+- Deben tener el mismo número de columnas.
+- Los tipos de datos de las columnas deben coincidir.
+- El orden de las columnas también debe coincidir.
+
+**Sintaxis básica**
+
+```sql
+-- Sintaxis básica de las operaciones de conjuntos
+SELECT columna1, columna2, ...
+FROM tabla1
+UNION|INTERSECT|EXCEPT
+SELECT columnna1, columna2, ...
+FROM tabla2;
+```
+
+#### Unión
+La operación [UNION](https://www.w3schools.com/sql/sql_union.asp) une los resultados de dos sentencias `SELECT`.
+
+Ejemplo:
+
+```sql
+-- Unión de los cursos del semestre S1 de 2022 y S1 de 2023
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2022
+UNION
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2023;
+```
+
+`UNION` elimina automáticamente los duplicados (al igual que la operación de conjuntos en la que está basada), por lo que la consulta anterior no retorna valores repetidos de `course_id`. Por este motivo, `UNION` se utiliza con frecuencia precisamente para eliminar duplicados. Si se desea conservar los valores duplicados, puede utilizarse la variante `UNION ALL`.
+
+```sql
+-- Unión de los cursos del semestre S1 de 2022 y S1 de 2023,
+-- incluyendo valores duplicados
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2022
+UNION ALL
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2023;
+```
+
+#### Intersección
+La operación `INTERSECTS` retorna los valores en común de dos sentencias `SELECT`.
+
+Ejemplo:
+
+```sql
+-- Intersección de los cursos del semestre S1 de 2022 y S1 de 2023
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2022
+INTERSECT
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2023;
+```
+
+La consulta anterior retorna los `course_id` de los cursos impartidos en ambos semestres.
+
+#### Diferencia
+La operación `EXCEPT` retorna los valores presentes en un conjunto de datos, pero no en el otro.
+
+Ejemplo:
+
+```sql
+-- Cursos impartidos en el semestre S1 de 2022, pero no en el S1 de 2023
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2022
+EXCEPT
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2023;
+```
+
+Al igual que `UNION`, `EXCEPT` no retorna valores duplicados. Si se desea conservarlos, puede utilizarse la variante `EXCEPT ALL`.
+
+```sql
+-- Cursos impartidos en el semestre S1 de 2022, pero no en el S1 de 2023,
+-- incluyendo valores duplicados.
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2022
+EXCEPT ALL
+SELECT course_id
+FROM section
+WHERE semester = 'S1' AND year = 2023;
+```
+
 ## Recursos de interés
 [El penalti de Nash - Informe Robinson](https://www.facebook.com/VictorAlvaradoMKT/videos/el-penalti-de-nash-informe-robinson/870191266384756/)
 
