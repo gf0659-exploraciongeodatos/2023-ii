@@ -469,6 +469,12 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-conjuntos">Operaciones de conjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Unión</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interseccion">Intersección</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia">Diferencia</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursos-de-interes">Recursos de interés</a></li>
@@ -1781,6 +1787,95 @@ document.write(`
 </section>
 </section>
 </section>
+<section id="operaciones-de-conjuntos">
+<h3>Operaciones de conjuntos<a class="headerlink" href="#operaciones-de-conjuntos" title="Permalink to this heading">#</a></h3>
+<p>SQL implementa las operaciones <a class="reference external" href="https://es.wikipedia.org/wiki/Uni%C3%B3n_de_conjuntos">unión de conjuntos</a>, <a class="reference external" href="https://es.wikipedia.org/wiki/Intersecci%C3%B3n_de_conjuntos">intersección de conjuntos</a> y <a class="reference external" href="https://es.wikipedia.org/wiki/Diferencia_de_conjuntos">diferencia de conjuntos</a>.</p>
+<p>Todas las operaciones de conjuntos actúan en los resultados de dos sentencias <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, los cuales deben cumplir con las siguientes condiciones:</p>
+<ul class="simple">
+<li><p>Deben tener el mismo número de columnas.</p></li>
+<li><p>Los tipos de datos de las columnas deben coincidir.</p></li>
+<li><p>El orden de las columnas también debe coincidir.</p></li>
+</ul>
+<p><strong>Sintaxis básica</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Sintaxis básica de las operaciones de conjuntos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tabla1</span>
+<span class="k">UNION</span><span class="o">|</span><span class="k">INTERSECT</span><span class="o">|</span><span class="k">EXCEPT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">columnna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tabla2</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="union">
+<h4>Unión<a class="headerlink" href="#union" title="Permalink to this heading">#</a></h4>
+<p>La operación <a class="reference external" href="https://www.w3schools.com/sql/sql_union.asp">UNION</a> une los resultados de dos sentencias <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p>
+<p>Ejemplo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Unión de los cursos del semestre S1 de 2022 y S1 de 2023</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">UNION</span></code> elimina automáticamente los duplicados (al igual que la operación de conjuntos en la que está basada), por lo que la consulta anterior no retorna valores repetidos de <code class="docutils literal notranslate"><span class="pre">course_id</span></code>. Por este motivo, <code class="docutils literal notranslate"><span class="pre">UNION</span></code> se utiliza con frecuencia precisamente para eliminar duplicados. Si se desea conservar los valores duplicados, puede utilizarse la variante <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Unión de los cursos del semestre S1 de 2022 y S1 de 2023,</span>
+<span class="c1">-- incluyendo valores duplicados</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="interseccion">
+<h4>Intersección<a class="headerlink" href="#interseccion" title="Permalink to this heading">#</a></h4>
+<p>La operación <code class="docutils literal notranslate"><span class="pre">INTERSECTS</span></code> retorna los valores en común de dos sentencias <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p>
+<p>Ejemplo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Intersección de los cursos del semestre S1 de 2022 y S1 de 2023</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="k">INTERSECT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La consulta anterior retorna los <code class="docutils literal notranslate"><span class="pre">course_id</span></code> de los cursos impartidos en ambos semestres.</p>
+</section>
+<section id="diferencia">
+<h4>Diferencia<a class="headerlink" href="#diferencia" title="Permalink to this heading">#</a></h4>
+<p>La operación <code class="docutils literal notranslate"><span class="pre">EXCEPT</span></code> retorna los valores presentes en un conjunto de datos, pero no en el otro.</p>
+<p>Ejemplo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cursos impartidos en el semestre S1 de 2022, pero no en el S1 de 2023</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="k">EXCEPT</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Al igual que <code class="docutils literal notranslate"><span class="pre">UNION</span></code>, <code class="docutils literal notranslate"><span class="pre">EXCEPT</span></code> no retorna valores duplicados. Si se desea conservarlos, puede utilizarse la variante <code class="docutils literal notranslate"><span class="pre">EXCEPT</span> <span class="pre">ALL</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cursos impartidos en el semestre S1 de 2022, pero no en el S1 de 2023,</span>
+<span class="c1">-- incluyendo valores duplicados.</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="k">EXCEPT</span><span class="w"> </span><span class="k">ALL</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">section</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">semester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;S1&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 <section id="recursos-de-interes">
 <h2>Recursos de interés<a class="headerlink" href="#recursos-de-interes" title="Permalink to this heading">#</a></h2>
@@ -1981,6 +2076,12 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">Ejercicios</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-de-conjuntos">Operaciones de conjuntos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Unión</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interseccion">Intersección</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia">Diferencia</a></li>
 </ul>
 </li>
 </ul>
