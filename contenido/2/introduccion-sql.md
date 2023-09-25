@@ -637,8 +637,8 @@ FROM student
 WHERE dept_name = 'Informática' AND tot_cred >= 55;
 ```
 
-### Operaciones básicas
-En esta sección, se introducen varias operaciones comúnmente que se utiliza comúnmente en consultas SQL.
+### Algunas operaciones básicas
+En esta sección, se introducen varias operaciones que se utilizan comúnmente en consultas SQL.
 
 #### La palabra clave AS
 La palabra clave [AS](https://www.w3schools.com/sql/sql_ref_as.asp) se utiliza para asignar un alias temporal a una columna o tabla. Este alias solamente existe durante la duración de la consulta.
@@ -676,14 +676,16 @@ FROM instructor;
 `AS` también puede utilizarse para asignarle alias a tablas. Por ejemplo, la consulta:
 
 ```sql
+-- Consulta con nombres completos de tablas
 SELECT name AS instructor_name, course_id
 FROM instructor, teaches
 WHERE instructor.ID = teaches.ID;
 ```
 
-Puede reescribirse como:
+puede reescribirse, mediante alias, como:
 
 ```sql
+-- Consulta con alias para las tablas
 SELECT name AS instructor_name, course_id
 FROM instructor AS i, teaches AS t
 WHERE i.ID = t.ID;
@@ -750,6 +752,64 @@ WHERE name LIKE '%H%' OR name LIKE '%h%';
 SELECT *
 FROM student
 WHERE name LIKE 'D_n%';
+```
+
+#### Predicados en la cláusula WHERE
+Como se explicó en un sección previa, la cláusula `WHERE` contiene predicados (i.e. expresiones lógicas que pueden ser verdaderas, falsas o desconocidas) que deben satisfacer los registros que retorne la consulta.
+
+##### El operador BETWEEN
+El operador [BETWEEN](https://www.w3schools.com/sql/sql_between.asp) selecciona valores en un rango. Estos valores pueden ser números, caracteres o fechas.
+
+Por ejemplo, la consulta:
+
+```sql
+-- Consulta de rango de números entre 80 y 90 (inclusive)
+-- mediante los operadores >= y <=
+SELECT ID, grade
+FROM takes
+WHERE grade >= 80 AND grade <= 90;
+```
+
+puede reescribirse como:
+
+```sql
+-- Consulta de rango de números entre 80 y 90 (inclusive)
+-- mediante el operador BETWEEN
+SELECT ID, grade
+FROM takes
+WHERE grade BETWEEN 80 AND 90;
+```
+
+`BETWEEN` también puede emplearse para consultar rangos de hileras de caracteres.
+
+```sql
+-- Consulta de hileras entre 'Alejandro Ruiz' y 'Daniela Ortega'
+SELECT name
+FROM student
+WHERE name BETWEEN 'Alejandro Ruiz' AND 'Daniela Ortega';
+```
+
+##### El operador IN
+El operador [IN](https://www.w3schools.com/sql/sql_in.asp) permite especificar múltiples valores en una cláusula `WHERE`. Puede utilizarse para abreviar un predicado con múltiples `OR`.
+
+Considere la siguiente consulta de múltiples valores, mediante varios `OR`:
+
+```sql
+-- Consulta de estudiantes con ID específicos
+-- mediante múltiples OR
+SELECT ID, name
+FROM student
+WHERE ID = 'S001' OR ID = 'S002' OR ID = 'S003';
+```
+
+Mediante `IN`, puede reescribirse como:
+
+```sql
+-- Consulta de estudiantes con ID específicos
+-- mediante el operador IN
+SELECT ID, name
+FROM student
+WHERE ID IN ('S001', 'S002', 'S003');
 ```
 
 ### La cláusula ORDER BY
