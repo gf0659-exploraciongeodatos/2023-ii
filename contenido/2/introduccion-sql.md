@@ -631,22 +631,67 @@ FROM student;
 SELECT DISTINCT dept_name
 FROM student;
 
--- Columna calculada y con un alias temporal asignado con la cláusula AS.
--- Los alias definidos mediante AS solo existen durante la ejecución de la consulta.
-SELECT 
-    ID, 
-    name, 
-    dept_name, 
-    salary, salary * 1.05 AS projected_salary
-FROM instructor;
-
 -- Cláusula WHERE con una expresión lógica
 SELECT * 
 FROM student
 WHERE dept_name = 'Informática' AND tot_cred >= 55;
 ```
 
-### Operaciones con hileras de caracteres
+### Operaciones básicas
+En esta sección, se introducen varias operaciones comúnmente que se utiliza comúnmente en consultas SQL.
+
+#### La palabra clave AS
+La palabra clave [AS](https://www.w3schools.com/sql/sql_ref_as.asp) se utiliza para asignar un alias temporal a una columna o tabla. Este alias solamente existe durante la duración de la consulta.
+
+Por ejemplo, considere la siguiente consulta con una columna que se calcula a partir de otra columna. 
+
+```sql
+-- Consulta con columna calculada
+SELECT 
+    name, 
+    salary, 
+    salary * 1.05
+FROM instructor;
+```
+
+La columna que se calcula a partir de otra (`salary * 1.05`) tendrá un nombre poco significativo en el despliegue de los resultados (ej. `?column?`). Para darle un nombre más representativo, se le puede asignar un alias con `AS`.
+
+```sql
+-- Alias temporal asignado con la cláusula AS
+SELECT 
+    name, 
+    salary, 
+    salary * 1.05 AS projected_salary
+FROM instructor;
+
+-- Varios alias temporales asignados con la cláusula AS.
+-- En el último se usan comillas dobles, debido los espacios.
+SELECT 
+    name AS nombre, 
+    salary AS salario, 
+    salary * 1.05 AS "salario proyectado"
+FROM instructor;
+```
+
+`AS` también puede utilizarse para asignarle alias a tablas. Por ejemplo, la consulta:
+
+```sql
+SELECT name AS instructor_name, course_id
+FROM instructor, teaches
+WHERE instructor.ID = teaches.ID;
+```
+
+Puede reescribirse como:
+
+```sql
+SELECT name AS instructor_name, course_id
+FROM instructor AS i, teaches AS t
+WHERE i.ID = t.ID;
+```
+
+En este último caso, `AS` se utiliza para acortar los nombres de las tablas mediante alias y así referenciarlas más fácilmente en la cláusula `WHERE`. Esto es particularmente útil cuando los nombres de las tablas son muy largos y deben usarse muchas veces en la consulta.
+
+#### Operaciones con hileras de caracteres
 En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: 'universidad'. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como 'It''s right' {cite:p}`silberschatz_database_2019`.
 
 El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión `'Universidad' = 'universidad'` se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse {cite:p}`silberschatz_database_2019`.

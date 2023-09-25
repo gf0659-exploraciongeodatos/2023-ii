@@ -419,7 +419,11 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-basicas">Operaciones básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palabra-clave-as">La palabra clave AS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Ejemplos</a></li>
@@ -1108,15 +1112,6 @@ document.write(`
 <span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">dept_name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
 
-<span class="c1">-- Columna calculada y con un alias temporal asignado con la cláusula AS.</span>
-<span class="c1">-- Los alias definidos mediante AS solo existen durante la ejecución de la consulta.</span>
-<span class="k">SELECT</span><span class="w"> </span>
-<span class="w">    </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">projected_salary</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
-
 <span class="c1">-- Cláusula WHERE con una expresión lógica</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">student</span>
@@ -1125,8 +1120,54 @@ document.write(`
 </div>
 </section>
 </section>
+<section id="operaciones-basicas">
+<h3>Operaciones básicas<a class="headerlink" href="#operaciones-basicas" title="Permalink to this heading">#</a></h3>
+<p>En esta sección, se introducen varias operaciones comúnmente que se utiliza comúnmente en consultas SQL.</p>
+<section id="la-palabra-clave-as">
+<h4>La palabra clave AS<a class="headerlink" href="#la-palabra-clave-as" title="Permalink to this heading">#</a></h4>
+<p>La palabra clave <a class="reference external" href="https://www.w3schools.com/sql/sql_ref_as.asp">AS</a> se utiliza para asignar un alias temporal a una columna o tabla. Este alias solamente existe durante la duración de la consulta.</p>
+<p>Por ejemplo, considere la siguiente consulta con una columna que se calcula a partir de otra columna.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta con columna calculada</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La columna que se calcula a partir de otra (<code class="docutils literal notranslate"><span class="pre">salary</span> <span class="pre">*</span> <span class="pre">1.05</span></code>) tendrá un nombre poco significativo en el despliegue de los resultados (ej. <code class="docutils literal notranslate"><span class="pre">?column?</span></code>). Para darle un nombre más representativo, se le puede asignar un alias con <code class="docutils literal notranslate"><span class="pre">AS</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Alias temporal asignado con la cláusula AS</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">projected_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+
+<span class="c1">-- Varios alias temporales asignados con la cláusula AS.</span>
+<span class="c1">-- En el último se usan comillas dobles, debido los espacios.</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">salario</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="ss">&quot;salario proyectado&quot;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">AS</span></code> también puede utilizarse para asignarle alias a tablas. Por ejemplo, la consulta:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">instructor</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">teaches</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Puede reescribirse como:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">instructor_name</span><span class="p">,</span><span class="w"> </span><span class="n">course_id</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">teaches</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>En este último caso, <code class="docutils literal notranslate"><span class="pre">AS</span></code> se utiliza para acortar los nombres de las tablas mediante alias y así referenciarlas más fácilmente en la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>. Esto es particularmente útil cuando los nombres de las tablas son muy largos y deben usarse muchas veces en la consulta.</p>
+</section>
 <section id="operaciones-con-hileras-de-caracteres">
-<h3>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h3>
+<h4>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h4>
 <p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id18">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id19">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)</span>
@@ -1181,6 +1222,7 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;D_n%&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="la-clausula-order-by">
 <h3>La cláusula ORDER BY<a class="headerlink" href="#la-clausula-order-by" title="Permalink to this heading">#</a></h3>
@@ -1833,7 +1875,11 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Ejemplos</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-basicas">Operaciones básicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#la-palabra-clave-as">La palabra clave AS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-hileras-de-caracteres">Operaciones con hileras de caracteres</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-clausula-order-by">La cláusula ORDER BY</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Sintaxis básica</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Ejemplos</a></li>
