@@ -9,7 +9,7 @@ En esta tarea, cada estudiante escribirá una serie de comandos en el lenguaje S
 **La tarea es estrictamente individual**
 
 ## Entregables
-Un archivo con extensión `.sql` con las consultas SQL descritas en la sección Desarrollo y sus resultados.
+Un archivo con extensión `.sql` con las consultas SQL descritas en la sección Desarrollo y sus resultados. La entrega debe realizarse a través de la plataforma Mediación Virtual.
 
 Para cada pregunta, incluya la(s) consulta(s) SQL que utilice y los resultados obtenidos. Por ejemplo:
 
