@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Tarea 01 &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+    <title>Diseño de bases de datos &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
   
   
   
@@ -61,10 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/evaluaciones/tarea-01';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/3/diseno-bases-datos';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Examen corto 02" href="examencorto-02.html" />
+    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="prev" title="Introducción a SQL" href="../2/introduccion-sql.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,14 +166,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño de bases de datos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examencorto-01.html">Examen corto 01</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examencorto-02.html">Examen corto 02</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tarea 01</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
 </ul>
 
     </div>
@@ -244,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/evaluaciones/tarea-01.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/3/diseno-bases-datos.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -274,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/contenido/evaluaciones/tarea-01.md" target="_blank"
+      <li><a href="../../_sources/contenido/3/diseno-bases-datos.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,7 +357,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tarea 01</h1>
+    <h1>Diseño de bases de datos</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -366,14 +367,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparativos">Preparativos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas">Consultas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo Entidad-Relación (ER)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-abstraccion">Niveles de abstracción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual">Diseño conceptual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-logico">Diseño lógico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fisico">Diseño físico</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
             </nav>
         </div>
@@ -385,73 +387,50 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tarea-01">
-<h1>Tarea 01<a class="headerlink" href="#tarea-01" title="Permalink to this heading">#</a></h1>
-<section id="fecha-y-hora-limite-de-entrega">
-<h2>Fecha y hora límite de entrega<a class="headerlink" href="#fecha-y-hora-limite-de-entrega" title="Permalink to this heading">#</a></h2>
-<p>Viernes 6 de octubre de 2023, 16:59.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="diseno-de-bases-de-datos">
+<h1>Diseño de bases de datos<a class="headerlink" href="#diseno-de-bases-de-datos" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>En este capítulo, se explica como diseñar el esquema de una base de datos mediante el modelo de datos entidad-relación (ER).</p>
 </section>
-<section id="descripcion-general">
-<h2>Descripción general<a class="headerlink" href="#descripcion-general" title="Permalink to this heading">#</a></h2>
-<p>En esta tarea, cada estudiante escribirá una serie de comandos en el lenguaje SQL para consultar una base de datos y reportar los resultados que obtenga.</p>
-<p><strong>La tarea es estrictamente individual</strong></p>
-</section>
-<section id="entregables">
-<h2>Entregables<a class="headerlink" href="#entregables" title="Permalink to this heading">#</a></h2>
-<p>Un archivo con extensión <code class="docutils literal notranslate"><span class="pre">.sql</span></code> con las consultas SQL descritas en la sección Desarrollo y sus resultados. La entrega debe realizarse a través de la plataforma Mediación Virtual.</p>
-<p>Para cada pregunta, incluya la(s) consulta(s) SQL que utilice y los resultados obtenidos. Por ejemplo:</p>
-<p><strong>Pregunta 1</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Consulta</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="n">SELECT</span> <span class="o">...</span>
-
-<span class="n">Resultados</span><span class="p">:</span>
-<span class="n">Estadio</span>     <span class="n">Goles</span>
-<span class="o">-------</span>     <span class="o">-----</span>
-<span class="n">Estadio</span> <span class="mi">01</span>     <span class="mi">99</span>
-<span class="n">Estadio</span> <span class="mi">02</span>     <span class="mi">99</span>
-<span class="o">...</span>
-
-</pre></div>
-</div>
-<p><strong>Pregunta 2</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Consulta</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-<span class="n">SELECT</span> <span class="o">...</span>
-
-<span class="n">Resultados</span><span class="p">:</span>
-</pre></div>
-</div>
-<p>Al revisar la tarea, el profesor ejecutará las consultas y verificará que los resultados coincidan con los que se reportan.</p>
-</section>
-<section id="desarrollo">
-<h2>Desarrollo<a class="headerlink" href="#desarrollo" title="Permalink to this heading">#</a></h2>
-<section id="preparativos">
-<h3>Preparativos<a class="headerlink" href="#preparativos" title="Permalink to this heading">#</a></h3>
-<p>Debe cargar en una base de datos PostgreSQL los siguientes archivos de datos de <a class="reference external" href="https://statsbomb.com/">StatsBomb</a> sobre la Copa Mundial de la FIFA Catar 2022:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/statsbomb/partidos_catar_2022.csv">Partidos</a></p></li>
-<li><p><a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/statsbomb/eventos_fase_grupos_catar_2022.csv">Eventos de la fase de grupos</a></p></li>
-</ul>
-<p>Las tablas deben llamarse:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">partidos_catar_2022</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">eventos_fase_grupos_catar_2022</span></code></p></li>
-</ul>
-<p>Para obtener información sobre los datos, puede revisar las notas de clase y la <a class="reference external" href="https://github.com/statsbomb/open-data/tree/master/doc">documentación de StatsBomb</a>.</p>
-</section>
-<section id="consultas">
-<h3>Consultas<a class="headerlink" href="#consultas" title="Permalink to this heading">#</a></h3>
-<p>La siguiente es la lista de consultas SQL que debe implementar. Entre paréntesis se muestra el porcentaje de la nota correspondiente a cada una.</p>
+<section id="el-modelo-entidad-relacion-er">
+<h2>El modelo Entidad-Relación (ER)<a class="headerlink" href="#el-modelo-entidad-relacion-er" title="Permalink to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">modelo Entidad-Relación (ER)</a> es un modelo conceptual de alto nivel que se utiliza para representar y organizar la información en una base de datos. Fue propuesto por Peter Chen en 1976.</p>
+<p>Sus principales componentes son:</p>
 <ol class="arabic simple">
-<li><p>(15%) Nombre de todos los estadios y cantidad de goles anotados en cada uno durante la fase de grupos, ordenados descendentemente por la cantidad de goles.</p></li>
-<li><p>(5%) Valores diferentes de la columna <code class="docutils literal notranslate"><span class="pre">type</span></code> de la tabla <code class="docutils literal notranslate"><span class="pre">eventos_fase_grupos_catar_2022</span></code>.</p></li>
-<li><p>(15%) Nombre del equipo y cantidad de faltas cometidas por los 10 equipos que cometieron más faltas durante la fase de grupos, ordenados descendentemente por la cantidad de faltas.</p></li>
-<li><p>(15%) Nombre del jugador, nombre de su equipo y cantidad de faltas recibidas por los 10 jugadores que recibieron más faltas durante la fase de grupos, ordenados descendentemente por la cantidad de faltas.</p></li>
-<li><p>(5%) Valores diferentes de la columna <code class="docutils literal notranslate"><span class="pre">dribble_outcome</span></code> de la tabla <code class="docutils literal notranslate"><span class="pre">eventos_fase_grupos_catar_2022</span></code>, para los eventos de tipo “Dribble”.</p></li>
-<li><p>(15%) Nombre del equipo y cantidad de regates (<em>dribbles</em>) completos de los 10 equipos que realizaron más regates completos durante la fase de grupos, ordenados descendentemente por la cantidad de regates.</p></li>
-<li><p>(15%) Nombre del jugador, nombre de su equipo y cantidad de regates (<em>dribbles</em>) completos de los 10 jugadores que realizaron más regates completos durante la fase de grupos, ordenados descendentemente por la cantidad de regates.</p></li>
-<li><p>(15%) Nombre de todos los estadios y cantidad de remates directos a marco (<code class="docutils literal notranslate"><span class="pre">shot_outcome</span></code> = ‘Saved’, ‘Post’ o ‘Goal’) realizados en cada uno, durante la fase de grupos, ordenados descendentemente por la cantidad de remates.</p></li>
+<li><p><strong>Entidades</strong>: Representan objetos o conceptos del mundo real que se desean almacenar en la base de datos como, por ejemplo, una persona, un producto o un evento.</p></li>
+<li><p><strong>Atributos</strong>: Son las propiedades o características que describen una entidad. Por ejemplo, una entidad “Persona” podría tener atributos como “Nombre”, “Edad” y “Dirección”.</p></li>
+<li><p><strong>Relaciones</strong>: Indican cómo las entidades se relacionan o asocian entre sí. Por ejemplo, para las entidades “Estudiante” y “Curso”, una relación podría ser “matriculado en”.</p></li>
+<li><p><strong>Cardinalidad</strong>: Se refiere a la naturaleza cuantitativa de la relación entre dos entidades. Especifica cuántas instancias de una entidad se relacionan con una instancia de otra entidad. Los tipos más comunes de cardinalidad son uno a uno (1:1), uno a muchos (1:N) y muchos a muchos (M:N).</p></li>
 </ol>
 </section>
+<section id="niveles-de-abstraccion">
+<h2>Niveles de abstracción<a class="headerlink" href="#niveles-de-abstraccion" title="Permalink to this heading">#</a></h2>
+<p>Es usual dividir un modelo ER en varios niveles de abstracción:</p>
+<ul class="simple">
+<li><p>Diseño conceptual.</p></li>
+<li><p>Diseño lógico.</p></li>
+<li><p>Diseño físico.</p></li>
+</ul>
+<section id="diseno-conceptual">
+<h3>Diseño conceptual<a class="headerlink" href="#diseno-conceptual" title="Permalink to this heading">#</a></h3>
+<p>Es una representación de alto nivel de la estructura de la base de datos, comprensible tanto para el diseñador como para los usuarios finales. Debe capturar todas las necesidades de datos de los usuarios y cómo se relacionan entre sí. Se compone de entidades, sus atributos, relaciones entre entidades y restricciones sobre estas entidades y relaciones.</p>
+</section>
+<section id="diseno-logico">
+<h3>Diseño lógico<a class="headerlink" href="#diseno-logico" title="Permalink to this heading">#</a></h3>
+<p>Transforma el modelo conceptual en un esquema que representa la estructura de la base de datos según un modelo de datos específico (ej. el modelo relacional), pero aún independiente de detalles físicos (ej. tipos de datos, índices). El resultado es un conjunto de definiciones de tablas, llaves, relaciones entre tablas y otras estructuras lógicas.</p>
+</section>
+<section id="diseno-fisico">
+<h3>Diseño físico<a class="headerlink" href="#diseno-fisico" title="Permalink to this heading">#</a></h3>
+<p>Implementa el diseño lógico en un SABD, por lo que sus detalles son dependientes de la elección del SABD. Se ocupa de cuestiones relacionadas con el almacenamiento, la indexación, el acceso y la recuperación de datos. Mientras que algunos aspectos del diseño físico de una base de datos puede cambiarse con relativa facilidad después de que una base de datos ha sido construída, los cambios en el esquema lógico son más difíciles de realizar porque es más probable que impliquen modificaciones en las aplicaciones que acceden la base de datos.</p>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<p>Considere los datos de un servicio de entrega de comida a domicilio disponibles en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/pedidos/pedidos.csv">pedidos.csv</a>.</p>
+<ol class="arabic simple">
+<li><p><strong>Diseño conceptual</strong>: elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.</p></li>
+</ol>
 </section>
 </section>
 
@@ -468,7 +447,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./contenido/evaluaciones"
+            path: "./contenido/3"
         },
         predefinedOutput: true
     }
@@ -487,13 +466,22 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="examencorto-02.html"
+       href="../2/introduccion-sql.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Examen corto 02</p>
+        <p class="prev-next-title">Introducción a SQL</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../evaluaciones/examencorto-01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examen corto 01</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -513,14 +501,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparativos">Preparativos</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consultas">Consultas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo Entidad-Relación (ER)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-abstraccion">Niveles de abstracción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual">Diseño conceptual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-logico">Diseño lógico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fisico">Diseño físico</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
   </nav></div>
 

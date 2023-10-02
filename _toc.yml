@@ -10,7 +10,10 @@ parts:
     - file: contenido/1/modelo-relacional
   - caption: 2 - INTRODUCCIÓN AL LENGUAJE SQL
     chapters:
-    - file: contenido/2/introduccion-sql    
+    - file: contenido/2/introduccion-sql   
+  - caption: 3 - DISEÑO DE BASES DE DATOS    
+    chapters:
+    - file: contenido/3/diseno-bases-datos      
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01

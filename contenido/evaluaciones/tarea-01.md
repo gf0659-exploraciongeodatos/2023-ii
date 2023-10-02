@@ -1,7 +1,7 @@
 # Tarea 01
 
 ## Fecha y hora límite de entrega
-Jueves 5 de octubre de 2023, 01:59 p.m.
+Viernes 6 de octubre de 2023, 16:59.
 
 ## Descripción general
 En esta tarea, cada estudiante escribirá una serie de comandos en el lenguaje SQL para consultar una base de datos y reportar los resultados que obtenga.
