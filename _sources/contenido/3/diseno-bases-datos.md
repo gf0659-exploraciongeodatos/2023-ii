@@ -31,3 +31,8 @@ Transforma el modelo conceptual en un esquema que representa la estructura de la
 
 ### Diseño físico
 Implementa el diseño lógico en un SABD, por lo que sus detalles son dependientes de la elección del SABD. Se ocupa de cuestiones relacionadas con el almacenamiento, la indexación, el acceso y la recuperación de datos. Mientras que algunos aspectos del diseño físico de una base de datos puede cambiarse con relativa facilidad después de que una base de datos ha sido construída, los cambios en el esquema lógico son más difíciles de realizar porque es más probable que impliquen modificaciones en las aplicaciones que acceden la base de datos.
+
+## Ejercicios
+Considere los datos de un servicio de entrega de comida a domicilio disponibles en [pedidos.csv](https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/pedidos/pedidos.csv).
+
+1. **Diseño conceptual**: elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.
