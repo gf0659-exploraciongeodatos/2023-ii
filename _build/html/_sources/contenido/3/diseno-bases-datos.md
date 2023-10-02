@@ -59,7 +59,7 @@ Considere los datos de un servicio de entrega de comida a domicilio disponibles 
 
 Los clientes ordenan y los pedidos se les entregan en la dirección que cada uno especifique. Se desea llevar el control de los pedidos de acuerdo por sucursal, fecha y promoción. El servicio cuenta con varias sucursales y cada sucursal tiene uno o varios empleados para tomar las órdenes. Cada empleado trabaja para una sola sucursal.
 
-Realice los siguientes ejercicios para diseñar una base de datos del servicio de entrega a domicilio. Para dibujar los diagramas, puede utilizar el complemento **Draw.io integration** de [Visual Studio Code](https://code.visualstudio.com/).
+Realice los siguientes ejercicios para diseñar una base de datos del servicio de entrega a domicilio. Para dibujar los diagramas, puede utilizar el complemento `Draw.io integration` de [Visual Studio Code](https://code.visualstudio.com/).
 
 1. Elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.
 
