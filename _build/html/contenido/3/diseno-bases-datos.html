@@ -412,13 +412,34 @@ document.write(`
 <li><p>Diseño lógico.</p></li>
 <li><p>Diseño físico.</p></li>
 </ul>
+<p>Estos niveles corresponden también a las etapas del proceso de diseño.</p>
 <section id="diseno-conceptual">
 <h3>Diseño conceptual<a class="headerlink" href="#diseno-conceptual" title="Permalink to this heading">#</a></h3>
 <p>Es una representación de alto nivel de la estructura de la base de datos, comprensible tanto para el diseñador como para los usuarios finales. Debe capturar todas las necesidades de datos de los usuarios y cómo se relacionan entre sí. Se compone de entidades, sus atributos, relaciones entre entidades y restricciones sobre estas entidades y relaciones.</p>
+<p>En el diseño conceptual:</p>
+<ul class="simple">
+<li><p>Se definen los requerimientos (<em>business needs</em>).</p></li>
+<li><p>Se establece el vocabulario.</p></li>
+<li><p>Se facilita la comunicación entre el equipo de desarrollo y los usuarios.</p></li>
+</ul>
+<p><strong>Tareas</strong>:</p>
+<ul class="simple">
+<li><p>Identificar entidades (<em>business objects</em>) y nombrarlas.</p></li>
+<li><p>Identificar relaciones entre entidades y nombrarlas.</p></li>
+<li><p>Determinar la cardinalidad de las relaciones.</p></li>
+<li><p>Delimitar el problema.</p></li>
+</ul>
 </section>
 <section id="diseno-logico">
 <h3>Diseño lógico<a class="headerlink" href="#diseno-logico" title="Permalink to this heading">#</a></h3>
 <p>Transforma el modelo conceptual en un esquema que representa la estructura de la base de datos según un modelo de datos específico (ej. el modelo relacional), pero aún independiente de detalles físicos (ej. tipos de datos, índices). El resultado es un conjunto de definiciones de tablas, llaves, relaciones entre tablas y otras estructuras lógicas.</p>
+<p><strong>Tareas</strong>:</p>
+<ul class="simple">
+<li><p>Identificar atributos de las entidades.</p></li>
+<li><p>Identificar llaves primarias.</p></li>
+<li><p>Identificar llaves foráneas.</p></li>
+<li><p>Normalizar.</p></li>
+</ul>
 </section>
 <section id="diseno-fisico">
 <h3>Diseño físico<a class="headerlink" href="#diseno-fisico" title="Permalink to this heading">#</a></h3>
@@ -428,8 +449,15 @@ document.write(`
 <section id="ejercicios">
 <h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
 <p>Considere los datos de un servicio de entrega de comida a domicilio disponibles en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/pedidos/pedidos.csv">pedidos.csv</a>.</p>
+<p>Los clientes ordenan y los pedidos se les entregan en la dirección que cada uno especifique. Se desea llevar el control de los pedidos de acuerdo por sucursal, fecha y promoción. El servicio cuenta con varias sucursales y cada sucursal tiene uno o varios empleados para tomar las órdenes. Cada empleado trabaja para una sola sucursal.</p>
+<p>Realice los siguientes ejercicios para diseñar una base de datos del servicio de entrega a domicilio. Para dibujar los diagramas, puede utilizar el complemento <strong><a class="reference external" href="http://Draw.io">Draw.io</a> integration</strong> de <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
 <ol class="arabic simple">
-<li><p><strong>Diseño conceptual</strong>: elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.</p></li>
+<li><p>Elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.</p>
+<ul class="simple">
+<li><p>Cree una versión adicional del diagrama anterior que contemple el control de los datos de la entrega del pedido (tiempo, mensajero, costo, etc.).</p></li>
+</ul>
+</li>
+<li><p>Elabore un diagrama que muestre las entidades, sus atributos, sus relaciones y su cardinalidad.</p></li>
 </ol>
 </section>
 </section>
