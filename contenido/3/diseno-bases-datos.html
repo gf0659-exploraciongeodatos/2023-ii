@@ -368,14 +368,29 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo Entidad-Relación (ER)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-abstraccion">Niveles de abstracción</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo entidad - relación (ER)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simbologia">Simbología</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fases-del-proceso-de-diseno">Fases del proceso de diseño</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-de-requerimientos-de-los-usuarios">Especificación de requerimientos de los usuarios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual">Diseño conceptual</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-logico">Diseño lógico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fisico">Diseño físico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-comunes-de-diseno">Errores comunes de diseño</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redundancia">Redundancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incompletitud">Incompletitud</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-de-requerimientos">Especificación de requerimientos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual-logico-y-fisico">Diseño conceptual, lógico y físico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
             </nav>
         </div>
@@ -391,74 +406,140 @@ document.write(`
 <h1>Diseño de bases de datos<a class="headerlink" href="#diseno-de-bases-de-datos" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
-<p>En este capítulo, se explica como diseñar el esquema de una base de datos mediante el modelo de datos entidad-relación (ER).</p>
+<p>En este capítulo, se explica como diseñar el esquema de una base de datos mediante el modelo de datos entidad - relación. El proceso de diseño se divide en especificación de requerimientos de los usuarios, diseño conceptual, diseño lógico y diseño físico.</p>
 </section>
 <section id="el-modelo-entidad-relacion-er">
-<h2>El modelo Entidad-Relación (ER)<a class="headerlink" href="#el-modelo-entidad-relacion-er" title="Permalink to this heading">#</a></h2>
-<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">modelo Entidad-Relación (ER)</a> es un modelo conceptual de alto nivel que se utiliza para representar y organizar la información en una base de datos. Fue propuesto por Peter Chen en 1976.</p>
-<p>Sus principales componentes son:</p>
+<h2>El modelo entidad - relación (ER)<a class="headerlink" href="#el-modelo-entidad-relacion-er" title="Permalink to this heading">#</a></h2>
+<p>El <a class="reference external" href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">modelo entidad - relación (ER)</a> es un modelo conceptual de alto nivel que se utiliza para representar y organizar la información de una base de datos. Fue propuesto por Peter Chen en 1976.</p>
+<section id="componentes">
+<h3>Componentes<a class="headerlink" href="#componentes" title="Permalink to this heading">#</a></h3>
+<p>Los principales componentes de un modelo ER son:</p>
 <ol class="arabic simple">
 <li><p><strong>Entidades</strong>: Representan objetos o conceptos del mundo real que se desean almacenar en la base de datos como, por ejemplo, una persona, un producto o un evento.</p></li>
 <li><p><strong>Atributos</strong>: Son las propiedades o características que describen una entidad. Por ejemplo, una entidad “Persona” podría tener atributos como “Nombre”, “Edad” y “Dirección”.</p></li>
-<li><p><strong>Relaciones</strong>: Indican cómo las entidades se relacionan o asocian entre sí. Por ejemplo, para las entidades “Estudiante” y “Curso”, una relación podría ser “matriculado en”.</p></li>
-<li><p><strong>Cardinalidad</strong>: Se refiere a la naturaleza cuantitativa de la relación entre dos entidades. Especifica cuántas instancias de una entidad se relacionan con una instancia de otra entidad. Los tipos más comunes de cardinalidad son uno a uno (1:1), uno a muchos (1:N) y muchos a muchos (M:N).</p></li>
+<li><p><strong>Relaciones</strong>: Indican cómo las entidades se relacionan o asocian entre sí. Por ejemplo, para las entidades “Estudiante” y “Curso”, una relación podría ser “matriculado en”. Un aspecto de suma importancia de una relación entre dos entidades es su cardinalidad, la cual especifica cuántas instancias de una entidad se relacionan con una instancia de la otra entidad. Hay varios tipos de cardinalidad en un modelo ER:</p>
+<ul class="simple">
+<li><p><strong>Uno a uno (1:1)</strong>: Una instancia de una entidad está asociada con exactamente una instancia de la otra entidad y viceversa. Por ejemplo, un empleado tiene un número de seguridad social y un número de seguridad social pertenece a un solo empleado.</p></li>
+<li><p><strong>Uno a muchos (1:N)</strong>: Una instancia de una entidad puede estar asociada con muchas instancias de la otra entidad, pero una instancia de la segunda entidad solo puede estar asociada con una instancia de la primera. Por ejemplo, un departamento puede tener muchos empleados, pero un empleado pertenece a un solo departamento.</p></li>
+<li><p><strong>Muchos a uno (N:1)</strong>: Es el caso inverso del anterior. Muchas instancias de una entidad pueden estar asociadas con una única instancia de la otra entidad.</p></li>
+<li><p><strong>Muchos a muchos (N:M)</strong>: Una instancia de una entidad puede estar asociada con muchas instancias de la otra entidad y viceversa. Por ejemplo, un estudiante puede estar matriculado en muchos cursos y un curso puede tener muchos estudiantes matriculados.</p></li>
+</ul>
+</li>
 </ol>
 </section>
-<section id="niveles-de-abstraccion">
-<h2>Niveles de abstracción<a class="headerlink" href="#niveles-de-abstraccion" title="Permalink to this heading">#</a></h2>
-<p>Es usual dividir un modelo ER en varios niveles de abstracción:</p>
+<section id="simbologia">
+<h3>Simbología<a class="headerlink" href="#simbologia" title="Permalink to this heading">#</a></h3>
+<p>Las entidades se representan mediante rectángulos, las relaciones mediante líneas y la cardinalidad mediante la notación de <a class="reference external" href="https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/">“patas de gallo” (<em>crow foot</em>)</a>, como se ilustra en la <a class="reference internal" href="#figure-er-simbologia-0"><span class="std std-numref">Fig. 7</span></a>.</p>
+<figure class="align-default" id="figure-er-simbologia-0">
+<img alt="../../_images/er-simbologia-0.png" src="../../_images/er-simbologia-0.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Simbología básica de un diagrama ER. Fuente: <a class="reference external" href="https://www.freecodecamp.org/news/crows-foot-notation-relationship-symbols-and-how-to-read-diagrams/">freeCodeCamp</a>.</span><a class="headerlink" href="#figure-er-simbologia-0" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La <code class="xref std std-numref docutils literal notranslate"><span class="pre">figure-er-simbologia</span></code> muestra cuatro entidades: <code class="docutils literal notranslate"><span class="pre">Departamento</span></code>, <code class="docutils literal notranslate"><span class="pre">Empleado</span></code>, <code class="docutils literal notranslate"><span class="pre">Proyecto</span></code> y <code class="docutils literal notranslate"><span class="pre">Carné</span></code>, con las siguientes relaciones:</p>
 <ul class="simple">
-<li><p>Diseño conceptual.</p></li>
-<li><p>Diseño lógico.</p></li>
-<li><p>Diseño físico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Contrata</span></code>, entre <code class="docutils literal notranslate"><span class="pre">Departamento</span></code> y <code class="docutils literal notranslate"><span class="pre">Empleado</span></code>, es una relación de uno a muchos (1:N): un departamento contrata muchos empleados, un empleado es contratado por un único departamento.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Participa</span></code>: entre <code class="docutils literal notranslate"><span class="pre">Empleado</span></code> y <code class="docutils literal notranslate"><span class="pre">Proyecto</span></code>, es una relación de muchos a muchos (N:M): un empleado puede participar en muchos proyectos, un proyecto puede tener muchos empleados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tiene</span></code>: entre <code class="docutils literal notranslate"><span class="pre">Empleado</span></code> y <code class="docutils literal notranslate"><span class="pre">Carné</span></code>, es una relación de uno a uno (1:1): un empleado solo tiene un carné, un carné pertenece a un único empleado.</p></li>
 </ul>
-<p>Estos niveles corresponden también a las etapas del proceso de diseño.</p>
+<p>La notación de “patas de gallo”, para cardinalidad, se resumen en la <a class="reference internal" href="#figure-er-patas-gallo"><span class="std std-numref">Fig. 8</span></a>.</p>
+<figure class="align-default" id="figure-er-patas-gallo">
+<img alt="../../_images/er-patas-gallo.png" src="../../_images/er-patas-gallo.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Notación de “patas de gallo” para cardinalidad. Fuente: <a class="reference external" href="https://www.lucidchart.com/pages/es/simbolos-de-diagramas-entidad-relacion">Lucidchart</a>.</span><a class="headerlink" href="#figure-er-patas-gallo" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Para representar tablas, sus columnas, llaves primarias (PK) y llaves foráneas (FK), se utiliza la simbología que se ilustra en la <a class="reference internal" href="#figure-er-simbologia-1"><span class="std std-numref">Fig. 9</span></a>.</p>
+<figure class="align-default" id="figure-er-simbologia-1">
+<img alt="../../_images/er-simbologia-1.png" src="../../_images/er-simbologia-1.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Simbología detallada de un diagrama ER. Fuente: <a class="reference external" href="https://www.lucidchart.com/pages/es/simbolos-de-diagramas-entidad-relacion">Lucidchart</a>.</span><a class="headerlink" href="#figure-er-simbologia-1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="fases-del-proceso-de-diseno">
+<h2>Fases del proceso de diseño<a class="headerlink" href="#fases-del-proceso-de-diseno" title="Permalink to this heading">#</a></h2>
+<section id="especificacion-de-requerimientos-de-los-usuarios">
+<h3>Especificación de requerimientos de los usuarios<a class="headerlink" href="#especificacion-de-requerimientos-de-los-usuarios" title="Permalink to this heading">#</a></h3>
+<p>Durante la fase inicial del diseño, es esencial identificar, detallar y entender las necesidades de los futuros usuarios de la base de datos. Esta tarea exige una profunda interacción del diseñador con los usuarios y expertos del dominio, por ejemplo, mediante entrevistas. El resultado de esta fase es una especificación de los requerimientos del usuario, usualmente en forma textual, aunque también pueden emplearse formatos gráficos.</p>
+</section>
 <section id="diseno-conceptual">
 <h3>Diseño conceptual<a class="headerlink" href="#diseno-conceptual" title="Permalink to this heading">#</a></h3>
-<p>Es una representación de alto nivel de la estructura de la base de datos, comprensible tanto para el diseñador como para los usuarios finales. Debe capturar todas las necesidades de datos de los usuarios y cómo se relacionan entre sí. Se compone de entidades, sus atributos, relaciones entre entidades y restricciones sobre estas entidades y relaciones.</p>
-<p>En el diseño conceptual:</p>
-<ul class="simple">
-<li><p>Se definen los requerimientos (<em>business needs</em>).</p></li>
-<li><p>Se establece el vocabulario.</p></li>
-<li><p>Se facilita la comunicación entre el equipo de desarrollo y los usuarios.</p></li>
-</ul>
-<p><strong>Tareas</strong>:</p>
-<ul class="simple">
-<li><p>Identificar entidades (<em>business objects</em>) y nombrarlas.</p></li>
-<li><p>Identificar relaciones entre entidades y nombrarlas.</p></li>
-<li><p>Determinar la cardinalidad de las relaciones.</p></li>
-<li><p>Delimitar el problema.</p></li>
-</ul>
+<p>En esta fase, el diseñador elige un modelo de datos y aplica sus conceptos para traducir los requerimientos de los usuarios en un esquema conceptual de la base de datos. En términos del modelo ER, el esquema conceptual especifica las entidades que se representan en la base de datos, los atributos de las entidades, las relaciones entre las entidades y la cardinalidad de las relaciones. Típicamente, la fase de diseño conceptual resulta en la creación de un diagrama ER que proporciona una representación gráfica del esquema de la base de datos.</p>
 </section>
 <section id="diseno-logico">
 <h3>Diseño lógico<a class="headerlink" href="#diseno-logico" title="Permalink to this heading">#</a></h3>
-<p>Transforma el modelo conceptual en un esquema que representa la estructura de la base de datos según un modelo de datos específico (ej. el modelo relacional), pero aún independiente de detalles físicos (ej. tipos de datos, índices). El resultado es un conjunto de definiciones de tablas, llaves, relaciones entre tablas y otras estructuras lógicas.</p>
-<p><strong>Tareas</strong>:</p>
-<ul class="simple">
-<li><p>Identificar atributos de las entidades.</p></li>
-<li><p>Identificar llaves primarias.</p></li>
-<li><p>Identificar llaves foráneas.</p></li>
-<li><p>Normalizar.</p></li>
-</ul>
+<p>En la fase de diseño lógico, el diseñador mapea el esquema conceptual en el modelo de datos de implementación del sistema de base de datos que se utilizará. El modelo de datos de implementación es usualmente el modelo de datos relacional.</p>
 </section>
 <section id="diseno-fisico">
 <h3>Diseño físico<a class="headerlink" href="#diseno-fisico" title="Permalink to this heading">#</a></h3>
-<p>Implementa el diseño lógico en un SABD, por lo que sus detalles son dependientes de la elección del SABD. Se ocupa de cuestiones relacionadas con el almacenamiento, la indexación, el acceso y la recuperación de datos. Mientras que algunos aspectos del diseño físico de una base de datos puede cambiarse con relativa facilidad después de que una base de datos ha sido construída, los cambios en el esquema lógico son más difíciles de realizar porque es más probable que impliquen modificaciones en las aplicaciones que acceden la base de datos.</p>
+<p>Finalmente, el diseñador utiliza el esquema de base de datos resultante en la fase de diseño físico subsiguiente, en la cual se especifican las características físicas de la base de datos. Estas características incluyen la forma de almacenamiento, las estructuras de indexación y el particionamiento, entre otras.</p>
+</section>
+</section>
+<section id="errores-comunes-de-diseno">
+<h2>Errores comunes de diseño<a class="headerlink" href="#errores-comunes-de-diseno" title="Permalink to this heading">#</a></h2>
+<p>Al diseñar un esquema de base de datos, es importante evitar algunos errores comunes, como la redundancia y la incompletitud <span id="id1">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<section id="redundancia">
+<h3>Redundancia<a class="headerlink" href="#redundancia" title="Permalink to this heading">#</a></h3>
+<p>Un diseño deficiente tiende a repetir información. Por ejemplo, si se almacena la identificación y el nombre de un curso en grupo (<em>section</em>), el nombre se almacenaría de manera redundante (es decir, múltiples veces, innecesariamente) con cada grupo. Sería suficiente almacenar solo el identificador del curso con cada grupo y asociar el nombre con el identificador del curso solo una vez, en una entidad de curso.</p>
+<p>El mayor inconveniente de la redundancia es que las copias de un componente de información pueden volverse inconsistentes si la información se actualiza sin tomar precauciones para actualizar todas las copias de la información. Por ejemplo, diferentes grupos de un curso pueden tener el mismo identificador de curso, pero pueden tener diferentes nombres. Entonces, no estaría claro cuál es el nombre correcto del curso. Idealmente, la información debería estar en un solo lugar.</p>
+</section>
+<section id="incompletitud">
+<h3>Incompletitud<a class="headerlink" href="#incompletitud" title="Permalink to this heading">#</a></h3>
+<p>Un mal diseño también puede dificultar o imposibilitar modelar ciertos aspectos de la una organización. Por ejemplo, supongamos que, siguiendo con el ejemplo anterior de los cursos y sus grupos, solo tenemos la entidad correspondiente a los grupos de los cursos, sin tener una entidad correspondiente a los cursos. Esto equivaldría a tener una sola tabla donde se repite toda la información del curso una vez por cada grupo. Así sería imposible representar información sobre un nuevo curso, a menos que ese curso se imparta. Se podría intentar solucionar este problema almacenando valores nulos en la información del curso. Esta solución no solo es poco elegante desde el punto de vista de diseño, sino que puede ser impedida por restricciones de llave primaria.</p>
+<p>Evitar estos errores de diseño no es suficiente. Usualmente, hay varios buenos diseños entre los que debe realizarse una elección. Como un ejemplo simple, considere un cliente que compra un producto. ¿Es la venta de este producto una relación entre una entidad “Cliente” y una entidad “Producto”? Alternativamente, ¿es la “Venta” en sí misma una entidad que está relacionada tanto con “Cliente” como con “Producto”? Este tipo de elecciones puede marcar una diferencia importante en los resultados del diseño. Como puede verse, un buen diseño de bases de datos requiere de una combinación de ciencia, experiencia, intuición y “buen gusto” <span id="id2">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 </section>
 </section>
 <section id="ejercicios">
 <h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
-<p>Considere los datos de un servicio de entrega de comida a domicilio disponibles en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/pedidos/pedidos.csv">pedidos.csv</a>.</p>
-<p>Los clientes ordenan y los pedidos se les entregan en la dirección que cada uno especifique. Se desea llevar el control de los pedidos de acuerdo por sucursal, fecha y promoción. El servicio cuenta con varias sucursales y cada sucursal tiene uno o varios empleados para tomar las órdenes. Cada empleado trabaja para una sola sucursal.</p>
-<p>Realice los siguientes ejercicios para diseñar una base de datos del servicio de entrega a domicilio. Para dibujar los diagramas, puede utilizar el complemento <code class="docutils literal notranslate"><span class="pre">Draw.io</span> <span class="pre">integration</span></code> de <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
-<ol class="arabic simple">
-<li><p>Elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.</p>
+<section id="especificacion-de-requerimientos">
+<h3>Especificación de requerimientos<a class="headerlink" href="#especificacion-de-requerimientos" title="Permalink to this heading">#</a></h3>
+<p>Debe diseñar una base de datos relacional para un servicio de entrega de comida a domicilio, con las siguientes características y requerimientos:</p>
 <ul class="simple">
-<li><p>Cree una versión adicional del diagrama anterior que contemple el control de los datos de la entrega del pedido (tiempo, mensajero, costo, etc.).</p></li>
+<li><p>Los clientes ordenan pedidos de comidas y bebidas que son entregados en la dirección que indique cada cliente.</p></li>
+<li><p>El servicio cuenta con varias sucursales, cada una con uno o varios empleados que toman los pedidos. Cada empleado trabaja para una sola sucursal.</p></li>
+<li><p>Regularmente, se distribuyen promociones entre los clientes a través de cupones, los cuales permiten aplicar descuentos a los pedidos.</p></li>
+<li><p>Se desea llevar el control de los pedidos por sucursal, fecha y promoción. Por ejemplo, poder obtener:</p>
+<ul>
+<li><p>Total de ventas por sucursal.</p></li>
+<li><p>Total de ventas por fecha o por rango de fechas.</p></li>
+<li><p>Total de ventas asociadas por promoción.</p></li>
+<li><p>Total de ventas por platillo.</p></li>
 </ul>
 </li>
-<li><p>Elabore un diagrama que muestre las entidades, sus atributos, sus relaciones y su cardinalidad.</p></li>
+<li><p>Actualmente, el negocio administra sus datos en una hoja de cálculo Excel. Una muestra de su estructura y sus datos está disponible en <a class="reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/pedidos/pedidos.csv">pedidos.csv</a>. Su tarea es reemplazar esta hoja de cálculo por una base de datos que pueda implementarse en un sistema administrador de bases de datos relacionales (ej. PostgreSQL).</p></li>
+</ul>
+</section>
+<section id="diseno-conceptual-logico-y-fisico">
+<h3>Diseño conceptual, lógico y físico<a class="headerlink" href="#diseno-conceptual-logico-y-fisico" title="Permalink to this heading">#</a></h3>
+<p>Realice los siguientes pasos para diseñar la base de datos del servicio de entrega de comida a domicilio. Para dibujar los diagramas, puede utilizar el complemento <code class="docutils literal notranslate"><span class="pre">Draw.io</span> <span class="pre">integration</span></code> de <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a>.</p>
+<ol class="arabic simple">
+<li><p><strong>Elabore un diagrama que muestre las entidades, sus relaciones y su cardinalidad.</strong></p></li>
 </ol>
+<p>En la <a class="reference internal" href="#figure-pedidos-diagrama-0"><span class="std std-numref">Fig. 10</span></a>, se muestra una posible solución.</p>
+<figure class="align-default" id="figure-pedidos-diagrama-0">
+<img alt="../../_images/pedidos-diagrama-0.png" src="../../_images/pedidos-diagrama-0.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Diagrama conceptual de entidades, relaciones y cardinalidad.</span><a class="headerlink" href="#figure-pedidos-diagrama-0" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p><strong>Cree una versión adicional del diagrama anterior que contemple el control de los datos de la entrega del pedido (tiempo, mensajero, costo, etc.).</strong></p></li>
+<li><p><strong>Elabore un diagrama ER que muestre las entidades, sus atributos, sus relaciones, su cardinalidad, sus llaves primarias y sus llaves foráneas, de manera que pueda ser implementado en un sistema administrador de bases de datos (ej. PostgreSQL).</strong></p></li>
+<li><p><strong>Escriba los comandos SQL para crear las tablas e insertar datos de prueba.</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="bibliografia">
+<h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="citation">
+<dt class="label" id="id6"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
+</dd>
+</dl>
+</div>
 </section>
 </section>
 
@@ -530,14 +611,29 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo Entidad-Relación (ER)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#niveles-de-abstraccion">Niveles de abstracción</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-modelo-entidad-relacion-er">El modelo entidad - relación (ER)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#componentes">Componentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simbologia">Simbología</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fases-del-proceso-de-diseno">Fases del proceso de diseño</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-de-requerimientos-de-los-usuarios">Especificación de requerimientos de los usuarios</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual">Diseño conceptual</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-logico">Diseño lógico</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-fisico">Diseño físico</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errores-comunes-de-diseno">Errores comunes de diseño</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#redundancia">Redundancia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incompletitud">Incompletitud</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#especificacion-de-requerimientos">Especificación de requerimientos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diseno-conceptual-logico-y-fisico">Diseño conceptual, lógico y físico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia">Bibliografía</a></li>
 </ul>
   </nav></div>
 
