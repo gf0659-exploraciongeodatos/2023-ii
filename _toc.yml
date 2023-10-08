@@ -13,7 +13,10 @@ parts:
     - file: contenido/2/introduccion-sql   
   - caption: 3 - DISEÑO DE BASES DE DATOS    
     chapters:
-    - file: contenido/3/diseno-bases-datos      
+    - file: contenido/3/diseno-bases-datos    
+  - caption: 4 - BASES DE DATOS ESPACIALES    
+    chapters:
+    - file: contenido/4/conceptos-fundamentales-bases-datos-espaciales       
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01
