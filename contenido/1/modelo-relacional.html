@@ -165,9 +165,20 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4/conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
 </ul>
 
     </div>
@@ -392,10 +403,10 @@ document.write(`
 <figure class="align-default" id="figure-relacion-profesor">
 <img alt="../../_images/relacion-profesor.png" src="../../_images/relacion-profesor.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Relación <code class="docutils literal notranslate"><span class="pre">instructor</span></code> (profesor) representada en una tabla <span id="id1">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-relacion-profesor" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Relación <code class="docutils literal notranslate"><span class="pre">instructor</span></code> (profesor) representada en una tabla <span id="id1">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-relacion-profesor" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>El modelo relacional fue introducido por <a class="reference external" href="https://es.wikipedia.org/wiki/Edgar_Frank_Codd">Edgar Frank Codd</a> en 1970 en su artículo “A Relational Model of Data for Large Shared Data Banks” <span id="id2">[<a class="reference internal" href="#id57" title="E. F. Codd. A relational model of data for large shared data banks. Communications of the ACM, 13(6):377–387, June 1970. URL: https://dl.acm.org/doi/10.1145/362384.362685 (visited on 2023-09-02), doi:10.1145/362384.362685.">Cod70</a>]</span>. Codd propuso este modelo como una forma más intuitiva y flexible de organizar y consultar datos en comparación con los modelos de bases de datos previamente existentes, como los modelos jerárquico y de red.</p>
+<p>El modelo relacional fue introducido por <a class="reference external" href="https://es.wikipedia.org/wiki/Edgar_Frank_Codd">Edgar Frank Codd</a> en 1970 en su artículo “A Relational Model of Data for Large Shared Data Banks” <span id="id2">[]</span>. Codd propuso este modelo como una forma más intuitiva y flexible de organizar y consultar datos en comparación con los modelos de bases de datos previamente existentes, como los modelos jerárquico y de red.</p>
 <p>Las bases de datos relacionales, y los SABD que las implementan, utilizan el modelo relacional como base teórica y han dominado la industria de bases de datos durante décadas debido a su eficiencia, flexibilidad y capacidad de soportar transacciones complejas.</p>
 <section id="estructura-de-datos">
 <h2>Estructura de datos<a class="headerlink" href="#estructura-de-datos" title="Permalink to this heading">#</a></h2>
@@ -427,7 +438,7 @@ document.write(`
 <figure class="align-default" id="figure-schema-university">
 <img alt="../../_images/schema-university.png" src="../../_images/schema-university.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama del esquema de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code> <span id="id3">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-schema-university" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Diagrama del esquema de la base de datos <code class="docutils literal notranslate"><span class="pre">university</span></code> <span id="id3">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</span><a class="headerlink" href="#figure-schema-university" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>La siguiente es la lista de esquemas de relaciones que se muestran en el diagrama:</p>
@@ -444,8 +455,8 @@ document.write(`
 <li><p><em>teaches(<u>ID</u>, <u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>)</em></p></li>
 <li><p><em>takes(<u>ID</u>, <u>course_id</u>, <u>sec_id</u>, <u>semester</u>, <u>year</u>, grade)</em></p></li>
 </ul>
-<p>Los atributos de las llaves primarias se muestran subrayados. Las restricciones de clave foránea aparecen como flechas desde los atributos de llave foránea de la relación referenciadora hasta la llave primaria de la relación referenciada. De acuerdo con la notación utilizada en <span id="id4">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>, se utiliza una flecha de dos puntas, en lugar de una flecha de una sola punta, para indicar una restricción de integridad referencial que no es una restricción de llave foránea. Muchas herramientas de administración de bases de datos proporcionan herramientas de diseño con interfaces gráficas para crear diagramas de esquema (ej. <a class="reference external" href="https://pgmodeler.io/">pgModeler</a>, <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>).</p>
-<p>Más adelante, se explicará un tipo diferente de diagrama, llamado <a class="reference external" href="https://es.wikipedia.org/wiki/Modelo_entidad-relaci%C3%B3n">entidad-relación</a>. A pesar de que pueden parecer similares, los diagramas de esquema y los diagramas entidad-relación son diferentes y no deben confundirse entre sí <span id="id5">[<a class="reference internal" href="#id9" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Los atributos de las llaves primarias se muestran subrayados. Las restricciones de clave foránea aparecen como flechas desde los atributos de llave foránea de la relación referenciadora hasta la llave primaria de la relación referenciada. De acuerdo con la notación utilizada en <span id="id4">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>, se utiliza una flecha de dos puntas, en lugar de una flecha de una sola punta, para indicar una restricción de integridad referencial que no es una restricción de llave foránea. Muchas herramientas de administración de bases de datos proporcionan herramientas de diseño con interfaces gráficas para crear diagramas de esquema (ej. <a class="reference external" href="https://pgmodeler.io/">pgModeler</a>, <a class="reference external" href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>).</p>
+<p>Más adelante, se explicará un tipo diferente de diagrama, llamado <a class="reference external" href="https://es.wikipedia.org/wiki/Modelo_entidad-relaci%C3%B3n">entidad-relación</a>. A pesar de que pueden parecer similares, los diagramas de esquema y los diagramas entidad-relación son diferentes y no deben confundirse entre sí <span id="id5">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 </section>
 </section>
 <section id="manipulacion-de-datos">
@@ -479,9 +490,6 @@ document.write(`
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id6">
 <dl class="citation">
-<dt class="label" id="id57"><span class="brackets"><a class="fn-backref" href="#id2">Cod70</a></span></dt>
-<dd><p>E. F. Codd. A relational model of data for large shared data banks. <em>Communications of the ACM</em>, 13(6):377–387, June 1970. URL: <a class="reference external" href="https://dl.acm.org/doi/10.1145/362384.362685">https://dl.acm.org/doi/10.1145/362384.362685</a> (visited on 2023-09-02), <a class="reference external" href="https://doi.org/10.1145/362384.362685">doi:10.1145/362384.362685</a>.</p>
-</dd>
 <dt class="label" id="id9"><span class="brackets">SKS19</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id3">2</a>,<a href="#id4">3</a>,<a href="#id5">4</a>)</span></dt>
 <dd><p>Abraham Silberschatz, Henry Korth, and S. Sudarshan. <em>Database System Concepts</em>. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.</p>
 </dd>
