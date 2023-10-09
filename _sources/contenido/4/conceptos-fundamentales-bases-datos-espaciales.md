@@ -87,7 +87,7 @@ El funcionamiento de un índice R-Tree se ejemplifica en la {numref}`figure-r-tr
 Índice R-Tree. Fuente: [Introduction to PostGIS](https://postgis.net/workshops/postgis-intro/).
 ```
 
-Este R-Tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar qué objeto contiene el asterisco, pueden seguirse los siguientes pasos:
+Este R-Tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar qué objeto contiene el punto, pueden seguirse los siguientes pasos:
 
 1. Primero se verifica si está en T o U (T).
 2. Luego, se verifica si está en N, P o Q (P).
@@ -100,11 +100,11 @@ Una base de datos espacial proporciona un conjunto de funciones para analizar co
 
 La mayoría de las funciones espaciales puede clasificarse en una de las siguientes cinco categorías:
 
-1. **Conversión**: Convierten entre geometrías y formatos de datos externos.
-2. **Gestión**: Gestionan información sobre tablas espaciales y administración de la base de datos.
-3. **Recuperación**: Recuperan propiedades y mediciones de una geometría.
-4. **Comparación**: Comparan dos geometrías con respecto a su relación espacial.
-5. **Generación**: Generan nuevas geometrías a partir de otras.
+1. **Conversión**: Convierten entre geometrías y formatos de datos externos (ej. JSON, XML).
+2. **Gestión**: Gestionan información sobre tablas espaciales y administración de la base de datos (ej. privilegios de usuarios).
+3. **Recuperación**: Recuperan propiedades y mediciones de una geometría (ej. longitud, área, perímetro).
+4. **Comparación**: Comparan dos geometrías con respecto a su relación espacial (ej. intersección, contención, traslape).
+5. **Generación**: Generan nuevas geometrías a partir de otras (ej. *buffers*, centroides).
 
 Una lista de funciones espaciales puede encontrarse en el estándar [Simple Feature Access – Part 2: SQL Option](https://www.ogc.org/standard/sfs/).
 
