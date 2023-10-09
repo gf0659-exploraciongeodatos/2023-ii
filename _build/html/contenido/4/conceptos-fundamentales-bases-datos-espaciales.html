@@ -467,7 +467,7 @@ document.write(`
 <p><span class="caption-number">Fig. 14 </span><span class="caption-text">Índice R-Tree. Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-r-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Este R-Tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar qué objeto contiene el asterisco, pueden seguirse los siguientes pasos:</p>
+<p>Este R-Tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar qué objeto contiene el punto, pueden seguirse los siguientes pasos:</p>
 <ol class="arabic simple">
 <li><p>Primero se verifica si está en T o U (T).</p></li>
 <li><p>Luego, se verifica si está en N, P o Q (P).</p></li>
@@ -480,11 +480,11 @@ document.write(`
 <p>Una base de datos espacial proporciona un conjunto de funciones para analizar componentes geométricos, determinar relaciones espaciales y manipular geometrías.</p>
 <p>La mayoría de las funciones espaciales puede clasificarse en una de las siguientes cinco categorías:</p>
 <ol class="arabic simple">
-<li><p><strong>Conversión</strong>: Convierten entre geometrías y formatos de datos externos.</p></li>
-<li><p><strong>Gestión</strong>: Gestionan información sobre tablas espaciales y administración de la base de datos.</p></li>
-<li><p><strong>Recuperación</strong>: Recuperan propiedades y mediciones de una geometría.</p></li>
-<li><p><strong>Comparación</strong>: Comparan dos geometrías con respecto a su relación espacial.</p></li>
-<li><p><strong>Generación</strong>: Generan nuevas geometrías a partir de otras.</p></li>
+<li><p><strong>Conversión</strong>: Convierten entre geometrías y formatos de datos externos (ej. JSON, XML).</p></li>
+<li><p><strong>Gestión</strong>: Gestionan información sobre tablas espaciales y administración de la base de datos (ej. privilegios de usuarios).</p></li>
+<li><p><strong>Recuperación</strong>: Recuperan propiedades y mediciones de una geometría (ej. longitud, área, perímetro).</p></li>
+<li><p><strong>Comparación</strong>: Comparan dos geometrías con respecto a su relación espacial (ej. intersección, contención, traslape).</p></li>
+<li><p><strong>Generación</strong>: Generan nuevas geometrías a partir de otras (ej. <em>buffers</em>, centroides).</p></li>
 </ol>
 <p>Una lista de funciones espaciales puede encontrarse en el estándar <a class="reference external" href="https://www.ogc.org/standard/sfs/">Simple Feature Access – Part 2: SQL Option</a>.</p>
 </section>
