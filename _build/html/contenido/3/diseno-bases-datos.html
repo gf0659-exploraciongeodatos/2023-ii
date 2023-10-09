@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/3/diseno-bases-datos';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="next" title="Conceptos fundamentales de bases de datos espaciales" href="../4/conceptos-fundamentales-bases-datos-espaciales.html" />
     <link rel="prev" title="Introducción a SQL" href="../2/introduccion-sql.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -168,6 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4/conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
@@ -479,7 +484,7 @@ document.write(`
 </section>
 <section id="errores-comunes-de-diseno">
 <h2>Errores comunes de diseño<a class="headerlink" href="#errores-comunes-de-diseno" title="Permalink to this heading">#</a></h2>
-<p>Al diseñar un esquema de base de datos, es importante evitar algunos errores comunes, como la redundancia y la incompletitud <span id="id1">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Al diseñar un esquema de base de datos, es importante evitar algunos errores comunes, como la redundancia y la incompletitud <span id="id1">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <section id="redundancia">
 <h3>Redundancia<a class="headerlink" href="#redundancia" title="Permalink to this heading">#</a></h3>
 <p>Un diseño deficiente tiende a repetir información. Por ejemplo, si se almacena la identificación y el nombre de un curso en grupo (<em>section</em>), el nombre se almacenaría de manera redundante (es decir, múltiples veces, innecesariamente) con cada grupo. Sería suficiente almacenar solo el identificador del curso con cada grupo y asociar el nombre con el identificador del curso solo una vez, en una entidad de curso.</p>
@@ -488,7 +493,7 @@ document.write(`
 <section id="incompletitud">
 <h3>Incompletitud<a class="headerlink" href="#incompletitud" title="Permalink to this heading">#</a></h3>
 <p>Un mal diseño también puede dificultar o imposibilitar modelar ciertos aspectos de la una organización. Por ejemplo, supongamos que, siguiendo con el ejemplo anterior de los cursos y sus grupos, solo tenemos la entidad correspondiente a los grupos de los cursos, sin tener una entidad correspondiente a los cursos. Esto equivaldría a tener una sola tabla donde se repite toda la información del curso una vez por cada grupo. Así sería imposible representar información sobre un nuevo curso, a menos que ese curso se imparta. Se podría intentar solucionar este problema almacenando valores nulos en la información del curso. Esta solución no solo es poco elegante desde el punto de vista de diseño, sino que puede ser impedida por restricciones de llave primaria.</p>
-<p>Evitar estos errores de diseño no es suficiente. Usualmente, hay varios buenos diseños entre los que debe realizarse una elección. Como un ejemplo simple, considere un cliente que compra un producto. ¿Es la venta de este producto una relación entre una entidad “Cliente” y una entidad “Producto”? Alternativamente, ¿es la “Venta” en sí misma una entidad que está relacionada tanto con “Cliente” como con “Producto”? Este tipo de elecciones puede marcar una diferencia importante en los resultados del diseño. Como puede verse, un buen diseño de bases de datos requiere de una combinación de ciencia, experiencia, intuición y “buen gusto” <span id="id2">[<a class="reference internal" href="#id6" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Evitar estos errores de diseño no es suficiente. Usualmente, hay varios buenos diseños entre los que debe realizarse una elección. Como un ejemplo simple, considere un cliente que compra un producto. ¿Es la venta de este producto una relación entre una entidad “Cliente” y una entidad “Producto”? Alternativamente, ¿es la “Venta” en sí misma una entidad que está relacionada tanto con “Cliente” como con “Producto”? Este tipo de elecciones puede marcar una diferencia importante en los resultados del diseño. Como puede verse, un buen diseño de bases de datos requiere de una combinación de ciencia, experiencia, intuición y “buen gusto” <span id="id2">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 </section>
 </section>
 <section id="ejercicios">
@@ -584,11 +589,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../evaluaciones/examencorto-01.html"
+       href="../4/conceptos-fundamentales-bases-datos-espaciales.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examen corto 01</p>
+        <p class="prev-next-title">Conceptos fundamentales de bases de datos espaciales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/2/introduccion-sql';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="next" title="Diseño de bases de datos" href="../3/diseno-bases-datos.html" />
     <link rel="prev" title="El modelo relacional" href="../1/modelo-relacional.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -165,9 +165,20 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción a SQL</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4/conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
 </ul>
 
     </div>
@@ -549,14 +560,14 @@ document.write(`
 <p>SQL DDL permite definir, para una tabla, aspectos como su esquema, tipos de datos de los atributos y restricciones de integridad. También índices, información de seguridad y estructura física de almacenamiento en el disco.</p>
 <section id="tipos-de-datos-basicos">
 <h3>Tipos de datos básicos<a class="headerlink" href="#tipos-de-datos-basicos" title="Permalink to this heading">#</a></h3>
-<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id1">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
+<p>El estándar SQL admiite varios tipos de datos, incluyendo <span id="id1">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>:</p>
 <ul class="simple">
 <li><p><strong>char</strong>(<em>n</em>), <strong>character</strong>(<em>n</em>): cadena de caracteres de longitud fija <em>n</em> especificada por el usuario.</p></li>
 <li><p><strong>varchar</strong>(<em>n</em>), <strong>character varying</strong>(<em>n</em>): cadena de caracteres de longitud variable de tamaño máximo <em>n</em> especificado por el usuario.</p></li>
 <li><p><strong>int</strong>, <strong>integer</strong>: número entero de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
 <li><p><strong>smallint</strong>: número entero pequeño de tamaño máximo dependiente de la arquitectura de la computadora.</p></li>
-<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id85" id="id2">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
-<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id86" id="id3">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
+<li><p><strong>numeric</strong>(<em>p</em>,<em>d</em>): número de punto fijo<a class="footnote-reference brackets" href="#id74" id="id2">1</a> con precisión especificada por el usuario. El número consta de <em>p</em> dígitos (más un signo) y <em>d</em> de los <em>p</em> dígitos están a la derecha del punto decimal. Por lo tanto, <strong>numeric</strong>(<em>3</em>, <em>1</em>) permite almacenar 44.5 exactamente, pero ni 444.5 ni 0.32 pueden ser almacenados exactamente en un campo de este tipo.</p></li>
+<li><p><strong>real</strong>, <strong>double precision</strong>: números de punto flotante<a class="footnote-reference brackets" href="#id75" id="id3">2</a> y punto flotante de doble precisión con precisión dependiente de la computadora.</p></li>
 <li><p><strong>float</strong>(<em>n</em>): número de punto flotante con precisión de al menos <em>n</em> dígitos.</p></li>
 </ul>
 <p>Cada tipo puede incluir un valor especial llamado el valor <code class="docutils literal notranslate"><span class="pre">null</span></code> (<code class="docutils literal notranslate"><span class="pre">nulo</span></code>). Un valor nulo indica un valor ausente que puede existir pero ser desconocido o que puede no existir en absoluto. En ciertos casos, se podría querer prohibir que se ingresen valores nulos.</p>
@@ -1181,8 +1192,8 @@ document.write(`
 </section>
 <section id="operaciones-con-hileras-de-caracteres">
 <h4>Operaciones con hileras de caracteres<a class="headerlink" href="#operaciones-con-hileras-de-caracteres" title="Permalink to this heading">#</a></h4>
-<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id18">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
-<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id19">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>En SQL, las hileras de caracteres (textos), se especifican colocándolos entre comillas simples, por ejemplo: ‘universidad’. Una comilla simple que forma parte de una hilera se puede especificar usando dos caracteres de comillas simples; por ejemplo, la cadena “It’s right” se puede especificar en SQL como ‘It’’s right’ <span id="id18">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El estándar SQL establece que la operación de igualdad en hileras es sensible a mayúsculas y minúsculas. Así, la expresión <code class="docutils literal notranslate"><span class="pre">'Universidad'</span> <span class="pre">=</span> <span class="pre">'universidad'</span></code> se evalúa como falsa. Sin embargo, algunos SABD, como MySQL y SQL Server, no distinguen entre mayúsculas y minúsculas al comparar hileras. Este funcionamiento predeterminado puede modificarse <span id="id19">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- La siguiente consulta a la BD university retorna un registro (en PostgreSQL)</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
@@ -1194,7 +1205,7 @@ document.write(`
 <span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MARÍA GARCÍA&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id20">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>SQL permite una variedad de funciones en hileras de caracteres, como concatenar (mediante el operador <code class="docutils literal notranslate"><span class="pre">||</span></code>), extraer subhileras, encontrar la longitud de las hileras, convertir hileras a mayúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">UPPER(s)</span></code> donde <code class="docutils literal notranslate"><span class="pre">s</span></code> es una hilera) y a minúsculas (mediante la función <code class="docutils literal notranslate"><span class="pre">LOWER(s)</span></code>), eliminar espacios al final de la cadena (mediante <code class="docutils literal notranslate"><span class="pre">TRIM(s)</span></code>) y otras. Hay variaciones en el conjunto exacto de funciones de hileras de caracteres que son soportadas por diferentes SABD <span id="id20">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Concatenación de hileras</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;Identificación: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;, Nombre: &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1316,7 +1327,7 @@ document.write(`
 </section>
 <section id="funciones-de-agregacion">
 <h3>Funciones de agregación<a class="headerlink" href="#funciones-de-agregacion" title="Permalink to this heading">#</a></h3>
-<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id23">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Las funciones de agregación reciben como entrada un conjunto de valores y retornan un solo valor. El estándar de SQL incluye cinco funciones, pero los SABD acostumbran añadir otras <span id="id23">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <ul class="simple">
 <li><p>Promedio: <a class="reference external" href="https://www.w3schools.com/sql/sql_avg.asp">AVG()</a></p></li>
 <li><p>Mínimo: <a class="reference external" href="https://www.w3schools.com/sql/sql_min_max.asp">MIN()</a></p></li>
@@ -1327,7 +1338,7 @@ document.write(`
 <p>La entrada de <code class="docutils literal notranslate"><span class="pre">AVG()</span></code> y <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> debe ser un conjunto de números, pero el resto de las funciones acepta también otros tipos de datos, como hileras de caracteres.</p>
 <section id="agregacion-sin-agrupacion">
 <h4>Agregación sin agrupación<a class="headerlink" href="#agregacion-sin-agrupacion" title="Permalink to this heading">#</a></h4>
-<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id24">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>El resultado de este tipo de consultas es una relación con un único atributo que contiene una única tupla con un valor numérico correspondiente al resultado de la función de agregación. El SABD puede asignar un nombre poco significativo al atributo de la relación resultante, consistente en el texto de la expresión; sin embargo, podemos darle un nombre significativo al atributo utilizando la cláusula <code class="docutils literal notranslate"><span class="pre">AS</span></code> <span id="id24">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Salario promedio de todos los profesores</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span>
@@ -1422,7 +1433,7 @@ document.write(`
 </section>
 <section id="manejo-de-valores-nulos">
 <h3>Manejo de valores nulos<a class="headerlink" href="#manejo-de-valores-nulos" title="Permalink to this heading">#</a></h3>
-<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id27">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Los valores nulos presentan problemas especiales en bases de datos relacionales, incluyendo operaciones aritméticas, operaciones de comparación y operaciones de conjuntos <span id="id27">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <p>El resultado de una expresión aritmética (que involucra, por ejemplo, <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code> o <code class="docutils literal notranslate"><span class="pre">/</span></code>) es nulo si cualquiera de los valores de entrada es nulo.</p>
 <p>Las comparaciones que involucran valores nulos son más problemáticas. Por ejemplo, considere la expresión <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">NULL</span></code>. Sería incorrecto decir que es verdadera o que es falsa, ya que no sabemos lo que el valor nulo representa. Por lo tanto, SQL trata como <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> (desconocido) el resultado de cualquier comparación que involucre un valor nulo (a excepción de los predicados <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NULL</span></code> e <code class="docutils literal notranslate"><span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code>, que se describen más adelante en esta sección). Esto crea un tercer valor lógico además de <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> (verdadero) y <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> (falso).</p>
 <p>Ya que el predicado en una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> puede involucrar operadores lógicos como <code class="docutils literal notranslate"><span class="pre">ABD</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code> y <code class="docutils literal notranslate"><span class="pre">NOT</span></code> en los resultados de las comparaciones, las definiciones de estas operaciones se amplían para tratar con el valor <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code>.</p>
@@ -1442,7 +1453,7 @@ document.write(`
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">UNKNOWN</span></code> es <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code></p></li>
 </ul>
-<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id28">[<a class="reference internal" href="#id36" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
+<p>Si el predicado de una cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> se evalúa como <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> o <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> para una tupla, es tupla no se añade al resultado <span id="id28">[<a class="reference internal" href="../../markdown.html#id5" title="Abraham Silberschatz, Henry Korth, and S. Sudarshan. Database System Concepts. McGraw-Hill Education, New York, NY, 7th edition edition, April 2019. ISBN 978-1-260-08450-4.">SKS19</a>]</span>.</p>
 <section id="el-predicado-is-null">
 <h4>El predicado IS NULL<a class="headerlink" href="#el-predicado-is-null" title="Permalink to this heading">#</a></h4>
 <p>SQL utiliza la palabra reservada <a class="reference external" href="https://www.w3schools.com/sql/sql_null_values.asp">NULL</a> en un predicado para comprobar si un valor es nulo. Por ejemplo:</p>
@@ -1893,10 +1904,10 @@ document.write(`
 </div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id85"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id74"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>En la representación de punto fijo, la posición del punto decimal es fija y no cambia. Por ejemplo, si se tiene un sistema de punto fijo de 4 dígitos con 2 posiciones después del punto decimal, el número 123.45 se representaría como 12345 y se entendería que el punto decimal está entre el segundo y tercer dígito desde la derecha. Generalmente, las operaciones de punto fijo son más rápidas y consumen menos recursos del hardware en comparación con las operaciones de punto flotante, especialmente en hardware que no tiene soporte dedicado para operaciones de punto flotante.</p>
 </dd>
-<dt class="label" id="id86"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dt class="label" id="id75"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
 <dd><p>En la representación de punto flotante, la posición del punto decimal puede variar, y el número se representa en términos de una mantisa y un exponente. Por ejemplo, el número 123.45 podría representarse como 1.2345 × 10<sup>2</sup> (1.2345 es la mantisa y 2 el exponente). Requiere hardware más complejo para realizar operaciones, pero esto se ha vuelto menos problemático con el tiempo, debido a la inclusión de unidades de punto flotante (FPU) en la mayoría de los procesadores modernos.</p>
 </dd>
 </dl>
@@ -1944,11 +1955,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../evaluaciones/examencorto-01.html"
+       href="../3/diseno-bases-datos.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examen corto 01</p>
+        <p class="prev-next-title">Diseño de bases de datos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
