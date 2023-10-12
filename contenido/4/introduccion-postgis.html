@@ -178,7 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
 </ul>
 
@@ -421,6 +422,27 @@ document.write(`
 <ul class="simple">
 <li><p>Desde un archivo de respaldo (<em>backup file</em>).</p></li>
 <li><p>Con la herramienta ogr2ogr.</p></li>
+</ul>
+<p>Ejemplos:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descarga de capa desde un servicio WFS a un archivo</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-makevalid<span class="w"> </span>^
+<span class="w">  </span>provincias.gpkg<span class="w"> </span>^
+<span class="w">  </span>WFS:<span class="s2">&quot;https://geos.snitcr.go.cr/be/IGN_5_CO/wfs&quot;</span><span class="w"> </span><span class="s2">&quot;IGN_5_CO:limiteprovincial_5k&quot;</span>
+
+<span class="c1"># Clave como variable del sistema operativo</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">PGPASSWORD</span><span class="o">=[</span>mi_clave_de_postgresql<span class="o">]</span>
+
+<span class="c1"># Carga del archivo a una base de datos PostgreSQL-PostGIS</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>provincias<span class="w"> </span>^
+<span class="w">  </span>-nlt<span class="w"> </span>PROMOTE_TO_MULTI<span class="w"> </span>^
+<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>provincias.gpkg
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>Con la herramienta shp2pgsql.</p></li>
 <li><p>Con otras herramientas (ej. QGIS).</p></li>
 </ul>
