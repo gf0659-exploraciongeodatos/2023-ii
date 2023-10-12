@@ -32,6 +32,27 @@ Existen varias opciones para cargar datos espaciales en PostGIS.
 
 - Desde un archivo de respaldo (*backup file*).
 - Con la herramienta ogr2ogr.
+
+Ejemplos:
+```shell
+# Descarga de capa desde un servicio WFS a un archivo
+ogr2ogr ^
+  -makevalid ^
+  provincias.gpkg ^
+  WFS:"https://geos.snitcr.go.cr/be/IGN_5_CO/wfs" "IGN_5_CO:limiteprovincial_5k"
+
+# Clave como variable del sistema operativo
+set PGPASSWORD=[mi_clave_de_postgresql]
+
+# Carga del archivo a una base de datos PostgreSQL-PostGIS
+ogr2ogr ^
+  -nln provincias ^
+  -nlt PROMOTE_TO_MULTI ^
+  -lco GEOMETRY_NAME=geom ^
+  Pg:"dbname=cr host=localhost user=postgres port=5432" ^
+  provincias.gpkg
+```
+
 - Con la herramienta shp2pgsql.
 - Con otras herramientas (ej. QGIS).
 
