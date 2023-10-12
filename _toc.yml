@@ -23,4 +23,5 @@ parts:
     - file: contenido/evaluaciones/examencorto-01
     - file: contenido/evaluaciones/examencorto-02
     - file: contenido/evaluaciones/tarea-01
+    - file: contenido/evaluaciones/examencorto-03
     - file: contenido/evaluaciones/tarea-02
