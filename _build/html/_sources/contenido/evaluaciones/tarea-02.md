@@ -26,6 +26,8 @@ Tome en cuenta las siguientes restricciones:
 - Cada película es producida por un solo estudio. Un estudio puede producir varias películas.
 - Una película puede tener varias reseñas. Una reseña evalúa una sola película.
 
+Además de los atributos mencionados, debe considerar llaves primarias y llaves foráneas al momento de implementar las entidades en tablas de la base de datos, así como tablas para relaciones de muchos a muchos y cualquier otra que considere necesaria.
+
 
 **La tarea es estrictamente individual.**
 
