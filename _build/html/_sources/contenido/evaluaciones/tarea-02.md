@@ -4,7 +4,7 @@
 Lunes 23 de octubre de 2023, 13:59.
 
 ## Descripción general
-En esta tarea, cada estudiante debe diseñar una base de datos relacional sobre películas, de acuerdo con el modelo entidad - relación (ER), y escribir los comandos SQL para crear las tablas, insertar registros de prueba y consultarlos.
+En esta tarea, se debe diseñar una base de datos relacional sobre películas, de acuerdo con el modelo entidad - relación (ER), y escribir los comandos SQL para crear las tablas, insertar registros de prueba y consultarlos.
 
 La base de datos debe manejar la siguiente información:
 
@@ -29,7 +29,7 @@ Tome en cuenta las siguientes restricciones:
 Además de los atributos mencionados, debe considerar llaves primarias y llaves foráneas al momento de implementar las entidades como tablas de la base de datos, así como tablas adicionales para relaciones de muchos a muchos y cualquier otra que considere necesaria.
 
 
-**La tarea es estrictamente individual.**
+**Esta tarea puede realizarse en parejas o individualmente. En el primer caso, solo uno de los integrantes del equipo debe entregar la tarea en Mediación Virtual e indicar el nombre del otro integrante.**
 
 ## Entregables
 El valor porcentual de cada entregable se muestra entre paréntesis.
