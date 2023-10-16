@@ -3,7 +3,7 @@
 ## Introducción
 [PostGIS](https://postgis.net/) es una extensión de [PostgreSQL](https://www.postgresql.org/) que incorpora funcionalidad espacial a este SABD al agregar soporte para tipos de datos espaciales, índices espaciales y funciones espaciales. Al estar construido sobre PostgreSQL, PostGIS hereda automáticamente todas sus ventajas como SABD organizacional, así como estándares abiertos para su implementación. Tanto PostgreSQL como PostGIS son proyectos de software de código abierto.
 
-[Refractions Research](http://www.refractions.net/) lanzó la primera versión de PostGIS en 2001, la cual contaba con objetos, índices y unas cuantas funciones. A través de los años, el proyecto se enriqueció con la implementación de la especificación [Simple Features for SQL (SFSQL)](https://postgis.net/workshops/postgis-intro/glossary.html#term-SFSQL) del [Open Geospatial Consortium (OGC)](https://www.ogc.org/) y  con el aporte de otros proyectos de desarrollo de software apoyados por [OSGeo](https://www.osgeo.org/), como la biblioteca ["Geometry Engine, Open Source" (GEOS)](http://trac.osgeo.org/geos), la cual proporciona el código fuente necesario para implementar los algoritmos de SFSQL (ej. `ST_Intersects()`, `ST_Buffer()`, `ST_Union()` y muchos otros).
+[Refractions Research](http://www.refractions.net/) lanzó la primera versión de PostGIS en 2001, la cual contaba con objetos, índices y unas cuantas funciones. A través de los años, el proyecto se enriqueció con la implementación de la especificación [Simple Features for SQL (SFSQL)](https://postgis.net/workshops/postgis-intro/glossary.html#term-SFSQL) del [Open Geospatial Consortium (OGC)](https://www.ogc.org/) y  con el aporte de otros proyectos de desarrollo de software apoyados por [OSGeo](https://www.osgeo.org/), como la biblioteca ["Geometry Engine, Open Source" (GEOS)](http://trac.osgeo.org/geos), la cual proporciona el código fuente necesario para implementar los algoritmos de SFSQL (ej. `ST_Intersects()`, `ST_Buffer()`, `ST_Union()`) y muchos otros.
 
 ## Instalación
 Las instrucciones detalladas para la instalación de PostGIS, en diferentes sistemas operativos, pueden encontrarse en [Introduction to PostGIS - Installation](https://postgis.net/workshops/postgis-intro/installation.html).
@@ -30,31 +30,34 @@ SELECT postgis_full_version();
 ## Carga de datos
 Existen varias opciones para cargar datos espaciales en PostGIS.
 
-- Desde un archivo de respaldo (*backup file*).
-- Con la herramienta ogr2ogr.
+### Desde un archivo de respaldo
+Este método permite restaurar una base de datos a partir de su respaldo en un archivo (ej. `.backup`). En pgAdmin, está disponible en la opción **Restore...** del menú que se despliega al hacer clic derecho en el ícono de la base de datos.
 
-Ejemplos:
+### Con la herramienta ogr2ogr
+[ogr2ogr](https://gdal.org/programs/ogr2ogr.html) es un programa que forma parte de la biblioteca [Geospatial Data Abstraction Library (GDAL)](https://gdal.org/), la cual se enfoca en la conversión entre formatos vectoriales y raster. `ogr2ogr` realiza conversiones entre formatos vectoriales (ej. SHP, GPKG, GML, KML) y se ejecuta desde la línea de comandos del sistema operativo.
+
+Por ejemplo, el siguiente comando carga una capa alojada en un servicio WFS a una base de datos PostgreSQL-PostGIS.
+
 ```shell
-# Descarga de capa desde un servicio WFS a un archivo
+# Para especificar la clave como variable del sistema operativo
+# y no como parte de un comando (lo que sería muy inseguro)
+# mi_clave_de_postgresql debe sustituirse por la clave correspondiente
+set PGPASSWORD=mi_clave_de_postgresql
+
+# Carga de una capa alojada en un servicio WFS 
+# a una base de datos PostgreSQL-PostGIS
 ogr2ogr ^
   -makevalid ^
-  provincias.gpkg ^
-  WFS:"https://geos.snitcr.go.cr/be/IGN_5_CO/wfs" "IGN_5_CO:limiteprovincial_5k"
-
-# Clave como variable del sistema operativo
-set PGPASSWORD=[mi_clave_de_postgresql]
-
-# Carga del archivo a una base de datos PostgreSQL-PostGIS
-ogr2ogr ^
   -nln provincias ^
   -nlt PROMOTE_TO_MULTI ^
   -lco GEOMETRY_NAME=geom ^
   Pg:"dbname=cr host=localhost user=postgres port=5432" ^
-  provincias.gpkg
+  WFS:"https://geos.snitcr.go.cr/be/IGN_5_CO/wfs" "IGN_5_CO:limiteprovincial_5k"
 ```
 
-- Con la herramienta shp2pgsql.
-- Con otras herramientas (ej. QGIS).
+### Con la herramienta shp2pgsql
+
+### Con otras herramientas (ej. QGIS)
 
 ## Ejercicios
 Para cargar los datos requeridos para resolver estos ejercicios, puede consultar [Introduction to PostGIS - Loading spatial data](https://postgis.net/workshops/postgis-intro/loading_data.html).

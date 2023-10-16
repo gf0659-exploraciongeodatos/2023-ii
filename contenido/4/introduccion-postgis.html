@@ -377,7 +377,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-bases-de-datos">Creación de bases de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desde-un-archivo-de-respaldo">Desde un archivo de respaldo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-ogr2ogr">Con la herramienta ogr2ogr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-shp2pgsql">Con la herramienta shp2pgsql</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-otras-herramientas-ej-qgis">Con otras herramientas (ej. QGIS)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
             </nav>
@@ -395,7 +401,7 @@ document.write(`
 <section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://postgis.net/">PostGIS</a> es una extensión de <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> que incorpora funcionalidad espacial a este SABD al agregar soporte para tipos de datos espaciales, índices espaciales y funciones espaciales. Al estar construido sobre PostgreSQL, PostGIS hereda automáticamente todas sus ventajas como SABD organizacional, así como estándares abiertos para su implementación. Tanto PostgreSQL como PostGIS son proyectos de software de código abierto.</p>
-<p><a class="reference external" href="http://www.refractions.net/">Refractions Research</a> lanzó la primera versión de PostGIS en 2001, la cual contaba con objetos, índices y unas cuantas funciones. A través de los años, el proyecto se enriqueció con la implementación de la especificación <a class="reference external" href="https://postgis.net/workshops/postgis-intro/glossary.html#term-SFSQL">Simple Features for SQL (SFSQL)</a> del <a class="reference external" href="https://www.ogc.org/">Open Geospatial Consortium (OGC)</a> y  con el aporte de otros proyectos de desarrollo de software apoyados por <a class="reference external" href="https://www.osgeo.org/">OSGeo</a>, como la biblioteca <a class="reference external" href="http://trac.osgeo.org/geos">“Geometry Engine, Open Source” (GEOS)</a>, la cual proporciona el código fuente necesario para implementar los algoritmos de SFSQL (ej. <code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code> y muchos otros).</p>
+<p><a class="reference external" href="http://www.refractions.net/">Refractions Research</a> lanzó la primera versión de PostGIS en 2001, la cual contaba con objetos, índices y unas cuantas funciones. A través de los años, el proyecto se enriqueció con la implementación de la especificación <a class="reference external" href="https://postgis.net/workshops/postgis-intro/glossary.html#term-SFSQL">Simple Features for SQL (SFSQL)</a> del <a class="reference external" href="https://www.ogc.org/">Open Geospatial Consortium (OGC)</a> y  con el aporte de otros proyectos de desarrollo de software apoyados por <a class="reference external" href="https://www.osgeo.org/">OSGeo</a>, como la biblioteca <a class="reference external" href="http://trac.osgeo.org/geos">“Geometry Engine, Open Source” (GEOS)</a>, la cual proporciona el código fuente necesario para implementar los algoritmos de SFSQL (ej. <code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code>) y muchos otros.</p>
 </section>
 <section id="instalacion">
 <h2>Instalación<a class="headerlink" href="#instalacion" title="Permalink to this heading">#</a></h2>
@@ -419,33 +425,37 @@ document.write(`
 <section id="carga-de-datos">
 <h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Permalink to this heading">#</a></h2>
 <p>Existen varias opciones para cargar datos espaciales en PostGIS.</p>
-<ul class="simple">
-<li><p>Desde un archivo de respaldo (<em>backup file</em>).</p></li>
-<li><p>Con la herramienta ogr2ogr.</p></li>
-</ul>
-<p>Ejemplos:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Descarga de capa desde un servicio WFS a un archivo</span>
+<section id="desde-un-archivo-de-respaldo">
+<h3>Desde un archivo de respaldo<a class="headerlink" href="#desde-un-archivo-de-respaldo" title="Permalink to this heading">#</a></h3>
+<p>Este método permite restaurar una base de datos a partir de su respaldo en un archivo (ej. <code class="docutils literal notranslate"><span class="pre">.backup</span></code>). En pgAdmin, está disponible en la opción <strong>Restore…</strong> del menú que se despliega al hacer clic derecho en el ícono de la base de datos.</p>
+</section>
+<section id="con-la-herramienta-ogr2ogr">
+<h3>Con la herramienta ogr2ogr<a class="headerlink" href="#con-la-herramienta-ogr2ogr" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://gdal.org/programs/ogr2ogr.html">ogr2ogr</a> es un programa que forma parte de la biblioteca <a class="reference external" href="https://gdal.org/">Geospatial Data Abstraction Library (GDAL)</a>, la cual se enfoca en la conversión entre formatos vectoriales y raster. <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> realiza conversiones entre formatos vectoriales (ej. SHP, GPKG, GML, KML) y se ejecuta desde la línea de comandos del sistema operativo.</p>
+<p>Por ejemplo, el siguiente comando carga una capa alojada en un servicio WFS a una base de datos PostgreSQL-PostGIS.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para especificar la clave como variable del sistema operativo</span>
+<span class="c1"># y no como parte de un comando (lo que sería muy inseguro)</span>
+<span class="c1"># mi_clave_de_postgresql debe sustituirse por la clave correspondiente</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">PGPASSWORD</span><span class="o">=</span>mi_clave_de_postgresql
+
+<span class="c1"># Carga de una capa alojada en un servicio WFS </span>
+<span class="c1"># a una base de datos PostgreSQL-PostGIS</span>
 ogr2ogr<span class="w"> </span>^
 <span class="w">  </span>-makevalid<span class="w"> </span>^
-<span class="w">  </span>provincias.gpkg<span class="w"> </span>^
-<span class="w">  </span>WFS:<span class="s2">&quot;https://geos.snitcr.go.cr/be/IGN_5_CO/wfs&quot;</span><span class="w"> </span><span class="s2">&quot;IGN_5_CO:limiteprovincial_5k&quot;</span>
-
-<span class="c1"># Clave como variable del sistema operativo</span>
-<span class="nb">set</span><span class="w"> </span><span class="nv">PGPASSWORD</span><span class="o">=[</span>mi_clave_de_postgresql<span class="o">]</span>
-
-<span class="c1"># Carga del archivo a una base de datos PostgreSQL-PostGIS</span>
-ogr2ogr<span class="w"> </span>^
 <span class="w">  </span>-nln<span class="w"> </span>provincias<span class="w"> </span>^
 <span class="w">  </span>-nlt<span class="w"> </span>PROMOTE_TO_MULTI<span class="w"> </span>^
 <span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
 <span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
-<span class="w">  </span>provincias.gpkg
+<span class="w">  </span>WFS:<span class="s2">&quot;https://geos.snitcr.go.cr/be/IGN_5_CO/wfs&quot;</span><span class="w"> </span><span class="s2">&quot;IGN_5_CO:limiteprovincial_5k&quot;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Con la herramienta shp2pgsql.</p></li>
-<li><p>Con otras herramientas (ej. QGIS).</p></li>
-</ul>
+</section>
+<section id="con-la-herramienta-shp2pgsql">
+<h3>Con la herramienta shp2pgsql<a class="headerlink" href="#con-la-herramienta-shp2pgsql" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="con-otras-herramientas-ej-qgis">
+<h3>Con otras herramientas (ej. QGIS)<a class="headerlink" href="#con-otras-herramientas-ej-qgis" title="Permalink to this heading">#</a></h3>
+</section>
 </section>
 <section id="ejercicios">
 <h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
@@ -558,7 +568,13 @@ ogr2ogr<span class="w"> </span>^
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-bases-de-datos">Creación de bases de datos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desde-un-archivo-de-respaldo">Desde un archivo de respaldo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-ogr2ogr">Con la herramienta ogr2ogr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-shp2pgsql">Con la herramienta shp2pgsql</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-otras-herramientas-ej-qgis">Con otras herramientas (ej. QGIS)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
 </ul>
   </nav></div>
