@@ -243,7 +243,7 @@ Un polígono es una representación de un área. El límite exterior del polígo
 
 Los polígonos se utilizan para representar objetos cuyo tamaño y forma son importantes. Los límites de una ciudad, parques, planos de edificios o cuerpos de agua son comúnmente representados como polígonos cuando la escala es suficientemente detallada para ver su área. Las carreteras y ríos a veces pueden ser representados como polígonos.
 
-La siguiente consulta SQL retorna las geometrías asociadas a polígonos.
+La siguiente consulta SQL retorna las geometrías asociadas a polígonos en la tabla `geometries`.
 
 ```sql
 -- Geometrías de polígonos
@@ -269,6 +269,10 @@ SELECT
 FROM provincias
 WHERE provincia = 'San José';
 ```
+
+**Ejercicios:**  
+- Calcule el área de todas las provincias mediante `ST_Area()` y compárela con el valor de la columna `Área`.
+- Calcula la suma de las áreas de las provincias y compárela con la suma de la columna `Área`.
 
 #### Colecciones
 Hay cuatro tipos de colecciones, los cuales agrupan geometrías en conjuntos.
@@ -297,3 +301,53 @@ Algunas funciones para trabajar con colecciones son:
 - [ST_GeometryN(geometry,n)](http://postgis.net/docs/ST_GeometryN.html): retorna una parte de una colección.
 - [ST_Area(geometry)](http://postgis.net/docs/ST_Area.html): retorna el área total de todas las partes que son polígonos.
 - [ST_Length(geometry)](http://postgis.net/docs/ST_Length.html): retorna la longitud total de todas las partes que son líneas.
+
+## Relaciones espaciales
+Las relaciones entre objetos espaciales, también llamadas relaciones topológicas o relaciones topológicas binarias, son expresiones lógicas (verdaderas o falsas) sobre las relaciones espaciales entre dos objetos. Por ejemplo, si `a` y `b` son dos objetos espaciales (ej. puntos, líneas, polígonos), se pueden considerar relaciones topológicas como las siguientes:
+
+- `a` interseca a `b`
+- `a` es adyacente a `b`
+- `a` está dentro de `b`
+- `b` está contenido en `a`
+
+Las relaciones topológicas están estandarizadas en el modelo [Dimensionally Extended 9-Intersection Model (DE-9IM)](https://en.wikipedia.org/wiki/DE-9IM).
+
+La especificación SFSQL define varias funciones para relaciones espaciales, las cuales se explican en las secciones subsiguientes.
+
+### `ST_Equals()`
+[ST_Equals(geometry A, geometry B) ](http://postgis.net/docs/ST_Equals.html) retorna `TRUE` si `geometry A` y `geometry B` son espacialmente iguales.
+
+```sql
+-- Selección de una geometría
+SELECT name, geom
+FROM nyc_subway_stations
+WHERE name = 'Broad St';
+```
+
+```
+   name   |                      geom
+----------+---------------------------------------------------
+ Broad St | 0101000020266900000EEBD4CF27CF2141BC17D69516315141
+```
+
+```sql
+-- Evaluación de la igualdad de las geometrías
+SELECT name
+FROM nyc_subway_stations
+WHERE ST_Equals(
+  geom,
+  '0101000020266900000EEBD4CF27CF2141BC17D69516315141');
+```
+
+```
+Broad St
+```
+
+### `ST_Intersects()`
+[ST_Intersects(geometry A, geometry B)](http://postgis.net/docs/ST_Intersects.html) retorna `TRUE` si `geometry A` y `geometry B` comparten espacio en sus bordes o en sus interiores.
+
+### `ST_Disjoint()`
+
+### `ST_Crosses()`
+
+### `ST_Overlaps()`
