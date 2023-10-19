@@ -396,14 +396,32 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-espaciales">Relaciones espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-topologicas">Relaciones topológicas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within-y-st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-de-distancia">Relaciones de distancia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance-y-st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicios</a></li>
 </ul>
             </nav>
         </div>
@@ -714,9 +732,9 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 </section>
 </section>
 </section>
-<section id="relaciones-espaciales">
-<h2>Relaciones espaciales<a class="headerlink" href="#relaciones-espaciales" title="Permalink to this heading">#</a></h2>
-<p>Las relaciones entre objetos espaciales, también llamadas relaciones topológicas o relaciones topológicas binarias, son expresiones lógicas (verdaderas o falsas) sobre las relaciones espaciales entre dos objetos. Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code> son dos objetos espaciales (ej. puntos, líneas, polígonos), se pueden considerar relaciones topológicas como las siguientes:</p>
+<section id="relaciones-topologicas">
+<h2>Relaciones topológicas<a class="headerlink" href="#relaciones-topologicas" title="Permalink to this heading">#</a></h2>
+<p>Las relaciones topológicas, también llamadas relaciones topológicas binarias, son expresiones lógicas (verdaderas o falsas) sobre las relaciones espaciales entre dos objetos. Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code> son dos objetos espaciales (ej. puntos, líneas, polígonos), se pueden considerar relaciones topológicas como las siguientes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> interseca a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> es adyacente a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
@@ -751,19 +769,88 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 </pre></div>
 </div>
 </section>
+<section id="st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code><a class="headerlink" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches" title="Permalink to this heading">#</a></h3>
 <section id="st-intersects">
-<h3><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code><a class="headerlink" href="#st-intersects" title="Permalink to this heading">#</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code><a class="headerlink" href="#st-intersects" title="Permalink to this heading">#</a></h4>
 <p><a class="reference external" href="http://postgis.net/docs/ST_Intersects.html">ST_Intersects(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> comparten espacio en sus bordes o en sus interiores.</p>
 </section>
 <section id="st-disjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code><a class="headerlink" href="#st-disjoint" title="Permalink to this heading">#</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code><a class="headerlink" href="#st-disjoint" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Disjoint.html">ST_Disjoint(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> no comparten espacio en sus bordes o en sus interiores. Es la función opuesta a <code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>. De hecho, es más eficiente usar la expresión <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">(ST_Intersects(geometry</span> <span class="pre">A,</span> <span class="pre">geometry</span> <span class="pre">B))</span></code> que <code class="docutils literal notranslate"><span class="pre">ST_Disjoint(geometry</span> <span class="pre">A,</span> <span class="pre">geometry</span> <span class="pre">B)</span></code> debido a que las intersecciones pueden comprobarse mediante índices, mientras que las disjunciones no.</p>
 </section>
 <section id="st-crosses">
-<h3><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code><a class="headerlink" href="#st-crosses" title="Permalink to this heading">#</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code><a class="headerlink" href="#st-crosses" title="Permalink to this heading">#</a></h4>
+<p>Para comparaciones de multipunto-polígono, multipunto-línea, línea-línea, línea-polígono y línea-multipolígono, <a class="reference external" href="http://postgis.net/docs/ST_Crosses.html">ST_Crosses(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si la intersección resulta en una geometría cuyo número de dimensiones es menor que el número máximo de dimensiones de las dos geometrías originales y el conjunto de intersección está en el interior de ambas geometrías originales.</p>
 </section>
 <section id="st-overlaps">
-<h3><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code><a class="headerlink" href="#st-overlaps" title="Permalink to this heading">#</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code><a class="headerlink" href="#st-overlaps" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Overlaps.html">ST_Overlaps(geometry A, geometry B)</a> compara dos geometrías de la misma cantidad de dimensiones y retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si su intersección resulta en una geometría diferente de ambas pero de la misma cantidad de dimensiones.</p>
 </section>
+<section id="st-touches">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code><a class="headerlink" href="#st-touches" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Touches.html">ST_Touches(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si los límites de alguna de las geometrías se intersectan o si el interior de solo una de las geometrías intersecta el límite de la otra.</p>
+</section>
+</section>
+<section id="st-within-y-st-contains">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code><a class="headerlink" href="#st-within-y-st-contains" title="Permalink to this heading">#</a></h3>
+<p>Tanto <code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> como <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code> comprueban si una geometría está completamente dentro de la otra.</p>
+<section id="st-within">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code><a class="headerlink" href="#st-within" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Within.html">ST_Within(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> está completamente dentro de <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code>.</p>
+</section>
+<section id="st-contains">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code><a class="headerlink" href="#st-contains" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Contains.html">ST_Contains(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> está completamente contenida en <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="relaciones-de-distancia">
+<h2>Relaciones de distancia<a class="headerlink" href="#relaciones-de-distancia" title="Permalink to this heading">#</a></h2>
+<p>Un problema muy común en sistemas de información geográfica es “encuentre todo lo que esté a una distancia X de estas cosas”. Las funciones <code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code> pueden ayudar a resolver ese tipo de problemas.</p>
+<section id="st-distance-y-st-dwithin">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code><a class="headerlink" href="#st-distance-y-st-dwithin" title="Permalink to this heading">#</a></h3>
+<section id="st-distance">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code><a class="headerlink" href="#st-distance" title="Permalink to this heading">#</a></h4>
+<p>La función <a class="reference external" href="http://postgis.net/docs/ST_Distance.html">ST_Distance(geometry A, geometry B)</a> calcula la distancia más corta entre dos geometrías y la devuelve como un número de tipo <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cálculo de la distancia entre dos objetos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span>
+<span class="n">ST_GeometryFromText</span><span class="p">(</span><span class="s1">&#39;POINT(0 5)&#39;</span><span class="p">),</span>
+<span class="n">ST_GeometryFromText</span><span class="p">(</span><span class="s1">&#39;LINESTRING(-2 2, 2 2)&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+<section id="st-dwithin">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code><a class="headerlink" href="#st-dwithin" title="Permalink to this heading">#</a></h4>
+<p>La función <a class="reference external" href="http://postgis.net/docs/ST_DWithin.html">ST_DWithin()</a> permite probar si dos objetos están a una cierta distancia el uno del otro. Esto es útil para preguntas como “¿cuántos árboles están dentro de un <em>buffer</em> de 500 metros de la carretera?”. Con <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code>, se puede comprobar la relación de distancia sin generar el <em>buffer</em>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Calles a una distancia de 10 metros o menos de una estación del tren subterráneo</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_streets</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_DWithin</span><span class="p">(</span>
+<span class="w">        </span><span class="n">geom</span><span class="p">,</span>
+<span class="w">        </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;POINT(583571 4506714)&#39;</span><span class="p">,</span><span class="mi">26918</span><span class="p">),</span>
+<span class="w">        </span><span class="mi">10</span>
+<span class="w">      </span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">name</span>
+<span class="o">--------------</span>
+   <span class="n">Wall</span> <span class="n">St</span>
+   <span class="n">Broad</span> <span class="n">St</span>
+   <span class="n">Nassau</span> <span class="n">St</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id1">
+<h2>Ejercicios<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Encuentre todos los registros de presencia de félidos en un radio de 10 km del punto (-84.0, 10.0) (WGS84).</p></li>
+</ol>
 </section>
 </section>
 
@@ -856,14 +943,32 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-espaciales">Relaciones espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-topologicas">Relaciones topológicas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within-y-st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-de-distancia">Relaciones de distancia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance-y-st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicios</a></li>
 </ul>
   </nav></div>
 
