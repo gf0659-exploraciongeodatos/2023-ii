@@ -417,3 +417,4 @@ WHERE ST_DWithin(
     - Distrito
     - Área de conservación
     - ASP
+3. Encuentre las vías en un radio de 1 km del punto más cercano a (-84.0, 10.0).
