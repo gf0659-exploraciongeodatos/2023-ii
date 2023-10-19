@@ -396,6 +396,14 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-espaciales">Relaciones espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -647,7 +655,7 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 <h4>Polígonos<a class="headerlink" href="#poligonos" title="Permalink to this heading">#</a></h4>
 <p>Un polígono es una representación de un área. El límite exterior del polígono está representado por un <strong>anillo</strong>. Este anillo es una línea que es tanto cerrada como simple, según se definió anteriormente. Los huecos dentro del polígono también están representados por anillos.</p>
 <p>Los polígonos se utilizan para representar objetos cuyo tamaño y forma son importantes. Los límites de una ciudad, parques, planos de edificios o cuerpos de agua son comúnmente representados como polígonos cuando la escala es suficientemente detallada para ver su área. Las carreteras y ríos a veces pueden ser representados como polígonos.</p>
-<p>La siguiente consulta SQL retorna las geometrías asociadas a polígonos.</p>
+<p>La siguiente consulta SQL retorna las geometrías asociadas a polígonos en la tabla <code class="docutils literal notranslate"><span class="pre">geometries</span></code>.</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Geometrías de polígonos</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
@@ -671,6 +679,11 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 <span class="k">WHERE</span><span class="w"> </span><span class="n">provincia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;San José&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
+<p><strong>Ejercicios:</strong></p>
+<ul class="simple">
+<li><p>Calcule el área de todas las provincias mediante <code class="docutils literal notranslate"><span class="pre">ST_Area()</span></code> y compárela con el valor de la columna <code class="docutils literal notranslate"><span class="pre">Área</span></code>.</p></li>
+<li><p>Calcula la suma de las áreas de las provincias y compárela con la suma de la columna <code class="docutils literal notranslate"><span class="pre">Área</span></code>.</p></li>
+</ul>
 </section>
 <section id="colecciones">
 <h4>Colecciones<a class="headerlink" href="#colecciones" title="Permalink to this heading">#</a></h4>
@@ -699,6 +712,57 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 <li><p><a class="reference external" href="http://postgis.net/docs/ST_Length.html">ST_Length(geometry)</a>: retorna la longitud total de todas las partes que son líneas.</p></li>
 </ul>
 </section>
+</section>
+</section>
+<section id="relaciones-espaciales">
+<h2>Relaciones espaciales<a class="headerlink" href="#relaciones-espaciales" title="Permalink to this heading">#</a></h2>
+<p>Las relaciones entre objetos espaciales, también llamadas relaciones topológicas o relaciones topológicas binarias, son expresiones lógicas (verdaderas o falsas) sobre las relaciones espaciales entre dos objetos. Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code> son dos objetos espaciales (ej. puntos, líneas, polígonos), se pueden considerar relaciones topológicas como las siguientes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> interseca a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> es adyacente a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> está dentro de <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> está contenido en <code class="docutils literal notranslate"><span class="pre">a</span></code></p></li>
+</ul>
+<p>Las relaciones topológicas están estandarizadas en el modelo <a class="reference external" href="https://en.wikipedia.org/wiki/DE-9IM">Dimensionally Extended 9-Intersection Model (DE-9IM)</a>.</p>
+<p>La especificación SFSQL define varias funciones para relaciones espaciales, las cuales se explican en las secciones subsiguientes.</p>
+<section id="st-equals">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code><a class="headerlink" href="#st-equals" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Equals.html">ST_Equals(geometry A, geometry B) </a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> son espacialmente iguales.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Selección de una geometría</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_subway_stations</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Broad St&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">name</span>   <span class="o">|</span>                      <span class="n">geom</span>
+<span class="o">----------+---------------------------------------------------</span>
+ <span class="n">Broad</span> <span class="n">St</span> <span class="o">|</span> <span class="mi">0101000020266900000</span><span class="n">EEBD4CF27CF2141BC17D69516315141</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Evaluación de la igualdad de las geometrías</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_subway_stations</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Equals</span><span class="p">(</span>
+<span class="w">  </span><span class="n">geom</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;0101000020266900000EEBD4CF27CF2141BC17D69516315141&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Broad</span> <span class="n">St</span>
+</pre></div>
+</div>
+</section>
+<section id="st-intersects">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code><a class="headerlink" href="#st-intersects" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Intersects.html">ST_Intersects(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> comparten espacio en sus bordes o en sus interiores.</p>
+</section>
+<section id="st-disjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code><a class="headerlink" href="#st-disjoint" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="st-crosses">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code><a class="headerlink" href="#st-crosses" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="st-overlaps">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code><a class="headerlink" href="#st-overlaps" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 </section>
@@ -790,6 +854,14 @@ Con las mismas funciones del ejemplo anterior, obtenga información general sobr
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#colecciones">Colecciones</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-espaciales">Relaciones espaciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
 </ul>
 </li>
 </ul>
