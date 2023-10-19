@@ -412,3 +412,8 @@ WHERE ST_DWithin(
 
 ## Ejercicios
 1. Encuentre todos los registros de presencia de félidos en un radio de 10 km del punto (-84.0, 10.0) (WGS84).
+2. Para el punto más cercano a (-84.0, 10.0), encuentre su:
+    - Cantón
+    - Distrito
+    - Área de conservación
+    - ASP
