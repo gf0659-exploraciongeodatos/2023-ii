@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PostGIS - Relaciones espaciales &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-relaciones-espaciales';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PostGIS - Uniones (joins) espaciales" href="postgis-joins-espaciales.html" />
+    <link rel="prev" title="PostGIS - Geometrías" href="postgis-geometrias.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/postgis-relaciones-espaciales.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/postgis-relaciones-espaciales.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PostGIS - Relaciones espaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-topologicas">Relaciones topológicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within-y-st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-de-distancia">Relaciones de distancia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance-y-st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="postgis-relaciones-espaciales">
+<h1>PostGIS - Relaciones espaciales<a class="headerlink" href="#postgis-relaciones-espaciales" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>Las funciones espaciales que se han estudiado hasta el momento, solo trabajan con una geometría a la vez. Las funciones que se estudian en este capítulo comparan geometrías a través de relaciones espaciales. Se dividen en relaciones toploógicas y relaciones de distancia.</p>
+</section>
+<section id="relaciones-topologicas">
+<h2>Relaciones topológicas<a class="headerlink" href="#relaciones-topologicas" title="Permalink to this heading">#</a></h2>
+<p>Las relaciones topológicas, también llamadas relaciones topológicas binarias, son expresiones lógicas (verdaderas o falsas) sobre las relaciones espaciales entre dos objetos. Por ejemplo, si <code class="docutils literal notranslate"><span class="pre">a</span></code> y <code class="docutils literal notranslate"><span class="pre">b</span></code> son dos objetos espaciales (ej. puntos, líneas, polígonos), se pueden considerar relaciones topológicas como las siguientes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> interseca a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> es adyacente a <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> está dentro de <code class="docutils literal notranslate"><span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> está contenido en <code class="docutils literal notranslate"><span class="pre">a</span></code></p></li>
+</ul>
+<p>Las relaciones topológicas están estandarizadas en el modelo <a class="reference external" href="https://en.wikipedia.org/wiki/DE-9IM">Dimensionally Extended 9-Intersection Model (DE-9IM)</a>.</p>
+<p>La especificación SFSQL define varias funciones para relaciones espaciales, las cuales se explican en las secciones subsiguientes.</p>
+<section id="st-equals">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code><a class="headerlink" href="#st-equals" title="Permalink to this heading">#</a></h3>
+<figure class="align-default" id="figure-st-equals">
+<img alt="../../_images/st_equals.png" src="../../_images/st_equals.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">ST_Equals(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-equals" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Equals.html">ST_Equals(geometry A, geometry B) </a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> son espacialmente iguales.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Selección de una geometría</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_subway_stations</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Broad St&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">name</span>   <span class="o">|</span>                      <span class="n">geom</span>
+<span class="o">----------+---------------------------------------------------</span>
+ <span class="n">Broad</span> <span class="n">St</span> <span class="o">|</span> <span class="mi">0101000020266900000</span><span class="n">EEBD4CF27CF2141BC17D69516315141</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Evaluación de la igualdad de las geometrías</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_subway_stations</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Equals</span><span class="p">(</span>
+<span class="w">  </span><span class="n">geom</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;0101000020266900000EEBD4CF27CF2141BC17D69516315141&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Broad</span> <span class="n">St</span>
+</pre></div>
+</div>
+</section>
+<section id="st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code><a class="headerlink" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches" title="Permalink to this heading">#</a></h3>
+<section id="st-intersects">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code><a class="headerlink" href="#st-intersects" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-intersects">
+<img alt="../../_images/st_intersects.png" src="../../_images/st_intersects.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 20 </span><span class="caption-text">ST_Intersects(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-intersects" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Intersects.html">ST_Intersects(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> comparten espacio en sus bordes o en sus interiores.</p>
+</section>
+<section id="st-disjoint">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code><a class="headerlink" href="#st-disjoint" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-disjoint">
+<img alt="../../_images/st_disjoint.png" src="../../_images/st_disjoint.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 21 </span><span class="caption-text">ST_Disjoint(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-disjoint" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Disjoint.html">ST_Disjoint(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> y <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> no comparten espacio en sus bordes o en sus interiores. Es la función opuesta a <code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>. De hecho, es más eficiente usar la expresión <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">(ST_Intersects(geometry</span> <span class="pre">A,</span> <span class="pre">geometry</span> <span class="pre">B))</span></code> que <code class="docutils literal notranslate"><span class="pre">ST_Disjoint(geometry</span> <span class="pre">A,</span> <span class="pre">geometry</span> <span class="pre">B)</span></code> debido a que las intersecciones pueden comprobarse mediante índices, mientras que las disjunciones no.</p>
+</section>
+<section id="st-crosses">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code><a class="headerlink" href="#st-crosses" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-crosses">
+<img alt="../../_images/st_crosses.png" src="../../_images/st_crosses.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">ST_Crosses(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-crosses" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Para comparaciones de multipunto-polígono, multipunto-línea, línea-línea, línea-polígono y línea-multipolígono, <a class="reference external" href="http://postgis.net/docs/ST_Crosses.html">ST_Crosses(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si la intersección resulta en una geometría cuyo número de dimensiones es menor que el número máximo de dimensiones de las dos geometrías originales y el conjunto de intersección está en el interior de ambas geometrías originales.</p>
+</section>
+<section id="st-overlaps">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code><a class="headerlink" href="#st-overlaps" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-overlaps">
+<img alt="../../_images/st_overlaps.png" src="../../_images/st_overlaps.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">ST_Overlaps(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-overlaps" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Overlaps.html">ST_Overlaps(geometry A, geometry B)</a> compara dos geometrías de la misma cantidad de dimensiones y retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si su intersección resulta en una geometría diferente de ambas pero de la misma cantidad de dimensiones.</p>
+</section>
+<section id="st-touches">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code><a class="headerlink" href="#st-touches" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-touches">
+<img alt="../../_images/st_touches.png" src="../../_images/st_touches.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">ST_Touches(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-touches" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Touches.html">ST_Touches(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si los límites de alguna de las geometrías se intersectan o si el interior de solo una de las geometrías intersecta el límite de la otra.</p>
+</section>
+</section>
+<section id="st-within-y-st-contains">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code><a class="headerlink" href="#st-within-y-st-contains" title="Permalink to this heading">#</a></h3>
+<figure class="align-default" id="figure-st-within">
+<img alt="../../_images/st_within.png" src="../../_images/st_within.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 25 </span><span class="caption-text">ST_Within() y ST_Contains(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-within" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Tanto <code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> como <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code> comprueban si una geometría está completamente dentro de la otra.</p>
+<section id="st-within">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code><a class="headerlink" href="#st-within" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Within.html">ST_Within(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code> está completamente dentro de <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code>.</p>
+</section>
+<section id="st-contains">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code><a class="headerlink" href="#st-contains" title="Permalink to this heading">#</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Contains.html">ST_Contains(geometry A, geometry B)</a> retorna <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> si <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">B</span></code> está completamente contenida en <code class="docutils literal notranslate"><span class="pre">geometry</span> <span class="pre">A</span></code>.</p>
+</section>
+</section>
+</section>
+<section id="relaciones-de-distancia">
+<h2>Relaciones de distancia<a class="headerlink" href="#relaciones-de-distancia" title="Permalink to this heading">#</a></h2>
+<p>Un problema muy común en sistemas de información geográfica es “encuentrar todo lo que esté a una distancia X de estos objetos”. Las funciones <code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code> pueden ayudar a resolver ese tipo de problemas.</p>
+<section id="st-distance-y-st-dwithin">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code><a class="headerlink" href="#st-distance-y-st-dwithin" title="Permalink to this heading">#</a></h3>
+<section id="st-distance">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code><a class="headerlink" href="#st-distance" title="Permalink to this heading">#</a></h4>
+<p>La función <a class="reference external" href="http://postgis.net/docs/ST_Distance.html">ST_Distance(geometry A, geometry B)</a> calcula la distancia más corta entre dos geometrías y la devuelve como un número de tipo <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cálculo de la distancia entre dos objetos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span>
+<span class="n">ST_GeometryFromText</span><span class="p">(</span><span class="s1">&#39;POINT(0 5)&#39;</span><span class="p">),</span>
+<span class="n">ST_GeometryFromText</span><span class="p">(</span><span class="s1">&#39;LINESTRING(-2 2, 2 2)&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+<section id="st-dwithin">
+<h4><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code><a class="headerlink" href="#st-dwithin" title="Permalink to this heading">#</a></h4>
+<figure class="align-default" id="figure-st-dwithin">
+<img alt="../../_images/st_dwithin.png" src="../../_images/st_dwithin.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text">ST_DWithin(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-dwithin" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La función <a class="reference external" href="http://postgis.net/docs/ST_DWithin.html">ST_DWithin()</a> permite probar si dos objetos están a una cierta distancia el uno del otro. Esto es útil para preguntas como “¿cuántos árboles están dentro de un <em>buffer</em> de 500 metros de la carretera?”. Con <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code>, se puede comprobar la relación de distancia sin generar el <em>buffer</em>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Calles a una distancia de 10 metros o menos de una estación del tren subterráneo</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">nyc_streets</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_DWithin</span><span class="p">(</span>
+<span class="w">   </span><span class="n">geom</span><span class="p">,</span><span class="w"> </span>
+<span class="w">   </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;POINT(583571 4506714)&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">26918</span><span class="p">),</span><span class="w"> </span>
+<span class="w">   </span><span class="mi">10</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">name</span>
+<span class="o">--------------</span>
+   <span class="n">Wall</span> <span class="n">St</span>
+   <span class="n">Broad</span> <span class="n">St</span>
+   <span class="n">Nassau</span> <span class="n">St</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<p>Resuelva los siguientes problemas mediante <em>joins</em> espaciales.</p>
+<ol class="arabic simple">
+<li><p>Encuentre todos los registros de presencia de félidos en un radio de 10 km del punto (-84.0, 10.0) (WGS84).</p></li>
+<li><p>Para el aeródromo Amubri, encuentre su:</p>
+<ul class="simple">
+<li><p>Cantón</p></li>
+<li><p>Distrito</p></li>
+<li><p>Área de conservación</p></li>
+<li><p>ASP</p></li>
+</ul>
+</li>
+<li><p>Encuentre las vías en un radio de 1 km del aeródromo Amubri. Visualícelas en QGIS.</p></li>
+<li><p>Encuentre las vías que atraviesan la ruta 32. Visualícelas en QGIS.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="postgis-geometrias.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PostGIS - Geometrías</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="postgis-joins-espaciales.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PostGIS - Uniones (<em>joins</em>) espaciales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-topologicas">Relaciones topológicas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-equals"><code class="docutils literal notranslate"><span class="pre">ST_Equals()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects-st-disjoint-st-crosses-st-overlaps-y-st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersects"><code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-disjoint"><code class="docutils literal notranslate"><span class="pre">ST_Disjoint()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-crosses"><code class="docutils literal notranslate"><span class="pre">ST_Crosses()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-overlaps"><code class="docutils literal notranslate"><span class="pre">ST_Overlaps()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-touches"><code class="docutils literal notranslate"><span class="pre">ST_Touches()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within-y-st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-within"><code class="docutils literal notranslate"><span class="pre">ST_Within()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-contains"><code class="docutils literal notranslate"><span class="pre">ST_Contains()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relaciones-de-distancia">Relaciones de distancia</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance-y-st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-distance"><code class="docutils literal notranslate"><span class="pre">ST_Distance()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#st-dwithin"><code class="docutils literal notranslate"><span class="pre">ST_DWithin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

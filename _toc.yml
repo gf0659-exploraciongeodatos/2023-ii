@@ -17,7 +17,10 @@ parts:
   - caption: 4 - BASES DE DATOS ESPACIALES    
     chapters:
     - file: contenido/4/conceptos-fundamentales-bases-datos-espaciales       
-    - file: contenido/4/introduccion-postgis   
+    - file: contenido/4/postgis-introduccion   
+    - file: contenido/4/postgis-geometrias      
+    - file: contenido/4/postgis-relaciones-espaciales      
+    - file: contenido/4/postgis-joins-espaciales          
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01

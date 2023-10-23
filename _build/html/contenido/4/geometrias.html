@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Geometrías &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/geometrias';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Relaciones espaciales" href="relaciones-espaciales.html" />
+    <link rel="prev" title="Introducción a PostGIS" href="introduccion-postgis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion-postgis.html">Introducción a PostGIS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relaciones-espaciales.html">Relaciones espaciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/geometrias.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/geometrias.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geometrías</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-y-vistas-de-metadatos">Tablas y vistas de metadatos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-geometrias">Tipos de geometrías</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos">Puntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas">Líneas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos">Polígonos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colecciones">Colecciones</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geometrias">
+<h1>Geometrías<a class="headerlink" href="#geometrias" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>Como se mencionó en el capítulo anterior, una base de datos espacial proporciona tipos de datos geométricos para manejar datos espaciales. Con los siguientes comandos, se crea una tabla PostgreSQL-PostGIS, que incluye una columna de tipo <code class="docutils literal notranslate"><span class="pre">GEOMETRY</span></code>, y se insertan geometrías de diferentes clases. Ejecute los comandos en alguna de las bases de datos creadas como parte de los ejercicios.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de la tabla geometries</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">geometries</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="n">GEOMETRY</span><span class="p">);</span>
+
+<span class="c1">-- Inserción de registros con diferentes tipos de geometrías</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">geometries</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="w">  </span><span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POINT(0 0)&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">(</span><span class="s1">&#39;Linestring&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;LINESTRING(0 0, 1 1, 2 1, 2 2)&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">(</span><span class="s1">&#39;Polygon&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POLYGON((0 0, 1 0, 1 1, 0 1, 0 0))&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">(</span><span class="s1">&#39;PolygonWithHole&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POLYGON((0 0, 10 0, 10 10, 0 10, 0 0),(1 1, 1 2, 2 2, 2 1, 1 1))&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;GEOMETRYCOLLECTION(POINT(2 0),POLYGON((0 0, 1 0, 1 1, 0 1, 0 0)))&#39;</span><span class="p">);</span>
+
+<span class="c1">-- Consulta de la tabla geometries</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La tabla <code class="docutils literal notranslate"><span class="pre">geometries</span></code> contiene cinco geometrías: un punto, una línea, un polígono, un polígono con un hoyo y una colección.</p>
+</section>
+<section id="tablas-y-vistas-de-metadatos">
+<h2>Tablas y vistas de metadatos<a class="headerlink" href="#tablas-y-vistas-de-metadatos" title="Permalink to this heading">#</a></h2>
+<p>De acuerdo con la especificación SFSQL, PostGIS proporciona, en cada base de datos, varias tablas y vistas con metadatos sobre las columnas de geometrías:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spatial_ref_sys</span></code> es una tabla que define los <a class="reference external" href="https://en.wikipedia.org/wiki/Spatial_reference_system">sistemas de referencia espaciales (SRS)</a> (también llamados sistemas de referencia de coordenadas o CRS) que pueden emplearse en cada base de datos PostGIS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometry_columns</span></code> es una vista que contiene un registro por cada columna de tipo <code class="docutils literal notranslate"><span class="pre">GEOMETRY</span></code> que ha sido definida en la base de datos.</p></li>
+</ul>
+</section>
+<section id="tipos-de-geometrias">
+<h2>Tipos de geometrías<a class="headerlink" href="#tipos-de-geometrias" title="Permalink to this heading">#</a></h2>
+<p>La especificación SFSQL define la representación de objetos espaciales de dos dimensiones. Otras especificaciones y aportes de diferentes SABD permiten representar geometrías de más dimensiones.</p>
+<p>Existen varias funciones que permiten obtener información general sobre objetos espaciales:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_GeometryType.html">ST_GeometryType(geometry)</a> retorna el tipo de la geometría.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_NDims.html">ST_NDims(geometry)</a> retorna la cantidad de dimensiones de la geometría.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_SRID.html">ST_SRID(geometry)</a> retorna el identificador del SRS de la geometría.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Información general sobre objetos de la tabla geometries</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ST_GeometryType</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="n">ST_NDims</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="n">ST_SRID</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">name</span>       <span class="o">|</span>    <span class="n">st_geometrytype</span>    <span class="o">|</span> <span class="n">st_ndims</span> <span class="o">|</span> <span class="n">st_srid</span>
+<span class="o">-----------------+-----------------------+----------+---------</span>
+ <span class="n">Point</span>           <span class="o">|</span> <span class="n">ST_Point</span>              <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">0</span>
+ <span class="n">Polygon</span>         <span class="o">|</span> <span class="n">ST_Polygon</span>            <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">0</span>
+ <span class="n">PolygonWithHole</span> <span class="o">|</span> <span class="n">ST_Polygon</span>            <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">0</span>
+ <span class="n">Collection</span>      <span class="o">|</span> <span class="n">ST_GeometryCollection</span> <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">0</span>
+ <span class="n">Linestring</span>      <span class="o">|</span> <span class="n">ST_LineString</span>         <span class="o">|</span>        <span class="mi">2</span> <span class="o">|</span>       <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Ejercicio:</strong><br />
+Con las mismas funciones del ejemplo anterior, obtenga información general sobre las geometrías de las tablas de <code class="docutils literal notranslate"><span class="pre">nyc</span></code> y <code class="docutils literal notranslate"><span class="pre">cr</span></code>.</p>
+<section id="puntos">
+<h3>Puntos<a class="headerlink" href="#puntos" title="Permalink to this heading">#</a></h3>
+<p>Un punto espacial representa una ubicación indivisible. Se representa con una sola coordenada (incluyendo ya sea 2, 3 o 4 dimensiones). Los puntos se utilizan para representar objetos cuando los detalles exactos, como la forma y el tamaño, no son importantes en la escala que se utiliza. Por ejemplo, las ciudades en un mapa del mundo pueden describirse como puntos, mientras que un mapa de una provincia podría representar las ciudades como polígonos.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Representación de una geometría de punto en el formato Well-Known Text (WKT)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Point&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POINT</span><span class="p">(</span><span class="mi">0</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Representación de una geometría de punto en el formato Geography Markup Language (GML)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsGML</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Point&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">gml</span><span class="p">:</span><span class="n">Point</span><span class="o">&gt;&lt;</span><span class="n">gml</span><span class="p">:</span><span class="n">coordinates</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="o">&lt;/</span><span class="n">gml</span><span class="p">:</span><span class="n">coordinates</span><span class="o">&gt;&lt;/</span><span class="n">gml</span><span class="p">:</span><span class="n">Point</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Representación de una geometría de punto en el formato Keyhole Markup Language (KML)</span>
+<span class="c1">-- (parece requerir que la geometría tenga asignado un SRS)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsKML</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">felidos</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;&lt;</span><span class="n">coordinates</span><span class="o">&gt;-</span><span class="mf">83.53046900000354</span><span class="p">,</span><span class="mf">10.595039999999209</span><span class="o">&lt;/</span><span class="n">coordinates</span><span class="o">&gt;&lt;/</span><span class="n">Point</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Representación de una geometría de punto en el formato GeoJSON</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsGeoJSON</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Point&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Point&quot;</span><span class="p">,</span><span class="s2">&quot;coordinates&quot;</span><span class="p">:[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Algunas funciones para trabajar con puntos son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_X.html">ST_X(geometry)</a>: retorna el valor de x.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Y.html">ST_Y(geometry)</a>: retorna el valor de y.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Valores x e y de las coordenadas de los registros de presencia de pumas</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">ST_X</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="n">ST_Y</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="n">ST_SRID</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">felidos</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Puma concolor&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="lineas">
+<h3>Líneas<a class="headerlink" href="#lineas" title="Permalink to this heading">#</a></h3>
+<p>Una línea (<em>linestring</em>) es un trayecto entre ubicaciones. Toma la forma de una serie ordenada de dos o más puntos. Objetos como carreteras y ríos suelen representarse como líneas. Se dice que una línea es <strong>cerrada</strong> si comienza y termina en el mismo punto. Se dice que es <strong>simple</strong> si no se cruza ni se toca a sí misma (excepto en sus extremos, si está cerrada). Una misma línea puede ser cerrada y simple.</p>
+<p>Algunas funciones para trabajar con líneas son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Length.html">ST_Length(geometry)</a>: retorna la longitud de la línea.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_StartPoint.html">ST_StartPoint(geometry)</a>: retorna el punto inicial de la línea, como un objeto tipo <code class="docutils literal notranslate"><span class="pre">POINT</span></code>.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_EndPoint.html">ST_EndPoint(geometry)</a>: retorna el punto final de la línea, como un objeto tipo <code class="docutils literal notranslate"><span class="pre">POINT</span></code>.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_NPoints.html">ST_NPoints(geometry)</a>: retorna el número de puntos que componen la línea.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Información sobre una línea</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ST_Length</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">ST_StartPoint</span><span class="p">(</span><span class="n">geom</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">ST_EndPoint</span><span class="p">(</span><span class="n">geom</span><span class="p">)),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ST_NPoints</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Linestring&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="poligonos">
+<h3>Polígonos<a class="headerlink" href="#poligonos" title="Permalink to this heading">#</a></h3>
+<p>Un polígono es una representación de un área. El límite exterior del polígono está representado por un <strong>anillo</strong>. Este anillo es una línea que es tanto cerrada como simple, según se definió anteriormente. Los huecos dentro del polígono también están representados por anillos.</p>
+<p>Los polígonos se utilizan para representar objetos cuyo tamaño y forma son importantes. Los límites de una ciudad, parques, planos de edificios o cuerpos de agua son comúnmente representados como polígonos cuando la escala es suficientemente detallada para ver su área. Las carreteras y ríos a veces pueden ser representados como polígonos.</p>
+<p>La siguiente consulta SQL retorna las geometrías asociadas a polígonos en la tabla <code class="docutils literal notranslate"><span class="pre">geometries</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Geometrías de polígonos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;Polygon%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Algunas funciones para trabajar con polígonos son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Area.html">ST_Area(geometry)</a>: retorna el área de un polígono.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_NRings.html">ST_NRings(geometry)</a>: retorna el número de anillos de un polígono.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_ExteriorRing.html">ST_ExteriorRing(geometry)</a>: retorna el anillo exterior de un polígono como un objeto <code class="docutils literal notranslate"><span class="pre">LINESTRING</span></code>.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_InteriorRingN.html">ST_InteriorRingN(geometry,n)</a>: retorna un anillo interior de un polígono, especificado por <code class="docutils literal notranslate"><span class="pre">n</span></code>, como un objeto <code class="docutils literal notranslate"><span class="pre">LINESTRING</span></code>.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Perimeter.html">ST_Perimeter(geometry)</a>: retorna la longitud de todos los anillos.</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Área y perímetro de la provincia de San José</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">provincia</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="o">^</span><span class="mi">6</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_km2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="n">ST_Perimeter</span><span class="p">(</span><span class="n">geom</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="o">^</span><span class="mi">3</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">perimetro_km</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">provincias</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">provincia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;San José&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Ejercicios:</strong></p>
+<ul class="simple">
+<li><p>Calcule el área de todas las provincias mediante <code class="docutils literal notranslate"><span class="pre">ST_Area()</span></code> y compárela con el valor de la columna <code class="docutils literal notranslate"><span class="pre">Área</span></code>.</p></li>
+<li><p>Calcula la suma de las áreas de las provincias y compárela con la suma de la columna <code class="docutils literal notranslate"><span class="pre">Área</span></code>.</p></li>
+</ul>
+</section>
+<section id="colecciones">
+<h3>Colecciones<a class="headerlink" href="#colecciones" title="Permalink to this heading">#</a></h3>
+<p>Hay cuatro tipos de colecciones, los cuales agrupan geometrías en conjuntos.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiPoint</span></code>: colección de puntos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code>: colección de líneas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiPolygon</span></code>: colección de polígonos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeometryCollection</span></code>: colección heterogénea de cualquier tipo de geometrías (incluyendo otras colecciones).</p></li>
+</ul>
+<p>La siguiente consulta SQL retorna las geometrías asociadas a una colección.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Geometrías de colecciones</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometries</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Collection&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GEOMETRYCOLLECTION</span><span class="p">(</span><span class="n">POINT</span><span class="p">(</span><span class="mi">2</span> <span class="mi">0</span><span class="p">),</span><span class="n">POLYGON</span><span class="p">((</span><span class="mi">0</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Algunas funciones para trabajar con colecciones son:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_NumGeometries.html">ST_NumGeometries(geometry)</a>: retorna el número de partes de una colección.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_GeometryN.html">ST_GeometryN(geometry,n)</a>: retorna una parte de una colección.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Area.html">ST_Area(geometry)</a>: retorna el área total de todas las partes que son polígonos.</p></li>
+<li><p><a class="reference external" href="http://postgis.net/docs/ST_Length.html">ST_Length(geometry)</a>: retorna la longitud total de todas las partes que son líneas.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduccion-postgis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción a PostGIS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="relaciones-espaciales.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Relaciones espaciales</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-y-vistas-de-metadatos">Tablas y vistas de metadatos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-geometrias">Tipos de geometrías</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos">Puntos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas">Líneas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poligonos">Polígonos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#colecciones">Colecciones</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
