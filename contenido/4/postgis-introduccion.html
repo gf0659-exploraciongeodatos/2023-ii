@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PostGIS - Introducción &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-introduccion';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PostGIS - Geometrías" href="postgis-geometrias.html" />
+    <link rel="prev" title="Conceptos fundamentales de bases de datos espaciales" href="conceptos-fundamentales-bases-datos-espaciales.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/postgis-introduccion.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/postgis-introduccion.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PostGIS - Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-bases-de-datos">Creación de bases de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desde-un-archivo-de-respaldo">Desde un archivo de respaldo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-ogr2ogr">Con la herramienta ogr2ogr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-shp2pgsql">Con la herramienta shp2pgsql</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-qgis">Con QGIS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="postgis-introduccion">
+<h1>PostGIS - Introducción<a class="headerlink" href="#postgis-introduccion" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://postgis.net/">PostGIS</a> es una <a class="reference external" href="https://airbyte.com/data-engineering-resources/postgresql-extensions">extensión</a> de <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> que incorpora funcionalidad espacial a este motor de bases de datos, al agregarle soporte para tipos de datos espaciales, índices espaciales y funciones espaciales. PostGIS hereda todas las ventajas que ofrece PostgreSQL como SABD organizacional, tales como conformidad con los estándares SQL, manejo de concurrencia, seguridad, optimización de consultas y procedimientos almacenados, entre otras. Tanto PostgreSQL como PostGIS son proyectos de código abierto.</p>
+<p><a class="reference external" href="http://www.refractions.net/">Refractions Research</a> lanzó la primera versión de PostGIS en 2001, la cual contaba con objetos, índices y unas cuantas funciones espaciales. El proyecto se benefició con el desarrollo de la especificación <a class="reference external" href="https://www.ogc.org/standard/sfs/">SF-SQL</a> y también con el aporte de proyectos de software apoyados por <a class="reference external" href="https://www.osgeo.org/">OSGeo</a>, como la biblioteca <a class="reference external" href="http://trac.osgeo.org/geos">“Geometry Engine, Open Source” (GEOS)</a>, la cual proporcionó el código fuente necesario para implementar los algoritmos de SF-SQL (ej. <code class="docutils literal notranslate"><span class="pre">ST_Intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code>).</p>
+</section>
+<section id="instalacion">
+<h2>Instalación<a class="headerlink" href="#instalacion" title="Permalink to this heading">#</a></h2>
+<p>Las instrucciones detalladas para la instalación de PostGIS, en diferentes sistemas operativos, pueden encontrarse en <a class="reference external" href="https://postgis.net/workshops/postgis-intro/installation.html">Introduction to PostGIS - Installation</a>.</p>
+</section>
+<section id="creacion-de-bases-de-datos">
+<h2>Creación de bases de datos<a class="headerlink" href="#creacion-de-bases-de-datos" title="Permalink to this heading">#</a></h2>
+<p>PostgreSQL cuenta con varias interfaces administrativas, desde las cuales pueden crearse bases de datos. La principal es <a class="reference external" href="http://www.postgresql.org/docs/current/static/app-psql.html">psql</a>, una herramienta de línea de comandos para ingresar consultas SQL. Otra interfaz muy popular es la herramienta gráfica <a class="reference external" href="http://www.pgadmin.org/">pgAdmin</a>. Todas las consultas realizadas en pgAdmin también se pueden hacer en la línea de comandos con psql. pgAdmin incluye un visor de geometrías que puede usarse para visualizar espacialmente las consultas en PostGIS.</p>
+<p>En el caso de pgAdmin, una base de datos espacial puede crearse igual que cualquier otra base de datos, con la opción de menú <strong>Databases - New Database</strong> y ejecutando además, con la herramienta <strong>Query Tool</strong>, el comando:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de la extensión PostGIS</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">postgis</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Este comando crea la extensión espacial PostGIS para una base de datos.</p>
+<p>Para confirmar que PostGIS está correctamente instalada, puede ejecutarse una de sus funciones. Por ejemplo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta de la versión de PostGIS instalada</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">postgis_full_version</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="carga-de-datos">
+<h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Permalink to this heading">#</a></h2>
+<p>Existen varias opciones para cargar datos espaciales en PostgreSQL-PostGIS. En las secciones siguientes se describen algunas.</p>
+<section id="desde-un-archivo-de-respaldo">
+<h3>Desde un archivo de respaldo<a class="headerlink" href="#desde-un-archivo-de-respaldo" title="Permalink to this heading">#</a></h3>
+<p>Este método permite restaurar una base de datos a partir de su respaldo (<em>backup</em>) en un archivo (ej. <code class="docutils literal notranslate"><span class="pre">.backup</span></code>). En pgAdmin, está disponible en la opción <strong>Restore…</strong> del menú que se despliega al hacer clic derecho en el ícono de una base de datos.</p>
+</section>
+<section id="con-la-herramienta-ogr2ogr">
+<h3>Con la herramienta ogr2ogr<a class="headerlink" href="#con-la-herramienta-ogr2ogr" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://gdal.org/programs/ogr2ogr.html">ogr2ogr</a> es un programa que forma parte de la biblioteca <a class="reference external" href="https://gdal.org/">Geospatial Data Abstraction Library (GDAL)</a>, la cual se enfoca en la conversión entre formatos vectoriales y raster. <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> realiza conversiones entre formatos vectoriales (ej. SHP, GPKG, GML, KML) y se ejecuta desde la línea de comandos del sistema operativo. Para Microsoft Windows, se sugiere utilizar la línea de comandos de <strong>OSGeo4W Shell</strong>, la cual se instala junto con varias aplicaciones, incluyendo QGIS.</p>
+<p>Para acceder una base de datos PostgreSQL-PostGIS, <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> requiere el nombre de la base de datos (<code class="docutils literal notranslate"><span class="pre">dbname</span></code>), la computadora en la que está alojada (<code class="docutils literal notranslate"><span class="pre">host</span></code>), un usuario con los derechos necesarios para cargar los datos (<code class="docutils literal notranslate"><span class="pre">user</span></code>) y su clave. Para no incluir la clave en el comando (lo que sería muy inseguro), se recomienda especificarla en una variable del sistema operativo denominada <code class="docutils literal notranslate"><span class="pre">PGPASSWORD</span></code>. En el caso de Microsoft Windows, por ejemplo, puede usarse un comando como el siguiente para definir esta variable.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Especificación de la clave de PostgreSQL como variable del sistema operativo Windows</span>
+<span class="c1"># mi_clave_de_postgresql debe sustituirse por la clave verdadera</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">PGPASSWORD</span><span class="o">=</span>mi_clave_de_postgresql
+</pre></div>
+</div>
+<p>El siguiente comando carga una capa de provincias de Costa Rica alojada en un servicio WFS del Instituto Geográfico Nacional (IGN) en una tabla de una base de datos PostgreSQL-PostGIS.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de una capa alojada en un servicio WFS en una base de datos PostgreSQL-PostGIS</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-makevalid<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>provincias<span class="w"> </span>^
+<span class="w">  </span>-nlt<span class="w"> </span>PROMOTE_TO_MULTI<span class="w"> </span>^
+<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>WFS:<span class="s2">&quot;https://geos.snitcr.go.cr/be/IGN_5_CO/wfs&quot;</span><span class="w"> </span><span class="s2">&quot;IGN_5_CO:limiteprovincial_5k&quot;</span>
+</pre></div>
+</div>
+<p>El siguiente comando carga un archivo CSV, con registros de presencia de félidos de Costa Rica obtenidos a través de una <a class="reference external" href="https://doi.org/10.15468/dl.cz6t5n">consulta al portal de la Infraestructura Mundial de Información en Biodiversidad (GBIF)</a>, en una tabla de una base de datos PostgreSQL-PostGIS. El archivo CSV también puede descargarse de <a class="github reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/gbif/felidos.csv">gf0659-exploraciongeodatos/2023-ii</a>. El resultado es una capa con geometrías de puntos, cuyas coordenadas provienen de las columnas <code class="docutils literal notranslate"><span class="pre">decimalLongitude</span></code> y <code class="docutils literal notranslate"><span class="pre">decimalLatitude</span></code>. Note el uso de las opciones <code class="docutils literal notranslate"><span class="pre">-s_srs</span> <span class="pre">EPSG:4326</span></code> y <code class="docutils literal notranslate"><span class="pre">-t_srs</span> <span class="pre">EPSG:5367</span></code> para especificar los sistemas de coordenadas de origen y destino, respectivamente.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de una capa contenida en un archivo CSV en una base de datos PostgreSQL-PostGIS</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>felidos<span class="w"> </span>^
+<span class="w">  </span>-oo<span class="w"> </span><span class="nv">X_POSSIBLE_NAMES</span><span class="o">=</span>decimalLongitude<span class="w"> </span>-oo<span class="w"> </span><span class="nv">Y_POSSIBLE_NAMES</span><span class="o">=</span>decimalLatitude<span class="w"> </span>^
+<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
+<span class="w">  </span>-s_srs<span class="w"> </span>EPSG:4326<span class="w"> </span>^
+<span class="w">  </span>-t_srs<span class="w"> </span>EPSG:5367<span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>felidos.csv
+</pre></div>
+</div>
+</section>
+<section id="con-la-herramienta-shp2pgsql">
+<h3>Con la herramienta shp2pgsql<a class="headerlink" href="#con-la-herramienta-shp2pgsql" title="Permalink to this heading">#</a></h3>
+<p>La herramienta <a class="reference external" href="https://postgis.net/docs/using_postgis_dbmanagement.html#shp2pgsql_usage">shp2pgsql</a> permite cargar <em>shapefiles</em> como tablas en bases de datos PostgreSQL-PostGIS. Puede utilizarse desde la línea de comandos del sistema operativo o desde una interfaz gráfica.</p>
+</section>
+<section id="con-qgis">
+<h3>Con QGIS<a class="headerlink" href="#con-qgis" title="Permalink to this heading">#</a></h3>
+<p>El sistema de información geográfica de escritorio <a class="reference external" href="https://www.qgis.org/">QGIS</a> incluye varias herramientas para cargar datos en bases de datos PostgreSQL-PostGIS, como la disponible en la opción de menú <strong>Database - DB Manager - Import Layer/File…</strong>., la cual permite cargar capas físicas o virtuales disponibles en el navegador de QGIS.</p>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<p>Antes de resolver estos ejercicios, se recomienda consultar <a class="reference external" href="https://postgis.net/workshops/postgis-intro/loading_data.html">Introduction to PostGIS - Loading spatial data</a>.</p>
+<ol class="arabic simple">
+<li><p>Cree una base de datos PostgreSQL-PostGIS con nombre <code class="docutils literal notranslate"><span class="pre">nyc</span></code>.</p></li>
+<li><p>Cargue en <code class="docutils literal notranslate"><span class="pre">nyc</span></code> el <a class="reference external" href="https://s3.amazonaws.com/s3.cleverelephant.ca/postgis-workshop-2020.zip">archivo de respaldo de la base de datos</a>.</p></li>
+<li><p>En la base de datos <code class="docutils literal notranslate"><span class="pre">nyc</span></code>, examine:</p>
+<ul class="simple">
+<li><p>Las columnas de geometría de las tablas (ej. <code class="docutils literal notranslate"><span class="pre">geom</span></code>).</p></li>
+<li><p>La tabla <code class="docutils literal notranslate"><span class="pre">spatial_ref_sys</span></code>.</p></li>
+<li><p>Las vistas <code class="docutils literal notranslate"><span class="pre">geometry_columns</span></code> y <code class="docutils literal notranslate"><span class="pre">geography_columns</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Lea la descripción de los datos de <code class="docutils literal notranslate"><span class="pre">nyc</span></code> en <a class="reference external" href="https://postgis.net/workshops/postgis-intro/about_data.html">Introduction to PostGIS - About our data</a>.</p></li>
+<li><p>En QGIS, cree una conexión a <code class="docutils literal notranslate"><span class="pre">nyc</span></code> y visualice sus tablas.</p></li>
+<li><p>Ejecute las consultas SQL en:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://postgis.net/workshops/postgis-intro/simple_sql.html">Introduction to PostGIS - Simple SQL</a></p></li>
+<li><p><a class="reference external" href="https://postgis.net/workshops/postgis-intro/simple_sql_exercises.html">Introduction to PostGIS - Simple SQL Exercises</a></p></li>
+</ul>
+</li>
+<li><p>Cree otra base de datos llamada <code class="docutils literal notranslate"><span class="pre">cr</span></code>.</p></li>
+<li><p>Cargue en <code class="docutils literal notranslate"><span class="pre">cr</span></code> las siguientes capas disponibles en el <a class="reference external" href="https://www.snitcr.go.cr/">Sistema Nacional de Información Territorial (SNIT)</a>:</p>
+<ul class="simple">
+<li><p>Provincias.</p></li>
+<li><p>Cantones.</p></li>
+<li><p>Distritos.</p></li>
+<li><p>Áreas de conservación.</p></li>
+<li><p>Áreas silvestres protegidas.</p></li>
+<li><p>Red vial 1:200 mil.</p></li>
+<li><p>Hidrografía 1:5 mil.</p></li>
+<li><p>Aeródromos 1: 200 mil.</p></li>
+</ul>
+</li>
+<li><p>De <a class="github reference external" href="https://github.com/gf0659-exploraciongeodatos/2023-ii/blob/main/datos/gbif/felidos.csv">gf0659-exploraciongeodatos/2023-ii</a> descargue el archivo <code class="docutils literal notranslate"><span class="pre">felidos.csv</span></code> y cárguelo como una tabla en <code class="docutils literal notranslate"><span class="pre">cr</span></code>.</p></li>
+<li><p>Visualice los datos de <code class="docutils literal notranslate"><span class="pre">cr</span></code> en QGIS.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="conceptos-fundamentales-bases-datos-espaciales.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Conceptos fundamentales de bases de datos espaciales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="postgis-geometrias.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">PostGIS - Geometrías</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-bases-de-datos">Creación de bases de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desde-un-archivo-de-respaldo">Desde un archivo de respaldo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-ogr2ogr">Con la herramienta ogr2ogr</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-la-herramienta-shp2pgsql">Con la herramienta shp2pgsql</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#con-qgis">Con QGIS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

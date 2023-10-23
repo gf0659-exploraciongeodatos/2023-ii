@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/conceptos-fundamentales-bases-datos-espaciales';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introducción a PostGIS" href="introduccion-postgis.html" />
+    <link rel="next" title="PostGIS - Introducción" href="postgis-introduccion.html" />
     <link rel="prev" title="Diseño de bases de datos" href="../3/diseno-bases-datos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,13 +172,16 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Conceptos fundamentales de bases de datos espaciales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduccion-postgis.html">Introducción a PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
 </ul>
 
@@ -375,6 +378,13 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-del-manejo-de-datos-espaciales">Evolución del manejo de datos espaciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandares-y-herramientas">Estándares y herramientas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-access">Simple Feature Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gdal">GDAL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geos">GEOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proj">PROJ</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-espaciales">Tipos de datos espaciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-espaciales">Índices espaciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-espaciales">Funciones espaciales</a></li>
@@ -394,23 +404,48 @@ document.write(`
 <h1>Conceptos fundamentales de bases de datos espaciales<a class="headerlink" href="#conceptos-fundamentales-de-bases-de-datos-espaciales" title="Permalink to this heading">#</a></h1>
 <section id="introduccion">
 <h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
-<p>Una base de datos espacial agrega a una base de datos convencional componentes para manejo de datos espaciales, tales como tipos de datos espaciales, índices espaciales y funciones espaciales.</p>
+<p>Una base de datos espacial (también llamada base de datos geográfica) agrega a una base de datos de propósito general componentes para el manejo de datos espaciales, tales como tipos de datos espaciales, índices espaciales y funciones espaciales.</p>
+<p>La integración de datos espaciales en los motores de bases de datos ha sido posible gracias al desarrollo de bibliotecas de software y estándares abiertos.</p>
 </section>
 <section id="evolucion-del-manejo-de-datos-espaciales">
 <h2>Evolución del manejo de datos espaciales<a class="headerlink" href="#evolucion-del-manejo-de-datos-espaciales" title="Permalink to this heading">#</a></h2>
-<p>El manejo de datos espaciales ha evolucionado desde sistemas propietarios hasta geometrías integradas en la estructura de las bases de datos, como se ilustra en la <a class="reference internal" href="#figure-evolucion-manejo-datos-espaciales"><span class="std std-numref">Fig. 11</span></a>. Esta integración permite tratar a los datos espaciales de una manera no muy diferente a otros tipos de datos (<em>“spatial is not special”</em>).</p>
+<p>El manejo de datos espaciales ha evolucionado desde soluciones propietarias hasta geometrías integradas en la estructura de las bases de datos, como se ilustra en la <a class="reference internal" href="#figure-evolucion-manejo-datos-espaciales"><span class="std std-numref">Fig. 11</span></a>. Esta integración permite tratar a los datos espaciales de una manera no muy diferente a otros tipos de datos (<em>“spatial is not special”</em>).</p>
 <figure class="align-default" id="figure-evolucion-manejo-datos-espaciales">
 <img alt="../../_images/evolucion-manejo-datos-espaciales.png" src="../../_images/evolucion-manejo-datos-espaciales.png" />
 <figcaption>
 <p><span class="caption-number">Fig. 11 </span><span class="caption-text">Evolución del manejo de datos espaciales. Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-evolucion-manejo-datos-espaciales" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>En las primeras implementaciones de sistemas de información geográfica, todos los datos espaciales y no espaciales se almacenaban en archivos planos y se requería de un software especializado (generalmente propietario) para interpretarlos y manipularlos (ej. <a class="reference external" href="https://en.wikipedia.org/wiki/ArcInfo">ARC/INFO</a>). Los sistemas espaciales de segunda generación almacenaban algunos datos en bases de datos relacionales (generalmente los atributos no espaciales, como textos y números), también con la ayuda de herramientas propietarias (ej. <a class="reference external" href="https://en.wikipedia.org/wiki/ArcSDE">ArcSDE</a>), pero aún carecían de la flexibilidad que proporciona una integración directa. Actualmente, las bases de datos integran completamente los datos espaciales con los otros tipos de datos <span id="id1">[<a class="reference internal" href="#id34" title="PostGIS PSC &amp; OSGeo. Introduction to PostGIS. URL: https://postgis.net/workshops/postgis-intro/ (visited on 2023-08-14).">OSG</a>]</span>.</p>
-<p>Estos avances han sido posibles gracias al desarrollo de estándares como <a class="reference external" href="https://www.ogc.org/standards/sfa">Simple Features</a> y de bibliotecas como <a class="reference external" href="https://gdal.org/">GDAL</a>, <a class="reference external" href="https://trac.osgeo.org/geos">GEOS</a> y <a class="reference external" href="https://proj.org/">PROJ</a> <span id="id2">[<a class="reference internal" href="#id12" title="Edzer Pebesma, Wolfang Wagner, Jan Verbesselt, Erwin Goor, Christian Briese, and Markus Neteler. OpenEO: a GDAL for Earth Observation Analytics. 2016. URL: https://r-spatial.org/2016/11/29/openeo.html (visited on 2021-12-31).">PWV+16</a>]</span>.</p>
+<p>En las primeras implementaciones de sistemas de información geográfica (SIG), todos los datos espaciales y no espaciales se almacenaban en archivos planos y se requería de un software especializado (generalmente propietario) para interpretarlos y manipularlos (ej. <a class="reference external" href="https://en.wikipedia.org/wiki/ArcInfo">ARC/INFO</a>). Los sistemas espaciales de segunda generación almacenaban algunos datos (generalmente los atributos no espaciales, como textos y números) en bases de datos relacionales, también con la ayuda de herramientas propietarias (ej. <a class="reference external" href="https://en.wikipedia.org/wiki/ArcSDE">ArcSDE</a>), pero aún carecían de la flexibilidad que proporciona una integración directa. Actualmente, las bases de datos integran completamente los datos espaciales con los otros tipos de datos <span id="id1">[<a class="reference internal" href="#id33" title="PostGIS PSC &amp; OSGeo. Introduction to PostGIS. URL: https://postgis.net/workshops/postgis-intro/ (visited on 2023-08-14).">OSG</a>]</span>. De esta manera, los principales motores de bases de datos (ej. Oracle, PostgreSQL, MySQL) incluyen extensiones para manejar datos espaciales.</p>
+</section>
+<section id="estandares-y-herramientas">
+<h2>Estándares y herramientas<a class="headerlink" href="#estandares-y-herramientas" title="Permalink to this heading">#</a></h2>
+<p>Los avances mencionados han sido posibles gracias al desarrollo de diversos estándares y herramientas, como los que describen en las secciones siguientes.</p>
+<section id="simple-feature-access">
+<h3>Simple Feature Access<a class="headerlink" href="#simple-feature-access" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.ogc.org/standards/sfa">Simple Feature Access</a>, llamado también “<em>Simple Features</em>”, es un conjunto de estándares que especifican un modelo común de almacenamiento y acceso de objetos espaciales, principalmente de geometrías de dos dimensiones (ej. puntos, líneas, polígonos, multipuntos, multilineas, multipolígonos) utilizadas por bases de datos espaciales y SIG. Está formalizado tanto por el <a class="reference external" href="https://www.ogc.org/">Open Geospatial Consortium (OGC)</a> como por la <a class="reference external" href="https://www.iso.org/">Organización Internacional para la Estandarización (ISO)</a>.</p>
+<p>La norma ISO 19125 consta de dos partes:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ogc.org/standard/sfa/">Simple Feature Access – Part 1: Common Architecture (SFA-CA)</a> define un modelo para objetos bidimensionales, con interpolación lineal entre vértices, definido en una jerarquía de clases. Esta parte también define la representación de geometrías en formatos binarios y de texto.</p></li>
+<li><p><a class="reference external" href="https://www.ogc.org/standard/sfs/">Simple Feature Access – Part 2: SQL Option (SFA-SQL)</a> define una interfaz de programación de aplicaciones (API) para el lenguaje SQL.</p></li>
+</ul>
+</section>
+<section id="gdal">
+<h3>GDAL<a class="headerlink" href="#gdal" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://gdal.org/">Geospatial Data Abstraction Library (GDAL)</a> (también conocida como GDAL/OGR) es una biblioteca de software para la lectura, escritura y traducción de formatos de datos espaciales, tanto vectoriales como raster. Es un proyecto de la <a class="reference external" href="http://www.osgeo.org/">Open Source Geospatial Foundation (OSGeo)</a>.</p>
+</section>
+<section id="geos">
+<h3>GEOS<a class="headerlink" href="#geos" title="Permalink to this heading">#</a></h3>
+<p>La biblioteca <a class="reference external" href="https://libgeos.org/">Geometry Engine - Open Source (GEOS)</a> implementa el modelo de geometrías y las funciones espaciales especificadas en Simple Features. Es un proyecto de OSGeo.</p>
+</section>
+<section id="proj">
+<h3>PROJ<a class="headerlink" href="#proj" title="Permalink to this heading">#</a></h3>
+<p>La biblioteca <a class="reference external" href="https://proj.org/">PROJ</a> realiza transformaciones entre <a class="reference external" href="https://en.wikipedia.org/wiki/Spatial_reference_system">sistemas de referencia espaciales (SRS)</a>. También es un proyecto de OSGeo.</p>
+</section>
 </section>
 <section id="tipos-de-datos-espaciales">
 <h2>Tipos de datos espaciales<a class="headerlink" href="#tipos-de-datos-espaciales" title="Permalink to this heading">#</a></h2>
-<p>Una base de datos convencional maneja tipos de datos como números, textos y fechas. Una base de datos espacial añade tipos adicionales (ej. puntos, líneas, polígonos, raster) para representar objetos espaciales. Por ejemplo, el estándar <a class="reference external" href="https://www.ogc.org/standards/sfa">Simple Features</a> define 17 tipos de geometrías de datos vectoriales, de las cuales siete son las más comúnmente utilizadas y se muestran en la <a class="reference internal" href="#figure-tipos-datos-espaciales"><span class="std std-numref">Fig. 12</span></a>.</p>
+<p>Una base de datos convencional maneja tipos de datos como números, textos y fechas. Una base de datos espacial añade tipos para representar objetos espaciales (ej. puntos, líneas, polígonos, raster). El estándar SFA-CA define 17 tipos de geometrías de datos vectoriales, de las cuales siete son las más comúnmente utilizadas y se muestran en la <a class="reference internal" href="#figure-tipos-datos-espaciales"><span class="std std-numref">Fig. 12</span></a>.</p>
 <figure class="align-default" id="figure-tipos-datos-espaciales">
 <img alt="../../_images/tipos-datos-espaciales.png" src="../../_images/tipos-datos-espaciales.png" />
 <figcaption>
@@ -420,7 +455,8 @@ document.write(`
 </section>
 <section id="indices-espaciales">
 <h2>Índices espaciales<a class="headerlink" href="#indices-espaciales" title="Permalink to this heading">#</a></h2>
-<p>Una base de datos común proporciona índices para permitir un acceso rápido y aleatorio a subconjuntos de datos. La indexación para tipos estándar (números, textos, fechas) generalmente se realiza con índices <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%81rbol-B">B-tree</a>. Un índice B-tree divide los datos de acuerdo con el orden natural de clasificación para colocar los datos en un árbol jerárquico. El orden natural de clasificación de números, textos y fechas es fácil de determinar: cada valor es menor, mayor o igual a cualquier otro valor.</p>
+<p>Una base de datos proporciona <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%8Dndice_(base_de_datos)">índices</a> para permitir un acceso rápido y aleatorio a subconjuntos de datos.</p>
+<p>La indexación para tipos de datos convencionales (números, textos, fechas) generalmente se realiza con índices <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%81rbol-B">B-tree</a>. Un índice B-tree divide los datos de acuerdo con su orden natural, para colocarlos en un árbol jerárquico. El orden natural de números, textos y fechas es fácil de determinar: cada valor es menor, mayor o igual a cualquier otro valor.</p>
 <p>Por ejemplo, supóngase que se desea indexar la siguiente lista de números:</p>
 <p>29, 5, 17, 21, 33, 37, 13, 41, 25, 9</p>
 <p>Un índice B-tree para esta lista podría ser el siguiente:</p>
@@ -440,7 +476,7 @@ document.write(`
 <li><p>Los valores menores que 21 (5, 9, 13, 17) están a la izquierda.</p></li>
 <li><p>Los valores mayores que 21 (25, 29, 33, 37, 41) están a la derecha.</p></li>
 </ul>
-<p>Si se desea buscar el número 17, se siguen los siguientes pasos:</p>
+<p>Si se desea buscar, por ejemplo, el número 17, se siguen los siguientes pasos:</p>
 <ol class="arabic simple">
 <li><p>Se comienza en el nodo raíz, 21.</p></li>
 <li><p>17 es menor que 21, así que se sigue por la izquierda.</p></li>
@@ -451,7 +487,7 @@ document.write(`
 <li><p>Se llega al nodo 17. Se ha encontrado el número.</p></li>
 </ol>
 <p>El índice B-tree permite búsquedas, inserciones y eliminaciones rápidas, ya que reduce la cantidad de comparaciones que deben hacerse. En lugar de tener que comparar el número 17 con cada número en la lista, solo fue necesario realizar unas pocas comparaciones para encontrarlo en el árbol.</p>
-<p>Sin embargo, debido a que las geometrías pueden superponerse y están dispuestos en un espacio bidimensional (o más), un B-tree no puede ser utilizado para indexarlas eficientemente. Las verdaderas bases de datos espaciales proporcionan un “índice espacial” que, en cambio, responde a la pregunta “¿qué objetos están dentro de este cuadro delimitador (<em>bounding box</em>) en particular?”.</p>
+<p>Sin embargo, debido a que las geometrías pueden superponerse y están dispuestos en un espacio bidimensional (o de más dimensiones), un B-tree no puede ser utilizado para indexarlas eficientemente. Las verdaderas bases de datos espaciales proporcionan un índice espacial que responde a la pregunta “¿qué objetos están dentro de este cuadro delimitador (<em>bounding box</em>) en particular?”.</p>
 <p>Un cuadro delimitador es el rectángulo más pequeño, paralelo a los ejes de coordenadas, capaz de contener una geometría, como se ilustra en la <a class="reference internal" href="#figure-cuadro-delimitador"><span class="std std-numref">Fig. 13</span></a>.</p>
 <figure class="align-default" id="figure-cuadro-delimitador">
 <img alt="../../_images/cuadro-delimitador.png" src="../../_images/cuadro-delimitador.png" />
@@ -459,21 +495,21 @@ document.write(`
 <p><span class="caption-number">Fig. 13 </span><span class="caption-text">Cuadros delimitadores (<em>bounding boxes</em>). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-cuadro-delimitador" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Los cuadros delimitadores se utilizan en lugar de polígonos más detallados (i.e. con más vértices) porque responder a la pregunta “¿está A dentro de B?” es muy intensivo computacionalmente para polígonos, pero muy rápido en el caso de rectángulos. Incluso los polígonos y líneas más complejos pueden ser representados por un simple cuadro delimitador.</p>
+<p>Los cuadros delimitadores se utilizan en lugar de polígonos más detallados (i.e. con más vértices) porque responder a la pregunta “¿está A dentro de B?” es muy intensivo computacionalmente para polígonos con muchos vértices, pero muy rápido en el caso de rectángulos. Incluso los polígonos y líneas más complejos pueden ser representados por un simple cuadro delimitador.</p>
 <p>Los índices deben funcionar rápidamente para ser útiles. Así que, en lugar de proporcionar resultados exactos, como lo hacen los B-trees, los índices espaciales proporcionan resultados aproximados. La pregunta “¿qué líneas están dentro de este polígono?” será interpretada por un índice espacial como “¿qué líneas tienen cuadros delimitadores que están contenidos dentro del cuadro delimitador de este polígono?”</p>
-<p>Los índices espaciales reales implementados por diversas bases de datos varían ampliamente. Las implementaciones más comunes son el <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%81rbol-R">R-Tree</a> y <a class="reference external" href="https://es.wikipedia.org/wiki/Quadtree">Quadtree</a> (ambos utilizados en PostGIS), pero también hay <a class="reference external" href="https://en.wikipedia.org/wiki/Grid_(spatial_index)">índices basados en cuadrículas</a> e índices <a class="reference external" href="https://en.wikipedia.org/wiki/Geohash">GeoHash</a> implementados en otras bases de datos espaciales.</p>
-<p>El funcionamiento de un índice R-Tree se ejemplifica en la <a class="reference internal" href="#figure-r-tree"><span class="std std-numref">Fig. 14</span></a>.</p>
+<p>Los tipos de índices espaciales varían ampliamente entre las bases de datos. Las implementaciones más comunes son el <a class="reference external" href="https://es.wikipedia.org/wiki/%C3%81rbol-R">R-tree</a> y el <a class="reference external" href="https://es.wikipedia.org/wiki/Quadtree">Quadtree</a>, pero también hay <a class="reference external" href="https://en.wikipedia.org/wiki/Grid_(spatial_index)">índices basados en cuadrículas</a> e índices <a class="reference external" href="https://en.wikipedia.org/wiki/Geohash">GeoHash</a> implementados en otras bases de datos espaciales.</p>
+<p>El funcionamiento de un índice R-tree se ejemplifica en la <a class="reference internal" href="#figure-r-tree"><span class="std std-numref">Fig. 14</span></a>.</p>
 <figure class="align-default" id="figure-r-tree">
 <img alt="../../_images/r-tree.png" src="../../_images/r-tree.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Índice R-Tree. Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-r-tree" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Índice R-tree. Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-r-tree" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Este R-Tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar qué objeto contiene el punto, pueden seguirse los siguientes pasos:</p>
+<p>Este R-tree organiza los objetos espaciales de manera que una búsqueda espacial es un recorrido rápido a través del árbol. Para encontrar cuál objeto contiene el punto, pueden seguirse los siguientes pasos:</p>
 <ol class="arabic simple">
-<li><p>Primero se verifica si está en T o U (T).</p></li>
-<li><p>Luego, se verifica si está en N, P o Q (P).</p></li>
-<li><p>Después, se verifica si está en C, D o E (D).</p></li>
+<li><p>Primero se verifica si está en T o U (está en T).</p></li>
+<li><p>Luego, se verifica si está en N, P o Q (está en P).</p></li>
+<li><p>Después, se verifica si está en C, D o E (está en D).</p></li>
 </ol>
 <p>Solo es necesario probar 8 cajas. Un escaneo completo de la tabla requeriría probar las 13 cajas. Mientras más grande es la tabla, más útil es el índice.</p>
 </section>
@@ -482,23 +518,20 @@ document.write(`
 <p>Una base de datos espacial proporciona un conjunto de funciones para analizar componentes geométricos, determinar relaciones espaciales y manipular geometrías.</p>
 <p>La mayoría de las funciones espaciales puede clasificarse en una de las siguientes cinco categorías:</p>
 <ol class="arabic simple">
-<li><p><strong>Conversión</strong>: Convierten entre geometrías y formatos de datos externos (ej. JSON, XML).</p></li>
-<li><p><strong>Gestión</strong>: Gestionan información sobre tablas espaciales y administración de la base de datos (ej. privilegios de usuarios).</p></li>
+<li><p><strong>Conversión</strong>: Realizan conversiones entre formatos de representación de geometrías (ej. JSON, XML).</p></li>
+<li><p><strong>Gestión</strong>: Gestionan información sobre tablas espaciales y administración de la base de datos (ej. asignación de privilegios a usuarios).</p></li>
 <li><p><strong>Recuperación</strong>: Recuperan propiedades y mediciones de una geometría (ej. longitud, área, perímetro).</p></li>
-<li><p><strong>Comparación</strong>: Comparan dos geometrías con respecto a su relación espacial (ej. intersección, contención, traslape).</p></li>
+<li><p><strong>Comparación</strong>: Comparan dos geometrías con respecto a una relación espacial (ej. intersección, contención, traslape).</p></li>
 <li><p><strong>Generación</strong>: Generan nuevas geometrías a partir de otras (ej. <em>buffers</em>, centroides).</p></li>
 </ol>
-<p>Una lista de funciones espaciales puede encontrarse en el estándar <a class="reference external" href="https://www.ogc.org/standard/sfs/">Simple Feature Access – Part 2: SQL Option</a>.</p>
+<p>Una lista de funciones espaciales puede encontrarse en el estándar <a class="reference external" href="https://www.ogc.org/standard/sfs/">SFA-SQL</a>.</p>
 </section>
 <section id="bibliografia">
 <h2>Bibliografía<a class="headerlink" href="#bibliografia" title="Permalink to this heading">#</a></h2>
-<div class="docutils container" id="id3">
+<div class="docutils container" id="id2">
 <dl class="citation">
-<dt class="label" id="id34"><span class="brackets"><a class="fn-backref" href="#id1">OSG</a></span></dt>
+<dt class="label" id="id33"><span class="brackets"><a class="fn-backref" href="#id1">OSG</a></span></dt>
 <dd><p>PostGIS PSC &amp; OSGeo. Introduction to PostGIS. URL: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">https://postgis.net/workshops/postgis-intro/</a> (visited on 2023-08-14).</p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id2">PWV+16</a></span></dt>
-<dd><p>Edzer Pebesma, Wolfang Wagner, Jan Verbesselt, Erwin Goor, Christian Briese, and Markus Neteler. OpenEO: a GDAL for Earth Observation Analytics. 2016. URL: <a class="reference external" href="https://r-spatial.org/2016/11/29/openeo.html">https://r-spatial.org/2016/11/29/openeo.html</a> (visited on 2021-12-31).</p>
 </dd>
 </dl>
 </div>
@@ -546,11 +579,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="introduccion-postgis.html"
+       href="postgis-introduccion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introducción a PostGIS</p>
+        <p class="prev-next-title">PostGIS - Introducción</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -574,6 +607,13 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolucion-del-manejo-de-datos-espaciales">Evolución del manejo de datos espaciales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estandares-y-herramientas">Estándares y herramientas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-feature-access">Simple Feature Access</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gdal">GDAL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geos">GEOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proj">PROJ</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos-espaciales">Tipos de datos espaciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-espaciales">Índices espaciales</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-espaciales">Funciones espaciales</a></li>
