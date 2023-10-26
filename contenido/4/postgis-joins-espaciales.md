@@ -96,5 +96,6 @@ La consulta anterior puede detallarse de la siguiente manera:
     - ASP
 3. Encuentre las vías en un radio de 1 km del aeródromo Amubri. Visualícelas en QGIS.
 4. Encuentre las vías que atraviesan la ruta 32. Visualícelas en QGIS.
-5. Calcule la cantidad de registros de presencia de félidos en cada provincia de Costa Rica.
-6. Calcule la cantidad de especies (`species`) de félidos en cada provincia de Costa Rica.
+5. Calcule la cantidad de [registros de presencia de murciélagos](https://doi.org/10.15468/dl.g5ce3g) presentes en cada ASP de Costa Rica.
+6. Calcule la cantidad de especies (`species`) de murciélagos presentes en cada ASP de Costa Rica.
+7. Obtenga la lista de especies de murciélagos presentes en el ASP llamada "Golfo Dulce".
