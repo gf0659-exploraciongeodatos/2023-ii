@@ -88,14 +88,13 @@ La consulta anterior puede detallarse de la siguiente manera:
 4. Después de un poco de aritmética y formato (por ejemplo, `GROUP BY`, `ORDER BY`) en los números finales, la consulta despliega los porcentajes.
 
 ## Ejercicios
-1. Encuentre todos los registros de presencia de félidos en un radio de 10 km del punto (-84.0, 10.0) (WGS84).
-2. Para el aeródromo Amubri, encuentre su:
+1. Para el aeródromo Amubri, encuentre su:
     - Cantón
     - Distrito
     - Área de conservación
     - ASP
-3. Encuentre las vías en un radio de 1 km del aeródromo Amubri. Visualícelas en QGIS.
-4. Encuentre las vías que atraviesan la ruta 32. Visualícelas en QGIS.
-5. Calcule la cantidad de [registros de presencia de murciélagos](https://doi.org/10.15468/dl.g5ce3g) presentes en cada ASP de Costa Rica.
-6. Calcule la cantidad de especies (`species`) de murciélagos presentes en cada ASP de Costa Rica.
-7. Obtenga la lista de especies de murciélagos presentes en el ASP llamada "Golfo Dulce".
+2. Encuentre las vías en un radio de 1 km del aeródromo Amubri. Visualícelas en QGIS.
+3. Encuentre las vías que atraviesan la ruta 32. Visualícelas en QGIS.
+4. Calcule la cantidad de [registros de presencia de murciélagos](https://doi.org/10.15468/dl.g5ce3g) registrados en cada ASP de Costa Rica.
+5. Calcule la cantidad de especies (`species`) de murciélagos registradas en cada ASP de Costa Rica.
+6. Obtenga la lista de especies de murciélagos registradas en el ASP llamada "Golfo Dulce".
