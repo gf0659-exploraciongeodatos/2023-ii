@@ -29,3 +29,4 @@ parts:
     - file: contenido/evaluaciones/tarea-01
     - file: contenido/evaluaciones/examencorto-03
     - file: contenido/evaluaciones/tarea-02
+    - file: contenido/evaluaciones/examencorto-04
