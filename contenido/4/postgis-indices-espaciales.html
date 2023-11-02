@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PostGIS - Índices espaciales &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-indices-espaciales';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="prev" title="PostGIS - Uniones (joins) espaciales" href="postgis-joins-espaciales.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Índices espaciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/postgis-indices-espaciales.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/postgis-indices-espaciales.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PostGIS - Índices espaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-sql-para-manejo-de-indices">Comandos SQL para manejo de índices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-index">CREATE INDEX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-index">DROP INDEX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze">ANALYZE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vacuum">VACUUM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejemplos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="postgis-indices-espaciales">
+<h1>PostGIS - Índices espaciales<a class="headerlink" href="#postgis-indices-espaciales" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>Los índices hacen posible el uso de grandes conjuntos de datos en una base de datos espacial. Sin índices, cualquier consulta requeriría de un recorrido secuencial de cada uno de los registros de la base de datos. Los índices aceleran las búsquedas al organizar los datos en un árbol de búsqueda que se puede recorrer rápidamente para encontrar un registro en particular.</p>
+</section>
+<section id="comandos-sql-para-manejo-de-indices">
+<h2>Comandos SQL para manejo de índices<a class="headerlink" href="#comandos-sql-para-manejo-de-indices" title="Permalink to this heading">#</a></h2>
+<section id="create-index">
+<h3>CREATE INDEX<a class="headerlink" href="#create-index" title="Permalink to this heading">#</a></h3>
+<p>En SQL, un índice se crea con el comando <a class="reference external" href="https://www.w3schools.com/sql/sql_create_index.asp">CREATE INDEX</a>.</p>
+<section id="sintaxis-basica">
+<h4>Sintaxis básica<a class="headerlink" href="#sintaxis-basica" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">nombre_índice</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">tabla</span>
+<span class="k">USING</span><span class="w"> </span><span class="n">GIST</span><span class="p">(</span><span class="n">columna_geometría</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="ejemplos">
+<h4>Ejemplos<a class="headerlink" href="#ejemplos" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Creación de un índice espacial para la tabla provincias</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">provincias_geom_idx</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">provincias</span>
+<span class="k">USING</span><span class="w"> </span><span class="n">GIST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="drop-index">
+<h3>DROP INDEX<a class="headerlink" href="#drop-index" title="Permalink to this heading">#</a></h3>
+<p>Un índice se borra con el comando <a class="reference external" href="https://www.w3schools.com/sql/sql_drop_index.asp">DROP INDEX</a>.</p>
+<section id="id1">
+<h4>Sintaxis básica<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">nombre_índice</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Ejemplos<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Borrado de un índice espacial</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">provincias_geom_idx</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="analyze">
+<h3>ANALYZE<a class="headerlink" href="#analyze" title="Permalink to this heading">#</a></h3>
+<p>El comando <a class="reference external" href="https://www.postgresql.org/docs/current/sql-analyze.html">ANALYZE</a> recolecta estadísticas sobre una base de datos, las cuales son utilizadas por el planificador de consultas de PostgreSQL para elegir los métodos más eficientes de acceso a los datos.</p>
+<p>Cuando se ejecuta el comando <code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code>, PostgreSQL examina las columnas de las tablas y calcula estadísticas como el número de filas, la distribución de los valores dentro de cada columna y la frecuencia de los valores, entre otras. Estas estadísticas son almacenadas en el catálogo de sistema de PostgreSQL y son esenciales para que el <a class="reference external" href="https://www.postgresql.org/docs/current/planner-optimizer.html">optimizador de consultas</a> tome decisiones informadas.</p>
+<p>Por ejemplo, si el optimizador sabe que una columna tiene una distribución uniforme de valores, podría decidir utilizar un índice para filtrar los datos. Por otro lado, si una columna tiene muchos valores duplicados, el optimizador podría decidir que es más eficiente realizar un recorrido secuencial.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code> se ejecuta de forma periódica y automática, pero también puede ser ejecutado manualmente si se ha realizado una gran cantidad de cambios en la base de datos y se desea que el optimizador de consultas cuente con estadísticas actualizadas.</p>
+<section id="id3">
+<h4>Sintaxis básica<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Análisis de toda la base de datos</span>
+<span class="k">ANALYZE</span><span class="p">;</span>
+
+<span class="c1">-- Análisis de una tabla</span>
+<span class="k">ANALYZE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
+
+<span class="c1">-- Análisis de columnas específicas de una tabla</span>
+<span class="k">ANALYZE</span><span class="w"> </span><span class="n">tabla</span><span class="w"> </span><span class="p">(</span><span class="n">columna1</span><span class="p">,</span><span class="w"> </span><span class="n">columna2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h4>Ejemplos<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Análisis de la tabla de red vial</span>
+<span class="k">ANALYZE</span><span class="w"> </span><span class="n">red_vial</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="vacuum">
+<h3>VACUUM<a class="headerlink" href="#vacuum" title="Permalink to this heading">#</a></h3>
+<p>El comando <a class="reference external" href="https://www.postgresql.org/docs/current/sql-vacuum.html">VACUUM</a> se utiliza para recuperar el espacio no utilizado por las filas eliminadas o actualizadas y para optimizar el rendimiento de la base de datos.</p>
+<p>PostgreSQL utiliza un mecanismo conocido como MVCC (Control de Concurrencia MultiVersión), lo que significa que cuando una fila es actualizada o eliminada, la versión antigua de la fila no se elimina inmediatamente del disco. Esto permite que las transacciones que empezaron antes de que la fila fuera modificada puedan seguir viendo la versión antigua. Con el tiempo, esto puede llevar a una acumulación de filas “muertas” que ya no son accesibles por ninguna transacción actual, desperdiciando espacio y potencialmente ralentizando las operaciones de la base de datos. <code class="docutils literal notranslate"><span class="pre">VACUUM</span></code> “aspira” las filas obsoletas para recuperar espacio en disco y hacerlo disponible para su reutilización.</p>
+<p><code class="docutils literal notranslate"><span class="pre">VACUUM</span></code> y <code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code> pueden ejecutarse por separado, según sea necesario. Sin embargo, <code class="docutils literal notranslate"><span class="pre">VACUUM</span></code> no actualizará las estadísticas de la base de datos; del mismo modo, <code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code> no recuperará las filas no utilizadas de una tabla. Ambos comandos se pueden ejecutar en toda la base de datos, en una sola tabla o en una sola columna.</p>
+<section id="id5">
+<h4>Sintaxis básica<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- VACUUM normal: libera el espacio ocupado por las filas muertas </span>
+<span class="c1">-- para que pueda ser reutilizado, pero no retorna el espacio al sistema operativo. -- Se puede ejecutar incluso mientras la base de datos está en uso.</span>
+<span class="k">VACUUM</span><span class="p">;</span>
+
+<span class="c1">-- VACUUM completo: no solo recupera el espacio en la base de datos, </span>
+<span class="c1">-- sino que también devuelve el espacio no utilizado al sistema operativo. </span>
+<span class="c1">-- Este comando bloquea la tabla mientras se está ejecutando, por lo que puede no</span>
+<span class="c1">-- ser adecuado durante períodos de alta actividad.</span>
+<span class="k">VACUUM</span><span class="w"> </span><span class="k">FULL</span><span class="p">;</span>
+
+<span class="c1">-- VACUUM y ANALYZE juntos</span>
+<span class="k">VACUUM</span><span class="w"> </span><span class="k">ANALYZE</span><span class="p">;</span>
+<span class="k">VACUUM</span><span class="w"> </span><span class="k">ANALYZE</span><span class="w"> </span><span class="n">tabla</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>Ejemplos<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Análisis y aspirado de la tabla provincias</span>
+<span class="k">VACUUM</span><span class="w"> </span><span class="k">ANALYZE</span><span class="w"> </span><span class="n">provincias</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>PostgreSQL cuenta con un proceso automatizado llamado <a class="reference external" href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html">autovacuum</a>, que ejecuta <code class="docutils literal notranslate"><span class="pre">VACUUM</span></code> y <code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code> periódicamente en un intento de mantener la base de datos funcionando de manera eficiente sin intervención manual.</p>
+</section>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Ejecute nuevamente las consultas para calcular riqueza de especies y densidad de la red vial y mida el tiempo de ejecución (puede verse en la parte inferior de la ventana de PgAdmin).</p></li>
+<li><p>Cree índices espaciales para las tablas.</p></li>
+<li><p>Ejecute el comando <code class="docutils literal notranslate"><span class="pre">VACUUM</span> <span class="pre">ANALYZE</span></code> en las tablas involucradas en las consultas.</p></li>
+<li><p>Ejecute una vez más las consultas y compare los tiempos de ejecución.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="postgis-joins-espaciales.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PostGIS - Uniones (<em>joins</em>) espaciales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../evaluaciones/examencorto-01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examen corto 01</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-sql-para-manejo-de-indices">Comandos SQL para manejo de índices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-index">CREATE INDEX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaxis-basica">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drop-index">DROP INDEX</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze">ANALYZE</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Ejemplos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vacuum">VACUUM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Sintaxis básica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ejemplos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
