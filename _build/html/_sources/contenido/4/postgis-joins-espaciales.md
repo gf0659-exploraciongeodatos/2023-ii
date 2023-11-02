@@ -109,6 +109,8 @@ La densidad de la red vial para un polígono se define como:
 **km de longitud de red vial / km2 de área**  
 Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 1000 km2, la densidad de su red vial es 0.5.
 
+9. Calcule nuevamente la densidad de la red vial en cantones, pero utilizando la capa de red vial del IGN en escala 1:5 mil. Compare el resultado con el obtenido en el punto anterior. 
+
 ## Notas sobre opciones de carga de datos
 
 ### ASP
