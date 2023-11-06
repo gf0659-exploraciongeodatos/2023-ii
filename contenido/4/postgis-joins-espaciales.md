@@ -111,52 +111,45 @@ Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 10
 
 9. Calcule nuevamente la densidad de la red vial en cantones, pero utilizando la capa de red vial del IGN en escala 1:5 mil. Compare el resultado con el obtenido en el punto anterior. 
 
-## Notas sobre opciones de carga de datos
+10. Calcule el porcentaje de área de cada cantón en ASP por categoría de manejo (reserva biológica, parque nacional, humedal, etc.) y para todas las ASP.
 
-### ASP
+## Notas
 
-#### ogr2ogr PROMOTE_TO_MULTI
+### Riqueza de especies de murciélagos en Costa Rica
+
+Se comparan los resultados que se obtienen con QGIS y PostgreSQL/PostGIS-SQL.
+
+#### QGIS
+1. El archivo de [registros de presencia de murciélagos](https://doi.org/10.15468/dl.g5ce3g) se importó en QGIS con **Layer - Add Layer - Add Delimited Text Layer**. Se importaron 13470 registros.
+2. En la tabla de atributos de la capa importada de registros de murciélagos, con la opción **Select features using an expression**, se seleccionaron los registros con el campo `species` diferente de nulo, mediante la expresión `"species" IS NOT NULL`. 12931 registros fueron seleccionados.
+3. Con **Export - Save Selected Features As** los registros seleccionados se guardaron en el archivo `murcielagos.gpkg`, con el CRS "EPSG:5367 - CR05 / CRTM05".
+4. La capa de ASP se cargó desde el WFS del Sinac en [https://geos1pne.sirefor.go.cr/wfs](https://geos1pne.sirefor.go.cr/wfs).
+5. La riqueza de especies se calculó con **Vector - Analysis Tools - Count Points in Polygon** (`Class Field = species`). 
+
+El resultado para las 10 ASP con mayor riqueza de especies es:
+
+```
+nombre_asp                  descripcio                NUMPOINTS
+Golfo Dulce                 Area terrestre protegida  54
+Arenal Monteverde           Area terrestre protegida  32
+Palo Verde                  Area terrestre protegida  30
+Corcovado                   Area terrestre protegida  27
+Barra del Colorado          Area terrestre protegida  27
+La Selva                    Area terrestre protegida  27
+Santa Rosa                  Area terrestre protegida  18
+Braulio Carrillo            Area terrestre protegida  17
+Tapanti-Macizo de la Muerte Area terrestre protegida  15
+Tortuguero                  Area terrestre protegida  12
+```
+
+#### PostgreSQL/PostGIS-SQL
+1. El archivo de registros de presencia de murciélagos en Costa Rica se importó en PostgreSQL/PostGIS con el comando:
 
 ```shell
+# Carga de los registros de presencia de murciélagos
 ogr2ogr ^
-  -makevalid ^
-  -nln asp_ogr_multi ^
-  -nlt PROMOTE_TO_MULTI ^
-  -lco GEOMETRY_NAME=geom ^
-  Pg:"dbname=cr host=localhost user=postgres port=5432" ^
-  WFS:"https://geos1pne.sirefor.go.cr/wfs?" "PNE:areas_silvestres_protegidas"
-```
-
-```sql
--- Cantidad de registros
-SELECT COUNT(*) FROM asp_ogr_multi;
--- 173
-```
-
-#### ogr2ogr (sin PROMOTE_TO_MULTI)
-
-```shell
-ogr2ogr ^
-  -makevalid ^
-  -nln asp_ogr_single ^
-  -lco GEOMETRY_NAME=geom ^
-  Pg:"dbname=cr host=localhost user=postgres port=5432" ^
-  WFS:"https://geos1pne.sirefor.go.cr/wfs?" "PNE:areas_silvestres_protegidas"
-```
-
-```sql
--- Cantidad de registros
-SELECT COUNT(*) FROM asp_ogr_single;
--- 173
-```
-
-### Murciélagos
-
-#### ogr2ogr EMPTY_STRING_AS_NULL=YES
-
-```shell
-ogr2ogr ^
-  -nln murcielagos_ogr_nullyes ^
+  -nln murcielagos ^
+  -oo SEPARATOR=TAB ^
   -oo X_POSSIBLE_NAMES=decimalLongitude -oo Y_POSSIBLE_NAMES=decimalLatitude ^
   -oo EMPTY_STRING_AS_NULL=YES ^
   -lco GEOMETRY_NAME=geom ^
@@ -166,150 +159,169 @@ ogr2ogr ^
   murcielagos.csv
 ```
 
-```sql
--- Cantidad de registros
-SELECT COUNT(*) FROM murcielagos_ogr_nullyes;
--- 13470
+La opción `EMPTY_STRING_AS_NULL=YES` es para cargar los campos vacíos como nulos, como lo hace la funcionalidad **Add Delimited Text Layer** de QGIS.
 
--- Cantidad de registros con species IS NULL
-SELECT COUNT(*) FROM murcielagos_ogr_nullyes WHERE species IS NULL;
--- 539
+2. La capa de ASP de Costa Rica se importó en PostgreSQL/PostGIS con el comando:
 
--- Cantidad de registros con species = ''
-SELECT COUNT(*) FROM murcielagos_ogr_nullyes WHERE species = '';
--- 0
+```shell
+# Carga de la capa de ASP
+ogr2ogr ^
+  -nln asp ^
+  -lco GEOMETRY_NAME=geom ^
+  Pg:"dbname=cr host=localhost user=postgres port=5432" ^
+  WFS:"https://geos1pne.sirefor.go.cr/wfs?" "PNE:areas_silvestres_protegidas"
 ```
 
-#### ogr2ogr EMPTY_STRING_AS_NULL=NO
+3. La riqueza de especies se calculó con el comando SQL:
+
+```sql
+-- Cálculo de la riqueza de especies de murciélagos en ASP
+SELECT 
+  asp.nombre_asp, 
+  asp.descripcio, 
+  COUNT(DISTINCT m.species) AS riqueza_especies
+FROM asp LEFT JOIN murcielagos AS m
+  ON ST_Contains(asp.geom, m.geom)
+WHERE species IS NOT NULL
+GROUP BY asp.nombre_asp, asp.descripcio
+ORDER BY riqueza_especies DESC;
+```
+
+El resultado para las 10 ASP con mayor riqueza de especies es:
+
+```
+         nombre_asp          |        descripcio        | riqueza_especies
+-----------------------------+--------------------------+------------------
+ Golfo Dulce                 | Area terrestre protegida |               54
+ Arenal Monteverde           | Area terrestre protegida |               32
+ Palo Verde                  | Area terrestre protegida |               30
+ Corcovado                   | Area terrestre protegida |               27
+ Barra del Colorado          | Area terrestre protegida |               27
+ La Selva                    | Area terrestre protegida |               27
+ Santa Rosa                  | Area terrestre protegida |               18
+ Braulio Carrillo            | Area terrestre protegida |               17
+ Tapanti-Macizo de la Muerte | Area terrestre protegida |               15
+ Tortuguero                  | Area terrestre protegida |               12
+```
+
+Se añade `descripcio` la cláusula `GROUP BY` para diferenciar algunas de las ASP con el mismo nombre y así obtener un resultado similar al que se obtuvo con QGIS. Si se desea unificar el conteo de especies para todas las ASP con el mismo nombre, se puede omitir `descripcio` en la cláusula `GROUP BY`:
+
+```sql
+-- Cálculo de la riqueza de especies de murciélagos en ASP
+SELECT 
+  asp.nombre_asp, 
+  COUNT(DISTINCT m.species) AS riqueza_especies
+FROM asp LEFT JOIN murcielagos AS m
+  ON ST_Contains(asp.geom, m.geom)
+WHERE species IS NOT NULL
+GROUP BY asp.nombre_asp
+ORDER BY riqueza_especies DESC;
+```
+
+La consulta anterior genera el resultado:
+
+```
+         nombre_asp          | riqueza_especies
+-----------------------------+------------------
+ Golfo Dulce                 |               54
+ Arenal Monteverde           |               32
+ Palo Verde                  |               30
+ Corcovado                   |               28
+ Barra del Colorado          |               27
+ La Selva                    |               27
+ Santa Rosa                  |               18
+ Braulio Carrillo            |               17
+ Tapanti-Macizo de la Muerte |               15
+ Tortuguero                  |               12
+```
+
+La diferencia se debe a que algunas ASP (ej. Corcovado) tienen dos polígonos (ej. un área terrestre y otra marítima), algunas de las cuales pueden diferenciarse con `descripcio`. Sin embargo, no se encontró un atributo o combinación de atributos que diferencie individualmente a cada ASP.
+
+### Riqueza de especies de mamíferos en Mesoamérica
+
+1. Carga del archivo de [registros de presencia de mamíferos](https://doi.org/10.15468/dl.ugu9n3) de Mesoamérica:
 
 ```shell
 ogr2ogr ^
-  -nln murcielagos_ogr_nullno ^
+  -nln mamiferos ^
   -oo X_POSSIBLE_NAMES=decimalLongitude -oo Y_POSSIBLE_NAMES=decimalLatitude ^
-  -oo EMPTY_STRING_AS_NULL=NO ^
+  -oo EMPTY_STRING_AS_NULL=YES ^
   -lco GEOMETRY_NAME=geom ^
   -s_srs EPSG:4326 ^
-  -t_srs EPSG:5367 ^
-  Pg:"dbname=cr host=localhost user=postgres port=5432" ^
-  murcielagos.csv
+  -t_srs EPSG:4326 ^
+  Pg:"dbname=mesoamerica host=localhost user=postgres port=5432" ^
+  mamiferos.csv
 ```
+
+Por alguna razón, aún por determinar, el comando anterior solo carga 678 714 registros de los 1 104 457 contenidos en el archivo. La funcionalidad **Add Delimited Text Layer** de QGIS carga más de 1 millón de registros.
+
+2. Carga del archivo de países de Mesoamérica a partir del [archivo de países de Natural Earth](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip).
+
+```shell
+ogr2ogr ^
+  -nln paises ^
+  -nlt PROMOTE_TO_MULTI ^
+  -lco GEOMETRY_NAME=geom ^
+  -sql "SELECT * FROM ne_10m_admin_0_countries WHERE NAME IN ('Mexico', 'Belize', 'Guatemala', 'Honduras', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama', 'Colombia')" ^
+  Pg:"dbname=mesoamerica host=localhost user=postgres port=5432" ^
+  ne_10m_admin_0_countries.shp
+```
+
+3. Cálculo de la riqueza de especies:
 
 ```sql
--- Cantidad de registros
-SELECT COUNT(*) FROM murcielagos_ogr_nullno;
--- 13470
-
--- Cantidad de registros con species IS NULL
-SELECT COUNT(*) FROM murcielagos_ogr_nullno WHERE species IS NULL;
--- 0
-
--- Cantidad de registros con species = ''
-SELECT COUNT(*) FROM murcielagos_ogr_nullno WHERE species = '';
--- 539
+-- Cálculo de la riqueza de especies de mamíferos en países de Mesoamérica
+SELECT 
+  p.name, 
+  COUNT(DISTINCT m.species) AS riqueza_especies
+FROM paises AS p LEFT JOIN mamiferos AS m
+  ON ST_Contains(p.geom, m.geom)
+WHERE m.species IS NOT NULL
+GROUP BY p.name
+ORDER BY riqueza_especies DESC;
 ```
 
-#### QGIS Data Source Manager - Delimited Text, DB Manager - Import Layer File
+Resultado (puede variar al cargar más registros de presencia):
 
+```
+    name     | riqueza_especies
+-------------+------------------
+ Mexico      |              773
+ Colombia    |              627
+ Panama      |              281
+ Costa Rica  |              280
+ Guatemala   |              234
+ Honduras    |              218
+ Nicaragua   |              202
+ El Salvador |              144
+ Belize      |              141
+```
+
+### Densidad de la red vial en cantones de Costa Rica
+
+#### Con capa 1:200 mil del IGN
 ```sql
--- Cantidad de registros
-SELECT COUNT(*) FROM murcielagos_qgis;
--- 13470
-
--- Cantidad de registros con species IS NULL
-SELECT COUNT(*) FROM murcielagos_qgis WHERE species IS NULL;
--- 539
-
--- Cantidad de registros con species = ''
-SELECT COUNT(*) FROM murcielagos_qgis WHERE species = '';
--- 0
-```
-
-### Conteo de especies de murciélagos en ASP
-
-#### QGIS Vector - Analysis Tools - Count Points in Polygon
-
-##### asp_ogr_multi, murcielagos_ogr_nullyes
-
-```
-Golfo Dulce                 55
-Arenal Monteverde           33
-Palo Verde                  31
-Barra del Colorado          28
-Corcovado                   28
-La Selva                    27
-Santa Rosa                  19
-Braulio Carrillo            18
-Tapanti-Macizo de la Muerte 16
-Tortuguero                  13
-```
-
-##### asp_ogr_multi, murcielagos_ogr_nullyes (con los no nulos seleccionados)
-
-Expresión: `"paoText" is not NULL`
-
-```
-Golfo Dulce                 54
-Arenal Monteverde           32
-Palo Verde                  30
-Barra del Colorado          27
-Corcovado                   27
-La Selva                    27
-Santa Rosa                  18
-Braulio Carrillo            17
-Tapanti-Macizo de la Muerte 15
-Tortuguero                  12
-```
-
-#### SQL
-
-##### murcielagos_ogr_nullyes
-
-```sql
--- Cantidad de especies en ASP
-SELECT asp.nombre_asp, COUNT(DISTINCT m.species) AS cantidad_especies
-FROM asp_ogr_multi AS asp JOIN murcielagos_ogr_nullyes m
-  ON ST_Contains(asp.geom, m.geom)
-WHERE species IS NOT NULL AND species != ''
-GROUP BY asp.nombre_asp
-ORDER BY cantidad_especies DESC;
+-- Red vial 1:200k
+SELECT 
+  c.cantÓn AS canton, 
+  ROUND(SUM(ST_Length(ST_Intersection(c.geom, v.geom))/1000)::numeric, 2) AS longitud_red_vial,
+  ROUND((ST_Area(c.geom)/1000000)::numeric, 2) AS area,
+  ROUND(ROUND(SUM(ST_Length(ST_Intersection(c.geom, v.geom))/1000)::numeric, 2) / ROUND((ST_Area(c.geom)/1000000)::numeric, 2), 2) AS densidad_red_vial
+FROM cantones AS c JOIN red_vial_200k AS v
+  ON ST_Intersects(c.geom, v.geom)
+GROUP BY canton, c.geom
+ORDER BY densidad_red_vial DESC;
 ```
 
 ```
-Golfo Dulce                 54
-Arenal Monteverde           32
-Palo Verde                  30
-Corcovado                   28
-La Selva                    27
-Barra del Colorado          27
-Santa Rosa                  18
-Braulio Carrillo            17
-Tapanti-Macizo de la Muerte 15
-Tortuguero                  12
+canton             longitud_red_vial area         densidad_red_vial
+San José           100.75            44.62        2.26
+Goicoechea         68.43             31.70        2.16
+Curridabat         33.31             16.06        2.07
+Tibás              16.48             8.27         1.99
+León Cortés Castro 238.95            121.89       1.96
+San Pablo          15.16             8.34         1.82
+Escazú             62.91             34.53        1.82
+Santo Domingo      43.36             25.40        1.71
+Santa Bárbara      86.89             52.10        1.67
 ```
-
-##### murcielagos_ogr_nullno
-
-```sql
--- Cantidad de especies en ASP
-SELECT asp.nombre_asp, COUNT(DISTINCT m.species) AS cantidad_especies
-FROM asp_ogr_multi AS asp JOIN murcielagos_ogr_nullno m
-  ON ST_Contains(asp.geom, m.geom)
-WHERE species IS NOT NULL AND species != ''
-GROUP BY asp.nombre_asp
-ORDER BY cantidad_especies DESC;
-```
-
-```
-Golfo Dulce                 54
-Arenal Monteverde           32
-Palo Verde                  30
-Corcovado                   28
-La Selva                    27
-Barra del Colorado          27
-Santa Rosa                  18
-Braulio Carrillo            17
-Tapanti-Macizo de la Muerte 15
-Tortuguero                  12
-```
-
-Si se omite la cláusula `WHERE species IS NOT NULL AND species != ''` en las dos consultas SQL anteriores, generan resultados diferentes.
