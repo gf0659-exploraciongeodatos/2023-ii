@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-joins-espaciales';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="next" title="PostGIS - Índices espaciales" href="postgis-indices-espaciales.html" />
     <link rel="prev" title="PostGIS - Relaciones espaciales" href="postgis-relaciones-espaciales.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,6 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
@@ -184,6 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-04.html">Examen corto 04</a></li>
 </ul>
 
     </div>
@@ -381,29 +383,15 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins"><em>Joins</em></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins-y-sumarizaciones"><em>Joins</em> y sumarizaciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-sobre-opciones-de-carga-de-datos">Notas sobre opciones de carga de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asp">ASP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-promote-to-multi">ogr2ogr PROMOTE_TO_MULTI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-sin-promote-to-multi">ogr2ogr (sin PROMOTE_TO_MULTI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas">Notas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-murcielagos-en-costa-rica">Riqueza de especies de murciélagos en Costa Rica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql-postgis-sql">PostgreSQL/PostGIS-SQL</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos">Murciélagos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-empty-string-as-null-yes">ogr2ogr EMPTY_STRING_AS_NULL=YES</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-empty-string-as-null-no">ogr2ogr EMPTY_STRING_AS_NULL=NO</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-data-source-manager-delimited-text-db-manager-import-layer-file">QGIS Data Source Manager - Delimited Text, DB Manager - Import Layer File</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conteo-de-especies-de-murcielagos-en-asp">Conteo de especies de murciélagos en ASP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-vector-analysis-tools-count-points-in-polygon">QGIS Vector - Analysis Tools - Count Points in Polygon</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#asp-ogr-multi-murcielagos-ogr-nullyes">asp_ogr_multi, murcielagos_ogr_nullyes</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#asp-ogr-multi-murcielagos-ogr-nullyes-con-los-no-nulos-seleccionados">asp_ogr_multi, murcielagos_ogr_nullyes (con los no nulos seleccionados)</a></li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql">SQL</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos-ogr-nullyes">murcielagos_ogr_nullyes</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos-ogr-nullno">murcielagos_ogr_nullno</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-mamiferos-en-mesoamerica">Riqueza de especies de mamíferos en Mesoamérica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#densidad-de-la-red-vial-en-cantones-de-costa-rica">Densidad de la red vial en cantones de Costa Rica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-capa-1-200-mil-del-ign">Con capa 1:200 mil del IGN</a></li>
 </ul>
 </li>
 </ul>
@@ -538,52 +526,47 @@ document.write(`
 Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 1000 km2, la densidad de su red vial es 0.5.</p>
 <ol class="arabic simple" start="9">
 <li><p>Calcule nuevamente la densidad de la red vial en cantones, pero utilizando la capa de red vial del IGN en escala 1:5 mil. Compare el resultado con el obtenido en el punto anterior.</p></li>
+<li><p>Calcule el porcentaje de área de cada cantón en ASP por categoría de manejo (reserva biológica, parque nacional, humedal, etc.) y para todas las ASP.</p></li>
 </ol>
 </section>
-<section id="notas-sobre-opciones-de-carga-de-datos">
-<h2>Notas sobre opciones de carga de datos<a class="headerlink" href="#notas-sobre-opciones-de-carga-de-datos" title="Permalink to this heading">#</a></h2>
-<section id="asp">
-<h3>ASP<a class="headerlink" href="#asp" title="Permalink to this heading">#</a></h3>
-<section id="ogr2ogr-promote-to-multi">
-<h4>ogr2ogr PROMOTE_TO_MULTI<a class="headerlink" href="#ogr2ogr-promote-to-multi" title="Permalink to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>^
-<span class="w">  </span>-makevalid<span class="w"> </span>^
-<span class="w">  </span>-nln<span class="w"> </span>asp_ogr_multi<span class="w"> </span>^
-<span class="w">  </span>-nlt<span class="w"> </span>PROMOTE_TO_MULTI<span class="w"> </span>^
-<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
-<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
-<span class="w">  </span>WFS:<span class="s2">&quot;https://geos1pne.sirefor.go.cr/wfs?&quot;</span><span class="w"> </span><span class="s2">&quot;PNE:areas_silvestres_protegidas&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de registros</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">asp_ogr_multi</span><span class="p">;</span>
-<span class="c1">-- 173</span>
-</pre></div>
-</div>
-</section>
-<section id="ogr2ogr-sin-promote-to-multi">
-<h4>ogr2ogr (sin PROMOTE_TO_MULTI)<a class="headerlink" href="#ogr2ogr-sin-promote-to-multi" title="Permalink to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>^
-<span class="w">  </span>-makevalid<span class="w"> </span>^
-<span class="w">  </span>-nln<span class="w"> </span>asp_ogr_single<span class="w"> </span>^
-<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
-<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
-<span class="w">  </span>WFS:<span class="s2">&quot;https://geos1pne.sirefor.go.cr/wfs?&quot;</span><span class="w"> </span><span class="s2">&quot;PNE:areas_silvestres_protegidas&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de registros</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">asp_ogr_single</span><span class="p">;</span>
-<span class="c1">-- 173</span>
+<section id="notas">
+<h2>Notas<a class="headerlink" href="#notas" title="Permalink to this heading">#</a></h2>
+<section id="riqueza-de-especies-de-murcielagos-en-costa-rica">
+<h3>Riqueza de especies de murciélagos en Costa Rica<a class="headerlink" href="#riqueza-de-especies-de-murcielagos-en-costa-rica" title="Permalink to this heading">#</a></h3>
+<p>Se comparan los resultados que se obtienen con QGIS y PostgreSQL/PostGIS-SQL.</p>
+<section id="qgis">
+<h4>QGIS<a class="headerlink" href="#qgis" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>El archivo de <a class="reference external" href="https://doi.org/10.15468/dl.g5ce3g">registros de presencia de murciélagos</a> se importó en QGIS con <strong>Layer - Add Layer - Add Delimited Text Layer</strong>. Se importaron 13470 registros.</p></li>
+<li><p>En la tabla de atributos de la capa importada de registros de murciélagos, con la opción <strong>Select features using an expression</strong>, se seleccionaron los registros con el campo <code class="docutils literal notranslate"><span class="pre">species</span></code> diferente de nulo, mediante la expresión <code class="docutils literal notranslate"><span class="pre">&quot;species&quot;</span> <span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span></code>. 12931 registros fueron seleccionados.</p></li>
+<li><p>Con <strong>Export - Save Selected Features As</strong> los registros seleccionados se guardaron en el archivo <code class="docutils literal notranslate"><span class="pre">murcielagos.gpkg</span></code>, con el CRS “EPSG:5367 - CR05 / CRTM05”.</p></li>
+<li><p>La capa de ASP se cargó desde el WFS del Sinac en <a class="reference external" href="https://geos1pne.sirefor.go.cr/wfs">https://geos1pne.sirefor.go.cr/wfs</a>.</p></li>
+<li><p>La riqueza de especies se calculó con <strong>Vector - Analysis Tools - Count Points in Polygon</strong> (<code class="docutils literal notranslate"><span class="pre">Class</span> <span class="pre">Field</span> <span class="pre">=</span> <span class="pre">species</span></code>).</p></li>
+</ol>
+<p>El resultado para las 10 ASP con mayor riqueza de especies es:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nombre_asp</span>                  <span class="n">descripcio</span>                <span class="n">NUMPOINTS</span>
+<span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">54</span>
+<span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">32</span>
+<span class="n">Palo</span> <span class="n">Verde</span>                  <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">30</span>
+<span class="n">Corcovado</span>                   <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">27</span>
+<span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">27</span>
+<span class="n">La</span> <span class="n">Selva</span>                    <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">27</span>
+<span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">18</span>
+<span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">17</span>
+<span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">15</span>
+<span class="n">Tortuguero</span>                  <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span>  <span class="mi">12</span>
 </pre></div>
 </div>
 </section>
-</section>
-<section id="murcielagos">
-<h3>Murciélagos<a class="headerlink" href="#murcielagos" title="Permalink to this heading">#</a></h3>
-<section id="ogr2ogr-empty-string-as-null-yes">
-<h4>ogr2ogr EMPTY_STRING_AS_NULL=YES<a class="headerlink" href="#ogr2ogr-empty-string-as-null-yes" title="Permalink to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>^
-<span class="w">  </span>-nln<span class="w"> </span>murcielagos_ogr_nullyes<span class="w"> </span>^
+<section id="postgresql-postgis-sql">
+<h4>PostgreSQL/PostGIS-SQL<a class="headerlink" href="#postgresql-postgis-sql" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>El archivo de registros de presencia de murciélagos en Costa Rica se importó en PostgreSQL/PostGIS con el comando:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de los registros de presencia de murciélagos</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>murcielagos<span class="w"> </span>^
+<span class="w">  </span>-oo<span class="w"> </span><span class="nv">SEPARATOR</span><span class="o">=</span>TAB<span class="w"> </span>^
 <span class="w">  </span>-oo<span class="w"> </span><span class="nv">X_POSSIBLE_NAMES</span><span class="o">=</span>decimalLongitude<span class="w"> </span>-oo<span class="w"> </span><span class="nv">Y_POSSIBLE_NAMES</span><span class="o">=</span>decimalLatitude<span class="w"> </span>^
 <span class="w">  </span>-oo<span class="w"> </span><span class="nv">EMPTY_STRING_AS_NULL</span><span class="o">=</span>YES<span class="w"> </span>^
 <span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
@@ -593,151 +576,164 @@ Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 10
 <span class="w">  </span>murcielagos.csv
 </pre></div>
 </div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de registros</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullyes</span><span class="p">;</span>
-<span class="c1">-- 13470</span>
-
-<span class="c1">-- Cantidad de registros con species IS NULL</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullyes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
-<span class="c1">-- 539</span>
-
-<span class="c1">-- Cantidad de registros con species = &#39;&#39;</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullyes</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="c1">-- 0</span>
+<p>La opción <code class="docutils literal notranslate"><span class="pre">EMPTY_STRING_AS_NULL=YES</span></code> es para cargar los campos vacíos como nulos, como lo hace la funcionalidad <strong>Add Delimited Text Layer</strong> de QGIS.</p>
+<ol class="arabic simple" start="2">
+<li><p>La capa de ASP de Costa Rica se importó en PostgreSQL/PostGIS con el comando:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de la capa de ASP</span>
+ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>asp<span class="w"> </span>^
+<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>WFS:<span class="s2">&quot;https://geos1pne.sirefor.go.cr/wfs?&quot;</span><span class="w"> </span><span class="s2">&quot;PNE:areas_silvestres_protegidas&quot;</span>
 </pre></div>
 </div>
+<ol class="arabic simple" start="3">
+<li><p>La riqueza de especies se calculó con el comando SQL:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cálculo de la riqueza de especies de murciélagos en ASP</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">asp</span><span class="p">.</span><span class="n">descripcio</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">riqueza_especies</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">murcielagos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">m</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">asp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">descripcio</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">riqueza_especies</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>El resultado para las 10 ASP con mayor riqueza de especies es:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="n">nombre_asp</span>          <span class="o">|</span>        <span class="n">descripcio</span>        <span class="o">|</span> <span class="n">riqueza_especies</span>
+<span class="o">-----------------------------+--------------------------+------------------</span>
+ <span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">54</span>
+ <span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">32</span>
+ <span class="n">Palo</span> <span class="n">Verde</span>                  <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">30</span>
+ <span class="n">Corcovado</span>                   <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">27</span>
+ <span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">27</span>
+ <span class="n">La</span> <span class="n">Selva</span>                    <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">27</span>
+ <span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">18</span>
+ <span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">17</span>
+ <span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">15</span>
+ <span class="n">Tortuguero</span>                  <span class="o">|</span> <span class="n">Area</span> <span class="n">terrestre</span> <span class="n">protegida</span> <span class="o">|</span>               <span class="mi">12</span>
+</pre></div>
+</div>
+<p>Se añade <code class="docutils literal notranslate"><span class="pre">descripcio</span></code> la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> para diferenciar algunas de las ASP con el mismo nombre y así obtener un resultado similar al que se obtuvo con QGIS. Si se desea unificar el conteo de especies para todas las ASP con el mismo nombre, se puede omitir <code class="docutils literal notranslate"><span class="pre">descripcio</span></code> en la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cálculo de la riqueza de especies de murciélagos en ASP</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">riqueza_especies</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">murcielagos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">m</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">asp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">riqueza_especies</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>La consulta anterior genera el resultado:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>         <span class="n">nombre_asp</span>          <span class="o">|</span> <span class="n">riqueza_especies</span>
+<span class="o">-----------------------------+------------------</span>
+ <span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="o">|</span>               <span class="mi">54</span>
+ <span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="o">|</span>               <span class="mi">32</span>
+ <span class="n">Palo</span> <span class="n">Verde</span>                  <span class="o">|</span>               <span class="mi">30</span>
+ <span class="n">Corcovado</span>                   <span class="o">|</span>               <span class="mi">28</span>
+ <span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="o">|</span>               <span class="mi">27</span>
+ <span class="n">La</span> <span class="n">Selva</span>                    <span class="o">|</span>               <span class="mi">27</span>
+ <span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="o">|</span>               <span class="mi">18</span>
+ <span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="o">|</span>               <span class="mi">17</span>
+ <span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="o">|</span>               <span class="mi">15</span>
+ <span class="n">Tortuguero</span>                  <span class="o">|</span>               <span class="mi">12</span>
+</pre></div>
+</div>
+<p>La diferencia se debe a que algunas ASP (ej. Corcovado) tienen dos polígonos (ej. un área terrestre y otra marítima), algunas de las cuales pueden diferenciarse con <code class="docutils literal notranslate"><span class="pre">descripcio</span></code>. Sin embargo, no se encontró un atributo o combinación de atributos que diferencie individualmente a cada ASP.</p>
 </section>
-<section id="ogr2ogr-empty-string-as-null-no">
-<h4>ogr2ogr EMPTY_STRING_AS_NULL=NO<a class="headerlink" href="#ogr2ogr-empty-string-as-null-no" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="riqueza-de-especies-de-mamiferos-en-mesoamerica">
+<h3>Riqueza de especies de mamíferos en Mesoamérica<a class="headerlink" href="#riqueza-de-especies-de-mamiferos-en-mesoamerica" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Carga del archivo de <a class="reference external" href="https://doi.org/10.15468/dl.ugu9n3">registros de presencia de mamíferos</a> de Mesoamérica:</p></li>
+</ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>^
-<span class="w">  </span>-nln<span class="w"> </span>murcielagos_ogr_nullno<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>mamiferos<span class="w"> </span>^
 <span class="w">  </span>-oo<span class="w"> </span><span class="nv">X_POSSIBLE_NAMES</span><span class="o">=</span>decimalLongitude<span class="w"> </span>-oo<span class="w"> </span><span class="nv">Y_POSSIBLE_NAMES</span><span class="o">=</span>decimalLatitude<span class="w"> </span>^
-<span class="w">  </span>-oo<span class="w"> </span><span class="nv">EMPTY_STRING_AS_NULL</span><span class="o">=</span>NO<span class="w"> </span>^
+<span class="w">  </span>-oo<span class="w"> </span><span class="nv">EMPTY_STRING_AS_NULL</span><span class="o">=</span>YES<span class="w"> </span>^
 <span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
 <span class="w">  </span>-s_srs<span class="w"> </span>EPSG:4326<span class="w"> </span>^
-<span class="w">  </span>-t_srs<span class="w"> </span>EPSG:5367<span class="w"> </span>^
-<span class="w">  </span>Pg:<span class="s2">&quot;dbname=cr host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
-<span class="w">  </span>murcielagos.csv
+<span class="w">  </span>-t_srs<span class="w"> </span>EPSG:4326<span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=mesoamerica host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>mamiferos.csv
 </pre></div>
 </div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de registros</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullno</span><span class="p">;</span>
-<span class="c1">-- 13470</span>
-
-<span class="c1">-- Cantidad de registros con species IS NULL</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
-<span class="c1">-- 0</span>
-
-<span class="c1">-- Cantidad de registros con species = &#39;&#39;</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_ogr_nullno</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="c1">-- 539</span>
+<p>Por alguna razón, aún por determinar, el comando anterior solo carga 678 714 registros de los 1 104 457 contenidos en el archivo. La funcionalidad <strong>Add Delimited Text Layer</strong> de QGIS carga más de 1 millón de registros.</p>
+<ol class="arabic simple" start="2">
+<li><p>Carga del archivo de países de Mesoamérica a partir del <a class="reference external" href="https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">archivo de países de Natural Earth</a>.</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>^
+<span class="w">  </span>-nln<span class="w"> </span>paises<span class="w"> </span>^
+<span class="w">  </span>-nlt<span class="w"> </span>PROMOTE_TO_MULTI<span class="w"> </span>^
+<span class="w">  </span>-lco<span class="w"> </span><span class="nv">GEOMETRY_NAME</span><span class="o">=</span>geom<span class="w"> </span>^
+<span class="w">  </span>-sql<span class="w"> </span><span class="s2">&quot;SELECT * FROM ne_10m_admin_0_countries WHERE NAME IN (&#39;Mexico&#39;, &#39;Belize&#39;, &#39;Guatemala&#39;, &#39;Honduras&#39;, &#39;El Salvador&#39;, &#39;Nicaragua&#39;, &#39;Costa Rica&#39;, &#39;Panama&#39;, &#39;Colombia&#39;)&quot;</span><span class="w"> </span>^
+<span class="w">  </span>Pg:<span class="s2">&quot;dbname=mesoamerica host=localhost user=postgres port=5432&quot;</span><span class="w"> </span>^
+<span class="w">  </span>ne_10m_admin_0_countries.shp
 </pre></div>
 </div>
-</section>
-<section id="qgis-data-source-manager-delimited-text-db-manager-import-layer-file">
-<h4>QGIS Data Source Manager - Delimited Text, DB Manager - Import Layer File<a class="headerlink" href="#qgis-data-source-manager-delimited-text-db-manager-import-layer-file" title="Permalink to this heading">#</a></h4>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de registros</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_qgis</span><span class="p">;</span>
-<span class="c1">-- 13470</span>
-
-<span class="c1">-- Cantidad de registros con species IS NULL</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_qgis</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
-<span class="c1">-- 539</span>
-
-<span class="c1">-- Cantidad de registros con species = &#39;&#39;</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">murcielagos_qgis</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="c1">-- 0</span>
+<ol class="arabic simple" start="3">
+<li><p>Cálculo de la riqueza de especies:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cálculo de la riqueza de especies de mamíferos en países de Mesoamérica</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">riqueza_especies</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">paises</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">mamiferos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">m</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">name</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">riqueza_especies</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="conteo-de-especies-de-murcielagos-en-asp">
-<h3>Conteo de especies de murciélagos en ASP<a class="headerlink" href="#conteo-de-especies-de-murcielagos-en-asp" title="Permalink to this heading">#</a></h3>
-<section id="qgis-vector-analysis-tools-count-points-in-polygon">
-<h4>QGIS Vector - Analysis Tools - Count Points in Polygon<a class="headerlink" href="#qgis-vector-analysis-tools-count-points-in-polygon" title="Permalink to this heading">#</a></h4>
-<section id="asp-ogr-multi-murcielagos-ogr-nullyes">
-<h5>asp_ogr_multi, murcielagos_ogr_nullyes<a class="headerlink" href="#asp-ogr-multi-murcielagos-ogr-nullyes" title="Permalink to this heading">#</a></h5>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="mi">55</span>
-<span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="mi">33</span>
-<span class="n">Palo</span> <span class="n">Verde</span>                  <span class="mi">31</span>
-<span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="mi">28</span>
-<span class="n">Corcovado</span>                   <span class="mi">28</span>
-<span class="n">La</span> <span class="n">Selva</span>                    <span class="mi">27</span>
-<span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="mi">19</span>
-<span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="mi">18</span>
-<span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="mi">16</span>
-<span class="n">Tortuguero</span>                  <span class="mi">13</span>
+<p>Resultado (puede variar al cargar más registros de presencia):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">name</span>     <span class="o">|</span> <span class="n">riqueza_especies</span>
+<span class="o">-------------+------------------</span>
+ <span class="n">Mexico</span>      <span class="o">|</span>              <span class="mi">773</span>
+ <span class="n">Colombia</span>    <span class="o">|</span>              <span class="mi">627</span>
+ <span class="n">Panama</span>      <span class="o">|</span>              <span class="mi">281</span>
+ <span class="n">Costa</span> <span class="n">Rica</span>  <span class="o">|</span>              <span class="mi">280</span>
+ <span class="n">Guatemala</span>   <span class="o">|</span>              <span class="mi">234</span>
+ <span class="n">Honduras</span>    <span class="o">|</span>              <span class="mi">218</span>
+ <span class="n">Nicaragua</span>   <span class="o">|</span>              <span class="mi">202</span>
+ <span class="n">El</span> <span class="n">Salvador</span> <span class="o">|</span>              <span class="mi">144</span>
+ <span class="n">Belize</span>      <span class="o">|</span>              <span class="mi">141</span>
 </pre></div>
 </div>
 </section>
-<section id="asp-ogr-multi-murcielagos-ogr-nullyes-con-los-no-nulos-seleccionados">
-<h5>asp_ogr_multi, murcielagos_ogr_nullyes (con los no nulos seleccionados)<a class="headerlink" href="#asp-ogr-multi-murcielagos-ogr-nullyes-con-los-no-nulos-seleccionados" title="Permalink to this heading">#</a></h5>
-<p>Expresión: <code class="docutils literal notranslate"><span class="pre">&quot;paoText&quot;</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">NULL</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="mi">54</span>
-<span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="mi">32</span>
-<span class="n">Palo</span> <span class="n">Verde</span>                  <span class="mi">30</span>
-<span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="mi">27</span>
-<span class="n">Corcovado</span>                   <span class="mi">27</span>
-<span class="n">La</span> <span class="n">Selva</span>                    <span class="mi">27</span>
-<span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="mi">18</span>
-<span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="mi">17</span>
-<span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="mi">15</span>
-<span class="n">Tortuguero</span>                  <span class="mi">12</span>
+<section id="densidad-de-la-red-vial-en-cantones-de-costa-rica">
+<h3>Densidad de la red vial en cantones de Costa Rica<a class="headerlink" href="#densidad-de-la-red-vial-en-cantones-de-costa-rica" title="Permalink to this heading">#</a></h3>
+<section id="con-capa-1-200-mil-del-ign">
+<h4>Con capa 1:200 mil del IGN<a class="headerlink" href="#con-capa-1-200-mil-del-ign" title="Permalink to this heading">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Red vial 1:200k</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="k">c</span><span class="p">.</span><span class="n">cantÓn</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">canton</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">ST_Length</span><span class="p">(</span><span class="n">ST_Intersection</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="o">/</span><span class="mi">1000</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">longitud_red_vial</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ROUND</span><span class="p">((</span><span class="n">ST_Area</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ROUND</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">ST_Length</span><span class="p">(</span><span class="n">ST_Intersection</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="o">/</span><span class="mi">1000</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ROUND</span><span class="p">((</span><span class="n">ST_Area</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1000000</span><span class="p">)::</span><span class="nb">numeric</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">densidad_red_vial</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">cantones</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">red_vial_200k</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">v</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">canton</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">geom</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">densidad_red_vial</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="sql">
-<h4>SQL<a class="headerlink" href="#sql" title="Permalink to this heading">#</a></h4>
-<section id="murcielagos-ogr-nullyes">
-<h5>murcielagos_ogr_nullyes<a class="headerlink" href="#murcielagos-ogr-nullyes" title="Permalink to this heading">#</a></h5>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de especies en ASP</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cantidad_especies</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">asp_ogr_multi</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">murcielagos_ogr_nullyes</span><span class="w"> </span><span class="n">m</span>
-<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">asp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cantidad_especies</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">canton</span>             <span class="n">longitud_red_vial</span> <span class="n">area</span>         <span class="n">densidad_red_vial</span>
+<span class="n">San</span> <span class="n">José</span>           <span class="mf">100.75</span>            <span class="mf">44.62</span>        <span class="mf">2.26</span>
+<span class="n">Goicoechea</span>         <span class="mf">68.43</span>             <span class="mf">31.70</span>        <span class="mf">2.16</span>
+<span class="n">Curridabat</span>         <span class="mf">33.31</span>             <span class="mf">16.06</span>        <span class="mf">2.07</span>
+<span class="n">Tibás</span>              <span class="mf">16.48</span>             <span class="mf">8.27</span>         <span class="mf">1.99</span>
+<span class="n">León</span> <span class="n">Cortés</span> <span class="n">Castro</span> <span class="mf">238.95</span>            <span class="mf">121.89</span>       <span class="mf">1.96</span>
+<span class="n">San</span> <span class="n">Pablo</span>          <span class="mf">15.16</span>             <span class="mf">8.34</span>         <span class="mf">1.82</span>
+<span class="n">Escazú</span>             <span class="mf">62.91</span>             <span class="mf">34.53</span>        <span class="mf">1.82</span>
+<span class="n">Santo</span> <span class="n">Domingo</span>      <span class="mf">43.36</span>             <span class="mf">25.40</span>        <span class="mf">1.71</span>
+<span class="n">Santa</span> <span class="n">Bárbara</span>      <span class="mf">86.89</span>             <span class="mf">52.10</span>        <span class="mf">1.67</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="mi">54</span>
-<span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="mi">32</span>
-<span class="n">Palo</span> <span class="n">Verde</span>                  <span class="mi">30</span>
-<span class="n">Corcovado</span>                   <span class="mi">28</span>
-<span class="n">La</span> <span class="n">Selva</span>                    <span class="mi">27</span>
-<span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="mi">27</span>
-<span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="mi">18</span>
-<span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="mi">17</span>
-<span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="mi">15</span>
-<span class="n">Tortuguero</span>                  <span class="mi">12</span>
-</pre></div>
-</div>
-</section>
-<section id="murcielagos-ogr-nullno">
-<h5>murcielagos_ogr_nullno<a class="headerlink" href="#murcielagos-ogr-nullno" title="Permalink to this heading">#</a></h5>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Cantidad de especies en ASP</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">species</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cantidad_especies</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">asp_ogr_multi</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">murcielagos_ogr_nullno</span><span class="w"> </span><span class="n">m</span>
-<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">asp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">asp</span><span class="p">.</span><span class="n">nombre_asp</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cantidad_especies</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Golfo</span> <span class="n">Dulce</span>                 <span class="mi">54</span>
-<span class="n">Arenal</span> <span class="n">Monteverde</span>           <span class="mi">32</span>
-<span class="n">Palo</span> <span class="n">Verde</span>                  <span class="mi">30</span>
-<span class="n">Corcovado</span>                   <span class="mi">28</span>
-<span class="n">La</span> <span class="n">Selva</span>                    <span class="mi">27</span>
-<span class="n">Barra</span> <span class="k">del</span> <span class="n">Colorado</span>          <span class="mi">27</span>
-<span class="n">Santa</span> <span class="n">Rosa</span>                  <span class="mi">18</span>
-<span class="n">Braulio</span> <span class="n">Carrillo</span>            <span class="mi">17</span>
-<span class="n">Tapanti</span><span class="o">-</span><span class="n">Macizo</span> <span class="n">de</span> <span class="n">la</span> <span class="n">Muerte</span> <span class="mi">15</span>
-<span class="n">Tortuguero</span>                  <span class="mi">12</span>
-</pre></div>
-</div>
-<p>Si se omite la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">species</span> <span class="pre">IS</span> <span class="pre">NOT</span> <span class="pre">NULL</span> <span class="pre">AND</span> <span class="pre">species</span> <span class="pre">!=</span> <span class="pre">''</span></code> en las dos consultas SQL anteriores, generan resultados diferentes.</p>
-</section>
 </section>
 </section>
 </section>
@@ -784,11 +780,11 @@ Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 10
       </div>
     </a>
     <a class="right-next"
-       href="../evaluaciones/examencorto-01.html"
+       href="postgis-indices-espaciales.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examen corto 01</p>
+        <p class="prev-next-title">PostGIS - Índices espaciales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -814,29 +810,15 @@ Por ejemplo, si un cantón tiene 500 km de longitud de red vial y un área de 10
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins"><em>Joins</em></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joins-y-sumarizaciones"><em>Joins</em> y sumarizaciones</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas-sobre-opciones-de-carga-de-datos">Notas sobre opciones de carga de datos</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asp">ASP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-promote-to-multi">ogr2ogr PROMOTE_TO_MULTI</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-sin-promote-to-multi">ogr2ogr (sin PROMOTE_TO_MULTI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notas">Notas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-murcielagos-en-costa-rica">Riqueza de especies de murciélagos en Costa Rica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis">QGIS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql-postgis-sql">PostgreSQL/PostGIS-SQL</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos">Murciélagos</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-empty-string-as-null-yes">ogr2ogr EMPTY_STRING_AS_NULL=YES</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ogr2ogr-empty-string-as-null-no">ogr2ogr EMPTY_STRING_AS_NULL=NO</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-data-source-manager-delimited-text-db-manager-import-layer-file">QGIS Data Source Manager - Delimited Text, DB Manager - Import Layer File</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conteo-de-especies-de-murcielagos-en-asp">Conteo de especies de murciélagos en ASP</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qgis-vector-analysis-tools-count-points-in-polygon">QGIS Vector - Analysis Tools - Count Points in Polygon</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#asp-ogr-multi-murcielagos-ogr-nullyes">asp_ogr_multi, murcielagos_ogr_nullyes</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#asp-ogr-multi-murcielagos-ogr-nullyes-con-los-no-nulos-seleccionados">asp_ogr_multi, murcielagos_ogr_nullyes (con los no nulos seleccionados)</a></li>
-</ul>
-</li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sql">SQL</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos-ogr-nullyes">murcielagos_ogr_nullyes</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#murcielagos-ogr-nullno">murcielagos_ogr_nullno</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-mamiferos-en-mesoamerica">Riqueza de especies de mamíferos en Mesoamérica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#densidad-de-la-red-vial-en-cantones-de-costa-rica">Densidad de la red vial en cantones de Costa Rica</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#con-capa-1-200-mil-del-ign">Con capa 1:200 mil del IGN</a></li>
 </ul>
 </li>
 </ul>
