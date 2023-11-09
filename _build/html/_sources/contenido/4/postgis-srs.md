@@ -87,6 +87,14 @@ echo -84.0 10.0 | cs2cs +proj=longlat +datum=WGS84 +to +init=epsg:5367
 499999.97       1105744.19
 ```
 
+```shell
+echo 499999.97 1105744.19 | cs2cs +init=epsg:5367 +to +proj=longlat +datum=WGS84
+```
+
+```
+84dW    10dN
+```
+
 ### `ST_SetSRID()`
 [ST_SetSRID(geometry, srid)](http://postgis.net/docs/ST_SetSRID.html) le asigna un SRID a una geometría. 
 

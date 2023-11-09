@@ -23,6 +23,7 @@ parts:
     - file: contenido/4/postgis-joins-espaciales          
     - file: contenido/4/postgis-indices-espaciales    
     - file: contenido/4/postgis-srs      
+    - file: contenido/4/postgis-coordenadas-geograficas          
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01
