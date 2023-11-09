@@ -30,7 +30,7 @@ PROJCS["NAD83 / UTM Zone 10N",
 ]
 ```
 
-`proj4text`: representación del SRS en el formato de la biblioteca [PROJ](https://proj.org/), la cual es utilizada por PostGIS para transformaciones entre sistemas de coordenadas. Por ejemplo:
+- `proj4text`: representación del SRS en el formato de la biblioteca [PROJ](https://proj.org/), la cual es utilizada por PostGIS para transformaciones entre sistemas de coordenadas. Por ejemplo:
 
 ```
 +proj=utm +zone=10 +ellps=clrk66 +datum=NAD27 +units=m
