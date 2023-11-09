@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-srs';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="next" title="PostGIS - Coordenadas geográficas" href="postgis-coordenadas-geograficas.html" />
     <link rel="prev" title="PostGIS - Índices espaciales" href="postgis-indices-espaciales.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,6 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Sistemas de referencia espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-coordenadas-geograficas.html">PostGIS - Coordenadas geográficas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
 <ul class="nav bd-sidenav">
@@ -485,6 +486,12 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">499999.97</span>       <span class="mf">1105744.19</span>
 </pre></div>
 </div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="m">499999</span>.97<span class="w"> </span><span class="m">1105744</span>.19<span class="w"> </span><span class="p">|</span><span class="w"> </span>cs2cs<span class="w"> </span>+init<span class="o">=</span>epsg:5367<span class="w"> </span>+to<span class="w"> </span>+proj<span class="o">=</span>longlat<span class="w"> </span>+datum<span class="o">=</span>WGS84
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">84</span><span class="n">dW</span>    <span class="mi">10</span><span class="n">dN</span>
+</pre></div>
+</div>
 </section>
 <section id="st-setsrid">
 <h3><code class="docutils literal notranslate"><span class="pre">ST_SetSRID()</span></code><a class="headerlink" href="#st-setsrid" title="Permalink to this heading">#</a></h3>
@@ -570,11 +577,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../evaluaciones/examencorto-01.html"
+       href="postgis-coordenadas-geograficas.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Examen corto 01</p>
+        <p class="prev-next-title">PostGIS - Coordenadas geográficas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
