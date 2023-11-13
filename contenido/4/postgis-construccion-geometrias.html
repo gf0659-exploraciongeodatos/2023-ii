@@ -1,0 +1,684 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PostGIS - Construcción de geometrías &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-construccion-geometrias';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="prev" title="PostGIS - Coordenadas geográficas" href="postgis-coordenadas-geograficas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-srs.html">PostGIS - Sistemas de referencia espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-coordenadas-geograficas.html">PostGIS - Coordenadas geográficas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Construcción de geometrías</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-04.html">Examen corto 04</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/postgis-construccion-geometrias.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/postgis-construccion-geometrias.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PostGIS - Construcción de geometrías</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-centroid-y-st-pointonsurface"><code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-buffer"><code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersection"><code class="docutils literal notranslate"><span class="pre">ST_Intersection()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-union"><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="postgis-construccion-de-geometrias">
+<h1>PostGIS - Construcción de geometrías<a class="headerlink" href="#postgis-construccion-de-geometrias" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>Las funciones que se estudian en este capítulo reciben geometrías como argumentos de entrada y generan otras geometrías como salidas.</p>
+</section>
+<section id="funciones">
+<h2>Funciones<a class="headerlink" href="#funciones" title="Permalink to this heading">#</a></h2>
+<section id="st-centroid-y-st-pointonsurface">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code><a class="headerlink" href="#st-centroid-y-st-pointonsurface" title="Permalink to this heading">#</a></h3>
+<p>Un centroide es un punto que identifica el centro de un objeto geográfico. Puede calcularse para geometrías de líneas y de polígonos. Se utiliza para brindar una representación simplificada de una geometría más compleja. PostGIS incluye las funciones <code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code> para generar centroides.</p>
+<figure class="align-default" id="figure-st-centroid">
+<img alt="../../_images/st_centroid.png" src="../../_images/st_centroid.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">ST_Centroid() y ST_PointOnSurface(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-centroid" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La función <a class="reference external" href="https://postgis.net/docs/ST_Centroid.html">ST_Centroid(geometry)</a> retorna un punto que está aproximadamente en el <a class="reference external" href="https://es.wikipedia.org/wiki/Centro_de_masas">centro de masas</a> de la geometría de entrada. Este cálculo es relativamente rápido, pero a veces es resultado no es apropiado, ya que el punto generado no necesariamente está en la geometría de entrada. Si la geometría de entrada tiene una convexidad, como en el caso de la <a class="reference internal" href="#figure-st-centroid"><span class="std std-numref">Fig. 28</span></a>, el centroide podría no estar en su interior.</p>
+<p>La función <a class="reference external" href="https://postgis.net/docs/ST_PointOnSurface.html">ST_PointOnSurface(geometry)</a> retorna un punto que se garantiza que está dentro de la geometría de entrada.</p>
+<p>La diferencia entre ambas funciones se muestra mediante la siguiente sentencia SQL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Comparación de ST_Centroid() y ST_PointOnSurface() para una geometría convexa</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ST_Centroid</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dentro_centroid</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ST_PointOnSurface</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dentro_pointonsurface</span>
+<span class="k">FROM</span><span class="w"> </span>
+<span class="w">  </span><span class="p">(</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;POLYGON ((30 0,30 10,10 10,10 40,30 40,30 50,0 50,0 0,0 0,30 0))&#39;</span><span class="p">::</span><span class="n">geometry</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">dentro_centroid</span> <span class="o">|</span> <span class="n">dentro_pointonsurface</span>
+<span class="o">-----------------+-----------------------</span>
+ <span class="n">f</span>               <span class="o">|</span> <span class="n">t</span>
+</pre></div>
+</div>
+<p>En la sentencia SQL anterior, <code class="docutils literal notranslate"><span class="pre">t(geom)</span></code> es una <a class="reference external" href="https://koalatea.io/postgres-derived-table/">tabla derivada</a>, la cual es una expresión que se define en la cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> y se trata como una tabla temporal en la consulta, pero no se almacena en la base de datos.</p>
+</section>
+<section id="st-buffer">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code><a class="headerlink" href="#st-buffer" title="Permalink to this heading">#</a></h3>
+<p>Un <em>buffer</em> es un polígono creado alrededor de una geometría, ya sea otro polígono, una línea o un punto.</p>
+<figure class="align-default" id="figure-st-buffer">
+<img alt="../../_images/st_buffer.png" src="../../_images/st_buffer.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">ST_Buffer(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-buffer" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La función <a class="reference external" href="https://postgis.net/docs/ST_Buffer.html">ST_Buffer(geometry, distance)</a> toma como entradas una geometría y una distancia y retorna otra geometría con un límite a la distancia especificada de la geometría de entrada.</p>
+<p>La siguiente sentencia SQL crea un <em>buffer</em> de 100 m alrededor de la ruta 27 y lo guarda en una tabla.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Buffer alrededor de la ruta 27</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">buffer_27_100</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">red_vial_200k</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">num_ruta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;27&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Y la siguiente consulta despliega las edificaciones prominentes situadas completamente dentro del <em>buffer</em> generado con la sentencia anterior.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>-- Edificaciones prominentes situadas completamente dentro del buffer
+       nom_objeto       |               nombre
+------------------------+------------------------------------
+ CENTRO EDUCATIVO       | Escuela La Balsa
+ EDIFICIO RELIGIOSO     | Iglesia
+ EDIFICIO GUBERNAMENTAL | Federaci≤n Costarricense de F·tbol
+ EDIFICIO RELIGIOSO     | Iglesia
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code> también acepta distancias negativas para geometrías de polígonos. En ese caso, construye un polígono inscrito. En el caso de líneas y puntos, retorna una geometría vacía.</p>
+</section>
+<section id="st-intersection">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Intersection()</span></code><a class="headerlink" href="#st-intersection" title="Permalink to this heading">#</a></h3>
+<p>La intersección de geometrías, llamada también <em>overlay</em> (superposición), es otra operación muy común en procesamiento de datos espaciales.</p>
+<figure class="align-default" id="figure-st-intersection">
+<img alt="../../_images/st_intersection.png" src="../../_images/st_intersection.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">ST_Intersection(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-intersection" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>La función <a class="reference external" href="https://postgis.net/docs/ST_Intersection.html">ST_Intersection(geometry A, geometry B)</a> retorna el polígono, línea o punto que las geometrías de entrada tienen en común. Si las geometría son disjuntas, retorna una geometría vacía.</p>
+<p>La siguiente consulta obtiene la intersección de los dos círculos que se muestran en la <a class="reference internal" href="#figure-st-intersection"><span class="std std-numref">Fig. 30</span></a>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Intersección de dos círculos generados con ST_Buffer()</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">ST_Intersection</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="s1">&#39;POINT(0 0)&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="s1">&#39;POINT(3 0)&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POLYGON</span><span class="p">((</span><span class="mf">1.961570560806461</span> <span class="o">-</span><span class="mf">0.390180644032256</span><span class="p">,</span><span class="mf">1.847759065022574</span> <span class="o">-</span><span class="mf">0.76536686473018</span><span class="p">,</span><span class="mf">1.66293922460509</span> <span class="o">-</span><span class="mf">1.111140466039204</span><span class="p">,</span><span class="mf">1.5</span> <span class="o">-</span><span class="mf">1.309682485677078</span><span class="p">,</span><span class="mf">1.337060775394909</span> <span class="o">-</span><span class="mf">1.111140466039204</span><span class="p">,</span><span class="mf">1.152240934977426</span> <span class="o">-</span><span class="mf">0.76536686473018</span><span class="p">,</span><span class="mf">1.038429439193539</span> <span class="o">-</span><span class="mf">0.390180644032257</span><span class="p">,</span><span class="mi">1</span> <span class="o">-</span><span class="mf">2.449212707644754e-16</span><span class="p">,</span><span class="mf">1.038429439193539</span> <span class="mf">0.390180644032257</span><span class="p">,</span><span class="mf">1.152240934977426</span> <span class="mf">0.765366864730179</span><span class="p">,</span><span class="mf">1.337060775394909</span> <span class="mf">1.111140466039204</span><span class="p">,</span><span class="mf">1.5</span> <span class="mf">1.309682485677078</span><span class="p">,</span><span class="mf">1.66293922460509</span> <span class="mf">1.111140466039204</span><span class="p">,</span><span class="mf">1.847759065022573</span> <span class="mf">0.765366864730181</span><span class="p">,</span><span class="mf">1.961570560806461</span> <span class="mf">0.390180644032257</span><span class="p">,</span><span class="mi">2</span> <span class="mi">0</span><span class="p">,</span><span class="mf">1.961570560806461</span> <span class="o">-</span><span class="mf">0.390180644032256</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Ejercicio:</strong><br />
+En un SIG, grafique los círculos de la sentencia anterior y su intersección.</p>
+</section>
+<section id="st-union">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code><a class="headerlink" href="#st-union" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ST_Intersection()</span></code> crea una nueva geometría con líneas de ambas entradas. La función <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code> realiza lo contrario: toma las geometrías de entrada y elimina las líneas comunes.</p>
+<figure class="align-default" id="figure-st-union">
+<img alt="../../_images/st_union.png" src="../../_images/st_union.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">ST_Union(). Fuente: <a class="reference external" href="https://postgis.net/workshops/postgis-intro/">Introduction to PostGIS</a>.</span><a class="headerlink" href="#figure-st-union" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Hay dos formas para la función <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code>:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://postgis.net/docs/ST_Union.html">ST_Union(geometry A, geometry B)</a>: recibe dos geometrías y retorna su unión. Por ejemplo, los círculos que se intersectaron en la sección anterior pueden unirse con:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Unión de dos círculos generados con ST_Buffer()</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">ST_Union</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="s1">&#39;POINT(0 0)&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+<span class="w">  </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="s1">&#39;POINT(3 0)&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="p">));</span>
+</pre></div>
+</div>
+<p>El resultado se muestra en la <a class="reference internal" href="#figure-st-union"><span class="std std-numref">Fig. 31</span></a>.</p>
+<ol class="arabic simple" start="2">
+<li><p><a class="reference external" href="https://postgis.net/docs/ST_Union.html">ST_Union(geometry)</a>: toma todas las geometrías de un conjunto (ej. de una tabla, de una consulta) y retorna su unión. Esta versión “agregada” puede usarse conjuntamente con la cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> para generar subconjuntos agrupados de geometrías individuales. Por ejemplo, la siguiente sentencia SQL une las geometrías de los cantones en provincias.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Unión de cantones en provincias</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">provincia</span><span class="p">,</span><span class="w"> </span><span class="n">ST_Union</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">cantones</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">provincia</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Ejercicio:</strong><br />
+Ejecute la sentencia anterior en un SIG y observe el resultado.</p>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Genere capas de centroides para las provincias de Costa Rica:</p>
+<ul class="simple">
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code>.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code>.
+Despliegue ambas capas en un mapa, junto con la capa de provincias, para así apreciar las diferencias.</p></li>
+</ul>
+</li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code> genere los centroides de la ruta 32. Despliegue ambos en un mapa, junto con la geometría de la ruta 32.</p></li>
+<li><p>Obtenga la lista de especies de mamíferos con mayor riesgo de atropello en la ruta 32:</p>
+<ul class="simple">
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code>, genere un <em>buffer</em> de 5 km alrededor de la ruta 32.</p></li>
+<li><p>Con base en los registros de presencia de mamíferos agrupados en el portal de GBIF (<a class="reference external" href="https://doi.org/10.15468/dl.vmdyxe">https://doi.org/10.15468/dl.vmdyxe</a>), genere la lista de registros de presencia de mamíferos que se encuentran dentro del <em>buffer</em>. Excluya los mamíferos voladores (murciélagos, orden <em>Chiroptera</em>).</p></li>
+<li><p>A partir del resultado del punto anterior, genere la lista de las 10 especies con más registros.</p></li>
+</ul>
+</li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Intersection()</span></code>, genere los polígonos de ASP que se intersectan con el cantón de Sarapiquí.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code> una los cantones en provincias y calcule el área para cada una. Compare el resultado con las áreas de la capa de provincias que publica el IGN.</p></li>
+<li><p>Con <code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code> una las provincias de Costa Rica en un solo polígono. Luego, obtenga los centroides de ese polígono con las funciones <code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code>.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="postgis-coordenadas-geograficas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PostGIS - Coordenadas geográficas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../evaluaciones/examencorto-01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examen corto 01</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-centroid-y-st-pointonsurface"><code class="docutils literal notranslate"><span class="pre">ST_Centroid()</span></code> y <code class="docutils literal notranslate"><span class="pre">ST_PointOnSurface()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-buffer"><code class="docutils literal notranslate"><span class="pre">ST_Buffer()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-intersection"><code class="docutils literal notranslate"><span class="pre">ST_Intersection()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-union"><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
