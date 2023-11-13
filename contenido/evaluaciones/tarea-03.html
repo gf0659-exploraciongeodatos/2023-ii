@@ -1,0 +1,643 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tarea 03 &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/evaluaciones/tarea-03';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Examen corto 04" href="examencorto-04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4/conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-srs.html">PostGIS - Sistemas de referencia espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-coordenadas-geograficas.html">PostGIS - Coordenadas geográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-construccion-geometrias.html">PostGIS - Construcción de geometrías</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tarea-02.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-04.html">Examen corto 04</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Tarea 03</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/evaluaciones/tarea-03.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/evaluaciones/tarea-03.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tarea 03</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indice-ambiental">Índice ambiental</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicadores">Indicadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proporcion-de-cobertura-arborea">Proporción de cobertura arbórea</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#densidad-de-red-hidrografica">Densidad de red hidrográfica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-mamiferos">Riqueza de especies de mamíferos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-total">Valor total</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-sql-con-sentencias-sql-y-sus-resultados">Archivo .sql con sentencias SQL y sus resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapa-en-archivo-grafico-png-jpg-u-otro">Mapa en archivo gráfico (.png, .jpg u otro)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones">Recomendaciones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tarea-03">
+<h1>Tarea 03<a class="headerlink" href="#tarea-03" title="Permalink to this heading">#</a></h1>
+<section id="fecha-y-hora-limite-de-entrega">
+<h2>Fecha y hora límite de entrega<a class="headerlink" href="#fecha-y-hora-limite-de-entrega" title="Permalink to this heading">#</a></h2>
+<p>Jueves 23 de noviembre de 2023, 15:59.</p>
+</section>
+<section id="descripcion-general">
+<h2>Descripción general<a class="headerlink" href="#descripcion-general" title="Permalink to this heading">#</a></h2>
+<p>Esta tarea consiste en crear un “índice ambiental” de Costa Rica a nivel cantonal, compuesto por indicadores basados en datos geoespaciales de acceso público, como los disponibles en el <a class="reference external" href="https://www.snitcr.go.cr/">Sistema Nacional de Información Territorial (SNIT)</a> y la <a class="reference external" href="https://www.gbif.org/">Imfraestructura Mundial de Información en Biodiversidad (GBIF)</a>. Debe cargar los datos en una base de datos PostgreSQL/PostGIS, programar en SQL las consultas correspondientes al cálculo de los indicadores y entregar los resultados en un archivo de texto y en un mapa.</p>
+<p>La tarea puede realizarse en parejas o individualmente. En el primer caso, solo uno de los integrantes del equipo debe entregar la tarea en Mediación Virtual e indicar el nombre del otro integrante.</p>
+</section>
+<section id="indice-ambiental">
+<h2>Índice ambiental<a class="headerlink" href="#indice-ambiental" title="Permalink to this heading">#</a></h2>
+<p>Este índice se compone de varios indicadores, cada uno de los cuales está relacionado con diversos <a class="reference external" href="https://es.wikipedia.org/wiki/Servicios_del_ecosistema">servicios ecosistémicos</a> como captura y almacenamiento de carbono, regulación del clima, hábitat para especies, aprovisionamiento de agua dulce, recreación y ecoturismo, entre otros.</p>
+<p>Los indicadores se describen en la siguiente sección.</p>
+<section id="indicadores">
+<h3>Indicadores<a class="headerlink" href="#indicadores" title="Permalink to this heading">#</a></h3>
+<p>Los indicadores deben calcularse para cada cantón. Los datos y las geometrías de los cantones debe obtenerse de la capa “Límite Cantonal” (<code class="docutils literal notranslate"><span class="pre">IGN_5_CO:limitecantonal_5k</span></code>) publicada en el servicio “IGN Cartografía 1:5mil CO” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_5_CO/wfs</span></code>) del Instituto Geográfico Nacional (IGN).</p>
+<section id="proporcion-de-cobertura-arborea">
+<h4>Proporción de cobertura arbórea<a class="headerlink" href="#proporcion-de-cobertura-arborea" title="Permalink to this heading">#</a></h4>
+<p>Se calcula, para cada cantón, mediante la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Proporción de cobertura arbórea} = \frac{\text{área total del cantón (en km}^2\text{)}}{\text{área del cantón cubierta por árboles (en km}^2\text{)}}
+\]</div>
+<p>El área cubierta por árboles debe obtenerse de la capa “Árboles 2017 1:5mil” (<code class="docutils literal notranslate"><span class="pre">IGN_5:forestal2017_5k</span></code>) publicada en el servicio “IGN Cartografía 1:5mil” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_5/wfs?</span></code>) del Instituto Geográfico Nacional (IGN).</p>
+</section>
+<section id="densidad-de-red-hidrografica">
+<h4>Densidad de red hidrográfica<a class="headerlink" href="#densidad-de-red-hidrografica" title="Permalink to this heading">#</a></h4>
+<p>Se calcula, para cada cantón, mediante la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Densidad de red hídrográfica} = \frac{\text{longitud de la red hidrográfica del cantón (en km)}}{\text{área total del cantón (en km}^2\text{)}}
+\]</div>
+<p>La longitud de la red hidrográfica del cantón debe obtenerse de la capa “Hidrografía 1:5mil” (<code class="docutils literal notranslate"><span class="pre">IGN_5:hidrografia_5000</span></code>) publicada en el servicio “IGN Cartografía 1:5mil” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_5/wfs?</span></code>) del Instituto Geográfico Nacional (IGN).</p>
+</section>
+<section id="riqueza-de-especies-de-mamiferos">
+<h4>Riqueza de especies de mamíferos<a class="headerlink" href="#riqueza-de-especies-de-mamiferos" title="Permalink to this heading">#</a></h4>
+<p>Se calcula, para cada cantón, mediante la siguiente fórmula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Riqueza de especies de mamíferos} = \frac{\text{cantidad de especies de mamíferos presentes en el cantón}}{\text{316}}
+\]</div>
+<p>La cantidad de especies de mamíferos presentes en el cantón debe obtenerse del archivo CSV disponible en <a class="reference external" href="https://doi.org/10.15468/dl.vmdyxe">https://doi.org/10.15468/dl.vmdyxe</a>, el cual contiene el resultado de una consulta al portal de datos de la Infraestructura Mundial de Información en Biodiversidad (GBIF), de todos los registros de presencia georreferenciados de mamíferos de Costa Rica.</p>
+<p>El número 316 que se utiliza en la fórmula, corresponde a la cantidad total de especies de mamíferos de Costa Rica presentes en el conjunto de datos obtenido a través de la consulta a GBIF <a class="footnote-reference brackets" href="#footnote-mamiferos" id="id1">1</a>.</p>
+</section>
+</section>
+<section id="valor-total">
+<h3>Valor total<a class="headerlink" href="#valor-total" title="Permalink to this heading">#</a></h3>
+<p>El valor total del índice se obtiene mediante al sumar el valor de los indicadores:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gather*}
+\text{Índice ambiental} = \\
+\text{Proporción de cobertura arbórea} + \text{Densidad de red vial} + \text{Riqueza de especies de mamíferos}
+\end{gather*}
+\end{split}\]</div>
+</section>
+</section>
+<section id="entregables">
+<h2>Entregables<a class="headerlink" href="#entregables" title="Permalink to this heading">#</a></h2>
+<p>El valor porcentual de cada entregable se muestra entre paréntesis.</p>
+<section id="archivo-sql-con-sentencias-sql-y-sus-resultados">
+<h3>Archivo .sql con sentencias SQL y sus resultados<a class="headerlink" href="#archivo-sql-con-sentencias-sql-y-sus-resultados" title="Permalink to this heading">#</a></h3>
+<p>Este archivo debe contener:</p>
+<ol class="arabic simple">
+<li><p>(20%) Sentencias SQL, y sus resultados, para el cálculo de la proporción de cobertura arbórea.</p></li>
+<li><p>(20%) Sentencias SQL, y sus resultados, para el cálculo de la densidad de red hídrográfica.</p></li>
+<li><p>(20%) Sentencias SQL, y sus resultados, para el cálculo de la riqueza de especies de mamíferos.</p></li>
+<li><p>(30%) Sentencias SQL, y sus resultados, para el cálculo del valor total del índice.</p></li>
+</ol>
+<p><strong>IMPORTANTE</strong></p>
+<ul class="simple">
+<li><p>El problema debe ser resuelto completamente mediante SQL en la base de datos PostgreSQL/PostGIS. La secuencia de las consultas debe ser reproducible y conducir al resultado final, con el cálculo del valor total del índice. Para revisar la tarea, el profesor ejecutará las sentencias SQL y verificará la consistencia de los resultados obtenidos con los reportados.</p></li>
+<li><p>Los cálculos de áreas, distancias y otros similares deben realizarse mediante funciones de SQL (ej. <code class="docutils literal notranslate"><span class="pre">ST_Area()</span></code>).</p></li>
+<li><p>Los resultados deben presentarse con dos decimales.</p></li>
+</ul>
+</section>
+<section id="mapa-en-archivo-grafico-png-jpg-u-otro">
+<h3>Mapa en archivo gráfico (.png, .jpg u otro)<a class="headerlink" href="#mapa-en-archivo-grafico-png-jpg-u-otro" title="Permalink to this heading">#</a></h3>
+<p>Este archivo debe contener:</p>
+<ol class="arabic simple">
+<li><p>(10%) Un mapa de coropletas, proveniente de la tabla que contiene los cálculos finales, cuyos colores muestren el valor total del índice en cada cantón. Debe incluir una leyenda que muestre el significado de los colores.</p></li>
+</ol>
+</section>
+</section>
+<section id="recomendaciones">
+<h2>Recomendaciones<a class="headerlink" href="#recomendaciones" title="Permalink to this heading">#</a></h2>
+<p>El problema a resolver puede abordarse de varias formas. Se recomienda calcular uno por uno los índicadores, verificarlos, y luego proceder a calcular el valor total. Un posible enfoque (pero no el único) es crear una tabla para indicador y luego, mediante operaciones JOIN, crear la tabla con el valor total del índice.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="footnote-mamiferos"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>De acuerdo con los estudios más recientes, en Costa Rica hay 256 especies de mamíferos silvestres <a class="reference external" href="https://doi.org/10.12933/therya-23-2142">(Ramírez-Fernández et al., 2023)</a>. La diferencia de esta cantidad con las ??? especies contenidas en el conjunto de datos de GBIF puede deberse a que este último incluye especies domésticas, especies en cautiverio y posiblemente errores de identificación. Por limitaciones de tiempo, en esta tarea se usa la cantidad de especies del conjunto de datos de GBIF.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/evaluaciones"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examencorto-04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Examen corto 04</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indice-ambiental">Índice ambiental</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indicadores">Indicadores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proporcion-de-cobertura-arborea">Proporción de cobertura arbórea</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#densidad-de-red-hidrografica">Densidad de red hidrográfica</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#riqueza-de-especies-de-mamiferos">Riqueza de especies de mamíferos</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valor-total">Valor total</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-sql-con-sentencias-sql-y-sus-resultados">Archivo .sql con sentencias SQL y sus resultados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapa-en-archivo-grafico-png-jpg-u-otro">Mapa en archivo gráfico (.png, .jpg u otro)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones">Recomendaciones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
