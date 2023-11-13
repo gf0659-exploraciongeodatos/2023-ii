@@ -33,3 +33,4 @@ parts:
     - file: contenido/evaluaciones/examencorto-03
     - file: contenido/evaluaciones/tarea-02
     - file: contenido/evaluaciones/examencorto-04
+    - file: contenido/evaluaciones/tarea-03    
