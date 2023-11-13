@@ -24,6 +24,7 @@ parts:
     - file: contenido/4/postgis-indices-espaciales    
     - file: contenido/4/postgis-srs      
     - file: contenido/4/postgis-coordenadas-geograficas          
+    - file: contenido/4/postgis-construccion-geometrias       
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01
