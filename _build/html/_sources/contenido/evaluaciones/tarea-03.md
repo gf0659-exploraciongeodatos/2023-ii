@@ -20,7 +20,7 @@ Los indicadores deben calcularse para cada cantón. Los datos y las geometrías 
 Se calcula, para cada cantón, mediante la siguiente fórmula:
 
 $$
-\text{Proporción de cobertura arbórea} = \frac{\text{área total del cantón (en km}^2\text{)}}{\text{área del cantón cubierta por árboles (en km}^2\text{)}}
+\text{Proporción de cobertura arbórea} = \frac{\text{área del cantón cubierta por árboles (en km}^2\text{)}}{\text{área total del cantón (en km}^2\text{)}}
 $$
 
 El área cubierta por árboles debe obtenerse de la capa "Árboles 2017 1:5mil" (`IGN_5:forestal2017_5k`) publicada en el servicio "IGN Cartografía 1:5mil" (`https://geos.snitcr.go.cr/be/IGN_5/wfs?`) del Instituto Geográfico Nacional (IGN).
@@ -76,7 +76,7 @@ Este archivo debe contener:
 
 1. (10%) Un mapa de coropletas, proveniente de la tabla que contiene los cálculos finales, cuyos colores muestren el valor total del índice en cada cantón. Debe incluir una leyenda que muestre el significado de los colores.
 
-[^footnote-mamiferos]: De acuerdo con los estudios más recientes, en Costa Rica hay 256 especies de mamíferos silvestres [(Ramírez-Fernández et al., 2023)](https://doi.org/10.12933/therya-23-2142). La diferencia de esta cantidad con las ??? especies contenidas en el conjunto de datos de GBIF puede deberse a que este último incluye especies domésticas, especies en cautiverio y posiblemente errores de identificación. Por limitaciones de tiempo, en esta tarea se usa la cantidad de especies del conjunto de datos de GBIF.
+[^footnote-mamiferos]: De acuerdo con los estudios más recientes, en Costa Rica hay 256 especies de mamíferos silvestres [(Ramírez-Fernández et al., 2023)](https://doi.org/10.12933/therya-23-2142). La diferencia de esta cantidad con las 316 especies contenidas en el conjunto de datos de GBIF puede deberse a que este último incluye especies domésticas, especies en cautiverio y posiblemente errores de identificación. Por limitaciones de tiempo, en esta tarea se usa la cantidad de especies del conjunto de datos de GBIF.
 
 ## Recomendaciones
 El problema a resolver puede abordarse de varias formas. Se recomienda calcular uno por uno los índicadores, verificarlos, y luego proceder a calcular el valor total. Un posible enfoque (pero no el único) es crear una tabla para indicador y luego, mediante operaciones JOIN, crear la tabla con el valor total del índice.
