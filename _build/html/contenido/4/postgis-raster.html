@@ -1,0 +1,708 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PostGIS - Raster &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/4/postgis-raster';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examen corto 01" href="../evaluaciones/examencorto-01.html" />
+    <link rel="prev" title="PostGIS - Construcción de geometrías" href="postgis-construccion-geometrias.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-srs.html">PostGIS - Sistemas de referencia espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-coordenadas-geograficas.html">PostGIS - Coordenadas geográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-construccion-geometrias.html">PostGIS - Construcción de geometrías</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PostGIS - Raster</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-02.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/examencorto-04.html">Examen corto 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../evaluaciones/tarea-03.html">Tarea 03</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/4/postgis-raster.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/4/postgis-raster.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PostGIS - Raster</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-postgis-raster">Instalación de postgis_raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas-de-metadatos">Vistas de metadatos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-columns">raster_columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-overviews">raster_overviews</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-union"><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-height-st-width-st-srid-st-numbands"><code class="docutils literal notranslate"><span class="pre">ST_Height()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Width()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_SRID()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_NumBands()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-summarystatsagg"><code class="docutils literal notranslate"><span class="pre">ST_SummaryStatsAgg()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-value"><code class="docutils literal notranslate"><span class="pre">ST_Value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="postgis-raster">
+<h1>PostGIS - Raster<a class="headerlink" href="#postgis-raster" title="Permalink to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h2>
+<p>El modelo raster, de datos espaciales, representa información en forma de matrices compuestas por celdas (también llamadas pixeles) en donde cada una contiene un valor sobre una ubicación. Un conjunto de datos raster (ej. una imagen satelital) puede estar compuesto por varias bandas, cada una de las cuales tiene una matriz.</p>
+<p>El modelo raster es comúnmente utilizado en teledetección y análisis de imágenes para modelar fenómenos continuos como altitud, vegetación, temperatura o densidad de población, entre otros.</p>
+<p>PostgreSQL maneja datos raster mediante una extensión llamada <a class="reference external" href="https://postgis.net/docs/RT_reference.html">postgis_raster</a>.</p>
+</section>
+<section id="instalacion-de-postgis-raster">
+<h2>Instalación de postgis_raster<a class="headerlink" href="#instalacion-de-postgis-raster" title="Permalink to this heading">#</a></h2>
+<p>Para trabajar con datos raster en una base de datos PostgreSQL, se deben instalar tanto la extensión postgis como la extensión postgis_raster.</p>
+<p>Las siguientes setencias crean ambas extensiones en una base de datos (vea el ejercicio 1).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Instalación de las extensiones postgis y postgis_raster</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">postgis</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="n">EXTENSION</span><span class="w"> </span><span class="n">postgis_raster</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="carga-de-datos">
+<h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Permalink to this heading">#</a></h2>
+<p>El programa <a class="reference external" href="https://postgis.net/docs/using_raster_dataman.html#RT_Raster_Loader">raster2pgsql</a> es un utilitario de línea de comandos del sistema operativo, el cual usualmente se instala junto con PostGIS. Permite cargar fuentes de datos raster soportadas por la biblioteca <a class="reference external" href="https://gdal.org/">GDAL</a> en tablas de PostgreSQL/PostGIS. En el caso de Windows, StackBuilder instala raster2pgsql en el directorio <code class="docutils literal notranslate"> <span class="pre">C:\Program</span> <span class="pre">Files\PostgreSQL\15\bin</span></code> (15 debe sustituirse por la versión de PostgreSQL que se esté utilizando).</p>
+<p>Por ejemplo, el siguiente comando carga el archivo <a class="reference external" href="https://geodata.ucdavis.edu/climate/worldclim/2_1/hist/cts4.06/2.5m/wc2.1_cruts4.06_2.5m_tmax_2020-2021.zip">wc2.1_2.5m_tmax_2021-10.tif</a> (temperatura máxima de octubre 2021 en resolución de 2.5 minutos o 150 segundos) en la tabla <code class="docutils literal notranslate"><span class="pre">tmax_202110_150s</span></code> de una base de datos llamada <code class="docutils literal notranslate"><span class="pre">worldclim</span></code> (vea el ejercicio 2).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">raster2pgsql</span> <span class="o">-</span><span class="n">e</span> <span class="o">-</span><span class="n">l</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="o">-</span><span class="n">I</span> <span class="o">-</span><span class="n">C</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">Y</span> <span class="o">-</span><span class="n">t</span> <span class="n">auto</span> <span class="n">wc2</span><span class="mf">.1_2.5</span><span class="n">m_tmax_2021</span><span class="o">-</span><span class="mf">10.</span><span class="n">tif</span> <span class="n">tmax_202110_150s</span> <span class="o">|</span> <span class="n">psql</span> <span class="o">-</span><span class="n">d</span> <span class="n">worldclim</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span>
+</pre></div>
+</div>
+<p>Las diferentes opciones del comando se explican en <a class="reference external" href="https://postgis.net/docs/using_raster_dataman.html#idm25305">raster2pgsql options</a>.</p>
+</section>
+<section id="vistas-de-metadatos">
+<h2>Vistas de metadatos<a class="headerlink" href="#vistas-de-metadatos" title="Permalink to this heading">#</a></h2>
+<p>PostGIS proporciona, en cada base de datos, varias vistas con metadatos sobre las columnas de datos raster.</p>
+<section id="raster-columns">
+<h3>raster_columns<a class="headerlink" href="#raster-columns" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://postgis.net/docs/using_raster_dataman.html#RT_Raster_Columns">raster_columns</a> contiene un catálogo de todas las columnas raster de una base de datos.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta del catálogo de columnas raster de una base de datos</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">  </span><span class="n">r_table_name</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">r_raster_column</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">srid</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">scale_x</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">scale_y</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">num_bands</span><span class="p">,</span>
+<span class="w">  </span><span class="n">pixel_types</span><span class="p">,</span>
+<span class="w">  </span><span class="n">nodata_values</span><span class="p">,</span>
+<span class="w">  </span><span class="n">spatial_index</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">raster_columns</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">r_table_name</span>     <span class="o">|</span> <span class="n">r_raster_column</span> <span class="o">|</span> <span class="n">srid</span> <span class="o">|</span>   <span class="n">scale_x</span>    <span class="o">|</span>    <span class="n">scale_y</span>    <span class="o">|</span> <span class="n">num_bands</span> <span class="o">|</span> <span class="n">pixel_types</span> <span class="o">|</span> <span class="n">nodata_values</span> <span class="o">|</span> <span class="n">spatial_index</span>
+<span class="o">----------------------+-----------------+------+--------------+---------------+-----------+-------------+---------------+---------------</span>
+ <span class="n">elev</span>                 <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0083333333</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0083333333</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">16</span><span class="n">BSI</span><span class="p">}</span>     <span class="o">|</span> <span class="p">{</span><span class="o">-</span><span class="mi">32768</span><span class="p">}</span>      <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_2_elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0166666667</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0166666667</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">16</span><span class="n">BSI</span><span class="p">}</span>     <span class="o">|</span> <span class="p">{</span><span class="o">-</span><span class="mi">32768</span><span class="p">}</span>      <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_3_elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span>        <span class="mf">0.025</span> <span class="o">|</span>        <span class="o">-</span><span class="mf">0.025</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">16</span><span class="n">BSI</span><span class="p">}</span>     <span class="o">|</span> <span class="p">{</span><span class="o">-</span><span class="mi">32768</span><span class="p">}</span>      <span class="o">|</span> <span class="n">t</span>
+ <span class="n">tmax_202110_150s</span>     <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0416666667</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0416666667</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_2_tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0833333333</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0833333333</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_3_tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span>        <span class="mf">0.125</span> <span class="o">|</span>        <span class="o">-</span><span class="mf">0.125</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+ <span class="n">tmax_202010_150s</span>     <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0416666667</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0416666667</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_2_tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span> <span class="mf">0.0833333333</span> <span class="o">|</span> <span class="o">-</span><span class="mf">0.0833333333</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+ <span class="n">o_3_tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="mi">4326</span> <span class="o">|</span>        <span class="mf">0.125</span> <span class="o">|</span>        <span class="o">-</span><span class="mf">0.125</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="p">{</span><span class="mi">32</span><span class="n">BF</span><span class="p">}</span>      <span class="o">|</span> <span class="p">{</span><span class="n">NaN</span><span class="p">}</span>         <span class="o">|</span> <span class="n">t</span>
+</pre></div>
+</div>
+</section>
+<section id="raster-overviews">
+<h3>raster_overviews<a class="headerlink" href="#raster-overviews" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://postgis.net/docs/using_raster_dataman.html#RT_Raster_Overviews">raster_overviews</a> contiene el catálogo de las columnas raster de las tablas que funcionan como vistas generales (<em>overviews</em>) de tablas más detalladas. Estas tablas son las que se generan con la opción <code class="docutils literal notranslate"><span class="pre">-l</span></code> de raster2pgsql.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Consulta del catálogo de columnas raster de las vistas generales</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">raster_overviews</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">o_table_catalog</span> <span class="o">|</span> <span class="n">o_table_schema</span> <span class="o">|</span>     <span class="n">o_table_name</span>     <span class="o">|</span> <span class="n">o_raster_column</span> <span class="o">|</span> <span class="n">r_table_catalog</span> <span class="o">|</span> <span class="n">r_table_schema</span> <span class="o">|</span>   <span class="n">r_table_name</span>   <span class="o">|</span> <span class="n">r_raster_column</span> <span class="o">|</span> <span class="n">overview_factor</span>
+<span class="o">-----------------+----------------+----------------------+-----------------+-----------------+----------------+------------------+-----------------+-----------------</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_2_elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">2</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_3_elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">elev</span>             <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">3</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_2_tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">2</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_3_tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">tmax_202110_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">3</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_2_tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">2</span>
+ <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">o_3_tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span> <span class="n">worldclim</span>       <span class="o">|</span> <span class="n">public</span>         <span class="o">|</span> <span class="n">tmax_202010_150s</span> <span class="o">|</span> <span class="n">rast</span>            <span class="o">|</span>               <span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="funciones">
+<h2>Funciones<a class="headerlink" href="#funciones" title="Permalink to this heading">#</a></h2>
+<p>La extensión postgis_raster contiene más de 100 <a class="reference external" href="https://postgis.net/docs/RT_reference.html">funciones para manejo de datos raster</a>. En esta sección, se ejemplifican algunas de estas.</p>
+<section id="st-union">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code><a class="headerlink" href="#st-union" title="Permalink to this heading">#</a></h3>
+<p>La función <a class="reference external" href="https://postgis.net/docs/RT_ST_Union.html">ST_Union()</a> combina un conjunto de rasters en una estructura. Esta función puede aplicarse a la columna raster de una misma tabla, la cual puede estar dividida en varias filas.</p>
+</section>
+<section id="st-height-st-width-st-srid-st-numbands">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Height()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Width()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_SRID()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_NumBands()</span></code><a class="headerlink" href="#st-height-st-width-st-srid-st-numbands" title="Permalink to this heading">#</a></h3>
+<p>Retornan información general sobre un raster.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Información general sobre un raster</span>
+<span class="k">SELECT</span>
+<span class="w">  </span><span class="n">ST_Height</span><span class="p">(</span><span class="n">ST_Union</span><span class="p">(</span><span class="n">rast</span><span class="p">)),</span><span class="w"> </span><span class="c1">-- altura</span>
+<span class="w">  </span><span class="n">ST_Width</span><span class="p">(</span><span class="n">ST_Union</span><span class="p">(</span><span class="n">rast</span><span class="p">)),</span><span class="w"> </span><span class="c1">-- ancho</span>
+<span class="w">  </span><span class="n">ST_SRID</span><span class="p">(</span><span class="n">ST_Union</span><span class="p">(</span><span class="n">rast</span><span class="p">)),</span><span class="w"> </span><span class="c1">-- SRID</span>
+<span class="w">  </span><span class="n">ST_NumBands</span><span class="p">(</span><span class="n">ST_Union</span><span class="p">(</span><span class="n">rast</span><span class="p">))</span><span class="w"> </span><span class="c1">-- Cantidad de bandas</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tmax_202110_150s</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">st_height</span> <span class="o">|</span> <span class="n">st_width</span> <span class="o">|</span> <span class="n">st_srid</span> <span class="o">|</span> <span class="n">st_numbands</span>
+<span class="o">-----------+----------+---------+-------------</span>
+      <span class="mi">3744</span> <span class="o">|</span>     <span class="mi">8640</span> <span class="o">|</span>    <span class="mi">4326</span> <span class="o">|</span>           <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="st-summarystatsagg">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_SummaryStatsAgg()</span></code><a class="headerlink" href="#st-summarystatsagg" title="Permalink to this heading">#</a></h3>
+<p>La función <a class="reference external" href="https://postgis.net/docs/RT_ST_SummaryStatsAgg.html">ST_SummaryStatsAgg()</a> retorna estadísticas generales de una tabla raster.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Estadísticas</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="n">ST_SummaryStatsAgg</span><span class="p">(</span><span class="n">rast</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)).</span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tmax_202110_150s</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">count</span>  <span class="o">|</span>    <span class="nb">sum</span>    <span class="o">|</span>        <span class="n">mean</span>        <span class="o">|</span>       <span class="n">stddev</span>       <span class="o">|</span> <span class="nb">min</span> <span class="o">|</span> <span class="nb">max</span>
+<span class="o">---------+-----------+--------------------+--------------------+-----+-----</span>
+ <span class="mi">8986760</span> <span class="o">|</span> <span class="mi">140919725</span> <span class="o">|</span> <span class="mf">15.680815444053252</span> <span class="o">|</span> <span class="mf">15.560723823335957</span> <span class="o">|</span> <span class="o">-</span><span class="mi">26</span> <span class="o">|</span>  <span class="mi">42</span>
+</pre></div>
+</div>
+</section>
+<section id="st-value">
+<h3><code class="docutils literal notranslate"><span class="pre">ST_Value()</span></code><a class="headerlink" href="#st-value" title="Permalink to this heading">#</a></h3>
+<p>La función <a class="reference external" href="https://postgis.net/docs/RT_ST_Value.html">ST_Value()</a> retorna el valor de un raster en un punto que recibe como entrada (hay otras formas de especificar la ubicación).</p>
+<p>La siguiente consulta SQL retorna la temperatura máxima en octubre 2021 de la ubicación de cada registro de mamíferos en <a class="reference external" href="https://doi.org/10.15468/dl.vmdyxe">https://doi.org/10.15468/dl.vmdyxe</a>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Temperatura máxima de cada registro de mamíferos</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span><span class="k">g</span><span class="p">.</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">ST_Value</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">rast</span><span class="p">,</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">temperatura_maxima</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">tmax_202110_150s</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">mamiferos</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">g</span>
+<span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">rast</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">geom</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">species</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="n">st_astext</span>           <span class="o">|</span>           <span class="n">species</span>            <span class="o">|</span> <span class="n">temperatura_maxima</span>
+<span class="o">-------------------------------+------------------------------+--------------------</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">82.686267</span> <span class="mf">9.636864</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">82.837805</span> <span class="mf">9.735694</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">82.902285</span> <span class="mf">9.711651</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">82.688844</span> <span class="mf">9.637409</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">82.701155</span> <span class="mf">9.638481</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.506923</span> <span class="mf">10.448877</span><span class="p">)</span>   <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.298207</span> <span class="mf">8.389043</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.29553</span> <span class="mf">8.389693</span><span class="p">)</span>     <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.546198</span> <span class="mf">10.477045</span><span class="p">)</span>   <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.349556</span> <span class="mf">10.298109</span><span class="p">)</span>   <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+ <span class="n">POINT</span><span class="p">(</span><span class="o">-</span><span class="mf">83.307467</span> <span class="mf">8.386528</span><span class="p">)</span>    <span class="o">|</span> <span class="n">Alouatta</span> <span class="n">palliata</span>            <span class="o">|</span>                 <span class="mi">30</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ejercicios">
+<h2>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Cree una base de datos PostgreSQL/PostGIS llamada <code class="docutils literal notranslate"><span class="pre">worldclim</span></code> y agréguele las extensiones postgis y postgis_raster.</p></li>
+<li><p>De la base de datos climática <a class="reference external" href="https://www.worldclim.org/">WorldClim</a>, descargue los <a class="reference external" href="https://www.worldclim.org/data/monthlywth.html">datos mensuales</a> de temperatura máxima para los períodos 1990-1999, 2000-2009, 2010-2019 y 2020-2021 y cárguelos en la base de datos <code class="docutils literal notranslate"><span class="pre">worldclim</span></code>.</p></li>
+<li><p>Calcule la elevación promedio de las ubicaciones de cada especie de <a class="reference external" href="https://doi.org/10.15468/dl.vmdyxe">mamíferos de Costa Rica</a>. Utilice la capa de elevación de 2.5 min en <a class="reference external" href="https://www.worldclim.org/data/worldclim21.html">https://www.worldclim.org/data/worldclim21.html</a>.</p></li>
+<li><p>Repita el ejercicio anterior con la capa de elevación en resolución de 30 s.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="postgis-construccion-geometrias.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PostGIS - Construcción de geometrías</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../evaluaciones/examencorto-01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examen corto 01</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-postgis-raster">Instalación de postgis_raster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vistas-de-metadatos">Vistas de metadatos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-columns">raster_columns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-overviews">raster_overviews</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-union"><code class="docutils literal notranslate"><span class="pre">ST_Union()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-height-st-width-st-srid-st-numbands"><code class="docutils literal notranslate"><span class="pre">ST_Height()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Width()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_SRID()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_NumBands()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-summarystatsagg"><code class="docutils literal notranslate"><span class="pre">ST_SummaryStatsAgg()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#st-value"><code class="docutils literal notranslate"><span class="pre">ST_Value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
