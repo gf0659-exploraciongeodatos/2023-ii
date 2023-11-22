@@ -51,7 +51,7 @@ El valor total del índice se obtiene mediante al sumar el valor de los indicado
 $$
 \begin{gather*}
 \text{Índice ambiental} = \\
-\text{Proporción de cobertura arbórea} + \text{Densidad de red vial} + \text{Riqueza de especies de mamíferos}
+\text{Proporción de cobertura arbórea} + \text{Densidad de red hidrográfica} + \text{Riqueza de especies de mamíferos}
 \end{gather*}
 $$
 
