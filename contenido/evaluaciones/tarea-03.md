@@ -1,7 +1,7 @@
 # Tarea 03
 
 ## Fecha y hora límite de entrega
-Jueves 23 de noviembre de 2023, 15:59.
+Lunes 27 de noviembre de 2023, 15:59.
 
 ## Descripción general
 Esta tarea consiste en crear un "índice ambiental" de Costa Rica a nivel cantonal, compuesto por indicadores basados en datos geoespaciales de acceso público, como los disponibles en el [Sistema Nacional de Información Territorial (SNIT)](https://www.snitcr.go.cr/) y la [Imfraestructura Mundial de Información en Biodiversidad (GBIF)](https://www.gbif.org/). Debe cargar los datos en una base de datos PostgreSQL/PostGIS, programar en SQL las consultas correspondientes al cálculo de los indicadores y entregar los resultados en un archivo de texto y en un mapa.
