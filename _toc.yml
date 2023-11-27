@@ -37,3 +37,4 @@ parts:
     - file: contenido/evaluaciones/examencorto-04
     - file: contenido/evaluaciones/tarea-03    
     - file: contenido/evaluaciones/examencorto-05    
+    - file: contenido/evaluaciones/proyecto    
