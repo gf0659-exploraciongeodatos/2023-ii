@@ -26,6 +26,7 @@ parts:
     - file: contenido/4/postgis-coordenadas-geograficas          
     - file: contenido/4/postgis-construccion-geometrias       
     - file: contenido/4/postgis-raster           
+    - file: contenido/4/duckdb-visualizacion
   - caption: EVALUACIONES
     chapters:
     - file: contenido/evaluaciones/examencorto-01
