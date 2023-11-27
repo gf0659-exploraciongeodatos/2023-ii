@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Proyecto &#8212; GF-0659 Exploración y explotación de geodatos 2023-II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contenido/evaluaciones/proyecto';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Examen corto 05" href="examencorto-05.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    GF-0659 Exploración y explotación de geodatos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">1 - INTRODUCCIÓN A LOS SISTEMAS DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../1/conceptos-fundamentales-sistemas-bases-datos.html">Conceptos fundamentales sobre sistemas de base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../1/modelo-relacional.html">El modelo relacional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">2 - INTRODUCCIÓN AL LENGUAJE SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../2/introduccion-sql.html">Introducción a SQL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">3 - DISEÑO DE BASES DE DATOS</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../3/diseno-bases-datos.html">Diseño de bases de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">4 - BASES DE DATOS ESPACIALES</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../4/conceptos-fundamentales-bases-datos-espaciales.html">Conceptos fundamentales de bases de datos espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-introduccion.html">PostGIS - Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-geometrias.html">PostGIS - Geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-relaciones-espaciales.html">PostGIS - Relaciones espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-joins-espaciales.html">PostGIS - Uniones (<em>joins</em>) espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-indices-espaciales.html">PostGIS - Índices espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-srs.html">PostGIS - Sistemas de referencia espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-coordenadas-geograficas.html">PostGIS - Coordenadas geográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-construccion-geometrias.html">PostGIS - Construcción de geometrías</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/postgis-raster.html">PostGIS - Raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4/duckdb-visualizacion.html">DuckDB - Visualización de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">EVALUACIONES</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examencorto-01.html">Examen corto 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-02.html">Examen corto 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tarea-01.html">Tarea 01</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-03.html">Examen corto 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tarea-02.html">Tarea 02</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-04.html">Examen corto 04</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tarea-03.html">Tarea 03</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examencorto-05.html">Examen corto 05</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyecto</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/gf0659-exploraciongeodatos/2023-ii/issues/new?title=Issue%20on%20page%20%2Fcontenido/evaluaciones/proyecto.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/contenido/evaluaciones/proyecto.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Proyecto</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="proyecto">
+<h1>Proyecto<a class="headerlink" href="#proyecto" title="Permalink to this heading">#</a></h1>
+<section id="fecha-y-hora-limite-de-entrega">
+<h2>Fecha y hora límite de entrega<a class="headerlink" href="#fecha-y-hora-limite-de-entrega" title="Permalink to this heading">#</a></h2>
+<p>Miércoles 6 de diciembre de 2023, 11:59 a.m.</p>
+</section>
+<section id="descripcion-general">
+<h2>Descripción general<a class="headerlink" href="#descripcion-general" title="Permalink to this heading">#</a></h2>
+<p>Este proyecto consiste en programar consultas a datos espaciales en el lenguaje SQL para calcular la densidad de la red vial en las provincias de Costa Rica y en los distritos de un cantón de su elección. Los resultados deben visualizarse como tablas, gráficos estadísticos y mapas en un cuaderno de notas Jupyter (<em>Jupyter notebook</em>) de la plataforma <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>.</p>
+<p>Debe utilizar las siguientes herramientas:</p>
+<ul class="simple">
+<li><p>Una base de datos DuckDB residente en memoria, para almacenar los datos.</p></li>
+<li><p>La extensión JupySQL de Jupyter, para ejecutar comandos SQL y generar gráficos estadísticos en cuadernos de notas Jupyter.</p></li>
+<li><p>El paquete Leafmap para generar mapas interactivos en cuadernos de notas Jupyter.</p></li>
+</ul>
+<p>Debe utilizar los siguientes conjuntos de datos, disponibles en el <a class="reference external" href="https://www.snitcr.go.cr/">Sistema Nacional de Información Territorial (SNIT)</a>:</p>
+<ul class="simple">
+<li><p>Capa “Límite Provincial” (<code class="docutils literal notranslate"><span class="pre">IGN_5_CO:limiteprovincial_5k</span></code>) publicada en el servicio WFS “IGN Cartografía 1:5mil CO” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_5_CO/wfs</span></code>) del Instituto Geográfico Nacional (IGN).</p></li>
+<li><p>Capa “Límite Distrital” (<code class="docutils literal notranslate"><span class="pre">IGN_5_CO:limitedistrital_5k</span></code>) publicada en el servicio WFS “IGN Cartografía 1:5mil CO” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_5_CO/wfs</span></code>) del IGN.</p></li>
+<li><p>Capa “Red vial” (<code class="docutils literal notranslate"><span class="pre">IGN_200:redvial_200k</span></code>) publicada en el servicio WFS “IGN 1:200mil” (<code class="docutils literal notranslate"><span class="pre">https://geos.snitcr.go.cr/be/IGN_200/wfs?</span></code>) del IGN.</p></li>
+</ul>
+<p>La tarea puede realizarse en parejas o individualmente. En el primer caso, solo uno de los integrantes del equipo debe entregar la tarea en Mediación Virtual e indicar el nombre del otro integrante.</p>
+</section>
+<section id="desarrollo">
+<h2>Desarrollo<a class="headerlink" href="#desarrollo" title="Permalink to this heading">#</a></h2>
+<p>Debe calcular la densidad de la red vial para los siguientes conjuntos de datos:</p>
+<ol class="arabic simple">
+<li><p>Las siete provincias de Costa Rica.</p></li>
+<li><p>Todos los distritos de un cantón de su elección y que tenga al menos dos distritos.</p></li>
+</ol>
+<p>La densidad de la red vial de un polígono (provincia, distrito) se define como:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Densidad de red vial} = \frac{\text{longitud de la red vial del polígono (en km)}}{\text{área total del polígono (en km}^2\text{)}}
+\]</div>
+<p>Para cada conjunto de datos, debe presentar los resultados del cálculo de densidad de red vial en una tabla, en un gráfico de barras y en un mapa de coropletas.</p>
+</section>
+<section id="entregables">
+<h2>Entregables<a class="headerlink" href="#entregables" title="Permalink to this heading">#</a></h2>
+<p>Debe especificarse en la plataforma Mediación Virtual el enlace a un cuaderno de notas Jupyter hospedado en Google Colab, con el siguiente contenido (el valor porcentual de cada punto se muestra entre paréntesis):</p>
+<ol class="arabic simple">
+<li><p>(5%) Una breve introducción (uno o dos párrafos) en la que se explique el contenido del cuaderno de notas y se mencionen las fuentes de datos.</p></li>
+<li><p>(15%) Comandos <a class="reference external" href="https://gdal.org/programs/ogr2ogr.html">ogr2ogr</a> para la descarga de los tres conjuntos de datos.</p></li>
+<li><p>(20%) Cálculo en SQL de la densidad de la red vial para los dos conjuntos de datos.</p></li>
+<li><p>(20%) Dos gráficos de barras (uno para cada conjunto de datos), elaborados con JupySQL, que muestren la densidad de la red vial en cada provincia o distrito, según corresponda. Las barras deben estar ordenadas (de menor a mayor o de mayor a menor) y correctamente etiquetadas con los nombres de las provincias o de los distritos.</p></li>
+<li><p>(25%) Dos mapas de coropletas (uno para cada conjunto de datos), elaborados con Leafmap, que muestren la densidad de la red vial en cada provincia o distrito, según corresponda.</p></li>
+</ol>
+<p>Además, se reservará un 15% de la nota para calificar la estructura y el orden del cuaderno de notas. Se tomarán en cuenta los siguientes aspectos:</p>
+<ul class="simple">
+<li><p>El documento debe dividirse en secciones. Puede usarse una estructura similar a la que se ha visto en clase u otra que se considere apropiada.</p></li>
+<li><p>No deben mostrarse mensajes de error, advertencias o cualquier otro texto que dificulte la lectura.</p></li>
+<li><p>Redacción y ortografía.</p></li>
+</ul>
+<p><strong>IMPORTANTE</strong></p>
+<ul class="simple">
+<li><p>El cálculo de la densidad vial debe ser realizado completamente mediante SQL en la base de datos DuckDB. La secuencia de las consultas debe ser reproducible y conducir al resultado final. Para revisar la tarea, el profesor ejecutará las sentencias SQL y verificará la consistencia de los resultados obtenidos con los reportados.</p></li>
+<li><p>Los cálculos de áreas, distancias y otros similares deben realizarse mediante funciones de SQL (ej. <code class="docutils literal notranslate"><span class="pre">ST_Area()</span></code>, <code class="docutils literal notranslate"><span class="pre">ST_Length()</span></code>).</p></li>
+<li><p>Los resultados deben presentarse con dos decimales.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contenido/evaluaciones"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examencorto-05.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Examen corto 05</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fecha-y-hora-limite-de-entrega">Fecha y hora límite de entrega</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general">Descripción general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo">Desarrollo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entregables">Entregables</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manuel Vargas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
